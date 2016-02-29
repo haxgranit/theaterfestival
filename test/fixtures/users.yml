@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: one@example.com
+  password_digest: <%= User.digest('secret') %>
+  first_name: One
+  last_name: Tester
+  time_zone: Eastern Time (US & Canada)
+  location: Wherever
+
+two:
+  email: two@example.com
+  password_digest: <%= User.digest('secret') %>
+  first_name: Two
+  last_name: Tester
+  time_zone: Eastern Time (US & Canada)
+  location: Somewhere
+
+three:
+  email: three@example.com
+  password_digest: <%= User.digest('secret') %>
+  first_name: Three
+  last_name: Tester
+  time_zone: Eastern Time (US & Canada)
+  location: Nowhere
