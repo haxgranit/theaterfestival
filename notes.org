@@ -1,0 +1,86 @@
+#+TITLE:TheaterEngine Notes
+#+STARTUP: showall
+
+* Design Questions
+** Résumé
+   Format?
+
+   File? Plain text?
+
+   How does the resume relate to credits, if at all?
+** Users/Artists/Companies
+*** Listings
+    Existing users will be discoverable by a search field. What is the story for
+    credits for artists not already on the site? Just an option at the top of the
+    search results for "Create new Artist (name)"?
+*** Verification
+    Is there (or should there be) a plan for artist or company verification? In
+    the event that a Company page is created or claimed by an unauthorized
+    representative, what steps are necessary to rectify this?
+
+    The flag option is probably easiest for Artists, but it would seem prudent
+    to have an option with greater oversight for Companies.
+**** Permanent Passive Pages
+     Who owns a permanently passive page? How are credit confirmations handled?
+**** Image Rights
+     Media uploads will provide a credit field. Should this field be required?
+     Should media items include the same flagging mechanism as profile pages
+     so that rights holders can dispute the display of media items?
+
+
+* Features
+** As of 29 February 2016
+*** Users
+**** Signup
+**** Authentication
+**** Session management
+**** API listing
+*** Next steps
+**** Newsfeeds
+**** User following
+**** Aggregated newsfeed from followed users
+**** Artists and companies
+
+* Backend
+** Database
+   We use Postgres to back ActiveRecord models. ActiveRecord was chosen for
+   compatibility with =jsonapi-resources= and for easier developer ramp-up.
+   During development, a Postgres instance must be available.
+** Caching
+   Requests are cached with =memcached=. During development, a Memcached
+   instance must be available.
+** Server
+   To allow for straightforward scaling, we use Unicorn as our application
+   server. This allows the operating system to handle load balancing by forking
+   new workers while communicating with a webserver over a standard socket. Slow
+   workers are automatically killed, and because the entire application is
+   loaded into memory by the Unicorn master, additional forked workers are
+   essentially free.
+
+* Package documentation
+** JSONAPI Resources
+   We use =jsonapi-resources= for the API backend. Docs are [[https://github.com/cerebris/jsonapi-resources#usage][on Github]]. Resources
+   are namepaced and versioned under =/api=. Resource definitions are under
+   =app/resources= and controller definitions are under =app/controllers=.
+** Bootstrap
+*** =bootstrap-sass=
+    The Sass port of Twitter Bootstrap currently supports the lastest
+    Bootstrap 3. All stylesheets should be SCSS files, and should be included by
+    =@import= in =app/assets/stylesheets/application.scss=.
+*** =bh=
+    Bootstrap Helpers by Fullscreen has convenience methods for most Bootstrap
+    components. Docs can be found [[https://fullscreen.github.io/bh/][here]].
+*** =bootstrap_form=
+    Provides a helper for Bootstrap forms using =bootstrap_form_for=. =bh= has a
+    form helper which should be preferred except for forms which use the special
+    select fields provided by Rails (e.g., =time_zone_select=), where
+    =bootstrap_form_for= is better behaved.
+
+* RFC Notes
+** Redirects: Relative vs. Absolute
+   In June 2014, [[https://tools.ietf.org/html/rfc2616#section-14.30][RFC 2616 Section 14.30]] was replaced by [[https://tools.ietf.org/html/rfc7231#section-7.1.2][RFC 7231 Section 7.1.2]].
+   In short, while it was once required by the standard that a redirect must
+   provide a full URI, the updated RFC allows for relative URI references. While
+   the [[https://tools.ietf.org/html/rfc7230#section-5.5][effective request URI]] is nearly always the same as the request URI, for
+   the sake of safety, we redirect using full URIs. In practice, this means
+   using =route_url= rather than =route_path= in redirects.
