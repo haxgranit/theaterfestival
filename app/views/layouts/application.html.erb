@@ -13,14 +13,56 @@
     </head>
     <body>
         <%= render 'layouts/header' %>
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding: 0;">
+            <img style="width: 100%;" alt="" src="http://lorempixel.com/1024/340/"/>
+        </div>
+        <div class="container">
             <% flash.each do |message_type, message| %>
                 <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
             <% end %>
-            <%= yield %>
-            <%= debug(params) if Rails.env.development? %>
+            <div class="row">
+
+            <aside class="col-md-5">
+                <section class="search">
+                    <h1>Where would you like to see a show?</h1>
+                    <%= form_for :show_search, layout: :horizontal do |f| %>
+                        <%= f.text_field :country, placeholder: '' %>
+                        <%= f.text_field :state, placeholder: '' %>
+                        <%= f.text_field :city, placeholder: '' %>
+                        <div class="form-group">
+                            <div class="col-sm-offset-9 col-sm-9">
+                                <input class="btn btn-primary" name="commit" type="submit" value="search">
+                            </div>
+                        </div>
+                    <% end %>
+                </section>
+                <section class="price">
+                    <h2>Price Range</h2>
+                    <input id="price_range" type="text" "span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[20,800]"/>
+                </section>
+                <section class="filters">
+                    <h2>Filter Search</h2>
+                    <%= form_for :filters, layout: :basic do |f| %>
+                            <%= f.check_box :price, label: 'Guaranteed Price Only' %>
+                            <%= f.check_box :price, label: 'Tonight' %>
+                            <%= f.check_box :price, label: 'Tomorrow' %>
+                            <%= f.check_box :price, label: 'This Weekend' %>
+                            <%= f.check_box :price, label: 'Next Week' %>
+                            <%= f.check_box :price, label: 'Matinees Only' %>
+                            <%= f.check_box :price, label: 'Late Night Only' %>
+                            <%= f.check_box :price, label: 'With Reviews' %>
+                            <%= f.check_box :price, label: 'User Favorites' %>
+                            <%= f.check_box :price, label: '1000+ Seats' %>
+                            <%= f.check_box :price, label: '-1000 Seats' %>
+                            <%= f.check_box :price, label: 'Black Box (Under 50 Seats)' %>
+                    <% end %>
+                </section>
+            </aside>
+            <div class="col-md-7">
+                <%= yield %>
+            </div>
+            </div>
+            <%= render 'layouts/footer' %>
         </div>
     </body>
-    <footer class="footer">
-    </footer>
 </html>

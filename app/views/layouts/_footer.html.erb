@@ -1,0 +1,88 @@
+<footer>
+    <div class="row">
+        <div class="col-sm-6 featured">
+            <figure>
+                <img alt="" src="http://lorempixel.com/400/200/?1"/>
+                <figcaption>
+                    Some text here: <span>Lorem ipsum</span>
+                </figcaption>
+            </figure>
+        </div>
+        <div class="col-sm-6 secondary">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img alt="" src="http://lorempixel.com/400/200/?2"/>
+                </div>
+                <div class="col-sm-6">
+                    <img alt="" src="http://lorempixel.com/400/200/?3"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img alt="" src="http://lorempixel.com/400/200/?4"/>
+                </div>
+                <div class="col-sm-6">
+                    <img alt="" src="http://lorempixel.com/400/200/?5"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nav-footer" class="row">
+        <div class="col-md-offset-1 col-md-2">
+            <h1>find a show</h1>
+            <%= nav as: :pills, layout: :stacked, class: 'nav-footer' do %>
+                <%= link_to 'Country', '#' %>
+                <%= link_to 'State', '#' %>
+                <%= link_to 'City', '#' %>
+                <%= link_to 'Neighborhood', '#' %>
+                <%= link_to 'Recently Added', '#' %>
+                <%= link_to 'Currently Running', '#' %>
+                <%= link_to 'Closing Soon', '#' %>
+                <%= link_to 'User Favorites', '#' %>
+            <% end %>
+        </div>
+        <div class="col-md-2">
+            <h1>list a show</h1>
+            <%= nav as: :pills, layout: :stacked, class: 'nav-footer' do %>
+                <%= link_to 'Information', '#' %>
+                <%= link_to 'Sign Up', '#' %>
+                <%= link_to 'Contact', '#' %>
+                <%= link_to 'FAQ', '#' %>
+            <% end %>
+        </div>
+        <div class="col-md-2">
+            <h1>my local shows</h1>
+            <%= nav as: :pills, layout: :stacked, class: 'nav-footer' do %>
+                <%= link_to 'Cabaret', '#' %>
+                <%= link_to 'Carousel', '#' %>
+                <%= link_to 'Cats', '#' %>
+                <%= link_to 'Chess', '#' %>
+                <%= link_to 'Cinderella', '#' %>
+                <%= link_to 'Company', '#' %>
+                <%= link_to 'Crazy For You', '#' %>
+                <%= link_to 'Cruel Intentions', '#' %>
+            <% end %>
+        </div>
+        <div class="col-md-2">
+            <h1>coming soon</h1>
+            <%= nav as: :pills, layout: :stacked, class: 'nav-footer' do %>
+                <%= link_to 'Fame', '#' %>
+                <%= link_to 'The Fantasticks', '#' %>
+                <%= link_to 'Fiddler On The Roof', '#' %>
+                <%= link_to 'Finian\'s Rainbow', '#' %>
+                <%= link_to 'Footloose', '#' %>
+                <%= link_to 'Full Monty', '#' %>
+                <%= link_to 'Funny Girl', '#' %>
+            <% end %>
+        </div>
+        <div class="col-md-2">
+            <h1>sign up</h1>
+            <%= nav as: :pills, layout: :stacked, class: 'nav-footer' do %>
+                <%= link_to 'Country', '#' %>
+                <%= link_to 'State', '#' %>
+                <%= link_to 'City', '#' %>
+                <%= link_to 'Neighborhood', '#' %>
+            <% end %>
+        </div>
+    </div>
+</footer>

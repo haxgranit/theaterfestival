@@ -1,0 +1,57 @@
+aside {
+    @include background(linear-gradient(
+                            transparentize(white, 0.2),
+                            transparentize(white, 0.2)
+                        ),
+                        image-url('broadway.jpg'));
+    background-size: cover;
+    padding: 2em;
+    margin-left: $grid-gutter-width / 2;
+    margin-right: -$grid-gutter-width / 2;
+    section {
+        background: transparentize($gray, 0.75);
+        margin: auto 2em;
+        padding-bottom: 1em;
+    }
+    h1 {
+        background: $brand-primary;
+        color: invert($gray-base);
+        font-size: 1.1em;
+        padding: 1.5em;
+        margin: 0;
+        text-align: left;
+    }
+    h2 {
+        background: $gray-light;
+        color: invert($gray-base);
+        font-size: 1.1em;
+        padding: 1.5em;
+        margin: 0;
+        text-align: left;
+    }
+    form {
+        padding: 1em;
+        label {
+            color: invert($gray-base);
+        }
+        input.btn {
+            padding: 0 2em;
+            margin-left: -2em;
+        }
+    }
+    section.price {
+        text-align: center;
+    }
+    .slider.slider-horizontal {
+        width: 80%;
+        margin: 1em;
+        .slider-track {
+            height: 1.5em;
+        }
+        .slider-handle {
+            width: 2em;
+            height: 1.5em;
+            margin-top: 0;
+        }
+    }
+}
