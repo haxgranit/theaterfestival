@@ -1,3 +1,48 @@
 // Place all the styles related to the static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  > [class*=col-] {
+      align-items: stretch;
+      .jumbotron {
+          height: 100%;
+      }
+  }
+}
+
+.frontpage-show {
+    figurecaption {
+        .company {
+            display: block;
+            line-height: 1em;
+            font-size: 0.8em;
+            color: $gray-light;
+            font-style: italic;
+        }
+        .venue {
+            display: block;
+            line-height: 1em;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: $gray-light;
+        }
+        .followers {
+            display: block;
+            line-height: 1.2em;
+            font-size: 0.9em;
+            color: $brand-primary;
+            i.fa {
+                color: lime;
+            }
+        }
+    }
+}
+
+.pagination {
+    float: right;
+}
