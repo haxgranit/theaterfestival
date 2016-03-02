@@ -10,10 +10,12 @@
    How does the resume relate to credits, if at all?
 ** Users/Artists/Companies
 *** Listings
+
     Existing users will be discoverable by a search field. What is the story for
     credits for artists not already on the site? Just an option at the top of the
     search results for "Create new Artist (name)"?
 *** Verification
+
     Is there (or should there be) a plan for artist or company verification? In
     the event that a Company page is created or claimed by an unauthorized
     representative, what steps are necessary to rectify this?
@@ -21,8 +23,10 @@
     The flag option is probably easiest for Artists, but it would seem prudent
     to have an option with greater oversight for Companies.
 **** Permanent Passive Pages
+
      Who owns a permanently passive page? How are credit confirmations handled?
 **** Image Rights
+
      Media uploads will provide a credit field. Should this field be required?
      Should media items include the same flagging mechanism as profile pages
      so that rights holders can dispute the display of media items?

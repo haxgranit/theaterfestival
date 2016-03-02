@@ -12,7 +12,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass'
+gem 'compass-rails'
 gem 'bootstrap_form'
+gem 'bootstrap-slider-rails'
+gem 'font-awesome-rails'
 gem 'bh'
 
 gem 'unicorn'
