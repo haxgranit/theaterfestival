@@ -38,7 +38,7 @@ guard :minitest, spring: true, all_on_start: false do
     ["test/controllers/#{m[1]}_controller_test.rb"] +
       integration_tests(m[1])
   end
-  
+
   watch(%r{^app/helpers/(.*?)_helper\.rb$}) { |m| integration_tests(m[1]) }
 
   watch('app/views/layouts/application.html.erb') do
@@ -62,11 +62,11 @@ guard :minitest, spring: true, all_on_start: false do
     resource_tests('users')
   end
 
-  def integration_tests(resource = :all) 
+  def integration_tests(resource = :all)
     if resource == :all
-      Dir["test/integration/ * "] 
+      Dir['test/integration/ * ']
     else
-      Dir["test/integration/#{resource}_ * .rb"] 
+      Dir["test/integration/#{resource}_ * .rb"]
     end
   end
 
@@ -78,7 +78,8 @@ guard :minitest, spring: true, all_on_start: false do
     integration_tests(resource) << controller_test(resource)
   end
 
-  watch(%r{^app/views/(.+)_mailer/.+})                   { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
-  watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
+  watch(%r{^app/views/(.+)_mailer/.+}) { |m|
+    "test/mailers/#{m[1]}_mailer_test.rb" }
+  watch(%r{^lib/(.+)\.rb$}) { |m| "test/lib/#{m[1]}_test.rb" }
   watch(%r{^test/.+_test\.rb$})
 end
