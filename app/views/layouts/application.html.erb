@@ -3,10 +3,10 @@
     <head>
         <title><%= default_title(yield(:title)) %></title>
         <%= stylesheet_link_tag 'application', media: 'all',
-                                'data-turbolinks-track' => true
+        'data-turbolinks-track' => true
         %>
         <%= javascript_include_tag 'application',
-                                   'data-turbolinks-track' => true
+        'data-turbolinks-track' => true
         %>
         <%= csrf_meta_tags %>
         <%= render 'layouts/shim' %>
@@ -28,11 +28,7 @@
                             <%= f.text_field :country, placeholder: '' %>
                             <%= f.text_field :state, placeholder: '' %>
                             <%= f.text_field :city, placeholder: '' %>
-                            <div class="form-group">
-                                <div class="col-sm-offset-9 col-sm-9">
-                                    <input class="btn btn-primary" name="commit" type="submit" value="search">
-                                </div>
-                            </div>
+                            <%= f.submit 'Search', class: 'pull-right' %>
                         <% end %>
                     </section>
                     <section class="price">
