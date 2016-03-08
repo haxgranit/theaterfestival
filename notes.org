@@ -12,8 +12,8 @@
 *** Listings
 
     Existing users will be discoverable by a search field. What is the story for
-    credits for artists not already on the site? Just an option at the top of the
-    search results for "Create new Artist (name)"?
+    credits for artists not already on the site? Just an option at the top of
+    the search results for "Create new Artist (name)"?
 *** Verification
 
     Is there (or should there be) a plan for artist or company verification? In
@@ -28,8 +28,8 @@
 **** Image Rights
 
      Media uploads will provide a credit field. Should this field be required?
-     Should media items include the same flagging mechanism as profile pages
-     so that rights holders can dispute the display of media items?
+     Should media items include the same flagging mechanism as profile pages so
+     that rights holders can dispute the display of media items?
 
 
 * Features
