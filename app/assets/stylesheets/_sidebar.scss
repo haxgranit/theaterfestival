@@ -6,8 +6,6 @@ aside {
                         image-url('broadway.jpg'));
     background-size: cover;
     padding: 2em;
-    margin-left: $grid-gutter-width / 2;
-    margin-right: -$grid-gutter-width / 2;
     section {
         background: transparentize($gray, 0.75);
         margin: auto 2em;
