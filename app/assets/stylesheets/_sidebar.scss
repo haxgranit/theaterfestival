@@ -1,9 +1,8 @@
 aside {
-  @include background(image-url('broadway.jpg'),
-                      linear-gradient(
+  @include background(linear-gradient(
                           transparentize($white, .2),
                           transparentize($white, .2)
-                        ));
+                      ), image-url('broadway.jpg'));
 
   background-size: cover;
   display: flex;
