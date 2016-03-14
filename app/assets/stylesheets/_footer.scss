@@ -1,47 +1,55 @@
 footer {
-    margin-top: 1em;
-    img {
-        width: 100%;
-    }
-    figure {
-        width: 100%;
-        position: relative;
-        figcaption {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(240,0,0, 0.5);
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.75vw;
-            line-height: 2em;
-            span {
-                font-weight: lighter;
-            }
-        }
-    }
-    .secondary {
-        .row:first-child {
-            margin-bottom: 1em;
-        }
-    }
-    #nav-footer {
-        background-image: image-url('footer_bg.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom right;
-        h1 {
-            color: invert($gray-dark);
-            font-size: 2em;
-        }
+  margin-top: 1em;
 
+  img {
+    width: 100%;
+  }
+
+  figure {
+    position: relative;
+    width: 100%;
+  }
+
+  figcaption {
+    background-color: $overlay-red;
+    bottom: 0;
+    color: $white;
+    font-size: 1.75vw;
+    font-weight: bold;
+    line-height: 2em;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    span {
+      font-weight: lighter;
     }
-    .nav-footer {
-        li {
-            a {
-                color: $gray-light;
-            }
-        }
+  }
+
+  .secondary {
+    .row:first-child {
+      margin-bottom: 1em;
     }
+  }
+}
+
+#nav-footer {
+  background-image: image-url('footer_bg.jpg');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h1 {
+    color: $white;
+    font-size: 2em;
+  }
+
+}
+
+.nav-footer {
+  li {
+    a {
+      color: $gray-light;
+    }
+  }
 }
