@@ -10,7 +10,7 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'compass-rails'
 gem 'bootstrap_form'
 gem 'bootstrap-slider-rails'
@@ -27,6 +27,10 @@ gem 'jsonapi-resources', git: 'https://github.com/cerebris/jsonapi-resources.git
 
 gem 'memcached'
 gem 'memcached_store'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 group :development, :test do
   gem 'byebug'
