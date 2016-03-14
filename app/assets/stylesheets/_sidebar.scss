@@ -1,51 +1,63 @@
 aside {
-    @include background(linear-gradient(
-                            transparentize(white, 0.2),
-                            transparentize(white, 0.2)
-                        ),
-                        image-url('broadway.jpg'));
-    background-size: cover;
-    padding: 2em;
-    section {
-        background: transparentize($gray, 0.75);
-        margin: auto 2em;
-        padding-bottom: 1em;
+  @include background(image-url('broadway.jpg'),
+                      linear-gradient(
+                          transparentize($white, .2),
+                          transparentize($white, .2)
+                        ));
+
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+
+  section {
+    background: transparentize($gray, .75);
+    margin: auto 2em;
+    padding-bottom: 1em;
+
+    &.price {
+      text-align: center;
     }
-    h1 {
-        background: $brand-primary;
-        color: invert($gray-dark);
-        font-size: 1.1em;
-        padding: 1.5em;
-        margin: 0;
-        text-align: left;
+  }
+
+  h1 {
+    background: $brand-primary;
+    color: invert($gray-dark);
+    font-size: 1.1em;
+    margin: 0;
+    padding: 1.5em;
+    text-align: left;
+  }
+
+  h2 {
+    background: $gray-light;
+    color: invert($gray-dark);
+    font-size: 1.1em;
+    margin: 0;
+    padding: 1.5em;
+    text-align: left;
+  }
+
+  form {
+    padding: 1em;
+
+    label {
+      color: invert($gray-dark);
     }
-    h2 {
-        background: $gray-light;
-        color: invert($gray-dark);
-        font-size: 1.1em;
-        padding: 1.5em;
-        margin: 0;
-        text-align: left;
+  }
+
+  .slider.slider-horizontal {
+    margin: 1em;
+    width: 80%;
+
+    .slider-track {
+      height: 1.5em;
     }
-    form {
-        padding: 1em;
-        label {
-            color: invert($gray-dark);
-        }
+
+    .slider-handle {
+      height: 1.5em;
+      margin-top: 0;
+      width: 2em;
     }
-    section.price {
-        text-align: center;
-    }
-    .slider.slider-horizontal {
-        width: 80%;
-        margin: 1em;
-        .slider-track {
-            height: 1.5em;
-        }
-        .slider-handle {
-            width: 2em;
-            height: 1.5em;
-            margin-top: 0;
-        }
-    }
+  }
 }
