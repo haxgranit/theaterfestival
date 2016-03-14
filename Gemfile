@@ -15,7 +15,7 @@ gem 'compass-rails'
 gem 'bootstrap_form'
 gem 'bootstrap-slider-rails'
 gem 'font-awesome-rails'
-gem 'bh'
+gem 'bh', github: 'jhenahan/bh', branch: 'v4'
 
 gem 'unicorn'
 gem 'unicorn-rails'
