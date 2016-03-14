@@ -13,7 +13,7 @@ aside {
     }
     h1 {
         background: $brand-primary;
-        color: invert($gray-base);
+        color: invert($gray-dark);
         font-size: 1.1em;
         padding: 1.5em;
         margin: 0;
@@ -21,7 +21,7 @@ aside {
     }
     h2 {
         background: $gray-light;
-        color: invert($gray-base);
+        color: invert($gray-dark);
         font-size: 1.1em;
         padding: 1.5em;
         margin: 0;
@@ -30,7 +30,7 @@ aside {
     form {
         padding: 1em;
         label {
-            color: invert($gray-base);
+            color: invert($gray-dark);
         }
     }
     section.price {
