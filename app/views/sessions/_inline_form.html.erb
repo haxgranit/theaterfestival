@@ -1,6 +1,0 @@
-<%= form_for :session, url: login_path, layout: :inline do |f| %>
-    <%= f.email_field :email %>
-    <%= f.password_field :password %>
-    <%= f.submit 'Sign in' %>
-    <%= link_to 'Register', signup_path, class: 'btn btn-success' %>
-<% end %>
