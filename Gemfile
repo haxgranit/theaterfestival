@@ -28,6 +28,11 @@ gem 'jsonapi-resources', git: 'https://github.com/cerebris/jsonapi-resources.git
 gem 'memcached'
 gem 'memcached_store'
 
+gem 'devise'
+gem 'devise_zxcvbn'
+
+gem 'pundit'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
