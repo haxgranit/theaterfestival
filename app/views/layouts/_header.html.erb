@@ -1,8 +1,8 @@
 <header>
-    <% if !logged_in? %>
+    <% if !user_signed_in? %>
         <div class="collapse container-fluid bg-inverse" id="signIn">
             <div class="container p-a-1">
-                <%= render 'sessions/inline_form' %>
+                <%= render 'devise/sessions/inline_form' %>
             </div>
         </div>
     <% end %>
@@ -14,11 +14,11 @@
             <%= nav do %>
                 <%= link_to 'find/list a show', '#' %>
                 <%= link_to 'community', '#' %>
-                <% if logged_in? %>
+                <% if user_signed_in? %>
                     <%= link_to 'profile', current_user %>
-                    <%= link_to 'logout', logout_path, method: :delete %>
+                    <%= link_to 'logout', destroy_user_session_path, method: :delete %>
                 <% else %>
-                    <%= link_to 'sign in', '#',
+                <%= link_to 'sign in', '#',
                     'data-toggle' => "collapse",
                     'data-target' => "#signIn" %>
                 <% end %>
