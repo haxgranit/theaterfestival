@@ -1,0 +1,57 @@
+<%= form_for(@artist_social_metadatum) do |f| %>
+  <% if @artist_social_metadatum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@artist_social_metadatum.errors.count, "error") %> prohibited this artist_social_metadatum from being saved:</h2>
+
+      <ul>
+      <% @artist_social_metadatum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :twitter %><br>
+    <%= f.text_area :twitter %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook %><br>
+    <%= f.text_area :facebook %>
+  </div>
+  <div class="field">
+    <%= f.label :linkedin %><br>
+    <%= f.text_area :linkedin %>
+  </div>
+  <div class="field">
+    <%= f.label :tumblr %><br>
+    <%= f.text_area :tumblr %>
+  </div>
+  <div class="field">
+    <%= f.label :snapchat %><br>
+    <%= f.text_area :snapchat %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_area :email %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br>
+    <%= f.text_area :website %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram %><br>
+    <%= f.text_area :instagram %>
+  </div>
+  <div class="field">
+    <%= f.label :vine %><br>
+    <%= f.text_area :vine %>
+  </div>
+  <div class="field">
+    <%= f.label :artist_id %><br>
+    <%= f.text_field :artist_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :artist_social_metadata
   resources :artists
   devise_for :users
   root 'static#home'
