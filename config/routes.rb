@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :artists
   devise_for :users
   root 'static#home'
   resources :users, only: [:show, :index]
