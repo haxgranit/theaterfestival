@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @production_credit.artist %>
+</p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @production_credit.production %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @production_credit.name %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @production_credit.position %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @production_credit.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @production_credit.end_date %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @production_credit.type %>
+</p>
+
+<p>
+  <strong>Confirmed:</strong>
+  <%= @production_credit.confirmed %>
+</p>
+
+<%= link_to 'Edit', edit_production_credit_path(@production_credit) %> |
+<%= link_to 'Back', production_credits_path %>

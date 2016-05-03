@@ -1,0 +1,49 @@
+<%= form_for(@production_credit) do |f| %>
+  <% if @production_credit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@production_credit.errors.count, "error") %> prohibited this production_credit from being saved:</h2>
+
+      <ul>
+      <% @production_credit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :artist_id %><br>
+    <%= f.text_field :artist_id %>
+  </div>
+  <div class="field">
+    <%= f.label :production_id %><br>
+    <%= f.text_field :production_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_area :name %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br>
+    <%= f.text_area :position %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_area :type %>
+  </div>
+  <div class="field">
+    <%= f.label :confirmed %><br>
+    <%= f.check_box :confirmed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
