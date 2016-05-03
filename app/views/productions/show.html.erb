@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @production.title %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @production.public %>
+</p>
+
+<p>
+  <strong>Tagline:</strong>
+  <%= @production.tagline %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @production.description %>
+</p>
+
+<p>
+  <strong>First performance:</strong>
+  <%= @production.first_performance %>
+</p>
+
+<p>
+  <strong>Last performance:</strong>
+  <%= @production.last_performance %>
+</p>
+
+<%= link_to 'Edit', edit_production_path(@production) %> |
+<%= link_to 'Back', productions_path %>

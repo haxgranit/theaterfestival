@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @production_metadatum.production %>
+</p>
+
+<p>
+  <strong>Performance type:</strong>
+  <%= @production_metadatum.performance_type %>
+</p>
+
+<p>
+  <strong>Info heading:</strong>
+  <%= @production_metadatum.info_heading %>
+</p>
+
+<p>
+  <strong>Info:</strong>
+  <%= @production_metadatum.info %>
+</p>
+
+<p>
+  <strong>Warnings:</strong>
+  <%= @production_metadatum.warnings %>
+</p>
+
+<p>
+  <strong>Warning info:</strong>
+  <%= @production_metadatum.warning_info %>
+</p>
+
+<p>
+  <strong>Running time:</strong>
+  <%= @production_metadatum.running_time %>
+</p>
+
+<p>
+  <strong>Intermissions:</strong>
+  <%= @production_metadatum.intermissions %>
+</p>
+
+<%= link_to 'Edit', edit_production_metadatum_path(@production_metadatum) %> |
+<%= link_to 'Back', production_metadata_index_path %>

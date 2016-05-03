@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  public: false
+  tagline: MyText
+  description: MyText
+  first_performance: 2016-05-19
+  last_performance: 2016-05-19
+
+two:
+  title: MyText
+  public: false
+  tagline: MyText
+  description: MyText
+  first_performance: 2016-05-19
+  last_performance: 2016-05-19

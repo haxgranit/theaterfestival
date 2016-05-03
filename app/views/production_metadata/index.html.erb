@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Production Metadata</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Production</th>
+      <th>Performance type</th>
+      <th>Info heading</th>
+      <th>Info</th>
+      <th>Warnings</th>
+      <th>Warning info</th>
+      <th>Running time</th>
+      <th>Intermissions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @production_metadata.each do |production_metadatum| %>
+      <tr>
+        <td><%= production_metadatum.production %></td>
+        <td><%= production_metadatum.performance_type %></td>
+        <td><%= production_metadatum.info_heading %></td>
+        <td><%= production_metadatum.info %></td>
+        <td><%= production_metadatum.warnings %></td>
+        <td><%= production_metadatum.warning_info %></td>
+        <td><%= production_metadatum.running_time %></td>
+        <td><%= production_metadatum.intermissions %></td>
+        <td><%= link_to 'Show', production_metadatum %></td>
+        <td><%= link_to 'Edit', edit_production_metadatum_path(production_metadatum) %></td>
+        <td><%= link_to 'Destroy', production_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Production metadata', new_production_metadatum_path %>

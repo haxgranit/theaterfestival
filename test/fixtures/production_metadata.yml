@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  production_id: 
+  performance_type: MyText
+  info_heading: MyText
+  info: MyText
+  warnings: MyText
+  warning_info: MyText
+  running_time: MyText
+  intermissions: MyText
+
+two:
+  production_id: 
+  performance_type: MyText
+  info_heading: MyText
+  info: MyText
+  warnings: MyText
+  warning_info: MyText
+  running_time: MyText
+  intermissions: MyText
