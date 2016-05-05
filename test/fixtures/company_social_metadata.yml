@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  twitter: MyText
+  facebook: MyText
+  linkedin: MyText
+  tumblr: MyText
+  vine: MyText
+  snapchat: MyText
+  instagram: MyText
+
+two:
+  twitter: MyText
+  facebook: MyText
+  linkedin: MyText
+  tumblr: MyText
+  vine: MyText
+  snapchat: MyText
+  instagram: MyText

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Company Social Metadata</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Twitter</th>
+      <th>Facebook</th>
+      <th>Linkedin</th>
+      <th>Tumblr</th>
+      <th>Vine</th>
+      <th>Snapchat</th>
+      <th>Instagram</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_social_metadata.each do |company_social_metadatum| %>
+      <tr>
+        <td><%= company_social_metadatum.twitter %></td>
+        <td><%= company_social_metadatum.facebook %></td>
+        <td><%= company_social_metadatum.linkedin %></td>
+        <td><%= company_social_metadatum.tumblr %></td>
+        <td><%= company_social_metadatum.vine %></td>
+        <td><%= company_social_metadatum.snapchat %></td>
+        <td><%= company_social_metadatum.instagram %></td>
+        <td><%= link_to 'Show', company_social_metadatum %></td>
+        <td><%= link_to 'Edit', edit_company_social_metadatum_path(company_social_metadatum) %></td>
+        <td><%= link_to 'Destroy', company_social_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Company social metadata', new_company_social_metadatum_path %>

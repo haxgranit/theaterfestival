@@ -1,0 +1,2 @@
+module CompanySocialMetadataHelper
+end
