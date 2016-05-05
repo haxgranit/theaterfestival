@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 
+  address1: MyText
+  address2: MyText
+  date_founded: 2016-05-19
+  location_founded: MyText
+  founders: MyText
+  mission: MyText
+  history: MyText
+
+two:
+  company_id: 
+  address1: MyText
+  address2: MyText
+  date_founded: 2016-05-19
+  location_founded: MyText
+  founders: MyText
+  mission: MyText
+  history: MyText

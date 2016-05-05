@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @company_metadatum.company %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @company_metadatum.address1 %>
+</p>
+
+<p>
+  <strong>Address2:</strong>
+  <%= @company_metadatum.address2 %>
+</p>
+
+<p>
+  <strong>Date founded:</strong>
+  <%= @company_metadatum.date_founded %>
+</p>
+
+<p>
+  <strong>Location founded:</strong>
+  <%= @company_metadatum.location_founded %>
+</p>
+
+<p>
+  <strong>Founders:</strong>
+  <%= @company_metadatum.founders %>
+</p>
+
+<p>
+  <strong>Mission:</strong>
+  <%= @company_metadatum.mission %>
+</p>
+
+<p>
+  <strong>History:</strong>
+  <%= @company_metadatum.history %>
+</p>
+
+<%= link_to 'Edit', edit_company_metadatum_path(@company_metadatum) %> |
+<%= link_to 'Back', company_metadata_index_path %>
