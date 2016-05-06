@@ -1,0 +1,25 @@
+<%= form_for(@company_festival_link) do |f| %>
+  <% if @company_festival_link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company_festival_link.errors.count, "error") %> prohibited this company_festival_link from being saved:</h2>
+
+      <ul>
+      <% @company_festival_link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_id %><br>
+    <%= f.text_field :company_id %>
+  </div>
+  <div class="field">
+    <%= f.label :festival_id %><br>
+    <%= f.text_field :festival_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

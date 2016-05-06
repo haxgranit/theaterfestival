@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @company_festival_link.company %>
+</p>
+
+<p>
+  <strong>Festival:</strong>
+  <%= @company_festival_link.festival %>
+</p>
+
+<%= link_to 'Edit', edit_company_festival_link_path(@company_festival_link) %> |
+<%= link_to 'Back', company_festival_links_path %>

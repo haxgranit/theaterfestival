@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Festival:</strong>
+  <%= @festival_production_link.festival %>
+</p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @festival_production_link.production %>
+</p>
+
+<%= link_to 'Edit', edit_festival_production_link_path(@festival_production_link) %> |
+<%= link_to 'Back', festival_production_links_path %>

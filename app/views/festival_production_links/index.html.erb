@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Festival Production Links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Festival</th>
+      <th>Production</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @festival_production_links.each do |festival_production_link| %>
+      <tr>
+        <td><%= festival_production_link.festival %></td>
+        <td><%= festival_production_link.production %></td>
+        <td><%= link_to 'Show', festival_production_link %></td>
+        <td><%= link_to 'Edit', edit_festival_production_link_path(festival_production_link) %></td>
+        <td><%= link_to 'Destroy', festival_production_link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Festival production link', new_festival_production_link_path %>
