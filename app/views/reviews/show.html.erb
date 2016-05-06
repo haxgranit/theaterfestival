@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @review.production %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @review.date %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @review.title %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @review.summary %>
+</p>
+
+<p>
+  <strong>Full text:</strong>
+  <%= @review.full_text %>
+</p>
+
+<p>
+  <strong>Agree:</strong>
+  <%= @review.agree %>
+</p>
+
+<p>
+  <strong>Disagree:</strong>
+  <%= @review.disagree %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>
