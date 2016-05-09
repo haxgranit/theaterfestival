@@ -1,0 +1,2 @@
+module TheaterMetadataHelper
+end

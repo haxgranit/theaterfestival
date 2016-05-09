@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Theater Metadata</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Theater</th>
+      <th>Seat capacity</th>
+      <th>Hearing devices</th>
+      <th>Hearing devices info</th>
+      <th>Translation devices</th>
+      <th>Translation devices info</th>
+      <th>Wheelchair accessible</th>
+      <th>Wheelchair accessible info</th>
+      <th>Guide dogs</th>
+      <th>Guide dogs info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @theater_metadata.each do |theater_metadatum| %>
+      <tr>
+        <td><%= theater_metadatum.theater %></td>
+        <td><%= theater_metadatum.seat_capacity %></td>
+        <td><%= theater_metadatum.hearing_devices %></td>
+        <td><%= theater_metadatum.hearing_devices_info %></td>
+        <td><%= theater_metadatum.translation_devices %></td>
+        <td><%= theater_metadatum.translation_devices_info %></td>
+        <td><%= theater_metadatum.wheelchair_accessible %></td>
+        <td><%= theater_metadatum.wheelchair_accessible_info %></td>
+        <td><%= theater_metadatum.guide_dogs %></td>
+        <td><%= theater_metadatum.guide_dogs_info %></td>
+        <td><%= link_to 'Show', theater_metadatum %></td>
+        <td><%= link_to 'Edit', edit_theater_metadatum_path(theater_metadatum) %></td>
+        <td><%= link_to 'Destroy', theater_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Theater metadata', new_theater_metadatum_path %>
