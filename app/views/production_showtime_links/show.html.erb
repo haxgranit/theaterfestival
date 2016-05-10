@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Production:</strong>
+  <%= @production_showtime_link.production %>
+</p>
+
+<p>
+  <strong>Showtime:</strong>
+  <%= @production_showtime_link.showtime %>
+</p>
+
+<%= link_to 'Edit', edit_production_showtime_link_path(@production_showtime_link) %> |
+<%= link_to 'Back', production_showtime_links_path %>
