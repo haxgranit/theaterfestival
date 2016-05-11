@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guaranteed_price: 
+  guaranteed_price_note: MyText
+  ticket_link: MyText
+  reservation_link: MyText
+  reservation_link_info: MyText
+  reservation_phone: MyText
+  reservation_phone_info: MyText
+  in_person_ticketing_info: MyText
+  special_event: MyText
+  special_event_info: MyText
+  additional_ticket_type: MyText
+  additional_ticket_type_price: 
+  additional_ticket_type_info: MyText
+  notes: MyText
+
+two:
+  guaranteed_price: 
+  guaranteed_price_note: MyText
+  ticket_link: MyText
+  reservation_link: MyText
+  reservation_link_info: MyText
+  reservation_phone: MyText
+  reservation_phone_info: MyText
+  in_person_ticketing_info: MyText
+  special_event: MyText
+  special_event_info: MyText
+  additional_ticket_type: MyText
+  additional_ticket_type_price: 
+  additional_ticket_type_info: MyText
+  notes: MyText

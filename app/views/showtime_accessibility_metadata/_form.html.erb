@@ -1,0 +1,53 @@
+<%= form_for(@showtime_accessibility_metadatum) do |f| %>
+  <% if @showtime_accessibility_metadatum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@showtime_accessibility_metadatum.errors.count, "error") %> prohibited this showtime_accessibility_metadatum from being saved:</h2>
+
+      <ul>
+      <% @showtime_accessibility_metadatum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :seat_capacity %><br>
+    <%= f.number_field :seat_capacity %>
+  </div>
+  <div class="field">
+    <%= f.label :hearing_devices %><br>
+    <%= f.check_box :hearing_devices %>
+  </div>
+  <div class="field">
+    <%= f.label :hearing_devices_info %><br>
+    <%= f.text_area :hearing_devices_info %>
+  </div>
+  <div class="field">
+    <%= f.label :translation_devices %><br>
+    <%= f.check_box :translation_devices %>
+  </div>
+  <div class="field">
+    <%= f.label :translation_devices_info %><br>
+    <%= f.text_area :translation_devices_info %>
+  </div>
+  <div class="field">
+    <%= f.label :wheelchair_accessible %><br>
+    <%= f.check_box :wheelchair_accessible %>
+  </div>
+  <div class="field">
+    <%= f.label :wheelchair_accessible_info %><br>
+    <%= f.text_area :wheelchair_accessible_info %>
+  </div>
+  <div class="field">
+    <%= f.label :guide_dogs %><br>
+    <%= f.check_box :guide_dogs %>
+  </div>
+  <div class="field">
+    <%= f.label :guide_dogs_info %><br>
+    <%= f.text_area :guide_dogs_info %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
