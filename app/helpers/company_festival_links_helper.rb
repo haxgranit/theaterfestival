@@ -1,0 +1,2 @@
+module CompanyFestivalLinksHelper
+end
