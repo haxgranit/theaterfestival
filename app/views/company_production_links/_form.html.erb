@@ -1,0 +1,25 @@
+<%= form_for(@company_production_link) do |f| %>
+  <% if @company_production_link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company_production_link.errors.count, "error") %> prohibited this company_production_link from being saved:</h2>
+
+      <ul>
+      <% @company_production_link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_id %><br>
+    <%= f.text_field :company_id %>
+  </div>
+  <div class="field">
+    <%= f.label :production_id %><br>
+    <%= f.text_field :production_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
