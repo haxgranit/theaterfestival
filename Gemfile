@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -22,11 +22,12 @@ gem 'unicorn-rails'
 
 gem 'refile'
 gem 'refile-s3'
+gem 'refile-mini_magick'
 
 gem 'jsonapi-resources', git: 'https://github.com/cerebris/jsonapi-resources.git'
 
-gem 'memcached'
-gem 'memcached_store'
+gem 'sidekiq', '~> 4.1.0'
+gem 'redis-rails', '~> 4.0.0'
 
 gem 'devise'
 gem 'devise_zxcvbn'

@@ -1,0 +1,36 @@
+postgres:
+  image: postgres:latest
+  environment:
+    POSTGRES_USER: theaterengine
+    POSTGRES_PASSWORD: theaterengine
+  ports:
+    - '5432:5432'
+
+redis:
+  image: redis:latest
+  ports:
+    - '6379:6379'
+
+theaterengine:
+  build: .
+  command: bin/rails server --port 8000 --binding 0.0.0.0
+  links:
+    - postgres
+    - redis
+  volumes:
+    - .:/theaterengine
+  ports:
+    - '8000:8000'
+  env_file:
+    - .theaterengine.env
+
+sidekiq:
+  build: .
+  command: bundle exec sidekiq -C config/sidekiq.yml
+  links:
+    - postgres
+    - redis
+  volumes:
+    - .:/theaterengine
+  env_file:
+    - .theaterengine.env
