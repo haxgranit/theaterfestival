@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_one :artist
   acts_as_follower
   acts_as_followable
   acts_as_liker

@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
+  resources :company_production_links
+  resources :showtime_ticket_metadata
+  resources :showtime_accessibility_metadata
+  resources :production_showtime_links
+  resources :showtimes
+  resources :theater_metadata
+  resources :theaters
+  resources :venues
+  resources :company_festival_links
+  resources :festival_production_links
+  resources :festivals
+  resources :reviews
+  resources :company_social_metadata
+  resources :company_metadata
+  resources :companies
   resources :artist_social_metadata
+  resources :press_items
+  resources :production_credits
+  resources :production_metadata
+  resources :productions
   resources :artists
   devise_for :users
   root 'static#home'
