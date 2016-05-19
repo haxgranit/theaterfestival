@@ -59,12 +59,12 @@ GEM
     ast (2.2.0)
     autoprefixer-rails (6.3.6.1)
       execjs
-    aws-sdk (2.3.5)
-      aws-sdk-resources (= 2.3.5)
-    aws-sdk-core (2.3.5)
+    aws-sdk (2.3.6)
+      aws-sdk-resources (= 2.3.6)
+    aws-sdk-core (2.3.6)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.5)
-      aws-sdk-core (= 2.3.5)
+    aws-sdk-resources (2.3.6)
+      aws-sdk-core (= 2.3.6)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -174,7 +174,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    multi_json (1.12.0)
+    multi_json (1.12.1)
     nenv (0.3.0)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
@@ -380,4 +380,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.3
+   1.12.4
