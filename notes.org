@@ -33,6 +33,13 @@
 
 
 * Features
+** As of 19 May 2016
+*** Database (mostly) Complete
+**** The backend for all major features is in place
+**** Business logic still needs development, and the UI is a nightmare
+**** Switched from memcached to Redis
+**** Added Sidekiq for background jobs
+**** Dockerized application
 ** As of 29 February 2016
 *** Users
 **** Signup
@@ -62,6 +69,34 @@
    essentially free.
 
 * Package documentation
+** Docker
+   The application now exists as a completely self-contained Docker appliance.
+   Boot scripts will be forthcoming to automate the boring bits. It is
+   recommended that you follow the installation instructions listed for your
+   platform [[https://docs.docker.com][on the doc site]].
+*** Dotenv
+    It is recommended that you set up a dotenv file, =.theaterengine.env= with
+    the following contents for development
+    #+BEGIN_SRC conf
+      WORKER_PROCESSES=1
+
+      LISTEN_ON=0.0.0.0:8000
+
+      DATABASE_PASSWORD=theaterengine
+
+      CACHE_URL=redis://redis:6379/0
+      JOB_WORKER_URL=redis://redis:6379/0
+    #+END_SRC
+** Postgres
+   Postgres is now provided in the Docker container. It operates as a separate
+   service from the webserver, and can be interacted with directly by using the
+   standard port with the host given by =docker-machine ip=, the username
+   =theaterengine= and the password given in the dotenv file.
+** Redis
+   Memcached has been replaced by Redis. Performance in modern versions is on
+   par or better when compared to memcached, and configuration and maintenance
+   will hopefully be easier. Both Sidekiq and Rails use Redis for caching, as
+   well.
 ** JSONAPI Resources
    We use =jsonapi-resources= for the API backend. Docs are [[https://github.com/cerebris/jsonapi-resources#usage][on Github]]. Resources
    are namepaced and versioned under =/api=. Resource definitions are under
