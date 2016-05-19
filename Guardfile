@@ -15,17 +15,11 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard :bundler do
-  require 'guard/bundler'
-  require 'guard/bundler/verify'
-  helper = Guard::Bundler::Verify.new
-
-  files = ['Gemfile']
-  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
-
-  # Assume files are symlinked from somewhere
-  files.each { |file| watch(helper.real_path(file)) }
+# https://github.com/guard/guard-bundler/issues/32
+Open3.popen3("gem contents bundler") do |i, o|
+  Kernel.system("gem install bundler") if o.read.empty?
 end
+
 
 guard :minitest, spring: true, all_on_start: false do
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
@@ -82,4 +76,20 @@ guard :minitest, spring: true, all_on_start: false do
     "test/mailers/#{m[1]}_mailer_test.rb" }
   watch(%r{^lib/(.+)\.rb$}) { |m| "test/lib/#{m[1]}_test.rb" }
   watch(%r{^test/.+_test\.rb$})
+end
+
+
+guard :bundler do
+  #Open3.popen3("gem contents bundler") do |i, o|
+  #  Kernel.system("gem install bundler") if o.read.empty?
+  #end
+  require 'guard/bundler'
+  require 'guard/bundler/verify'
+  helper = Guard::Bundler::Verify.new
+
+  files = ['Gemfile']
+  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+
+  # Assume files are symlinked from somewhere
+  files.each { |file| watch(helper.real_path(file)) }
 end
