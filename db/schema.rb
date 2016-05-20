@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 45) do
+ActiveRecord::Schema.define(version: 48) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 45) do
 
   create_table "companies", force: :cascade do |t|
     t.text     "name"
-    t.text     "type"
+    t.text     "company_type"
     t.text     "website"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.text     "description"
     t.text     "email"
   end
@@ -179,7 +179,6 @@ ActiveRecord::Schema.define(version: 45) do
     t.text     "position"
     t.date     "start_date"
     t.date     "end_date"
-    t.text     "type"
     t.boolean  "confirmed"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -348,6 +347,7 @@ ActiveRecord::Schema.define(version: 45) do
     t.integer  "company_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.text     "time_zone"
   end
 
   add_index "venues", ["company_id"], name: "index_venues_on_company_id", using: :btree
