@@ -29,3 +29,9 @@
 </p>
 
 <%= link_to 'Home', root_path %>
+<% if policy(@user).edit? %>
+    <%= link_to 'Edit', edit_user_registration_path %>
+<% end %>
+<% if @user.artist %>
+    <%= link_to 'View Artist Page', artist_path %>
+<% end %>

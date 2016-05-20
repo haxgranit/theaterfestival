@@ -10,6 +10,9 @@
             <%= f.text_field :first_name %>
             <%= f.text_field :last_name %>
             <%= f.password_field :password, autocomplete: 'off' %>
+            <div class="progress">
+                <div id="StrengthProgressBar" class="progress-bar"></div>
+            </div>
             <%= f.password_field :password_confirmation, autocomplete: 'off' %>
             <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { include_blank: true }, class: 'c-select' %>
             <%= f.text_field :location %>

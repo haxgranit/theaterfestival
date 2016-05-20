@@ -17,7 +17,7 @@
 
 <p>
   <strong>Birthdate:</strong>
-  <%= @artist.birthdate %>
+  <%= @artist.birthdate.strftime("%B %d, %Y") %>
 </p>
 
 <p>
@@ -40,10 +40,10 @@
   <%= @artist.full_bio %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @artist.user %>
-</p>
-
+<% if @artist.user == current_user %>
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
+<% end %>
+<% if @artist.user %>
+    <%= link_to 'View User Page', user_path %>
+<% end %>
 <%= link_to 'Back', artists_path %>

@@ -17,9 +17,11 @@
             <img style="width: 100%;" alt="" src="http://lorempixel.com/1024/340/"/>
         </div>
         <div class="container-fluid">
+           <div class="row notifications">
             <% flash.each do |message_type, message| %>
-                <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+                <%= content_tag(:div, message, class: "alert alert-#{message_type}", role: 'alert') %>
             <% end %>
+           </div>
             <div class="row">
                 <aside class="col-md-5">
                     <section class="search">
