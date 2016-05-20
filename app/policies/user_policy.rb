@@ -1,13 +1,13 @@
-class ArtistPolicy < ApplicationPolicy
-  attr_reader :user, :artist
+class UserPolicy < ApplicationPolicy
+  attr_reader :user, :record
 
-  def initialize(user, artist)
+  def initialize(user, record)
     @user = user
-    @artist = artist
+    @record = record
   end
 
   def update?
-    artist.user_id == @user.id
+    user == record
   end
 
   def edit?
