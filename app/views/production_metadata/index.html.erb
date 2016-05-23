@@ -18,19 +18,19 @@
   </thead>
 
   <tbody>
-    <% @production_metadata.each do |production_metadatum| %>
+    <% @production_metadata.each do |production_metadata| %>
       <tr>
-        <td><%= production_metadatum.production %></td>
-        <td><%= production_metadatum.performance_type %></td>
-        <td><%= production_metadatum.info_heading %></td>
-        <td><%= production_metadatum.info %></td>
-        <td><%= production_metadatum.warnings %></td>
-        <td><%= production_metadatum.warning_info %></td>
-        <td><%= production_metadatum.running_time %></td>
-        <td><%= production_metadatum.intermissions %></td>
-        <td><%= link_to 'Show', production_metadatum %></td>
-        <td><%= link_to 'Edit', edit_production_metadatum_path(production_metadatum) %></td>
-        <td><%= link_to 'Destroy', production_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= production_metadata.production %></td>
+        <td><%= production_metadata.performance_type %></td>
+        <td><%= production_metadata.info_heading %></td>
+        <td><%= production_metadata.info %></td>
+        <td><%= production_metadata.warnings %></td>
+        <td><%= production_metadata.warning_info %></td>
+        <td><%= production_metadata.running_time %></td>
+        <td><%= production_metadata.intermissions %></td>
+        <td><%= link_to 'Show', production_metadata %></td>
+        <td><%= link_to 'Edit', edit_production_metadata_path(production_metadata) %></td>
+        <td><%= link_to 'Destroy', production_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Production metadata', new_production_metadatum_path %>
+<%= link_to 'New Production metadata', new_production_metadata_path %>

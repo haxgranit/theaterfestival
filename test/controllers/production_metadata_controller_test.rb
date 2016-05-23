@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProductionMetadataControllerTest < ActionController::TestCase
   setup do
-    @production_metadatum = production_metadata(:one)
+    @production_metadata = production_metadata(:one)
   end
 
   test "should get index" do
@@ -16,32 +16,32 @@ class ProductionMetadataControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create production_metadatum" do
+  test "should create production_metadata" do
     assert_difference('ProductionMetadata.count') do
-      post :create, production_metadatum: { info: @production_metadatum.info, info_heading: @production_metadatum.info_heading, intermissions: @production_metadatum.intermissions, performance_type: @production_metadatum.performance_type, production_id: @production_metadatum.production_id, running_time: @production_metadatum.running_time, warning_info: @production_metadatum.warning_info, warnings: @production_metadatum.warnings }
+      post :create, production_metadata: { info: @production_metadata.info, info_heading: @production_metadata.info_heading, intermissions: @production_metadata.intermissions, performance_type: @production_metadata.performance_type, production_id: @production_metadata.production_id, running_time: @production_metadata.running_time, warning_info: @production_metadata.warning_info, warnings: @production_metadata.warnings }
     end
 
-    assert_redirected_to production_metadatum_path(assigns(:production_metadatum))
+    assert_redirected_to production_metadata_path(assigns(:production_metadata))
   end
 
-  test "should show production_metadatum" do
-    get :show, id: @production_metadatum
+  test "should show production_metadata" do
+    get :show, id: @production_metadata
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @production_metadatum
+    get :edit, id: @production_metadata
     assert_response :success
   end
 
-  test "should update production_metadatum" do
-    patch :update, id: @production_metadatum, production_metadatum: { info: @production_metadatum.info, info_heading: @production_metadatum.info_heading, intermissions: @production_metadatum.intermissions, performance_type: @production_metadatum.performance_type, production_id: @production_metadatum.production_id, running_time: @production_metadatum.running_time, warning_info: @production_metadatum.warning_info, warnings: @production_metadatum.warnings }
-    assert_redirected_to production_metadatum_path(assigns(:production_metadatum))
+  test "should update production_metadata" do
+    patch :update, id: @production_metadata, production_metadata: { info: @production_metadata.info, info_heading: @production_metadata.info_heading, intermissions: @production_metadata.intermissions, performance_type: @production_metadata.performance_type, production_id: @production_metadata.production_id, running_time: @production_metadata.running_time, warning_info: @production_metadata.warning_info, warnings: @production_metadata.warnings }
+    assert_redirected_to production_metadata_path(assigns(:production_metadata))
   end
 
-  test "should destroy production_metadatum" do
+  test "should destroy production_metadata" do
     assert_difference('ProductionMetadata.count', -1) do
-      delete :destroy, id: @production_metadatum
+      delete :destroy, id: @production_metadata
     end
 
     assert_redirected_to production_metadata_index_path
