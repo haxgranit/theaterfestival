@@ -1,5 +1,5 @@
 class ArtistSocialMetadataController < ApplicationController
-  before_action :set_artist_social_metadatum, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist_social_metadata, only: [:show, :edit, :update, :destroy]
 
   # GET /artist_social_metadata
   def index
@@ -12,7 +12,7 @@ class ArtistSocialMetadataController < ApplicationController
 
   # GET /artist_social_metadata/new
   def new
-    @artist_social_metadatum = ArtistSocialMetadata.new
+    @artist_social_metadata = ArtistSocialMetadata.new
   end
 
   # GET /artist_social_metadata/1/edit
@@ -21,10 +21,10 @@ class ArtistSocialMetadataController < ApplicationController
 
   # POST /artist_social_metadata
   def create
-    @artist_social_metadatum = ArtistSocialMetadata.new(artist_social_metadatum_params)
+    @artist_social_metadata = ArtistSocialMetadata.new(artist_social_metadata_params)
 
-    if @artist_social_metadatum.save
-      redirect_to @artist_social_metadatum, notice: 'Artist social metadata was successfully created.'
+    if @artist_social_metadata.save
+      redirect_to @artist_social_metadata, notice: 'Artist social metadata was successfully created.'
     else
       render :new
     end
@@ -32,8 +32,8 @@ class ArtistSocialMetadataController < ApplicationController
 
   # PATCH/PUT /artist_social_metadata/1
   def update
-    if @artist_social_metadatum.update(artist_social_metadatum_params)
-      redirect_to @artist_social_metadatum, notice: 'Artist social metadata was successfully updated.'
+    if @artist_social_metadata.update(artist_social_metadata_params)
+      redirect_to @artist_social_metadata, notice: 'Artist social metadata was successfully updated.'
     else
       render :edit
     end
@@ -41,18 +41,18 @@ class ArtistSocialMetadataController < ApplicationController
 
   # DELETE /artist_social_metadata/1
   def destroy
-    @artist_social_metadatum.destroy
+    @artist_social_metadata.destroy
     redirect_to artist_social_metadata_index_url, notice: 'Artist social metadata was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_artist_social_metadatum
-      @artist_social_metadatum = ArtistSocialMetadata.find(params[:id])
+    def set_artist_social_metadata
+      @artist_social_metadata = ArtistSocialMetadata.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def artist_social_metadatum_params
-      params.require(:artist_social_metadatum).permit(:twitter, :facebook, :linkedin, :tumblr, :snapchat, :email, :website, :instagram, :vine, :artist_id)
+    def artist_social_metadata_params
+      params.require(:artist_social_metadata).permit(:twitter, :facebook, :linkedin, :tumblr, :snapchat, :email, :website, :instagram, :vine, :artist_id)
     end
 end

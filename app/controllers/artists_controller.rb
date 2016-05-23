@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist, only: [:show, :edit, :update, :destroy, :claim]
 
   # GET /artists
   def index
@@ -48,13 +48,33 @@ class ArtistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_artist
-      @artist = Artist.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
 
-    # Only allow a trusted parameter "white list" through.
-    def artist_params
-      params.require(:artist).permit(:first_name, :last_name, :title, :birthdate, :birth_location, :hometown, :education, :full_bio, :user_id)
-    end
+  def set_artist
+    @artist = Artist.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def artist_params
+    params.require(:artist)
+      .permit(:first_name,
+              :last_name,
+              :title,
+              :birthdate,
+              :birth_location,
+              :hometown,
+              :education,
+              :full_bio,
+              :user_id,
+              artist_social_metadata_attributes: [:id,
+                                                  :email,
+                                                  :facebook,
+                                                  :instagram,
+                                                  :linkedin,
+                                                  :snapchat,
+                                                  :tumblr,
+                                                  :twitter,
+                                                  :website,
+                                                  :vine] )
+  end
 end
