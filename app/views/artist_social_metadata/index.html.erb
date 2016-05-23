@@ -20,21 +20,21 @@
   </thead>
 
   <tbody>
-    <% @artist_social_metadata.each do |artist_social_metadatum| %>
+    <% @artist_social_metadata.each do |artist_social_metadata| %>
       <tr>
-        <td><%= artist_social_metadatum.twitter %></td>
-        <td><%= artist_social_metadatum.facebook %></td>
-        <td><%= artist_social_metadatum.linkedin %></td>
-        <td><%= artist_social_metadatum.tumblr %></td>
-        <td><%= artist_social_metadatum.snapchat %></td>
-        <td><%= artist_social_metadatum.email %></td>
-        <td><%= artist_social_metadatum.website %></td>
-        <td><%= artist_social_metadatum.instagram %></td>
-        <td><%= artist_social_metadatum.vine %></td>
-        <td><%= artist_social_metadatum.artist %></td>
-        <td><%= link_to 'Show', artist_social_metadatum %></td>
-        <td><%= link_to 'Edit', edit_artist_social_metadatum_path(artist_social_metadatum) %></td>
-        <td><%= link_to 'Destroy', artist_social_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= artist_social_metadata.twitter %></td>
+        <td><%= artist_social_metadata.facebook %></td>
+        <td><%= artist_social_metadata.linkedin %></td>
+        <td><%= artist_social_metadata.tumblr %></td>
+        <td><%= artist_social_metadata.snapchat %></td>
+        <td><%= artist_social_metadata.email %></td>
+        <td><%= artist_social_metadata.website %></td>
+        <td><%= artist_social_metadata.instagram %></td>
+        <td><%= artist_social_metadata.vine %></td>
+        <td><%= artist_social_metadata.artist %></td>
+        <td><%= link_to 'Show', artist_social_metadata %></td>
+        <td><%= link_to 'Edit', edit_artist_social_metadata_path(artist_social_metadata) %></td>
+        <td><%= link_to 'Destroy', artist_social_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Artist social metadata', new_artist_social_metadatum_path %>
+<%= link_to 'New Artist social metadata', new_artist_social_metadata_path %>

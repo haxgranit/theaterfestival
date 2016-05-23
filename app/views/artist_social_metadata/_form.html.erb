@@ -1,10 +1,10 @@
-<%= form_for(@artist_social_metadatum) do |f| %>
-  <% if @artist_social_metadatum.errors.any? %>
+<%= form_for(@artist_social_metadata) do |f| %>
+  <% if @artist_social_metadata.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@artist_social_metadatum.errors.count, "error") %> prohibited this artist_social_metadatum from being saved:</h2>
+      <h2><%= pluralize(@artist_social_metadata.errors.count, "error") %> prohibited this artist_social_metadata from being saved:</h2>
 
       <ul>
-      <% @artist_social_metadatum.errors.full_messages.each do |message| %>
+      <% @artist_social_metadata.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

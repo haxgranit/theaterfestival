@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ArtistSocialMetadataControllerTest < ActionController::TestCase
   setup do
-    @artist_social_metadatum = artist_social_metadata(:one)
+    @artist_social_metadata = artist_social_metadata(:one)
   end
 
   test "should get index" do
@@ -16,32 +16,32 @@ class ArtistSocialMetadataControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create artist_social_metadatum" do
+  test "should create artist_social_metadata" do
     assert_difference('ArtistSocialMetadata.count') do
-      post :create, artist_social_metadatum: { artist_id: @artist_social_metadatum.artist_id, email: @artist_social_metadatum.email, facebook: @artist_social_metadatum.facebook, instagram: @artist_social_metadatum.instagram, linkedin: @artist_social_metadatum.linkedin, snapchat: @artist_social_metadatum.snapchat, tumblr: @artist_social_metadatum.tumblr, twitter: @artist_social_metadatum.twitter, vine: @artist_social_metadatum.vine, website: @artist_social_metadatum.website }
+      post :create, artist_social_metadata: { artist_id: @artist_social_metadata.artist_id, email: @artist_social_metadata.email, facebook: @artist_social_metadata.facebook, instagram: @artist_social_metadata.instagram, linkedin: @artist_social_metadata.linkedin, snapchat: @artist_social_metadata.snapchat, tumblr: @artist_social_metadata.tumblr, twitter: @artist_social_metadata.twitter, vine: @artist_social_metadata.vine, website: @artist_social_metadata.website }
     end
 
-    assert_redirected_to artist_social_metadatum_path(assigns(:artist_social_metadatum))
+    assert_redirected_to artist_social_metadata_path(assigns(:artist_social_metadata))
   end
 
-  test "should show artist_social_metadatum" do
-    get :show, id: @artist_social_metadatum
+  test "should show artist_social_metadata" do
+    get :show, id: @artist_social_metadata
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @artist_social_metadatum
+    get :edit, id: @artist_social_metadata
     assert_response :success
   end
 
-  test "should update artist_social_metadatum" do
-    patch :update, id: @artist_social_metadatum, artist_social_metadatum: { artist_id: @artist_social_metadatum.artist_id, email: @artist_social_metadatum.email, facebook: @artist_social_metadatum.facebook, instagram: @artist_social_metadatum.instagram, linkedin: @artist_social_metadatum.linkedin, snapchat: @artist_social_metadatum.snapchat, tumblr: @artist_social_metadatum.tumblr, twitter: @artist_social_metadatum.twitter, vine: @artist_social_metadatum.vine, website: @artist_social_metadatum.website }
-    assert_redirected_to artist_social_metadatum_path(assigns(:artist_social_metadatum))
+  test "should update artist_social_metadata" do
+    patch :update, id: @artist_social_metadata, artist_social_metadata: { artist_id: @artist_social_metadata.artist_id, email: @artist_social_metadata.email, facebook: @artist_social_metadata.facebook, instagram: @artist_social_metadata.instagram, linkedin: @artist_social_metadata.linkedin, snapchat: @artist_social_metadata.snapchat, tumblr: @artist_social_metadata.tumblr, twitter: @artist_social_metadata.twitter, vine: @artist_social_metadata.vine, website: @artist_social_metadata.website }
+    assert_redirected_to artist_social_metadata_path(assigns(:artist_social_metadata))
   end
 
-  test "should destroy artist_social_metadatum" do
+  test "should destroy artist_social_metadata" do
     assert_difference('ArtistSocialMetadata.count', -1) do
-      delete :destroy, id: @artist_social_metadatum
+      delete :destroy, id: @artist_social_metadata
     end
 
     assert_redirected_to artist_social_metadata_index_path

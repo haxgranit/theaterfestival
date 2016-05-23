@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :artist_social_metadata
   resources :production_metadata
   resources :company_metadata
   resources :company_social_metadata
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
   resources :festivals
   resources :reviews
   resources :companies
-  resources :artist_social_metadata
   resources :press_items
   resources :production_credits
   resources :productions
