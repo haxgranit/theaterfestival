@@ -13,6 +13,7 @@
             <% end %>
 
             <%= f.email_field :email, autofocus: true %>
+            <%= f.attachment_field :profile_image %>
             <%= f.text_field :first_name %>
             <%= f.text_field :last_name %>
             <%= f.password_field :password, autocomplete: 'off' %> <i>(leave blank if you don't want to change it)</i><br />

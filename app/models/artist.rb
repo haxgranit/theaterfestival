@@ -2,6 +2,7 @@ class Artist < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
   validates_uniqueness_of :user_id
+  attachment :profile_image
 
   belongs_to :user
   has_one :artist_social_metadata

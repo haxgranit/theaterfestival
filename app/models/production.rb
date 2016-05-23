@@ -1,5 +1,6 @@
 class Production < ActiveRecord::Base
   validates :title, :first_performance, :last_performance, presence: true
+  attachment :key_image
 
   has_many :production_credits
   has_many :artists, through: :production_credits

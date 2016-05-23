@@ -1,6 +1,7 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name}") %>
 <p id="notice"><%= notice %></p>
 
+<%= attachment_image_tag(@user, :profile_image, :fill, 300, 300) %>
 <h1><%= yield(:title) %></h1>
 
 <p>

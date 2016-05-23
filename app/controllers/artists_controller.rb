@@ -66,6 +66,7 @@ class ArtistsController < ApplicationController
               :education,
               :full_bio,
               :user_id,
+              :profile_image,
               artist_social_metadata_attributes: [:id,
                                                   :email,
                                                   :facebook,

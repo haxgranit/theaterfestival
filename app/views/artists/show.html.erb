@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%= attachment_image_tag(@artist, :profile_image, :fill, 300, 300) %>
 <p>
   <strong>Name:</strong>
   <%= @artist.full_name %>

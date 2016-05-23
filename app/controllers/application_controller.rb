@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
                :first_name,
                :last_name,
                :time_zone,
-               :location)
+               :location,
+               :profile_image)
     end
 
     devise_parameter_sanitizer.for(:account_update) do |u|
@@ -26,7 +27,8 @@ class ApplicationController < ActionController::Base
                :first_name,
                :last_name,
                :time_zone,
-               :location)
+               :location,
+               :profile_image)
     end
   end
 end
