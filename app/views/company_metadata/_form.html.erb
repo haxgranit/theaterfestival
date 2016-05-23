@@ -1,10 +1,10 @@
-<%= form_for(@company_metadatum) do |f| %>
-  <% if @company_metadatum.errors.any? %>
+<%= form_for(@company_metadata) do |f| %>
+  <% if @company_metadata.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@company_metadatum.errors.count, "error") %> prohibited this company_metadatum from being saved:</h2>
+      <h2><%= pluralize(@company_metadata.errors.count, "error") %> prohibited this company_metadata from being saved:</h2>
 
       <ul>
-      <% @company_metadatum.errors.full_messages.each do |message| %>
+      <% @company_metadata.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

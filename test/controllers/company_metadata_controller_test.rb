@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CompanyMetadataControllerTest < ActionController::TestCase
   setup do
-    @company_metadatum = company_metadata(:one)
+    @company_metadata = company_metadata(:one)
   end
 
   test "should get index" do
@@ -16,32 +16,32 @@ class CompanyMetadataControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create company_metadatum" do
+  test "should create company_metadata" do
     assert_difference('CompanyMetadata.count') do
-      post :create, company_metadatum: { address1: @company_metadatum.address1, address2: @company_metadatum.address2, company_id: @company_metadatum.company_id, date_founded: @company_metadatum.date_founded, founders: @company_metadatum.founders, history: @company_metadatum.history, location_founded: @company_metadatum.location_founded, mission: @company_metadatum.mission }
+      post :create, company_metadata: { address1: @company_metadata.address1, address2: @company_metadata.address2, company_id: @company_metadata.company_id, date_founded: @company_metadata.date_founded, founders: @company_metadata.founders, history: @company_metadata.history, location_founded: @company_metadata.location_founded, mission: @company_metadata.mission }
     end
 
-    assert_redirected_to company_metadatum_path(assigns(:company_metadatum))
+    assert_redirected_to company_metadata_path(assigns(:company_metadata))
   end
 
-  test "should show company_metadatum" do
-    get :show, id: @company_metadatum
+  test "should show company_metadata" do
+    get :show, id: @company_metadata
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @company_metadatum
+    get :edit, id: @company_metadata
     assert_response :success
   end
 
-  test "should update company_metadatum" do
-    patch :update, id: @company_metadatum, company_metadatum: { address1: @company_metadatum.address1, address2: @company_metadatum.address2, company_id: @company_metadatum.company_id, date_founded: @company_metadatum.date_founded, founders: @company_metadatum.founders, history: @company_metadatum.history, location_founded: @company_metadatum.location_founded, mission: @company_metadatum.mission }
-    assert_redirected_to company_metadatum_path(assigns(:company_metadatum))
+  test "should update company_metadata" do
+    patch :update, id: @company_metadata, company_metadata: { address1: @company_metadata.address1, address2: @company_metadata.address2, company_id: @company_metadata.company_id, date_founded: @company_metadata.date_founded, founders: @company_metadata.founders, history: @company_metadata.history, location_founded: @company_metadata.location_founded, mission: @company_metadata.mission }
+    assert_redirected_to company_metadata_path(assigns(:company_metadata))
   end
 
-  test "should destroy company_metadatum" do
+  test "should destroy company_metadata" do
     assert_difference('CompanyMetadata.count', -1) do
-      delete :destroy, id: @company_metadatum
+      delete :destroy, id: @company_metadata
     end
 
     assert_redirected_to company_metadata_index_path

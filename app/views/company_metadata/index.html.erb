@@ -18,19 +18,19 @@
   </thead>
 
   <tbody>
-    <% @company_metadata.each do |company_metadatum| %>
+    <% @company_metadata.each do |company_metadata| %>
       <tr>
-        <td><%= company_metadatum.company %></td>
-        <td><%= company_metadatum.address1 %></td>
-        <td><%= company_metadatum.address2 %></td>
-        <td><%= company_metadatum.date_founded %></td>
-        <td><%= company_metadatum.location_founded %></td>
-        <td><%= company_metadatum.founders %></td>
-        <td><%= company_metadatum.mission %></td>
-        <td><%= company_metadatum.history %></td>
-        <td><%= link_to 'Show', company_metadatum %></td>
-        <td><%= link_to 'Edit', edit_company_metadatum_path(company_metadatum) %></td>
-        <td><%= link_to 'Destroy', company_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= company_metadata.company %></td>
+        <td><%= company_metadata.address1 %></td>
+        <td><%= company_metadata.address2 %></td>
+        <td><%= company_metadata.date_founded %></td>
+        <td><%= company_metadata.location_founded %></td>
+        <td><%= company_metadata.founders %></td>
+        <td><%= company_metadata.mission %></td>
+        <td><%= company_metadata.history %></td>
+        <td><%= link_to 'Show', company_metadata %></td>
+        <td><%= link_to 'Edit', edit_company_metadata_path(company_metadata) %></td>
+        <td><%= link_to 'Destroy', company_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Company metadata', new_company_metadatum_path %>
+<%= link_to 'New Company metadata', new_company_metadata_path %>
