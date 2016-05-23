@@ -1,53 +1,37 @@
-<%= form_for(@artist) do |f| %>
-  <% if @artist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+<%= bootstrap_form_for(@artist) do |f| %>
+    <% if @artist.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
 
-      <ul>
-      <% @artist.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <ul>
+                <% @artist.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_area :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_area :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
-  </div>
-  <div class="field">
-    <%= f.label :birthdate %><br>
+    <%= f.text_field :first_name %>
+    <%= f.text_field :last_name %>
+    <%= f.text_field :title %>
     <%= f.date_select :birthdate %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_location %><br>
-    <%= f.text_area :birth_location %>
-  </div>
-  <div class="field">
-    <%= f.label :hometown %><br>
-    <%= f.text_area :hometown %>
-  </div>
-  <div class="field">
-    <%= f.label :education %><br>
-    <%= f.text_area :education %>
-  </div>
-  <div class="field">
-    <%= f.label :full_bio %><br>
+    <%= f.text_field :birth_location %>
+    <%= f.text_field :hometown %>
+    <%= f.text_field :education %>
     <%= f.text_area :full_bio %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% if policy(@artist).admin? %>
+        <%= f.collection_select :user_id, User.all, :id, :full_name, prompt: true  %>
+    <% end %>
+    <%= f.fields_for :artist_social_metadata, @artist.artist_social_metadata ||= ArtistSocialMetadata.new do |s| %>
+        <%= s.text_field :email %>
+        <%= s.text_field :facebook %>
+        <%= s.text_field :instagram %>
+        <%= s.text_field :linkedin %>
+        <%= s.text_field :snapchat %>
+        <%= s.text_field :tumblr %>
+        <%= s.text_field :twitter %>
+        <%= s.text_field :vine %>
+        <%= s.text_field :website %>
+    <% end %>
+    <%= f.primary 'Save' %>
 <% end %>

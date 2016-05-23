@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @artist.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @artist.last_name %>
+  <strong>Name:</strong>
+  <%= @artist.full_name %>
 </p>
 
 <p>
@@ -40,10 +35,40 @@
   <%= @artist.full_bio %>
 </p>
 
-<% if @artist.user == current_user %>
+<h2>Social Media</h2>
+<ul>
+    <% @artist.social_links.each do |k,v| %>
+        <li>
+            <%= link_to k.humanize, v.to_s %>
+        </li>
+    <% end %>
+</ul>
+
+<h2>Shows</h2>
+<ul>
+<% @artist.productions.each do |show| %>
+    <li>
+    <%= link_to show.title, production_path(show) %>
+    </li>
+<% end %>
+</ul>
+
+<h2>Credits</h2>
+<ul>
+    <% @artist.production_credits.each do |credit| %>
+        <li>
+            <%= "#{credit.position} - #{credit.name} - #{credit.production.title}" %>
+        </li>
+    <% end %>
+</ul>
+
+
+<% if policy(@artist).edit? %>
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <% end %>
 <% if @artist.user %>
     <%= link_to 'View User Page', user_path %>
+<% else %>
+    <%= link_to 'Claim Artist Page', artist_path(@artist, {artist: { user_id: current_user.id } }), method: :patch %>
 <% end %>
 <%= link_to 'Back', artists_path %>

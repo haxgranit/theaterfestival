@@ -5,15 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>Name</th>
       <th>Title</th>
       <th>Birthdate</th>
       <th>Birth location</th>
       <th>Hometown</th>
       <th>Education</th>
       <th>Full bio</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,15 +19,13 @@
   <tbody>
     <% @artists.each do |artist| %>
       <tr>
-        <td><%= artist.first_name %></td>
-        <td><%= artist.last_name %></td>
+        <td><%= artist.full_name %></td>
         <td><%= artist.title %></td>
         <td><%= artist.birthdate %></td>
         <td><%= artist.birth_location %></td>
         <td><%= artist.hometown %></td>
         <td><%= artist.education %></td>
         <td><%= artist.full_bio %></td>
-        <td><%= artist.user %></td>
         <td><%= link_to 'Show', artist %></td>
         <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
         <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
