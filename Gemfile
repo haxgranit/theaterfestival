@@ -20,7 +20,7 @@ gem 'bh', github: 'jhenahan/bh', branch: 'v4'
 gem 'unicorn'
 gem 'unicorn-rails'
 
-gem 'refile'
+gem 'refile', require: 'refile/rails'
 gem 'refile-s3'
 gem 'refile-mini_magick'
 
