@@ -9,26 +9,32 @@
       <th>Facebook</th>
       <th>Linkedin</th>
       <th>Tumblr</th>
-      <th>Vine</th>
       <th>Snapchat</th>
+      <th>Email</th>
+      <th>Website</th>
       <th>Instagram</th>
+      <th>Vine</th>
+      <th>Artist</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @company_social_metadata.each do |company_social_metadatum| %>
+    <% @company_social_metadata.each do |company_social_metadata| %>
       <tr>
-        <td><%= company_social_metadatum.twitter %></td>
-        <td><%= company_social_metadatum.facebook %></td>
-        <td><%= company_social_metadatum.linkedin %></td>
-        <td><%= company_social_metadatum.tumblr %></td>
-        <td><%= company_social_metadatum.vine %></td>
-        <td><%= company_social_metadatum.snapchat %></td>
-        <td><%= company_social_metadatum.instagram %></td>
-        <td><%= link_to 'Show', company_social_metadatum %></td>
-        <td><%= link_to 'Edit', edit_company_social_metadatum_path(company_social_metadatum) %></td>
-        <td><%= link_to 'Destroy', company_social_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= company_social_metadata.twitter %></td>
+        <td><%= company_social_metadata.facebook %></td>
+        <td><%= company_social_metadata.linkedin %></td>
+        <td><%= company_social_metadata.tumblr %></td>
+        <td><%= company_social_metadata.snapchat %></td>
+        <td><%= company_social_metadata.email %></td>
+        <td><%= company_social_metadata.website %></td>
+        <td><%= company_social_metadata.instagram %></td>
+        <td><%= company_social_metadata.vine %></td>
+        <td><%= company_social_metadata.artist %></td>
+        <td><%= link_to 'Show', company_social_metadata %></td>
+        <td><%= link_to 'Edit', edit_company_social_metadata_path(company_social_metadata) %></td>
+        <td><%= link_to 'Destroy', company_social_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Company social metadata', new_company_social_metadatum_path %>
+<%= link_to 'New Company social metadata', new_company_social_metadata_path %>
