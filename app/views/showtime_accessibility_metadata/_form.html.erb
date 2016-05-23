@@ -1,10 +1,10 @@
-<%= form_for(@showtime_accessibility_metadatum) do |f| %>
-  <% if @showtime_accessibility_metadatum.errors.any? %>
+<%= form_for(@showtime_accessibility_metadata) do |f| %>
+  <% if @showtime_accessibility_metadata.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@showtime_accessibility_metadatum.errors.count, "error") %> prohibited this showtime_accessibility_metadatum from being saved:</h2>
+      <h2><%= pluralize(@showtime_accessibility_metadata.errors.count, "error") %> prohibited this showtime_accessibility_metadata from being saved:</h2>
 
       <ul>
-      <% @showtime_accessibility_metadatum.errors.full_messages.each do |message| %>
+      <% @showtime_accessibility_metadata.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

@@ -19,20 +19,20 @@
   </thead>
 
   <tbody>
-    <% @showtime_accessibility_metadata.each do |showtime_accessibility_metadatum| %>
+    <% @showtime_accessibility_metadata.each do |showtime_accessibility_metadata| %>
       <tr>
-        <td><%= showtime_accessibility_metadatum.seat_capacity %></td>
-        <td><%= showtime_accessibility_metadatum.hearing_devices %></td>
-        <td><%= showtime_accessibility_metadatum.hearing_devices_info %></td>
-        <td><%= showtime_accessibility_metadatum.translation_devices %></td>
-        <td><%= showtime_accessibility_metadatum.translation_devices_info %></td>
-        <td><%= showtime_accessibility_metadatum.wheelchair_accessible %></td>
-        <td><%= showtime_accessibility_metadatum.wheelchair_accessible_info %></td>
-        <td><%= showtime_accessibility_metadatum.guide_dogs %></td>
-        <td><%= showtime_accessibility_metadatum.guide_dogs_info %></td>
-        <td><%= link_to 'Show', showtime_accessibility_metadatum %></td>
-        <td><%= link_to 'Edit', edit_showtime_accessibility_metadatum_path(showtime_accessibility_metadatum) %></td>
-        <td><%= link_to 'Destroy', showtime_accessibility_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= showtime_accessibility_metadata.seat_capacity %></td>
+        <td><%= showtime_accessibility_metadata.hearing_devices %></td>
+        <td><%= showtime_accessibility_metadata.hearing_devices_info %></td>
+        <td><%= showtime_accessibility_metadata.translation_devices %></td>
+        <td><%= showtime_accessibility_metadata.translation_devices_info %></td>
+        <td><%= showtime_accessibility_metadata.wheelchair_accessible %></td>
+        <td><%= showtime_accessibility_metadata.wheelchair_accessible_info %></td>
+        <td><%= showtime_accessibility_metadata.guide_dogs %></td>
+        <td><%= showtime_accessibility_metadata.guide_dogs_info %></td>
+        <td><%= link_to 'Show', showtime_accessibility_metadata %></td>
+        <td><%= link_to 'Edit', edit_showtime_accessibility_metadata_path(showtime_accessibility_metadata) %></td>
+        <td><%= link_to 'Destroy', showtime_accessibility_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Showtime accessibility metadata', new_showtime_accessibility_metadatum_path %>
+<%= link_to 'New Showtime accessibility metadata', new_showtime_accessibility_metadata_path %>

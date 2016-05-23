@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :showtime_accessibility_metadata
   resources :theater_metadata
   resources :company_social_metadata
   resources :company_social_metadata

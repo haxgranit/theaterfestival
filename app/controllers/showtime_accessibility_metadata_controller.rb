@@ -1,5 +1,5 @@
 class ShowtimeAccessibilityMetadataController < ApplicationController
-  before_action :set_showtime_accessibility_metadatum, only: [:show, :edit, :update, :destroy]
+  before_action :set_showtime_accessibility_metadata, only: [:show, :edit, :update, :destroy]
 
   # GET /showtime_accessibility_metadata
   def index
@@ -12,7 +12,7 @@ class ShowtimeAccessibilityMetadataController < ApplicationController
 
   # GET /showtime_accessibility_metadata/new
   def new
-    @showtime_accessibility_metadatum = ShowtimeAccessibilityMetadata.new
+    @showtime_accessibility_metadata = ShowtimeAccessibilityMetadata.new
   end
 
   # GET /showtime_accessibility_metadata/1/edit
@@ -21,10 +21,10 @@ class ShowtimeAccessibilityMetadataController < ApplicationController
 
   # POST /showtime_accessibility_metadata
   def create
-    @showtime_accessibility_metadatum = ShowtimeAccessibilityMetadata.new(showtime_accessibility_metadatum_params)
+    @showtime_accessibility_metadata = ShowtimeAccessibilityMetadata.new(showtime_accessibility_metadata_params)
 
-    if @showtime_accessibility_metadatum.save
-      redirect_to @showtime_accessibility_metadatum, notice: 'Showtime accessibility metadata was successfully created.'
+    if @showtime_accessibility_metadata.save
+      redirect_to @showtime_accessibility_metadata, notice: 'Showtime accessibility metadata was successfully created.'
     else
       render :new
     end
@@ -32,8 +32,8 @@ class ShowtimeAccessibilityMetadataController < ApplicationController
 
   # PATCH/PUT /showtime_accessibility_metadata/1
   def update
-    if @showtime_accessibility_metadatum.update(showtime_accessibility_metadatum_params)
-      redirect_to @showtime_accessibility_metadatum, notice: 'Showtime accessibility metadata was successfully updated.'
+    if @showtime_accessibility_metadata.update(showtime_accessibility_metadata_params)
+      redirect_to @showtime_accessibility_metadata, notice: 'Showtime accessibility metadata was successfully updated.'
     else
       render :edit
     end
@@ -41,18 +41,18 @@ class ShowtimeAccessibilityMetadataController < ApplicationController
 
   # DELETE /showtime_accessibility_metadata/1
   def destroy
-    @showtime_accessibility_metadatum.destroy
+    @showtime_accessibility_metadata.destroy
     redirect_to showtime_accessibility_metadata_index_url, notice: 'Showtime accessibility metadata was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_showtime_accessibility_metadatum
-      @showtime_accessibility_metadatum = ShowtimeAccessibilityMetadata.find(params[:id])
+    def set_showtime_accessibility_metadata
+      @showtime_accessibility_metadata = ShowtimeAccessibilityMetadata.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def showtime_accessibility_metadatum_params
-      params.require(:showtime_accessibility_metadatum).permit(:seat_capacity, :hearing_devices, :hearing_devices_info, :translation_devices, :translation_devices_info, :wheelchair_accessible, :wheelchair_accessible_info, :guide_dogs, :guide_dogs_info)
+    def showtime_accessibility_metadata_params
+      params.require(:showtime_accessibility_metadata).permit(:seat_capacity, :hearing_devices, :hearing_devices_info, :translation_devices, :translation_devices_info, :wheelchair_accessible, :wheelchair_accessible_info, :guide_dogs, :guide_dogs_info)
     end
 end
