@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   validate :timezone_exists
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def timezone_exists
