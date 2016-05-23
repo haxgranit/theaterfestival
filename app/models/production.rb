@@ -1,4 +1,6 @@
 class Production < ActiveRecord::Base
+  validates :title, :first_performance, :last_performance, presence: true
+
   has_many :production_credits
   has_many :artists, through: :production_credits
   has_many :companies, through: :company_production_links
