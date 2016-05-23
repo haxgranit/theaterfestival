@@ -16,10 +16,9 @@ class Artist < ActiveRecord::Base
   end
 
   def social_links
-    accounts = artist_social_metadata
-               .attributes
-               .except("id","artist_id","created_at","updated_at")
-               .delete_if { |k,v| v.empty? }
-    return accounts
+    artist_social_metadata
+      .attributes
+      .except('id', 'artist_id', 'created_at', 'updated_at')
+      .delete_if { |_, v| v.empty? }
   end
 end
