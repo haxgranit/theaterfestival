@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :artist_social_metadata
   resources :production_metadata
   resources :company_metadata
   resources :company_social_metadata

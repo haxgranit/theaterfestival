@@ -1,6 +1,8 @@
-FROM ruby:2.3
+FROM ruby:2.3-slim
 
 RUN apt-get update -qq && apt-get install -y build-essential
+
+RUN apt-get update -qq && apt-get install -y git
 
 # for postgres
 RUN apt-get update -qq && apt-get install -y libpq-dev
@@ -24,9 +26,16 @@ ENV APP_HOME /theaterengine
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ENV BUNDLE_PATH /bundle
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 
-ADD Gemfile* $APP_HOME/
-RUN bundle check || bundle install
+
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=/bundle
+
+RUN gem install bundler
+
+RUN bundle install
 
 ADD . $APP_HOME

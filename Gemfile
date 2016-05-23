@@ -35,6 +35,7 @@ gem 'devise_zxcvbn'
 gem 'pundit'
 
 gem 'socialization'
+gem 'valid_url'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

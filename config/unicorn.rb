@@ -1,3 +1,8 @@
+app_path = ENV['APP_HOME']
+working_directory app_path
+pid "#{app_path}/tmp/pids/unicorn.pid"
+stderr_path "#{app_path}/log/unicorn.stderr.log"
+stdout_path "#{app_path}/log/unicorn.stdout.log"
 # Heavily inspired by GitLab:
 # https://github.com/gitlabhq/gitlabhq/blob/master/config/unicorn.rb.example
 
@@ -24,6 +29,10 @@ GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
 # host unicorn runs on, and unlikely to detect disconnects even on a
 # fast LAN.
 check_client_connection false
+
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/Gemfile"
+end
 
 before_fork do |server, worker|
   # Don't bother having the master process hang onto older connections.
