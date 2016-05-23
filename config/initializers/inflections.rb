@@ -4,7 +4,10 @@
 # are locale specific, and you may define rules for as many different
 # locales as you wish. All of these examples are active by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.singular 'data', 'data'
   inflect.singular 'metadata', 'metadata'
+  inflect.singular 'artist_social_metadata', 'artist_social_metadata'
+  inflect.plural 'artist_social_metadata', 'artist_social_metadata'
 end
 
 # These inflection rules are supported but not enabled by default:
