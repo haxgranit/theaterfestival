@@ -15,6 +15,11 @@ redis:
   volumes:
     - theaterengine-redis:/var/lib/redis/data
 
+bundle:
+  image: busybox
+  volumes:
+    - /bundle
+
 theaterengine:
   build: .
   command: bin/rails server --port 8000 --binding 0.0.0.0
@@ -23,6 +28,8 @@ theaterengine:
     - redis
   volumes:
     - .:/theaterengine
+  volumes_from:
+    - bundle
   ports:
     - '8000:8000'
   env_file:
