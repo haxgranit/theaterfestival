@@ -20,21 +20,21 @@
   </thead>
 
   <tbody>
-    <% @theater_metadata.each do |theater_metadatum| %>
+    <% @theater_metadata.each do |theater_metadata| %>
       <tr>
-        <td><%= theater_metadatum.theater %></td>
-        <td><%= theater_metadatum.seat_capacity %></td>
-        <td><%= theater_metadatum.hearing_devices %></td>
-        <td><%= theater_metadatum.hearing_devices_info %></td>
-        <td><%= theater_metadatum.translation_devices %></td>
-        <td><%= theater_metadatum.translation_devices_info %></td>
-        <td><%= theater_metadatum.wheelchair_accessible %></td>
-        <td><%= theater_metadatum.wheelchair_accessible_info %></td>
-        <td><%= theater_metadatum.guide_dogs %></td>
-        <td><%= theater_metadatum.guide_dogs_info %></td>
-        <td><%= link_to 'Show', theater_metadatum %></td>
-        <td><%= link_to 'Edit', edit_theater_metadatum_path(theater_metadatum) %></td>
-        <td><%= link_to 'Destroy', theater_metadatum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= theater_metadata.theater %></td>
+        <td><%= theater_metadata.seat_capacity %></td>
+        <td><%= theater_metadata.hearing_devices %></td>
+        <td><%= theater_metadata.hearing_devices_info %></td>
+        <td><%= theater_metadata.translation_devices %></td>
+        <td><%= theater_metadata.translation_devices_info %></td>
+        <td><%= theater_metadata.wheelchair_accessible %></td>
+        <td><%= theater_metadata.wheelchair_accessible_info %></td>
+        <td><%= theater_metadata.guide_dogs %></td>
+        <td><%= theater_metadata.guide_dogs_info %></td>
+        <td><%= link_to 'Show', theater_metadata %></td>
+        <td><%= link_to 'Edit', edit_theater_metadata_path(theater_metadata) %></td>
+        <td><%= link_to 'Destroy', theater_metadata, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Theater metadata', new_theater_metadatum_path %>
+<%= link_to 'New Theater metadata', new_theater_metadata_path %>

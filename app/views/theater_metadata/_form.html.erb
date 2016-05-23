@@ -1,10 +1,10 @@
-<%= form_for(@theater_metadatum) do |f| %>
-  <% if @theater_metadatum.errors.any? %>
+<%= form_for(@theater_metadata) do |f| %>
+  <% if @theater_metadata.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@theater_metadatum.errors.count, "error") %> prohibited this theater_metadatum from being saved:</h2>
+      <h2><%= pluralize(@theater_metadata.errors.count, "error") %> prohibited this theater_metadata from being saved:</h2>
 
       <ul>
-      <% @theater_metadatum.errors.full_messages.each do |message| %>
+      <% @theater_metadata.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
