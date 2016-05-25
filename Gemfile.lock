@@ -7,14 +7,6 @@ GIT
       actionpack
       activesupport
 
-GIT
-  remote: https://github.com/cerebris/jsonapi-resources.git
-  revision: bae544ec45a7e58bcbb74b6a36c112638b372b4f
-  specs:
-    jsonapi-resources (0.7.0)
-      concurrent-ruby
-      rails (>= 4.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -152,6 +144,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     json_pure (1.8.3)
+    jsonapi-resources (0.7.0)
+      rails (>= 4.0)
     kgio (2.10.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -358,7 +352,7 @@ DEPENDENCIES
   guard-bundler
   guard-minitest
   jquery-rails
-  jsonapi-resources!
+  jsonapi-resources (~> 0.7)
   mini_backtrace
   minitest-reporters
   pg (~> 0.15)

@@ -24,7 +24,7 @@ gem 'refile', require: 'refile/rails'
 gem 'refile-s3'
 gem 'refile-mini_magick'
 
-gem 'jsonapi-resources', git: 'https://github.com/cerebris/jsonapi-resources.git'
+gem 'jsonapi-resources', '~> 0.7'
 
 gem 'sidekiq', '~> 4.1.0'
 gem 'redis-rails', '~> 4.0.0'
