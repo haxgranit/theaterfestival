@@ -1,7 +1,7 @@
-<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <%= f.email_field :email %>
-    <%= f.password_field :password %>
-    <%= f.check_box :remember_me %>
-    <%= f.submit 'Sign in' %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :horizontal_form) do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :remember_me, as: :boolean, wrapper: :horizontal_boolean %>
+    <%= f.button :submit, class: 'btn-primary' %>
     <%= link_to 'Register', new_user_registration_path, class: 'btn btn-success' %>
 <% end %>
