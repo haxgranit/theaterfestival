@@ -1,38 +1,26 @@
-<%= bootstrap_form_for(@artist) do |f| %>
-    <% if @artist.errors.any? %>
-        <div id="error_explanation">
-            <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
-
-            <ul>
-                <% @artist.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-    <%= f.text_field :first_name %>
-    <%= f.text_field :last_name %>
-    <%= f.attachment_field :profile_image %>
-    <%= f.text_field :title %>
-    <%= f.date_select :birthdate %>
-    <%= f.text_field :birth_location %>
-    <%= f.text_field :hometown %>
-    <%= f.text_field :education %>
-    <%= f.text_area :full_bio %>
+<%= simple_form_for @artist, wrapper: :horizontal_form do |f| %>
+    <%= f.input :first_name, as: :string %>
+    <%= f.input :last_name, as: :string %>
+    <%= f.input :profile_image, as: :attachment %>
+    <%= f.input :title, as: :string %>
+    <%= f.input :birthdate %>
+    <%= f.input :birth_location, as: :string %>
+    <%= f.input :hometown, as: :string %>
+    <%= f.input :education %>
+    <%= f.input :full_bio %>
     <% if policy(@artist).admin? %>
-        <%= f.collection_select :user_id, User.all, :id, :full_name, prompt: true  %>
+        <%= f.input :user_id, collection: User.all, value_method: :id, label_method: :full_name, prompt: true  %>
     <% end %>
-    <%= f.fields_for :artist_social_metadata, @artist.artist_social_metadata ||= ArtistSocialMetadata.new do |s| %>
-        <%= s.text_field :email %>
-        <%= s.text_field :facebook %>
-        <%= s.text_field :instagram %>
-        <%= s.text_field :linkedin %>
-        <%= s.text_field :snapchat %>
-        <%= s.text_field :tumblr %>
-        <%= s.text_field :twitter %>
-        <%= s.text_field :vine %>
-        <%= s.text_field :website %>
+    <%= f.fields_for :artist_social_metadata, @artist.artist_social_metadata ||= ArtistSocialMetadata.new, wrapper: :horizontal_form do |s| %>
+        <%= s.input :email, as: :string %>
+        <%= s.input :facebook, as: :string %>
+        <%= s.input :instagram, as: :string %>
+        <%= s.input :linkedin, as: :string %>
+        <%= s.input :snapchat, as: :string %>
+        <%= s.input :tumblr, as: :string %>
+        <%= s.input :twitter, as: :string %>
+        <%= s.input :vine, as: :string %>
+        <%= s.input :website, as: :string %>
     <% end %>
-    <%= f.primary 'Save' %>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

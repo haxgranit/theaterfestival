@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= bootstrap_form_for(resource,
-                               as: resource_name,
-                               url: registration_path(resource_name),
-                               html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource,
+                            as: resource_name,
+                            url: registration_path(resource_name),
+                            html: { method: :put },
+                            wrapper: :horizontal_form) do |f| %>
             <h1>Edit <%= resource_name.to_s.humanize %></h1>
             <%= devise_error_messages! %>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -12,23 +13,23 @@
                 </div>
             <% end %>
 
-            <%= f.email_field :email, autofocus: true %>
-            <%= f.attachment_field :profile_image %>
-            <%= f.text_field :first_name %>
-            <%= f.text_field :last_name %>
-            <%= f.password_field :password, autocomplete: 'off' %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.input :email, as: :string, autofocus: true %>
+            <%= f.input :profile_image, as: :attachment %>
+            <%= f.input :first_name, as: :string %>
+            <%= f.input :last_name, as: :string %>
+            <%= f.input :password, autocomplete: 'off' %> <i>(leave blank if you don't want to change it)</i><br />
             <div class="progress">
                 <div id="StrengthProgressBar" class="progress-bar"></div>
             </div>
-            <%= f.password_field :password_confirmation, autocomplete: 'off' %>
-            <%= f.password_field :current_password, autocomplete: "off" %><i>(we need your current password to confirm your changes)</i><br />
-            <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { include_blank: true }, class: 'c-select' %>
-            <%= f.text_field :location %>
-            <%= f.submit 'Update', class: 'btn btn-primary btn-block' %>
+            <%= f.input :password_confirmation, autocomplete: 'off' %>
+            <%= f.input :current_password, autocomplete: "off" %><i>(we need your current password to confirm your changes)</i><br />
+            <%= f.input :time_zone, as: :time_zone, priority: /US/ %>
+            <%= f.input :location %>
+            <%= f.button :submit, class: 'btn btn-primary btn-block' %>
         <% end %>
         <h3>Cancel my account</h3>
 
-        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-primary btn-block' %></p>
 
         <%= link_to "Back", :back %>
     </div>
