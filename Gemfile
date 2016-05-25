@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
 gem 'compass-rails'
 gem 'bootstrap_form'
+gem 'simple_form'
 gem 'bootstrap-slider-rails'
 gem 'font-awesome-rails'
 gem 'bh', github: 'jhenahan/bh', branch: 'v4'
@@ -20,7 +21,7 @@ gem 'bh', github: 'jhenahan/bh', branch: 'v4'
 gem 'unicorn'
 gem 'unicorn-rails'
 
-gem 'refile', require: 'refile/rails'
+gem 'refile', require: ['refile/rails', 'refile/simple_form']
 gem 'refile-s3'
 gem 'refile-mini_magick'
 
