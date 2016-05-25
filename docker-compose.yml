@@ -16,7 +16,7 @@ redis:
     - theaterengine-redis:/var/lib/redis/data
 
 bundle:
-  image: busybox
+  image: theaterengine_theaterengine
   volumes:
     - /bundle
 

@@ -36,6 +36,6 @@ ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
 
 RUN gem install bundler
 
-RUN bundle install
+RUN bundle
 
 ADD . $APP_HOME
