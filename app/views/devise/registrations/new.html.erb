@@ -1,22 +1,23 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= bootstrap_form_for(resource,
-                               as: resource_name,
-                               url: registration_path(resource_name)) do |f| %>
+        <%= simple_form_for(resource,
+                            as: resource_name,
+                            url: registration_path(resource_name),
+                            wrapper: :horizontal_form) do |f| %>
             <h1>Sign up</h1>
             <%= devise_error_messages! %>
-            <%= f.email_field :email, autofocus: true %>
-            <%= f.text_field :first_name %>
-            <%= f.text_field :last_name %>
-            <%= f.password_field :password, autocomplete: 'off' %>
+            <%= f.input :email, autofocus: true %>
+            <%= f.input :first_name, as: :string %>
+            <%= f.input :last_name, as: :string %>
+            <%= f.input :password, autocomplete: 'off' %>
             <div class="progress">
                 <div id="StrengthProgressBar" class="progress-bar"></div>
             </div>
-            <%= f.password_field :password_confirmation, autocomplete: 'off' %>
-            <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { include_blank: true }, class: 'c-select' %>
-            <%= f.text_field :location %>
-            <%= f.submit 'Create an account', class: 'btn btn-primary btn-block' %>
+            <%= f.input :password_confirmation, autocomplete: 'off' %>
+            <%= f.input :time_zone, as: :time_zone, priority: /US/ %>
+            <%= f.input :location %>
+            <%= f.button :submit, class: 'btn btn-primary btn-block' %>
         <% end %>
         <%= render "devise/shared/links" %>
 `

@@ -12,15 +12,15 @@
         <%= f.input :user_id, collection: User.all, value_method: :id, label_method: :full_name, prompt: true  %>
     <% end %>
     <%= f.fields_for :artist_social_metadata, @artist.artist_social_metadata ||= ArtistSocialMetadata.new, wrapper: :horizontal_form do |s| %>
-        <%= s.input :email, as: :string %>
-        <%= s.input :facebook, as: :string %>
-        <%= s.input :instagram, as: :string %>
-        <%= s.input :linkedin, as: :string %>
-        <%= s.input :snapchat, as: :string %>
-        <%= s.input :tumblr, as: :string %>
-        <%= s.input :twitter, as: :string %>
-        <%= s.input :vine, as: :string %>
-        <%= s.input :website, as: :string %>
+        <%= s.input :email, as: :email %>
+        <%= s.input :facebook, as: :url %>
+        <%= s.input :instagram, as: :url %>
+        <%= s.input :linkedin, as: :url %>
+        <%= s.input :snapchat, as: :url %>
+        <%= s.input :tumblr, as: :url %>
+        <%= s.input :twitter, as: :url %>
+        <%= s.input :vine, as: :url %>
+        <%= s.input :website, as: :url %>
     <% end %>
     <%= f.button :submit, class: 'btn-primary' %>
 <% end %>
