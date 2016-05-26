@@ -1,57 +1,13 @@
 <%= form_for(@theater_metadata) do |f| %>
-  <% if @theater_metadata.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@theater_metadata.errors.count, "error") %> prohibited this theater_metadata from being saved:</h2>
-
-      <ul>
-      <% @theater_metadata.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :theater_id %><br>
-    <%= f.text_field :theater_id %>
-  </div>
-  <div class="field">
-    <%= f.label :seat_capacity %><br>
-    <%= f.number_field :seat_capacity %>
-  </div>
-  <div class="field">
-    <%= f.label :hearing_devices %><br>
-    <%= f.check_box :hearing_devices %>
-  </div>
-  <div class="field">
-    <%= f.label :hearing_devices_info %><br>
-    <%= f.text_area :hearing_devices_info %>
-  </div>
-  <div class="field">
-    <%= f.label :translation_devices %><br>
-    <%= f.check_box :translation_devices %>
-  </div>
-  <div class="field">
-    <%= f.label :translation_devices_info %><br>
-    <%= f.text_area :translation_devices_info %>
-  </div>
-  <div class="field">
-    <%= f.label :wheelchair_accessible %><br>
-    <%= f.check_box :wheelchair_accessible %>
-  </div>
-  <div class="field">
-    <%= f.label :wheelchair_accessible_info %><br>
-    <%= f.text_area :wheelchair_accessible_info %>
-  </div>
-  <div class="field">
-    <%= f.label :guide_dogs %><br>
-    <%= f.check_box :guide_dogs %>
-  </div>
-  <div class="field">
-    <%= f.label :guide_dogs_info %><br>
-    <%= f.text_area :guide_dogs_info %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.input :theater_id %>
+    <%= f.input :seat_capacity %>
+    <%= f.input :hearing_devices %>
+    <%= f.input :hearing_devices_info %>
+    <%= f.input :translation_devices %>
+    <%= f.input :translation_devices_info %>
+    <%= f.input :wheelchair_accessible %>
+    <%= f.input :wheelchair_accessible_info %>
+    <%= f.input :guide_dogs %>
+    <%= f.input :guide_dogs_info %>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

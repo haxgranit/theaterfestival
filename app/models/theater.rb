@@ -5,4 +5,15 @@ class Theater < ActiveRecord::Base
   belongs_to :venue
   has_many :showtimes
   has_many :showtime_accessibility_meta, through: :showtimes
+  has_one :theater_metadata
+  accepts_nested_attributes_for :theater_metadata
+
+  def metadata
+    if theater_metadata
+      theater_metadata
+        .attributes
+        .except('id', 'theater_id', 'created_at', 'updated_at')
+        .delete_if { |_, v| v.blank? }
+    end
+  end
 end

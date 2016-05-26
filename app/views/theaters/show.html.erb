@@ -12,8 +12,32 @@
 
 <p>
   <strong>Venue:</strong>
-  <%= @theater.venue %>
+  <%= link_to @theater.venue.name, venue_path(@theater.venue) %>
 </p>
+
+<h2>Showtimes</h2>
+<ul>
+    <% @theater.showtimes.each do |s| %>
+        <li>
+            <%= link_to s.production.title, production_path(s.production) %>
+            - <%= s.local_time.strftime('%b %d at %I:%M %p') %>
+
+        </li>
+    <% end %>
+</ul>
+
+<% if @theater.theater_metadata.present? %>
+    <h2>Theater Info</h2>
+    <ul>
+        <% @theater.metadata.each do |k,v| %>
+            <li>
+                <%= "#{k.humanize} - #{v.to_s}" %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_theater_path(@theater) %> |
 <%= link_to 'Back', theaters_path %>

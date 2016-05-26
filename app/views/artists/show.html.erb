@@ -58,7 +58,9 @@
 <ul>
     <% @artist.production_credits.each do |credit| %>
         <li>
-            <%= "#{credit.position} - #{credit.name} - #{credit.production.title}" %>
+
+            <%= link_to(credit.production.title, production_path(credit.production)) %>
+            - <%= "#{credit.position} - #{credit.name}" %>
         </li>
     <% end %>
 </ul>
@@ -67,7 +69,7 @@
 <% if policy(@artist).edit? %>
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <% end %>
-<% if @artist.user %>
+<% if @artist.user_id.present? %>
     <%= link_to 'View User Page', user_path %>
 <% else %>
     <%= link_to 'Claim Artist Page', artist_path(@artist, {artist: { user_id: current_user.id } }), method: :patch %>

@@ -32,8 +32,31 @@
 
 <p>
   <strong>Company:</strong>
-  <%= @venue.company %>
+  <%= @venue.company.name %>
 </p>
+
+<h2>Theaters</h2>
+<ul>
+    <% @venue.theaters.each do |t| %>
+        <li>
+            <%= link_to t.name, theater_path(t) %>
+        </li>
+    <% end %>
+</ul>
+
+<h2>Showtimes</h2>
+<ul>
+    <% @venue.showtimes.each do |s| %>
+        <li>
+            <%= link_to s.production.title, production_path(s.production) %>
+            - <%= link_to s.theater.name, theater_path(s.theater) %>
+            - <%= s.local_time.strftime('%b %d at %I:%M %p') %>
+
+        </li>
+    <% end %>
+</ul>
+
+
 
 <%= link_to 'Edit', edit_venue_path(@venue) %> |
 <%= link_to 'Back', venues_path %>

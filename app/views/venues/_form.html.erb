@@ -1,45 +1,12 @@
-<%= form_for(@venue) do |f| %>
-  <% if @venue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@venue.errors.count, "error") %> prohibited this venue from being saved:</h2>
-
-      <ul>
-      <% @venue.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_area :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address1 %><br>
-    <%= f.text_area :address1 %>
-  </div>
-  <div class="field">
-    <%= f.label :address2 %><br>
-    <%= f.text_area :address2 %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_area :website %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_area :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.text_field :company_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@venue) do |f| %>
+    <%= f.input :name, as: :string %>
+    <%= f.input :address1 %>
+    <%= f.input :address2 %>
+    <%= f.input :website, as: :url %>
+    <%= f.input :phone_number, as: :tel %>
+    <%= f.input :description %>
+    <% if policy(@venue).admin? %>
+        <%= f.input :company_id, collection: Company.all, value_method: :id, label_method: :name, prompt: true  %>
+    <% end %>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

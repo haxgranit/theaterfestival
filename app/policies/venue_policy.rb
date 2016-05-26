@@ -1,9 +1,9 @@
-class TheaterPolicy < ApplicationPolicy
-  attr_reader :user, :theater
+class VenuePolicy < ApplicationPolicy
+  attr_reader :user, :venue
 
-  def initialize(user, theater)
+  def initialize(user, venue)
     @user = user
-    @theater = theater
+    @venue = venue
   end
 
   def update?

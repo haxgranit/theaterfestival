@@ -33,6 +33,6 @@
 <% if policy(@user).edit? %>
     <%= link_to 'Edit', edit_user_registration_path %>
 <% end %>
-<% if @user.artist %>
+<% if @user.artist.present? %>
     <%= link_to 'View Artist Page', artist_path %>
 <% end %>
