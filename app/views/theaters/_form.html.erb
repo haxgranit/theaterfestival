@@ -1,29 +1,8 @@
-<%= form_for(@theater) do |f| %>
-  <% if @theater.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@theater.errors.count, "error") %> prohibited this theater from being saved:</h2>
-
-      <ul>
-      <% @theater.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_area :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :venue_id %><br>
-    <%= f.text_field :venue_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@theater, wrapper: :horizontal_form) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <% if policy(@theater).admin? %>
+        <%= f.input :venue_id, collection: Venue.all, value_method: :id, label_method: :name, prompt: true  %>
+    <% end %>
+    <%= f.button :submit %>
 <% end %>

@@ -1,41 +1,21 @@
-<%= form_for(@production) do |f| %>
-  <% if @production.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@production.errors.count, "error") %> prohibited this production from being saved:</h2>
-
-      <ul>
-      <% @production.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br>
-    <%= f.check_box :public %>
-  </div>
-  <div class="field">
-    <%= f.label :tagline %><br>
-    <%= f.text_area :tagline %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :first_performance %><br>
-    <%= f.date_select :first_performance %>
-  </div>
-  <div class="field">
-    <%= f.label :last_performance %><br>
-    <%= f.date_select :last_performance %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@production) do |f| %>
+    <%= f.input :title, as: :string %>
+    <%= f.input :public %>
+    <%= f.input :tagline %>
+    <%= f.input :description %>
+    <%= f.input :first_performance, order: [:month,:day,:year] %>
+    <%= f.input :last_performance, include_blank: true, default: nil, order: [:month, :day, :year] %>
+    <%= f.input :key_image, as: :attachment %>
+    <%= f.simple_fields_for :production_metadata, @production.production_metadata ||= ProductionMetadata.new do |m| %>
+        <%= m.input :performance_type, as: :string %>
+        <%= m.input :info_heading, as: :string %>
+        <%= m.input :info %>
+        <%= m.input :warnings %>
+        <%= m.input :warning_info %>
+        <%= m.input :running_time, as: :string %>
+        <%= m.input :intermissions, as: :string %>
+        <%= m.input :recommended_age, as: :string %>
+        <%= m.input :website, as: :url %>
+    <% end %>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

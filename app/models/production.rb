@@ -1,5 +1,5 @@
 class Production < ActiveRecord::Base
-  validates :title, :first_performance, :last_performance, presence: true
+  validates :title, :first_performance, presence: true
   attachment :key_image
 
   has_many :production_credits
@@ -13,4 +13,14 @@ class Production < ActiveRecord::Base
   has_many :showtimes, through: :production_showtime_links
   has_many :production_showtime_links
   has_one :production_metadata
+  accepts_nested_attributes_for :production_metadata
+
+  def metadata
+    if production_metadata.present?
+      production_metadata
+        .attributes
+        .except('id', 'production_id', 'created_at', 'updated_at')
+        .delete_if { |_, v| v.blank? }
+    end
+  end
 end

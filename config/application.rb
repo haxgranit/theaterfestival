@@ -11,7 +11,7 @@ module TheaterEngineResources
     config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 
     config.cache_store = :redis_store, ENV['CACHE_URL'],
-    { namespace: 'drkiq::cache' }
+    { namespace: 'theaterengine::cache' }
 
     config.active_job.queue_adapter = :sidekiq
 

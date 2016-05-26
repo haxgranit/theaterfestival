@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= attachment_image_tag(@company, :company_image, :fill, 300, 300) %>
+
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
@@ -7,13 +9,58 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @company.type %>
+  <%= @company.company_type %>
 </p>
 
 <p>
   <strong>Website:</strong>
   <%= @company.website %>
 </p>
+
+<p>
+    <strong>Description:</strong>
+    <%= @company.description %>
+</p>
+
+<p>
+    <strong>Email:</strong>
+    <%= @company.email %>
+</p>
+
+<% if @company.company_metadata.present? %>
+<h2>Company Info</h2>
+<ul>
+    <% @company.metadata.each do |k,v| %>
+        <li>
+            <%= "#{k.humanize} - #{v.to_s}" %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+<% if @company.company_social_metadata.present? %>
+<h2>Social Media</h2>
+<ul>
+    <% @company.social_links.each do |k,v| %>
+        <li>
+            <%= link_to k.humanize, v.to_s %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+<% if @company.productions.present? %>
+<h2>Shows</h2>
+<ul>
+    <% @company.productions.each do |show| %>
+        <li>
+            <%= link_to show.title, production_path(show) %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

@@ -14,6 +14,10 @@
             <% end %>
 
             <%= f.input :email, autofocus: true %>
+            <% if resource.profile_image_id? %>
+                <%= attachment_image_tag(resource, :profile_image, :fill, 300, 300) %>
+            <% end %>
+
             <%= f.input :profile_image, as: :attachment %>
             <%= f.input :first_name, as: :string %>
             <%= f.input :last_name, as: :string %>

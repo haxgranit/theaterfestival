@@ -53,6 +53,13 @@ class CompanyMetadataController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def company_metadata_params
-      params.require(:company_metadata).permit(:company_id, :address1, :address2, :date_founded, :location_founded, :founders, :mission, :history)
+      params.require(:company_metadata).permit(:company_id,
+                                               :address1,
+                                               :address2,
+                                               :date_founded,
+                                               :location_founded,
+                                               :founders,
+                                               :mission,
+                                               :history)
     end
 end

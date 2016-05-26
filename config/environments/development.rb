@@ -21,6 +21,9 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  config.log_level = :debug
+  config.log_tags  = [:subdomain, :uuid]
+  config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load

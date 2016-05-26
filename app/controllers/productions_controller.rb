@@ -53,6 +53,24 @@ class ProductionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def production_params
-      params.require(:production).permit(:title, :public, :tagline, :description, :first_performance, :last_performance)
+      params
+        .require(:production)
+        .permit(:title,
+                :public,
+                :tagline,
+                :description,
+                :first_performance,
+                :last_performance,
+                :key_image,
+                production_metadata_attributes: [:id,
+                                                 :performance_type,
+                                                 :info_heading,
+                                                 :info,
+                                                 :warnings,
+                                                 :warning_info,
+                                                 :running_time,
+                                                 :intermissions,
+                                                 :recommended_age,
+                                                 :website])
     end
 end

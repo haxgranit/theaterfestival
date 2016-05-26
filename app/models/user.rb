@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   devise :zxcvbnable
 
   validates :email, :first_name, :last_name, :time_zone, presence: true
-  validates :password, presence: true, confirmation: true
+  validates :password, presence: true, confirmation: true, on: :create
 
   validates :email, length: { maximum: 254 }
 

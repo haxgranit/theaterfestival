@@ -1,7 +1,7 @@
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :horizontal_form) do |f| %>
     <%= f.input :email %>
     <%= f.input :password %>
-    <%= f.input :remember_me, as: :boolean, wrapper: :horizontal_boolean %>
-    <%= f.button :submit, class: 'btn-primary' %>
+    <%= f.input :remember_me, as: :boolean %>
+    <%= f.button :submit, 'Sign In', class: 'btn-primary' %>
     <%= link_to 'Register', new_user_registration_path, class: 'btn btn-success' %>
 <% end %>

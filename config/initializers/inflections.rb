@@ -8,6 +8,10 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.singular 'metadata', 'metadata'
   inflect.singular 'artist_social_metadata', 'artist_social_metadata'
   inflect.plural 'artist_social_metadata', 'artist_social_metadata'
+  inflect.singular 'company_social_metadata', 'company_social_metadata'
+  inflect.plural 'company_social_metadata', 'company_social_metadata'
+  inflect.singular 'production_metadata', 'production_metadata'
+  inflect.plural 'production_metadata', 'production_metadata'
 end
 
 # These inflection rules are supported but not enabled by default:

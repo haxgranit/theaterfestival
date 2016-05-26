@@ -76,6 +76,6 @@ class ArtistsController < ApplicationController
                                                   :tumblr,
                                                   :twitter,
                                                   :website,
-                                                  :vine] )
+                                                  :vine])
   end
 end

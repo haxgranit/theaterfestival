@@ -8,4 +8,8 @@ class Showtime < ActiveRecord::Base
   has_one :venue, through: :theater
   has_one :showtime_ticket_metadata
   has_one :showtime_accessibility_metadata
+
+  def local_time
+    showtime.in_time_zone(venue.time_zone)
+  end
 end

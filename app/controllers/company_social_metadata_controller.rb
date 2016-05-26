@@ -46,13 +46,20 @@ class CompanySocialMetadataController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company_social_metadata
-      @company_social_metadata = CompanySocialMetadata.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company_social_metadata
+    @company_social_metadata = CompanySocialMetadata.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def company_social_metadata_params
-      params.require(:company_social_metadata).permit(:twitter, :facebook, :linkedin, :tumblr, :snapchat, :email, :website, :instagram, :vine, :artist_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def company_social_metadata_params
+    params.require(:company_social_metadata).permit(:twitter,
+                                                    :facebook,
+                                                    :linkedin,
+                                                    :tumblr,
+                                                    :snapchat,
+                                                    :instagram,
+                                                    :vine,
+                                                    :company_id)
+  end
 end

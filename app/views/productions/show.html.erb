@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= attachment_image_tag(@production, :key_image, :fill, 300, 300) %>
+
 <p>
   <strong>Title:</strong>
   <%= @production.title %>
@@ -29,6 +31,50 @@
   <strong>Last performance:</strong>
   <%= @production.last_performance %>
 </p>
+
+<h2>Cast</h2>
+<ul>
+    <% @production.production_credits.each do |pc| %>
+        <li>
+            <%= link_to pc.artist.full_name, artist_path(pc) %>
+            - <%= pc.name %>
+        </li>
+    <% end %>
+</ul>
+
+<h2>Showtimes</h2>
+<ul>
+    <% @production.showtimes.each do |s| %>
+        <li>
+            <%= link_to s.theater.name, theater_path(s.theater) %>
+            - <%= link_to s.venue.name, venue_path(s.venue) %>
+            - <%= s.local_time.strftime('%b %d at %I:%M %p') %>
+        </li>
+    <% end %>
+</ul>
+
+
+<% if @production.production_metadata.present? %>
+    <h2>Other Info</h2>
+    <ul>
+        <% @production.metadata.each do |k,v| %>
+            <li>
+                <%= "#{k.humanize} - #{v.to_s}" %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<h2>Reviews</h2>
+<ul>
+    <% @production.reviews.each do |r| %>
+        <li>
+            <%= link_to r.title, review_path(r) %>
+            - <%= '*'*r.rating %>
+        </li>
+    <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_production_path(@production) %> |
 <%= link_to 'Back', productions_path %>
