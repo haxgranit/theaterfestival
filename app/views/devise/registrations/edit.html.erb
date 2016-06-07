@@ -18,7 +18,7 @@
                 <%= attachment_image_tag(resource, :profile_image, :fill, 300, 300) %>
             <% end %>
 
-            <%= f.input :profile_image, as: :attachment %>
+            <%= f.input :profile_image, as: :attachment, direct: true %>
             <%= f.input :first_name, as: :string %>
             <%= f.input :last_name, as: :string %>
             <%= f.input :password, autocomplete: 'off' %> <i>(leave blank if you don't want to change it)</i><br />

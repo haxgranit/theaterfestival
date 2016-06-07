@@ -2,43 +2,43 @@
 
 <p>
   <strong>Artist:</strong>
-  <%= @production_credit.artist %>
+  <%= @model.artist.full_name %>
 </p>
 
 <p>
   <strong>Production:</strong>
-  <%= @production_credit.production %>
+  <%= @model.production.title if @model.production.present? %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @production_credit.name %>
+  <%= @model.name %>
 </p>
 
 <p>
   <strong>Position:</strong>
-  <%= @production_credit.position %>
+  <%= @model.position %>
 </p>
 
 <p>
   <strong>Start date:</strong>
-  <%= @production_credit.start_date %>
+  <%= @model.start_date %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @production_credit.end_date %>
+  <%= @model.end_date %>
 </p>
 
 <p>
   <strong>Type:</strong>
-  <%= @production_credit.type %>
+  <%= @model.type %>
 </p>
 
 <p>
   <strong>Confirmed:</strong>
-  <%= @production_credit.confirmed %>
+  <%= @model.confirmed %>
 </p>
 
-<%= link_to 'Edit', edit_production_credit_path(@production_credit) %> |
+<%= link_to 'Edit', edit_production_credit_path(@model) %> |
 <%= link_to 'Back', production_credits_path %>

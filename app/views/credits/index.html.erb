@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Production Credits</h1>
+<h1>Listing Credits</h1>
 
 <table>
   <thead>
@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @production_credits.each do |production_credit| %>
+    <% @model.each do |production_credit| %>
       <tr>
         <td><%= production_credit.artist %></td>
         <td><%= production_credit.production %></td>
@@ -29,7 +29,6 @@
         <td><%= production_credit.type %></td>
         <td><%= production_credit.confirmed %></td>
         <td><%= link_to 'Show', production_credit %></td>
-        <td><%= link_to 'Edit', edit_production_credit_path(production_credit) %></td>
         <td><%= link_to 'Destroy', production_credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -39,3 +38,5 @@
 <br>
 
 <%= link_to 'New Production credit', new_production_credit_path %>
+<%= link_to 'New Writing credit', new_writing_credit_path %>
+<%= link_to 'New Staff credit', new_staff_credit_path %>

@@ -1,25 +1,6 @@
-<%= form_for(@showtime) do |f| %>
-  <% if @showtime.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@showtime.errors.count, "error") %> prohibited this showtime from being saved:</h2>
+<%= simple_form_for(@showtime, wrapper: :horizontal_form) do |f| %>
+    <%= f.input :showtime %>
+    <%= f.input :theater_id, collection: Theater.all, value_method: :id, label_method: :name, prompt: true  %>
 
-      <ul>
-      <% @showtime.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :showtime %><br>
-    <%= f.datetime_select :showtime %>
-  </div>
-  <div class="field">
-    <%= f.label :theater_id %><br>
-    <%= f.text_field :theater_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

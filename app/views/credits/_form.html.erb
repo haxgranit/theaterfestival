@@ -1,0 +1,10 @@
+<%= simple_form_for(@model, wrapper: :horizontal_form) do |f| %>
+    <%= f.input :artist_id, collection: Artist.all, value_method: :id, label_method: :full_name, prompt: true  %>
+    <%= f.input :production_id, collection: Production.all, value_method: :id, label_method: :title, prompt: true  %>
+    <%= f.input :name %>
+    <%= f.input :position %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :confirmed %>
+    <%= f.button :submit %>
+<% end %>

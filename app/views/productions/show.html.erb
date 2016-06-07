@@ -36,7 +36,7 @@
 <ul>
     <% @production.production_credits.each do |pc| %>
         <li>
-            <%= link_to pc.artist.full_name, artist_path(pc) %>
+            <%= link_to pc.artist.full_name, artist_path(pc.artist) %>
             - <%= pc.name %>
         </li>
     <% end %>
@@ -78,3 +78,9 @@
 
 <%= link_to 'Edit', edit_production_path(@production) %> |
 <%= link_to 'Back', productions_path %>
+
+<p>
+    <%= link_to 'Write A Review', new_review_path(review: { production_id: @production.id }) %> |
+    <%= link_to 'Create a Production Credit', new_production_credit_path(production_credit: { production_id: @production.id }) %> |
+    <%= link_to 'Create a Writing Credit', new_writing_credit_path(writing_credit: { production_id: @production.id }) %>
+</p>

@@ -54,7 +54,7 @@
 <% end %>
 </ul>
 
-<h2>Credits</h2>
+<h2>Production Credits</h2>
 <ul>
     <% @artist.production_credits.each do |credit| %>
         <li>
@@ -65,12 +65,37 @@
     <% end %>
 </ul>
 
+<h2>Writing Credits</h2>
+<ul>
+    <% @artist.writing_credits.each do |credit| %>
+        <li>
+
+            <%= link_to(credit.production.title, production_path(credit.production)) %>
+            - <%= "#{credit.position} - #{credit.name}" %>
+        </li>
+    <% end %>
+</ul>
+
+
+<h2>Images</h2>
+<ul>
+    <% @artist.pictures.each do |p| %>
+        <li>
+
+            <%= attachment_image_tag(p, :image, :fill, 300, 300) %>
+        </li>
+    <% end %>
+</ul>
+
+
+
+
 
 <% if policy(@artist).edit? %>
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <% end %>
 <% if @artist.user_id.present? %>
-    <%= link_to 'View User Page', user_path %>
+    <%= link_to 'View User Page', user_path(@artist.user_id) %>
 <% else %>
     <%= link_to 'Claim Artist Page', artist_path(@artist, {artist: { user_id: current_user.id } }), method: :patch %>
 <% end %>

@@ -2,12 +2,12 @@
 
 <p>
   <strong>Company:</strong>
-  <%= @company_festival_link.company %>
+  <%= @company_festival_link.company.name %>
 </p>
 
 <p>
   <strong>Festival:</strong>
-  <%= @company_festival_link.festival %>
+  <%= @company_festival_link.festival.title %>
 </p>
 
 <%= link_to 'Edit', edit_company_festival_link_path(@company_festival_link) %> |

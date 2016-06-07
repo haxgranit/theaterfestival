@@ -2,12 +2,12 @@
 
 <p>
   <strong>Festival:</strong>
-  <%= @festival_production_link.festival %>
+  <%= @festival_production_link.festival.title %>
 </p>
 
 <p>
   <strong>Production:</strong>
-  <%= @festival_production_link.production %>
+  <%= @festival_production_link.production.title %>
 </p>
 
 <%= link_to 'Edit', edit_festival_production_link_path(@festival_production_link) %> |

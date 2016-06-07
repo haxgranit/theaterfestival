@@ -31,8 +31,35 @@
 
 <%= link_to 'Home', root_path %>
 <% if policy(@user).edit? %>
-    <%= link_to 'Edit', edit_user_registration_path %>
+    | <%= link_to 'Edit', edit_user_registration_path %> |
+    <% if @user.artist.blank? %>
+        <%= link_to 'Create Artist Page', new_artist_path(artist:
+                                                          {
+                                                              first_name: @user.first_name,
+                                                              last_name: @user.last_name,
+                                                              artist_social_metadata_attributes: {
+                                                                  email: @user.email
+                                                              }
+                                                          }) %> |
+    <% end %>
+    <%= link_to 'Create Company Page', new_company_path %>
+
 <% end %>
 <% if @user.artist.present? %>
-    <%= link_to 'View Artist Page', artist_path %>
+    | <%= link_to 'View Artist Page', artist_path %>
 <% end %>
+
+<h1>Social Features</h1>
+<% if current_user.likes?(@user) %>
+    <%= link_to 'Unlike', unlike_path(@user) %>
+<% else %>
+    <%= link_to 'Like', like_path(@user) %>
+<% end %> |
+<% if current_user.likes?(@user) %>
+    <%= link_to 'Unfollow', unfollow_path(@user) %>
+<% else %>
+    <%= link_to 'Follow', follow_path(@user) %>
+<% end %>
+
+<p>Like count: <%= @user.likers(User).count %></p>
+<p>Follower count: <%= @user.followers(User).count %></p>
