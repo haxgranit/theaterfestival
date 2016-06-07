@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 53) do
+ActiveRecord::Schema.define(version: 56) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,22 @@ ActiveRecord::Schema.define(version: 53) do
 
   add_index "company_social_metadata", ["company_id"], name: "index_company_social_metadata_on_company_id", unique: true, using: :btree
 
+  create_table "credits", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "production_id"
+    t.text     "name"
+    t.text     "position"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "confirmed"
+    t.datetime "created_at",    precision: 6, null: false
+    t.datetime "updated_at",    precision: 6, null: false
+    t.string   "type"
+  end
+
+  add_index "credits", ["artist_id"], name: "index_credits_on_artist_id", using: :btree
+  add_index "credits", ["production_id"], name: "index_credits_on_production_id", using: :btree
+
   create_table "festival_production_links", force: :cascade do |t|
     t.integer  "festival_id"
     t.integer  "production_id"
@@ -161,6 +177,18 @@ ActiveRecord::Schema.define(version: 53) do
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
 
+  create_table "pictures", force: :cascade do |t|
+    t.string   "title"
+    t.string   "credit"
+    t.string   "image_id"
+    t.string   "has_image_type"
+    t.string   "has_image_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pictures", ["has_image_id"], name: "index_pictures_on_has_image_id", using: :btree
+
   create_table "press_items", force: :cascade do |t|
     t.integer  "production_id"
     t.date     "date"
@@ -173,21 +201,6 @@ ActiveRecord::Schema.define(version: 53) do
   end
 
   add_index "press_items", ["production_id"], name: "index_press_items_on_production_id", using: :btree
-
-  create_table "production_credits", force: :cascade do |t|
-    t.integer  "artist_id"
-    t.integer  "production_id"
-    t.text     "name"
-    t.text     "position"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.boolean  "confirmed"
-    t.datetime "created_at",    precision: 6, null: false
-    t.datetime "updated_at",    precision: 6, null: false
-  end
-
-  add_index "production_credits", ["artist_id"], name: "index_production_credits_on_artist_id", using: :btree
-  add_index "production_credits", ["production_id"], name: "index_production_credits_on_production_id", using: :btree
 
   create_table "production_metadata", force: :cascade do |t|
     t.integer  "production_id"
@@ -366,11 +379,11 @@ ActiveRecord::Schema.define(version: 53) do
   add_foreign_key "company_production_links", "companies"
   add_foreign_key "company_production_links", "productions"
   add_foreign_key "company_social_metadata", "companies"
+  add_foreign_key "credits", "artists"
+  add_foreign_key "credits", "productions"
   add_foreign_key "festival_production_links", "festivals"
   add_foreign_key "festival_production_links", "productions"
   add_foreign_key "press_items", "productions"
-  add_foreign_key "production_credits", "artists"
-  add_foreign_key "production_credits", "productions"
   add_foreign_key "production_metadata", "productions"
   add_foreign_key "production_showtime_links", "productions"
   add_foreign_key "production_showtime_links", "showtimes"
