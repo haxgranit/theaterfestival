@@ -4,13 +4,17 @@ class Company < ActiveRecord::Base
   attachment :company_image
 
 
+
+  has_many :company_festival_links
   has_many :festivals, through: :company_festival_links
-  has_many :festival_productions, through: :festival_production_links
-  has_many :productions, through: :company_production_links
+  has_many :festival_production_links
+  has_many :productions, through: :festival_production_links, as: :festival_productions
   has_many :company_production_links
-  has_many :showtimes, through: :theaters
-  has_many :theaters, through: :venues
+  has_many :productions, through: :company_production_links
+
   has_many :venues
+  has_many :theaters, through: :venues
+  has_many :showtimes, through: :theaters
   has_one :company_metadata
   has_one :company_social_metadata
   accepts_nested_attributes_for :company_metadata

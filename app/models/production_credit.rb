@@ -1,4 +1,2 @@
-class ProductionCredit < ActiveRecord::Base
-  belongs_to :artist
-  belongs_to :production
+class ProductionCredit < Credit
 end

@@ -4,7 +4,7 @@ class Theater < ActiveRecord::Base
 
   belongs_to :venue
   has_many :showtimes
-  has_many :showtime_accessibility_meta, through: :showtimes
+  has_many :showtime_accessibility_metadata, through: :showtimes
   has_one :theater_metadata
   accepts_nested_attributes_for :theater_metadata
 

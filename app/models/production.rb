@@ -2,8 +2,9 @@ class Production < ActiveRecord::Base
   validates :title, :first_performance, presence: true
   attachment :key_image
 
-  has_many :production_credits
-  has_many :artists, through: :production_credits
+  has_many :credits
+  delegate :writing_credits, :production_credits, to: :credits
+  has_many :artists, through: :credits
   has_many :companies, through: :company_production_links
   has_many :company_production_links
   has_many :festivals, through: :festival_production_links

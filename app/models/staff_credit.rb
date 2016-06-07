@@ -1,0 +1,2 @@
+class StaffCredit < Credit
+end

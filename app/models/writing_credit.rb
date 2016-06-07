@@ -1,0 +1,3 @@
+class WritingCredit < Credit
+
+end
