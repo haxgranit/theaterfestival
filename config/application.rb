@@ -8,7 +8,6 @@ module TheaterEngineResources
   class Application < Rails::Application
     config.log_level = :debug
     config.log_tags  = [:subdomain, :uuid]
-    config.logger    = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 
     config.cache_store = :redis_store, ENV['CACHE_URL'],
     { namespace: 'theaterengine::cache' }
