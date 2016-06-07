@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class CompanyFestivalLinksControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @company_festival_link = company_festival_links(:one)
   end

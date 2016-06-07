@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ShowtimeAccessibilityMetadataControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @showtime_accessibility_metadata = showtime_accessibility_metadata(:one)
   end

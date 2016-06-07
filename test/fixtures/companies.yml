@@ -2,10 +2,8 @@
 
 one:
   name: MyText
-  type: MyText
   website: MyText
 
 two:
   name: MyText
-  type: MyText
   website: MyText

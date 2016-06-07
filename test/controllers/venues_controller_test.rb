@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class VenuesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @venue = venues(:one)
   end

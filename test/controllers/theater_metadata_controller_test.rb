@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TheaterMetadataControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @theater_metadata = theater_metadata(:one)
   end

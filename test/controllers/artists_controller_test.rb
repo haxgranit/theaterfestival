@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ArtistsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @artist = artists(:one)
   end

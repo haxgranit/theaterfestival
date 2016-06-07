@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ShowtimesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @showtime = showtimes(:one)
   end

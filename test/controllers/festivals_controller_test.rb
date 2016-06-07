@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class FestivalsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @festival = festivals(:one)
   end

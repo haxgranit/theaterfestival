@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ProductionCreditsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @production_credit = production_credits(:one)
   end

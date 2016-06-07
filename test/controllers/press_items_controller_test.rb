@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PressItemsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     @press_item = press_items(:one)
   end

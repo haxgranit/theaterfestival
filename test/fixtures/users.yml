@@ -2,7 +2,7 @@
 
 one:
   email: one@example.com
-  password_digest: <%= User.digest('secret') %>
+  encrypted_password: $2a$12$nwsYUkiw.eeZWMd0u1pFd.Mkmi5pthvW2glryaYVwVGmHPLykHyS2
   first_name: One
   last_name: Tester
   time_zone: Eastern Time (US & Canada)
@@ -10,7 +10,7 @@ one:
 
 two:
   email: two@example.com
-  password_digest: <%= User.digest('secret') %>
+  encrypted_password: $2a$12$nwsYUkiw.eeZWMd0u1pFd.Mkmi5pthvW2glryaYVwVGmHPLykHyS2
   first_name: Two
   last_name: Tester
   time_zone: Eastern Time (US & Canada)
@@ -18,7 +18,7 @@ two:
 
 three:
   email: three@example.com
-  password_digest: <%= User.digest('secret') %>
+  encrypted_password: $2a$12$nwsYUkiw.eeZWMd0u1pFd.Mkmi5pthvW2glryaYVwVGmHPLykHyS2
   first_name: Three
   last_name: Tester
   time_zone: Eastern Time (US & Canada)
