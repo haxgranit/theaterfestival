@@ -12,7 +12,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/new
   def new
-    @artist = Artist.new
+    @artist = Artist.new(artist_params)
   end
 
   # GET /artists/1/edit
@@ -67,6 +67,7 @@ class ArtistsController < ApplicationController
               :full_bio,
               :user_id,
               :profile_image,
+              pictures_images: [],
               artist_social_metadata_attributes: [:id,
                                                   :email,
                                                   :facebook,
