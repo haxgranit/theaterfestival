@@ -1,4 +1,38 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :artists
+    resources :artist_social_metadata
+    resources :companies
+    resources :company_festival_links
+    resources :company_metadata
+    resources :company_production_links
+    resources :company_social_metadata
+    resources :credits
+    resources :festivals
+    resources :festival_production_links
+    resources :pictures
+    resources :press_items
+    resources :productions
+    resources :production_metadata
+    resources :production_showtime_links
+    resources :reviews
+    resources :showtimes
+    resources :showtime_accessibility_metadata
+    resources :showtime_ticket_metadata
+    resources :theaters
+    resources :theater_metadata
+    resources :venues
+    resources :follows
+    resources :likes
+    resources :mentions
+    resources :production_credits
+    resources :staff_credits
+    resources :writing_credits
+
+    root to: "users#index"
+  end
+
   resources :production_metadata
   resources :company_metadata
   resources :company_social_metadata
@@ -18,12 +52,18 @@ Rails.application.routes.draw do
   resources :reviews
   resources :companies
   resources :press_items
-  resources :production_credits
+  resources :production_credits, controller: :credits, type: 'ProductionCredit'
+  resources :writing_credits, controller: :credits, type: 'WritingCredit'
+  resources :staff_credits, controller: :credits, type: 'StaffCredit'
   resources :productions
   resources :artists
   devise_for :users
   root 'static#home'
   resources :users, only: [:show, :index]
+  get 'user/:id/like', to: 'users#like', as: :like
+  get 'user/:id/follow', to: 'users#follow', as: :follow
+  get 'user/:id/unlike', to: 'users#unlike', as: :unlike
+  get 'user/:id/unfollow', to: 'users#unfollow', as: :unfollow
 
   namespace :api do
     namespace :v1 do
