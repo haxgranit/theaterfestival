@@ -35,7 +35,11 @@ class ApplicationPolicy
   end
 
   def admin?
-    user.admin?
+    if user.present?
+      user.admin?
+    else
+      false
+    end
   end
 
   def scope

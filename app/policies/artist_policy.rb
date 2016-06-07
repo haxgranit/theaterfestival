@@ -7,7 +7,7 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || artist.user_id == @user.id
+    admin? || (artist.user_id == user.id if user.present?)
   end
 
   def edit?
