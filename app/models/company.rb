@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
 
   has_many :company_festival_links
   has_many :festivals, through: :company_festival_links
-  has_many :festival_production_links
+  has_many :festival_production_links, through: :productions
   has_many :productions, through: :festival_production_links, as: :festival_productions
   has_many :company_production_links
   has_many :productions, through: :company_production_links
