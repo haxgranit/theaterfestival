@@ -1,4 +1,4 @@
-if Rails.env.development?
+if Rails.env.testing?
   MAX_LOG_SIZE = 2.kilobytes
 
   logs = File.join(Rails.root, 'log', '*.log')

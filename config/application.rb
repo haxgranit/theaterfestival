@@ -6,8 +6,14 @@ Bundler.require(*Rails.groups)
 
 module TheaterEngineResources
   class Application < Rails::Application
-    config.log_level = :debug
-    config.log_tags  = [:subdomain, :uuid]
+    config.colorize_logging = false
+    config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::Logstash.new
+    config.lograge.custom_options = lambda do |event|
+      params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
+      { "params" => params }
+    end
+    config.logger = LogStashLogger.new(type: :udp, host: 'logstash', port: 12201)
 
     config.cache_store = :redis_store, ENV['CACHE_URL'],
     { namespace: 'theaterengine::cache' }

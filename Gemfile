@@ -39,6 +39,10 @@ gem 'socialization'
 gem 'valid_url'
 gem 'administrate', github: 'jhenahan/administrate', branch: 'te'
 
+gem 'lograge'
+gem 'logstash-event'
+gem 'logstash-logger'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
