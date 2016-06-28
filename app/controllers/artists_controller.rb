@@ -57,8 +57,7 @@ class ArtistsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def artist_params
     params.require(:artist)
-      .permit(:first_name,
-              :last_name,
+      .permit(:stage_name,
               :title,
               :birthdate,
               :birth_location,

@@ -1,5 +1,6 @@
 class Artist < ActiveRecord::Base
-  validates :first_name, :last_name, presence: true
+  searchkick
+  validates :stage_name, presence: true
   validates_uniqueness_of :user_id
   attachment :profile_image
 
@@ -15,10 +16,6 @@ class Artist < ActiveRecord::Base
   acts_as_followable
   acts_as_likeable
   acts_as_mentionable
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 
   def social_links
     if artist_social_metadata.present?

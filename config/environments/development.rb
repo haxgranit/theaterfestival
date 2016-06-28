@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.secret_key_base = 'some nonsense'
   config.web_console.whitelisted_ips = '192.168.0.0/16'
 
   # In the development environment your application's code is reloaded on

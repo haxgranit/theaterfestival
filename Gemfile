@@ -43,6 +43,8 @@ gem 'lograge'
 gem 'logstash-event'
 gem 'logstash-logger'
 
+gem 'searchkick'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
