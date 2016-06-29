@@ -1,6 +1,6 @@
 <%= simple_form_for(@model, wrapper: :horizontal_form) do |f| %>
-    <%= f.input :artist_id, collection: Artist.all, value_method: :id, label_method: :full_name, prompt: true  %>
-    <%= f.input :production_id, collection: Production.all, value_method: :id, label_method: :title, prompt: true  %>
+    <%= f.input :artist_id, as: :string %>
+    <%= f.input :production_id, as: :string  %>
     <%= f.input :name %>
     <%= f.input :position %>
     <%= f.input :start_date %>

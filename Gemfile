@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'bootstrap-slider-rails'
 gem 'font-awesome-rails'
 gem 'bh', github: 'jhenahan/bh', branch: 'v4'
+gem 'bourbon'
 
 gem 'unicorn'
 gem 'unicorn-rails'
@@ -44,6 +45,7 @@ gem 'logstash-event'
 gem 'logstash-logger'
 
 gem 'searchkick'
+gem 'twitter-typeahead-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

@@ -1,7 +1,7 @@
 class Artist < ActiveRecord::Base
-  searchkick
+  searchkick word_start: [:stage_name], searchable: [:stage_name]
   validates :stage_name, presence: true
-  validates_uniqueness_of :user_id
+  validates_uniqueness_of :user_id, :allow_blank => true
   attachment :profile_image
 
   belongs_to :user

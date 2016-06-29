@@ -55,8 +55,16 @@ Rails.application.routes.draw do
   resources :production_credits, controller: :credits, type: 'ProductionCredit'
   resources :writing_credits, controller: :credits, type: 'WritingCredit'
   resources :staff_credits, controller: :credits, type: 'StaffCredit'
-  resources :productions
-  resources :artists
+  resources :productions do
+    collection do
+      get :autocomplete
+    end
+  end
+  resources :artists do
+    collection do
+      get :autocomplete
+    end
+  end
   devise_for :users
   root 'static#home'
   resources :users, only: [:show, :index]

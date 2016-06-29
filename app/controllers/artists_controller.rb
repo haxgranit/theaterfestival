@@ -1,5 +1,15 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy, :claim]
+  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+
+  def autocomplete
+    render json: Artist.search(params[:query], {
+                                 fields: ["stage_name"],
+                                 limit: 10,
+                                 load: false,
+                                 misspellings: {below: 5}
+                               }).map { |artist| { stage_name: artist.stage_name,
+                                                   value: artist.id } }
+  end
 
   # GET /artists
   def index
@@ -12,7 +22,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/new
   def new
-    @artist = Artist.new(artist_params)
+    @artist = Artist.new
   end
 
   # GET /artists/1/edit

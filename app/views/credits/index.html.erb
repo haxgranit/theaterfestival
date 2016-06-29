@@ -20,8 +20,8 @@
   <tbody>
     <% @model.each do |production_credit| %>
       <tr>
-        <td><%= production_credit.artist %></td>
-        <td><%= production_credit.production %></td>
+        <td><%= production_credit.artist.stage_name %></td>
+        <td><%= production_credit.production.title %></td>
         <td><%= production_credit.name %></td>
         <td><%= production_credit.position %></td>
         <td><%= production_credit.start_date %></td>

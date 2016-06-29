@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 $ ->
   artists = new Bloodhound(
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name')
@@ -11,7 +10,20 @@ $ ->
       url: '/artists/autocomplete?query=%QUERY'
       wildcard: '%QUERY')
   artists.initialize()
-  $('#artist_stage_name').typeahead null,
+  $('[id*=credit_artist_id]').typeahead null,
     displayKey: 'stage_name'
     source: artists.ttAdapter()
+  return
+
+$ ->
+  productions = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote:
+      url: '/productions/autocomplete?query=%QUERY'
+      wildcard: '%QUERY')
+  productions.initialize()
+  $('[id*=credit_production_id]').typeahead null,
+    displayKey: 'title'
+    source: productions.ttAdapter()
   return

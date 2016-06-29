@@ -1,4 +1,5 @@
 class Production < ActiveRecord::Base
+  searchkick word_start: [:title], searchable: [:title]
   validates :title, :first_performance, presence: true
   attachment :key_image
 

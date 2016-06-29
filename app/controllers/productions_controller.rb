@@ -1,6 +1,16 @@
 class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    render json: Production.search(params[:query], {
+                                     fields: ["title"],
+                                     limit: 10,
+                                     load: false,
+                                     misspellings: {below: 5}
+                                   }).map { |production| { title: production.title,
+                                                           value: production.id } }
+  end
+
   # GET /productions
   def index
     @productions = Production.all

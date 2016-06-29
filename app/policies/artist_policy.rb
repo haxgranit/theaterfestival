@@ -7,11 +7,11 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || (artist.user_id == user.id if user.present?)
+    admin? || artist.user_id.blank? || edit?
   end
 
   def edit?
-    update?
+    artist.user_id == user.id if user.present? || false
   end
 
   class Scope < Scope

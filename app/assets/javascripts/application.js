@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require tether
+//= require twitter/typeahead.min
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks

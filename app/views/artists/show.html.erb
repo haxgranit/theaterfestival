@@ -5,37 +5,49 @@
   <strong>Name:</strong>
   <%= @artist.stage_name %>
 </p>
-
+<% if @artist.title.present? %>
 <p>
   <strong>Title:</strong>
   <%= @artist.title %>
 </p>
+<% end %>
 
+<% if @artist.title.present? %>
 <p>
   <strong>Birthdate:</strong>
   <%= @artist.birthdate.strftime("%B %d, %Y") %>
 </p>
+<% end %>
 
+<% if @artist.title.present? %>
 <p>
   <strong>Birth location:</strong>
   <%= @artist.birth_location %>
 </p>
+<% end %>
 
+<% if @artist.title.present? %>
 <p>
   <strong>Hometown:</strong>
   <%= @artist.hometown %>
 </p>
+<% end %>
 
+<% if @artist.title.present? %>
 <p>
   <strong>Education:</strong>
   <%= @artist.education %>
 </p>
+<% end %>
 
+<% if @artist.title.present? %>
 <p>
   <strong>Full bio:</strong>
   <%= @artist.full_bio %>
 </p>
+<% end %>
 
+<% unless @artist.social_links.blank? %>
 <h2>Social Media</h2>
 <ul>
     <% @artist.social_links.each do |k,v| %>
@@ -44,6 +56,7 @@
         </li>
     <% end %>
 </ul>
+<% end %>
 
 <h2>Shows</h2>
 <ul>
@@ -96,7 +109,7 @@
 <% end %>
 <% if @artist.user_id.present? %>
     <%= link_to 'View User Page', user_path(@artist.user_id) %>
-<% else %>
+<% elsif current_user.present? %>
     <%= link_to 'Claim Artist Page', artist_path(@artist, {artist: { user_id: current_user.id } }), method: :patch %>
 <% end %>
 <%= link_to 'Back', artists_path %>
