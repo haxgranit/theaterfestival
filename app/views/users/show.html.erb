@@ -46,10 +46,11 @@
 
 <% end %>
 <% if @user.artist.present? %>
-    | <%= link_to 'View Artist Page', artist_path %>
+    | <%= link_to 'View Artist Page', artist_path(@user.artist) %>
 <% end %>
 
 <h1>Social Features</h1>
+<% if current_user %>
 <% if current_user.likes?(@user) %>
     <%= link_to 'Unlike', unlike_path(@user) %>
 <% else %>
@@ -59,6 +60,7 @@
     <%= link_to 'Unfollow', unfollow_path(@user) %>
 <% else %>
     <%= link_to 'Follow', follow_path(@user) %>
+<% end %>
 <% end %>
 
 <p>Like count: <%= @user.likers(User).count %></p>

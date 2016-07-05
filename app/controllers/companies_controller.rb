@@ -1,6 +1,16 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    render json: Company.search(params[:query], {
+                                  fields: ["name"],
+                                  limit: 10,
+                                  load: false,
+                                  misspellings: {below: 5}
+                                }).map { |company| { name: company.name,
+                                                     value: company.id } }
+  end
+
   # GET /companies
   def index
     @companies = Company.all

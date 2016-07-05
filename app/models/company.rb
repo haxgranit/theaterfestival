@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  searchkick word_start: [:name], searchable: [:name]
   validates :name, presence: true
   validates :website, url: true
   attachment :company_image

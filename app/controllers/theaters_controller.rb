@@ -1,6 +1,16 @@
 class TheatersController < ApplicationController
   before_action :set_theater, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    render json: Theater.search(params[:query], {
+                                 fields: ["name"],
+                                 limit: 10,
+                                 load: false,
+                                 misspellings: {below: 5}
+                               }).map { |theater| { name: theater.name,
+                                                   value: theater.id } }
+  end
+
   # GET /theaters
   def index
     @theaters = Theater.all

@@ -1,25 +1,5 @@
-<%= form_for(@festival_production_link) do |f| %>
-  <% if @festival_production_link.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@festival_production_link.errors.count, "error") %> prohibited this festival_production_link from being saved:</h2>
-
-      <ul>
-      <% @festival_production_link.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :festival_id %><br>
-    <%= f.text_field :festival_id %>
-  </div>
-  <div class="field">
-    <%= f.label :production_id %><br>
-    <%= f.text_field :production_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@festival_production_link, wrapper: :horizontal_form) do |f| %>
+    <%= f.input :festival_id, as: :string %>
+    <%= f.input :production_id, as: :string  %>
+    <%= f.button :submit %>
 <% end %>

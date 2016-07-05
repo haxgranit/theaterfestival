@@ -1,6 +1,16 @@
 class FestivalsController < ApplicationController
   before_action :set_festival, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    render json: Festival.search(params[:query], {
+                                  fields: ["title"],
+                                  limit: 10,
+                                  load: false,
+                                  misspellings: {below: 5}
+                                }).map { |festival| { title: festival.title,
+                                                     value: festival.id } }
+  end
+
   # GET /festivals
   def index
     @festivals = Festival.all

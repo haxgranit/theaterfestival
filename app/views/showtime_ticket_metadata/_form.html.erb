@@ -1,73 +1,16 @@
-<%= form_for(@showtime_ticket_metadata) do |f| %>
-  <% if @showtime_ticket_metadata.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@showtime_ticket_metadata.errors.count, "error") %> prohibited this showtime_ticket_metadata from being saved:</h2>
-
-      <ul>
-      <% @showtime_ticket_metadata.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :guaranteed_price %><br>
-    <%= f.text_field :guaranteed_price %>
-  </div>
-  <div class="field">
-    <%= f.label :guaranteed_price_note %><br>
-    <%= f.text_area :guaranteed_price_note %>
-  </div>
-  <div class="field">
-    <%= f.label :ticket_link %><br>
-    <%= f.text_area :ticket_link %>
-  </div>
-  <div class="field">
-    <%= f.label :reservation_link %><br>
-    <%= f.text_area :reservation_link %>
-  </div>
-  <div class="field">
-    <%= f.label :reservation_link_info %><br>
-    <%= f.text_area :reservation_link_info %>
-  </div>
-  <div class="field">
-    <%= f.label :reservation_phone %><br>
-    <%= f.text_area :reservation_phone %>
-  </div>
-  <div class="field">
-    <%= f.label :reservation_phone_info %><br>
-    <%= f.text_area :reservation_phone_info %>
-  </div>
-  <div class="field">
-    <%= f.label :in_person_ticketing_info %><br>
-    <%= f.text_area :in_person_ticketing_info %>
-  </div>
-  <div class="field">
-    <%= f.label :special_event %><br>
-    <%= f.text_area :special_event %>
-  </div>
-  <div class="field">
-    <%= f.label :special_event_info %><br>
-    <%= f.text_area :special_event_info %>
-  </div>
-  <div class="field">
-    <%= f.label :additional_ticket_type %><br>
-    <%= f.text_area :additional_ticket_type %>
-  </div>
-  <div class="field">
-    <%= f.label :additional_ticket_type_price %><br>
-    <%= f.text_field :additional_ticket_type_price %>
-  </div>
-  <div class="field">
-    <%= f.label :additional_ticket_type_info %><br>
-    <%= f.text_area :additional_ticket_type_info %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@showtime_ticket_metadata) do |f| %>
+    <%= f.input :guaranteed_price %>
+    <%= f.input :guaranteed_price_note %>
+    <%= f.input :ticket_link %>
+    <%= f.input :reservation_link %>
+    <%= f.input :reservation_link_info %>
+    <%= f.input :reservation_phone %>
+    <%= f.input :reservation_phone_info %>
+    <%= f.input :in_person_ticketing_info %>
+    <%= f.input :special_event %>
+    <%= f.input :special_event_info %>
+    <%= f.input :additional_ticket_type %>
+    <%= f.input :additional_ticket_type_info %>
+    <%= f.input :notes %>
+    <%= f.button :submit %>
 <% end %>

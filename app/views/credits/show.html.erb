@@ -2,12 +2,12 @@
 
 <p>
   <strong>Artist:</strong>
-  <%= @model.artist.stage_name %>
+  <%= link_to @model.artist.stage_name, polymorphic_path(@model.artist) %>
 </p>
 
 <p>
   <strong>Production:</strong>
-  <%= @model.production.title if @model.production.present? %>
+  <%= link_to @model.production.title, polymorphic_path(@model.production) if @model.production.present? %>
 </p>
 
 <p>

@@ -1,49 +1,11 @@
 <%= form_for(@production_metadata) do |f| %>
-  <% if @production_metadata.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@production_metadata.errors.count, "error") %> prohibited this production_metadata from being saved:</h2>
-
-      <ul>
-      <% @production_metadata.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :production_id %><br>
-    <%= f.text_field :production_id %>
-  </div>
-  <div class="field">
-    <%= f.label :performance_type %><br>
-    <%= f.text_area :performance_type %>
-  </div>
-  <div class="field">
-    <%= f.label :info_heading %><br>
-    <%= f.text_area :info_heading %>
-  </div>
-  <div class="field">
-    <%= f.label :info %><br>
-    <%= f.text_area :info %>
-  </div>
-  <div class="field">
-    <%= f.label :warnings %><br>
-    <%= f.text_area :warnings %>
-  </div>
-  <div class="field">
-    <%= f.label :warning_info %><br>
-    <%= f.text_area :warning_info %>
-  </div>
-  <div class="field">
-    <%= f.label :running_time %><br>
-    <%= f.text_area :running_time %>
-  </div>
-  <div class="field">
-    <%= f.label :intermissions %><br>
-    <%= f.text_area :intermissions %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.input :production_id %>
+    <%= f.input :performance_type %>
+    <%= f.input :info_heading %>
+    <%= f.input :info %>
+    <%= f.input :warnings %>
+    <%= f.input :warning_info %>
+    <%= f.input :running_time %>
+    <%= f.input :intermissions %>
+    <%= f.button :submit %>
 <% end %>

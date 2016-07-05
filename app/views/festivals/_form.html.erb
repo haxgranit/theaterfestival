@@ -1,25 +1,5 @@
-<%= form_for(@festival) do |f| %>
-  <% if @festival.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@festival.errors.count, "error") %> prohibited this festival from being saved:</h2>
-
-      <ul>
-      <% @festival.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
-  </div>
-  <div class="field">
-    <%= f.label :subtitle %><br>
-    <%= f.text_area :subtitle %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@festival) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :subtitle %>
+    <%= f.button :submit %>
 <% end %>

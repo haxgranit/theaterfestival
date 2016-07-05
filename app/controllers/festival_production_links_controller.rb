@@ -22,6 +22,10 @@ class FestivalProductionLinksController < ApplicationController
   # POST /festival_production_links
   def create
     @festival_production_link = FestivalProductionLink.new(festival_production_link_params)
+    @festival = Festival.find_by title: festival_production_link_params[:festival_id]
+    @production = Production.find_by title: festival_production_link_params[:production_id]
+    @festival_production_link.festival_id = @festival.id
+    @festival_production_link.production_id = @production.id
 
     if @festival_production_link.save
       redirect_to @festival_production_link, notice: 'Festival production link was successfully created.'

@@ -1,49 +1,11 @@
-<%= form_for(@company_social_metadata) do |f| %>
-  <% if @company_social_metadata.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company_social_metadata.errors.count, "error") %> prohibited this company_social_metadata from being saved:</h2>
-
-      <ul>
-      <% @company_social_metadata.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :twitter %><br>
-    <%= f.text_area :twitter %>
-  </div>
-  <div class="field">
-    <%= f.label :facebook %><br>
-    <%= f.text_area :facebook %>
-  </div>
-  <div class="field">
-    <%= f.label :linkedin %><br>
-    <%= f.text_area :linkedin %>
-  </div>
-  <div class="field">
-    <%= f.label :tumblr %><br>
-    <%= f.text_area :tumblr %>
-  </div>
-  <div class="field">
-    <%= f.label :snapchat %><br>
-    <%= f.text_area :snapchat %>
-  </div>
-  <div class="field">
-    <%= f.label :instagram %><br>
-    <%= f.text_area :instagram %>
-  </div>
-  <div class="field">
-    <%= f.label :vine %><br>
-    <%= f.text_area :vine %>
-  </div>
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.text_field :company_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@company_social_metadata) do |f| %>
+    <%= f.input :twitter %>
+    <%= f.input :facebook %>
+    <%= f.input :linkedin %>
+    <%= f.input :tumblr %>
+    <%= f.input :snapchat %>
+    <%= f.input :instagram %>
+    <%= f.input :vine %>
+    <%= f.input :company_id %>
+    <%= f.button :submit %>
 <% end %>

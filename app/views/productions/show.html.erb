@@ -32,12 +32,24 @@
   <%= @production.last_performance %>
 </p>
 
+
+<h2>Creative</h2>
+<ul>
+    <% @production.writing_credits.each do |wc| %>
+        <li>
+            <%= link_to wc.artist.stage_name, artist_path(wc.artist) %>
+            - <%= wc.position %>
+        </li>
+    <% end %>
+</ul>
+
+
 <h2>Cast</h2>
 <ul>
     <% @production.production_credits.each do |pc| %>
         <li>
-            <%= link_to pc.artist.full_name, artist_path(pc.artist) %>
-            - <%= pc.name %>
+            <%= link_to pc.artist.stage_name, artist_path(pc.artist) %>
+            - <%= pc.position %>
         </li>
     <% end %>
 </ul>
@@ -65,6 +77,15 @@
     </ul>
 <% end %>
 
+<% if @production.all_companies %>
+    <h2>Companies</h2>
+    <% @production.all_companies.each do |c| %>
+        <li>
+            <%= link_to c.name, company_path(c) %>
+        </li>
+    <% end %>
+<% end %>
+
 <h2>Reviews</h2>
 <ul>
     <% @production.reviews.each do |r| %>
@@ -72,6 +93,9 @@
             <%= link_to r.title, review_path(r) %>
             - <%= '*'*r.rating %>
         </li>
+    <% end %>
+    <% @production.press_items.each do |pi| %>
+        <%= link_to pi.quote, pi.link %>
     <% end %>
 </ul>
 

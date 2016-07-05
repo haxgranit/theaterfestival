@@ -1,4 +1,5 @@
 class Festival < ActiveRecord::Base
+  searchkick word_start: [:title], searchable: [:title]
   validates :title, presence: true
 
   has_many :companies, through: :company_festival_links

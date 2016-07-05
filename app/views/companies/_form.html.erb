@@ -1,27 +1,29 @@
 <%= simple_form_for @company, wrapper: :horizontal_form do |f| %>
     <%= f.input :name, as: :string %>
-    <%= f.input :company_type, as: :string %>
-    <%= f.input :website, as: :url %>
-    <%= f.input :description %>
-    <%= f.input :email, as: :email %>
-    <%= f.input :company_image, as: :attachment %>
-    <%= f.simple_fields_for :company_metadata, @company.company_metadata ||= CompanyMetadata.new, wrapper: :horizontal_form do |m| %>
-        <%= m.input :address1, as: :string %>
-        <%= m.input :address2, as: :string %>
-        <%= m.input :date_founded %>
-        <%= m.input :location_founded %>
-        <%= m.input :founders %>
-        <%= m.input :mission %>
-        <%= m.input :history %>
+    <% if policy(@company).edit? %>
+        <%= f.input :company_type, as: :string %>
+        <%= f.input :website, as: :url %>
+        <%= f.input :description %>
+        <%= f.input :email, as: :email %>
+        <%= f.input :company_image, as: :attachment %>
+        <%= f.simple_fields_for :company_metadata, @company.company_metadata ||= CompanyMetadata.new, wrapper: :horizontal_form do |m| %>
+            <%= m.input :address1, as: :string %>
+            <%= m.input :address2, as: :string %>
+            <%= m.input :date_founded %>
+            <%= m.input :location_founded %>
+            <%= m.input :founders %>
+            <%= m.input :mission %>
+            <%= m.input :history %>
+        <% end %>
+        <%= f.simple_fields_for :company_social_metadata, @company.company_social_metadata ||= CompanySocialMetadata.new, wrapper: :horizontal_form do |s| %>
+            <%= s.input :facebook, as: :url %>
+            <%= s.input :instagram, as: :url %>
+            <%= s.input :linkedin, as: :url %>
+            <%= s.input :snapchat, as: :string %>
+            <%= s.input :tumblr, as: :url %>
+            <%= s.input :twitter, as: :url %>
+            <%= s.input :vine, as: :url %>
+        <% end %>
     <% end %>
-    <%= f.simple_fields_for :company_social_metadata, @company.company_social_metadata ||= CompanySocialMetadata.new, wrapper: :horizontal_form do |s| %>
-        <%= s.input :facebook, as: :url %>
-        <%= s.input :instagram, as: :url %>
-        <%= s.input :linkedin, as: :url %>
-        <%= s.input :snapchat, as: :string %>
-        <%= s.input :tumblr, as: :url %>
-        <%= s.input :twitter, as: :url %>
-        <%= s.input :vine, as: :url %>
-    <% end %>
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn-primary' %>
 <% end %>

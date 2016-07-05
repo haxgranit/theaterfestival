@@ -25,4 +25,9 @@ class Production < ActiveRecord::Base
         .delete_if { |_, v| v.blank? }
     end
   end
+
+  def all_companies
+    fest_companies = festivals.map { |f| f.companies }.flatten!
+    (fest_companies + companies).uniq
+  end
 end

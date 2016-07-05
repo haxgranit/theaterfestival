@@ -62,7 +62,9 @@
 
 
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
+<% if policy(@company).edit? %>
+    <%= link_to 'Edit', edit_company_path(@company) %> |
+<% end %>
 <%= link_to 'Back', companies_path %>
 
 <p>

@@ -10,7 +10,7 @@ $ ->
       url: '/artists/autocomplete?query=%QUERY'
       wildcard: '%QUERY')
   artists.initialize()
-  $('[id*=credit_artist_id]').typeahead null,
+  $('[id*=artist_id]').typeahead null,
     displayKey: 'stage_name'
     source: artists.ttAdapter()
   return
@@ -23,7 +23,7 @@ $ ->
       url: '/productions/autocomplete?query=%QUERY'
       wildcard: '%QUERY')
   productions.initialize()
-  $('[id*=credit_production_id]').typeahead null,
+  $('[id*=production_id]').typeahead null,
     displayKey: 'title'
     source: productions.ttAdapter()
   return

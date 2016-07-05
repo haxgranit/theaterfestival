@@ -14,8 +14,8 @@
   <tbody>
     <% @festival_production_links.each do |festival_production_link| %>
       <tr>
-        <td><%= festival_production_link.festival %></td>
-        <td><%= festival_production_link.production %></td>
+        <td><%= festival_production_link.festival.title %></td>
+        <td><%= festival_production_link.production.title %></td>
         <td><%= link_to 'Show', festival_production_link %></td>
         <td><%= link_to 'Edit', edit_festival_production_link_path(festival_production_link) %></td>
         <td><%= link_to 'Destroy', festival_production_link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
