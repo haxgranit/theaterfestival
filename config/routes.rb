@@ -44,13 +44,29 @@ Rails.application.routes.draw do
   resources :showtime_accessibility_metadata
   resources :production_showtime_links
   resources :showtimes
-  resources :theaters
-  resources :venues
+  resources :theaters do
+    collection do
+      get :autocomplete
+    end
+  end
+  resources :venues do
+    collection do
+      get :autocomplete
+    end
+  end
   resources :company_festival_links
   resources :festival_production_links
-  resources :festivals
+  resources :festivals do
+    collection do
+      get :autocomplete
+    end
+  end
   resources :reviews
-  resources :companies
+  resources :companies do
+    collection do
+      get :autocomplete
+    end
+  end
   resources :press_items
   resources :production_credits, controller: :credits, type: 'ProductionCredit'
   resources :writing_credits, controller: :credits, type: 'WritingCredit'
