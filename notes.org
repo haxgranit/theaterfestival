@@ -1,38 +1,98 @@
 #+TITLE:TheaterEngine Notes
 #+STARTUP: showall
 
-* Design Questions
-** Résumé
-   Format?
+* Setup Instructions
+** Install Docker Toolbox
+   https://www.docker.com/products/docker-toolbox
+** Install Docker Compose
+   If you installed the Toolbox, you're done, but explicit instructions are at
+   https://docs.docker.com/compose/install/
+** Fetch and build images
+   This is gonna take a little while.
+   
+   In the root directory (make sure you're on =develop=), you should see
+    a =docker-compose.yml=. This describes all the services used by the
+    application.
 
-   File? Plain text?
+   =docker-compose build= should start collecting images and installing
+    dependencies.
+    
+   After that's done, you'll want to run =docker-compose run theaterengine bundle install=.
 
-   How does the resume relate to credits, if at all?
-** Users/Artists/Companies
-*** Listings
+   Now you'll need to prep the DB:
+   
+   =docker-compose run theaterengine rake db:create=
 
-    Existing users will be discoverable by a search field. What is the story for
-    credits for artists not already on the site? Just an option at the top of
-    the search results for "Create new Artist (name)"?
-*** Verification
+   =docker-compose run theaterengine rake db:migrate=
+   
+   After all that, =docker-compose down= to clean up any intermediary
+   containers.
 
-    Is there (or should there be) a plan for artist or company verification? In
-    the event that a Company page is created or claimed by an unauthorized
-    representative, what steps are necessary to rectify this?
+   Now, =docker-compose up= should bring up (after a few more minutes
+   of dependency gathering) a bunch of services. In particular, it'll bring up
+   the ELK stack logging backend, the DB, background event handling, and the
+   application itself. In the future, this should be the only necessary step unless the
+   Gemfile is updated.
 
-    The flag option is probably easiest for Artists, but it would seem prudent
-    to have an option with greater oversight for Companies.
-**** Permanent Passive Pages
+   At this point (it may take a couple of minutes for everything to spin up),
+   you'll have the site available at =192.168.99.100=.
+** Assets
+*** Asset Pipeline
+    The Rails asset pipeline handles minification and all that good stuff,
+    so all you need to worry about is writing SCSS and either JS or CoffeeScript.
+    All of that lives in =/app/assets/=, and all the view code lives in =/app/views/=.
+*** Bootstrap
+    Documentation for the Bootstrap 4 alpha is at
 
-     Who owns a permanently passive page? How are credit confirmations handled?
-**** Image Rights
+    =http://v4-alpha.getbootstrap.com/getting-started/=.
 
-     Media uploads will provide a credit field. Should this field be required?
-     Should media items include the same flagging mechanism as profile pages so
-     that rights holders can dispute the display of media items?
+    It's technically unstable, but it's very featureful, and we're using the flexbox
+    variant to make layout simpler and more resilient.
+*** Helpers
+    There are a number of helper libraries already installed, but they're a bit hit or
+    miss, so probably don't take any of them as something that will be in the final
+    version, except for =simple-form=, which we use to handle form markup.
+**** Minimal form
+     #+BEGIN_SRC web
+       <%= simple_form_for @resource, wrapper: :horizontal_form do |f| %>
+         <%= f.input :field_name %>
+         <%= f.button :submit, class: 'btn-primary' %>
+       <% end %>
+     #+END_SRC
+**** Simple Form docs
+     =https://github.com/plataformatec/simple_form=
+*** ERB
+    HTML templates are currently handled with ERB. The Rails docs are helpful.
+    =http://guides.rubyonrails.org/layouts_and_rendering.html=
 
+    Experience with another modern template language should make this pretty
+    intuitive. If you find yourself writing awkward collection related logic or
+    repeating yourself often, let me know and I'll alter the necessary models to make
+    it nicer to work with. I'll make myself available during the ramp-up for questions
+    about particular models and requests for more helpful backend code.
+** Major Goals
+*** Layout improvements
+    The big thing during this first week is just getting the overall layout closer to the
+    design pages. Don't worry too much about functionality. If you hit a point where
+    it would be nice to have something in the backend to make your layout code easier,
+    make a note and I'll move it to the top of my list.
+
+    Avoid interactive functionality during this ramp-up phase. Getting the scaffolding
+    for the rest of the layout is much more important, at this point, and dealing with
+    functionality early is going to paint us into a corner later. The first two weeks is
+    all basic UI. The second two weeks is where UX will enter into the mix.
+*** Final functionality
+    On my end, my main work is going to be on finalizing the major functionality and
+    exposing that to the frontend. I'm also going to be expanding the test suite, and
+    adding some basic acceptance testing so we can avoid manually testing UI and
+    UX as we move on.
 
 * Features
+** As of 1 July 2016
+*** Autocomplete backend
+*** Database improvements
+*** Permission system scrapped
+*** ELK stack for logging and analytics
 ** As of 19 May 2016
 *** Database (mostly) Complete
 **** The backend for all major features is in place
@@ -56,10 +116,8 @@
 ** Database
    We use Postgres to back ActiveRecord models. ActiveRecord was chosen for
    compatibility with =jsonapi-resources= and for easier developer ramp-up.
-   During development, a Postgres instance must be available.
 ** Caching
-   Requests are cached with =memcached=. During development, a Memcached
-   instance must be available.
+   Requests are cached with =redis=. This is built into the container.
 ** Server
    To allow for straightforward scaling, we use Unicorn as our application
    server. This allows the operating system to handle load balancing by forking
@@ -75,18 +133,8 @@
    recommended that you follow the installation instructions listed for your
    platform [[https://docs.docker.com][on the doc site]].
 *** Dotenv
-    It is recommended that you set up a dotenv file, =.theaterengine.env= with
-    the following contents for development
-    #+BEGIN_SRC conf
-      WORKER_PROCESSES=1
-
-      LISTEN_ON=0.0.0.0:8000
-
-      DATABASE_PASSWORD=theaterengine
-
-      CACHE_URL=redis://redis:6379/0
-      JOB_WORKER_URL=redis://redis:6379/0
-    #+END_SRC
+    =.theaterengine.env= contains the default setup info for the appllication in
+    development.
 ** Postgres
    Postgres is now provided in the Docker container. It operates as a separate
    service from the webserver, and can be interacted with directly by using the
@@ -101,19 +149,6 @@
    We use =jsonapi-resources= for the API backend. Docs are [[https://github.com/cerebris/jsonapi-resources#usage][on Github]]. Resources
    are namepaced and versioned under =/api=. Resource definitions are under
    =app/resources= and controller definitions are under =app/controllers=.
-** Bootstrap
-*** =bootstrap-sass=
-    The Sass port of Twitter Bootstrap currently supports the lastest
-    Bootstrap 3. All stylesheets should be SCSS files, and should be included by
-    =@import= in =app/assets/stylesheets/application.scss=.
-*** =bh=
-    Bootstrap Helpers by Fullscreen has convenience methods for most Bootstrap
-    components. Docs can be found [[https://fullscreen.github.io/bh/][here]].
-*** =bootstrap_form=
-    Provides a helper for Bootstrap forms using =bootstrap_form_for=. =bh= has a
-    form helper which should be preferred except for forms which use the special
-    select fields provided by Rails (e.g., =time_zone_select=), where
-    =bootstrap_form_for= is better behaved.
 
 * RFC Notes
 ** Redirects: Relative vs. Absolute
