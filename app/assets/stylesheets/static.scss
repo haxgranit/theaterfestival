@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#main-content {
+    background-image: url('http://lorempixel.com/1024/340/');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+    padding-top: 300px;
+}
+
 .frontpage-show {
 
   figurecaption {
