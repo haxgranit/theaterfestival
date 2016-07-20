@@ -26,9 +26,19 @@ footer {
     }
   }
 
+  .col-sm-6 {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
   .secondary {
-    .row:first-child {
-      margin-bottom: 1em;
+    .row {
+      &:first-child {
+        margin-bottom: 1em;
+      }
+      .col-sm-6 {
+        padding-left: 0;
+      }
     }
   }
 }
@@ -38,18 +48,21 @@ footer {
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 1.25em 0 2em;
 
-  h1 {
+  h2 {
     color: $white;
-    font-size: 2em;
+    font-size: 1.25em;
   }
 
 }
 
 .nav-footer {
   li {
-    a {
+    a.nav-link {
       color: $gray-light;
+      line-height: 1;
+      padding: 0;
     }
   }
 }
