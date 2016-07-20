@@ -7,22 +7,24 @@
         </div>
     <% end %>
     <%= navbar do %>
-        <%= vertical do %>
-            <%= link_to 'TheaterEngine', root_path %>
-        <% end %>
-        <%= horizontal do %>
-            <%= nav do %>
-                <%= link_to 'find/list a show', '#' %>
-                <%= link_to 'community', '#' %>
-                <% if user_signed_in? %>
-                    <%= link_to 'profile', current_user %>
-                    <%= link_to 'logout', destroy_user_session_path, method: :delete %>
-                <% else %>
-                <%= link_to 'sign in', '#',
-                    'data-toggle' => "collapse",
-                    'data-target' => "#signIn" %>
+        <div class="container">
+            <%= vertical do %>
+                <%= link_to '>>>TheaterEngine', root_path %>
+            <% end %>
+            <%= horizontal do %>
+                <%= nav do %>
+                    <%= link_to 'find/list a show', '#', class:"nav-show" %>
+                    <%= link_to 'community', '#', class:"nav-community" %>
+                    <% if user_signed_in? %>
+                        <%= link_to 'profile', current_user %>
+                        <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+                    <% else %>
+                    <%= link_to 'sign in', '#', 
+                        'data-toggle' => "collapse",
+                        'data-target' => "#signIn" %>
+                    <% end %>
                 <% end %>
             <% end %>
-        <% end %>
+        </div>
     <% end %>
 </header>

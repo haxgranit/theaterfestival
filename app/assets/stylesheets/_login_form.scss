@@ -1,0 +1,96 @@
+#signIn {
+	background-image: image-url('signin_bg.jpg');
+	background-position: center;
+	background-size: cover;
+
+	.simple_form {
+		margin-top: 2em;
+		
+		.login-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+
+			.form-group {
+				margin:0;
+				width: 45%;
+
+				label {
+					background-color: rgb(250,247,0);
+					color: rgb(0,0,0);
+					font-weight: 500;
+
+					abbr[title="required"] {
+						display: none;
+					}
+				}
+			}
+
+			.login-btn-wrapper {
+				background-color: rgb(0,0,0);
+				border-radius: 100%;
+				color: rgb(255,255,255);
+				height: 40px;
+				width: 40px;
+				padding: 5px 4px;
+
+				&:before {
+					content: '>';
+					color: rgb(250,247,0);
+					font-size: .85em;
+					font-weight: 500;
+				}
+
+				.btn-primary {
+					background: none;
+					border: none;
+					font-size: .85em;
+					padding: 0;
+					text-transform: uppercase;
+				}
+			}
+		}
+
+		.login-meta-wrapper {
+			overflow: hidden;
+			width: 88.5%;
+
+			.user_remember_me {
+				float: left;
+				margin: 0;
+				width: 100%;
+
+				.checkbox {
+					float: right;
+    				font-size: .75em;
+    				margin: .5em 0;
+
+					label {
+						background: none;
+						color: rgb(255,255,255);
+						padding: 1px 0 0;
+					}
+				}
+			}
+
+			.signup-box-wrapper {
+				width: 100%;
+
+				.signup-box {
+					background-color: rgb(250,247,0);
+					color: rgb(0,0,0);
+					display: inline-block;
+					float: right;
+					font-size: .75em;
+	    			font-weight: 500;
+	    			padding: 4px 13px;
+
+					a {
+						color: inherit;
+						text-decoration: underline;	
+					}
+				}
+			}
+		}
+	}
+}
