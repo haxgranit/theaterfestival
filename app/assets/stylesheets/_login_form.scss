@@ -56,12 +56,12 @@
 			width: 88.5%;
 
 			.user_remember_me {
-				float: left;
 				margin: 0;
 				width: 100%;
 
 				.checkbox {
-					float: right;
+					display: flex;
+    				justify-content: flex-end;
     				font-size: .75em;
     				margin: .5em 0;
 
@@ -74,13 +74,14 @@
 			}
 
 			.signup-box-wrapper {
-				width: 100%;
+				display: flex;
+    			justify-content: flex-end;
+    			width: 100%;
 
 				.signup-box {
 					background-color: rgb(250,247,0);
 					color: rgb(0,0,0);
 					display: inline-block;
-					float: right;
 					font-size: .75em;
 	    			font-weight: 500;
 	    			padding: 4px 13px;
