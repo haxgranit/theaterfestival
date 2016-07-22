@@ -11,28 +11,53 @@
 }
 
 .frontpage-show {
+  flex: 1 0 20%;
+  margin: 0 2.5% 2rem;
+
+  img {
+    -webkit-box-shadow: 0px 0px 2px 1px rgba(168,168,168,1);
+    -moz-box-shadow: 0px 0px 2px 1px rgba(168,168,168,1);
+    box-shadow: 0px 0px 2px 1px rgba(168,168,168,1);
+    max-width: 100%;
+  }
 
   figurecaption {
     display: flex;
     flex-direction: column;
+    margin: 8px 0 0;
+
+    .full-title,
+    .company,
+    .venue,
+    .followers {
+      margin: 2px 0;
+    }
+
+    .full-title {
+      line-height: 1.25;
+
+      .title {
+        font-weight: 400;
+      }
+    }
 
     .company {
       color: $gray-light;
-      font-size: .8em;
+      font-size: .85em;
       font-style: italic;
       line-height: 1em;
     }
 
     .venue {
       color: $gray-light;
-      font-size: .8em;
-      font-weight: bold;
+      font-size: .85em;
+      font-weight: 400;
       line-height: 1em;
     }
 
     .followers {
       color: $brand-primary;
-      font-size: .9em;
+      font-size: .85em;
       line-height: 1.2em;
     }
 
@@ -40,4 +65,10 @@
       color: $brightgreen;
     }
   }
+}
+
+.btn-signup {
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0 1em;
 }

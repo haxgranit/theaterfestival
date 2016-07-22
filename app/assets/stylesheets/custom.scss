@@ -1,3 +1,12 @@
+body {
+	font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, 
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight: 400;
+}
+
 .debug_dump {
     margin-top: 1em;
 }
@@ -13,4 +22,61 @@
 
 .content-area {
   background-color: $gray-lighter;
+}
+
+.pagination {
+	display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+
+    &:last-of-type {
+    	padding: 0;
+    }
+
+    &.nav-pills .nav-item + .nav-item {
+    	margin: 0;
+    }
+
+    li {
+    	padding: 0 3px;
+
+    	a {
+    		text-decoration: underline;
+    		transition: .25s opacity;
+
+    		&:hover {
+    			color: #f00;
+    			opacity: .6;
+    			text-decoration: underline;
+    		}
+
+    		&.nav-link {
+		    	color: #8c8c8c;
+		    	padding: 0;
+
+		    	&:hover {
+		    		color: #8c8c8c;
+		    	}
+
+		    	&.active {
+		    		background: none;
+		    		color: #f00;
+
+		    		&:hover,
+		    		&:focus {
+		    			background: none;
+		    			color: #f00;
+		    			cursor: pointer;
+		    			text-decoration: unerline;
+		    		}
+		    	}
+		    }
+    	}
+    }
+}
+
+@media (min-width: 544px) {
+	.jumbotron {
+	    padding: 0 1rem;
+	}
 }

@@ -1,24 +1,19 @@
 <% provide(:title, 'Home') %>
 <div class="jumbotron">
     <%= nav as: :pills, class: 'pagination' do %>
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <%= link_to '1', '#' %>
+        <%= link_to '1', '#', class:"active" %>
         <%= link_to '2', '#' %>
         <%= link_to '3', '#' %>
         <li>
             <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <span aria-hidden="true">Next</span>
             </a>
         </li>
     <% end %>
     <div class="block-grid">
         <% for i in 1..12 %>
             <figure class="block-grid-item frontpage-show">
-                <img alt="" src="http://lorempixel.com/100/150/"/>
+                <img alt="" src="http://lorempixel.com/140/210/"/>
                 <figurecaption>
                     <span class="full-title"><span class="title">Title <%= i %></span>: Subtitle</span>
                     <span class="company">Production Company</span>
@@ -29,21 +24,16 @@
         <% end %>
     </div>
     <%= nav as: :pills, class: 'pagination' do %>
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
         <%= link_to '1', '#' %>
         <%= link_to '2', '#' %>
         <%= link_to '3', '#' %>
         <li>
             <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+                <span aria-hidden="true">Next</span>
             </a>
         </li>
     <% end %>
 
 
-    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary btn-signup" %>
 </div>
