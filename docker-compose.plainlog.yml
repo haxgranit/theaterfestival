@@ -8,12 +8,6 @@ theaterengine:
     - postgres
     - redis
     - elasticsearch
-    - logstash
-    - kibana
-  env_file:
-    - .theaterengine.env
-    - .logging.env
-
 
 postgres:
   extends:
@@ -42,22 +36,3 @@ sidekiq:
   links:
     - postgres
     - redis
-
-logstash:
-  image: logstash:latest
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
-  ports:
-    - '12201:12201/udp'
-  volumes:
-    - './logstash:/etc/logstash/conf.d'
-  links:
-    - elasticsearch
-
-kibana:
-  image: kibana:latest
-  links:
-    - elasticsearch
-  ports:
-    - '5601:5601'
-  volumes:
-    - ./kibana/config/:/opt/kibana/config/
