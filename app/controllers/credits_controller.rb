@@ -25,12 +25,7 @@ class CreditsController < ApplicationController
   # POST /production_credits
   def create
     model = get_model(params[:type])
-    @artist = Artist.find_by stage_name: model_params[:artist_id]
-    @production = Production.find_by title: model_params[:production_id]
-
     @model = model.new(model_params)
-    @model.artist_id = @artist.id
-    @model.production_id = @production.id
 
     if @model.save
       redirect_to @model, notice: 'Credit was successfully created.'
@@ -77,7 +72,6 @@ class CreditsController < ApplicationController
       .require(params[:type].underscore.to_sym)
       .permit(:artist_id,
               :production_id,
-              :name,
               :position,
               :start_date,
               :end_date,
