@@ -2,13 +2,23 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
   def autocomplete
-    render json: Artist.search(params[:query], {
-                                 fields: ["stage_name"],
-                                 limit: 10,
-                                 load: false,
-                                 misspellings: {below: 5}
-                               }).map { |artist| { stage_name: artist.stage_name,
-                                                   value: artist.id } }
+    @artists = Artist.search(params[:query], {
+                              fields: ["stage_name"],
+                              limit: 10,
+                              load: true,
+                              misspellings: {below: 5}})
+    result = @artists.map do |artist|
+      {stage_name: artist.stage_name,
+       value: artist.id,
+       credits: artist.credits
+        .limit(4)
+        .map do |credit|
+         {production: credit.production.title,
+          position: credit.position}
+       end
+      }
+    end
+    render json: result
   end
 
   # GET /artists
