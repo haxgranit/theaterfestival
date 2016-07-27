@@ -1,6 +1,4 @@
 footer {
-  margin-top: 1em;
-
   img {
     width: 100%;
   }
@@ -31,13 +29,27 @@ footer {
     padding-right: 1.1rem;
   }
 
+  .featured {
+    margin-bottom: .5em;
+    padding: 0;
+    width: 100%;
+
+    figure {
+      margin: 0;
+    }
+  }
+
   .secondary {
+    padding-left: 0;
+
     .row {
-      &:first-child {
-        margin-bottom: 1em;
-      }
+      margin-left: 0;
+      margin-right: 0;
+
       .col-sm-6 {
-        padding-left: 0;
+        margin-bottom: .5em;
+        padding: 0;
+        width: 100%;
       }
     }
   }
@@ -55,6 +67,10 @@ footer {
     font-size: 1.25em;
   }
 
+  .nav-footer {
+    margin-bottom: 2em;
+  }
+
 }
 
 .nav-footer {
@@ -63,6 +79,56 @@ footer {
       color: $gray-light;
       line-height: 1;
       padding: 0;
+    }
+  }
+}
+
+@media (min-width: 544px) {
+  footer {
+    margin-top: 1em;
+    
+    .featured {
+      margin-bottom: 0;
+      width: 100%;
+
+      figure {
+        margin: 0 0 1rem;
+      }
+    }
+    .secondary {
+      .row {
+        &:first-child {
+          margin-bottom: 1.5em;
+        }
+        .col-sm-6 {
+          margin-bottom: 0;
+          padding-left: .75rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  footer {
+    .featured {
+      padding-right: 1em;
+    }
+    .secondary {
+      padding-left: 1.1rem;
+
+      .row {
+        margin-left: -0.9375rem;
+        margin-right: -0.9375rem;
+
+        &:first-child {
+          margin-bottom: 1em;
+        }
+        .col-sm-6 {
+          padding-left: 0;
+          padding-right: 1.2rem;
+        }
+      }
     }
   }
 }

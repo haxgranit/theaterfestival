@@ -3,6 +3,10 @@
 	background-position: center;
 	background-size: cover;
 
+	.container {
+		padding: 0;
+	}
+
 	.simple_form {
 		padding: 2em 0;
 		
@@ -20,6 +24,7 @@
 					background-color: rgb(250,247,0);
 					color: rgb(0,0,0);
 					font-weight: 500;
+					height: 38px;
 					width: 30%;
 
 					abbr[title="required"] {
@@ -131,72 +136,66 @@
 
 @media (min-width: 544px) {
 	#signIn {
-
 		.simple_form {
-			
 			.login-wrapper {
-
 				.form-group {
+					justify-content: center;
 					margin: 0;
 					width: 45%;
 
 					label {
+						font-size: .8em;
+						line-height: 2em;
 						width: auto;
 					}
 					.col-sm-9 {
-						padding-right: 0.9375rem;
-					    padding-left: 0.9375rem;
+						flex: 0 0 68%;
+						padding-right: .5rem;
+					    padding-left: .5rem;
 					    width: auto;
 					}
 				}
 
 				.login-btn-wrapper {
 					width: 10%;
-
-					.login-btn {
-
-						&:before {
-						}
-
-						.btn-primary {
-						}
-					}
 				}
 			}
 
 			.login-meta-wrapper {
 				width: 88.5%;
-
-				.user_remember_me {
-
-					.checkbox {
-
-						label {
-						}
-					}
-				}
-
-				.signup-box-wrapper {
-
-					.signup-box {
-
-						a {
-						}
-					}
-				}
 			}
 		}
 	}
 }
 @media (min-width: 768px) {
 	#signIn {
-		.simple_form {	
+		.container {
+			padding-left: 0.9375rem;
+    		padding-right: 0.9375rem;
+		}
+		.simple_form {
 			.login-wrapper {
 				.form-group {
-					.col-sm-9 {
+					justify-content: initial;
+					margin: 0;
+					width: 45%;
 
+					label {
+						font-size: 1em;
+						line-height: 1.5em;
+					}
+					.col-sm-9 {
+						flex: 0 0 75%;
 					}
 				}
+
+				.login-btn-wrapper {
+					justify-content: center;
+					width: 10%;
+				}
+			}
+			.login-meta-wrapper {
+				width: 89%;
 			}
 		}
 	}
@@ -205,9 +204,19 @@
 	#signIn {
 		.simple_form {	
 			.login-wrapper {
+				.form-group {
+					.col-sm-9 {
+						padding-right: 0.9375rem;
+					    padding-left: 0.9375rem;
+					    width: auto;
+					}
+				}
 				.login-btn-wrapper {
 					justify-content: flex-start;
 				}
+			}
+			.login-meta-wrapper {
+				width: 88.5%;
 			}
 		}
 	}

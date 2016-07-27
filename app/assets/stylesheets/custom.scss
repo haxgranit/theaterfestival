@@ -31,7 +31,7 @@ button:focus {
 .pagination {
 	display: flex;
     justify-content: flex-end;
-    padding: 1rem;
+    padding: .25em .25em .5em;
 
     &:last-of-type {
     	padding: 0;
@@ -80,7 +80,8 @@ button:focus {
 }
 
 @media (min-width: 544px) {
-	.jumbotron {
-	    padding: 0 1rem;
-	}
+	.pagination {
+        margin: 0 0 1rem;
+        padding: 0 .5rem .5rem;
+    }
 }

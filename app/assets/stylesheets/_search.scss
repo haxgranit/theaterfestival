@@ -5,7 +5,7 @@ aside {
 		padding: 1.15em 1.5em;
 	}
 	section {
-		margin: 0 1em;
+		margin: 0;
 	}
 
 	.price .slider.slider-horizontal {
@@ -25,9 +25,11 @@ aside {
 	}
 }
 
-.search .form-horizontal {
+.search .simple_form {
 	.form-group {
 		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
 		font-size: .9em;
 		margin-bottom: 1px;
 		
@@ -39,15 +41,18 @@ aside {
 		.form-control {
 			line-height: 1;
 		}
-		.btn-primary {
-    		font-size: .95em;
-    		margin-top: 4px;
-    		padding: .25rem 1.75rem;
-			text-transform: lowercase;
+		.col-sm-9 {
+		    flex: 0 0 70%;
+		}
+	}
+	.btn-primary {
+		font-size: .95em;
+		margin-top: 4px;
+		padding: .25rem 1.75rem;
+		text-transform: lowercase;
 
-			&:focus {
-				outline: 0;
-			}
+		&:focus {
+			outline: 0;
 		}
 	}
 }
@@ -105,4 +110,60 @@ aside {
 			}
 		}
 	}
+}
+
+
+@media (min-width: 544px) {
+  .search {
+  	.simple_form {
+  		padding: 1em .75em;
+
+  		.form-group {
+  			label {
+  				font-size: .8em;
+    			line-height: 2.75;
+    			padding: 0 0 0 1.1em;
+  			}
+  			.col-sm-9 {
+			    flex: 0 0 65%;
+			    padding-left: 0;
+			}
+  		}
+  		.btn-primary {
+		    font-size: .8em;
+		    padding: .1rem 1.5rem;
+		}
+  	}
+  }
+}
+@media (min-width: 768px) {
+  .search {
+  	.simple_form {
+  		padding: 1em;
+
+  		.form-group {
+  			label {
+  				font-size: .9em;
+    			line-height: 2.4;
+    			padding: 0 .75em;
+  			}
+  			.col-sm-9 {
+			    flex: 0 0 70%;
+			    padding-left: 0.9375rem;
+			}
+  		}
+  		.btn-primary {
+		    font-size: .95em;
+		    padding: .25rem 1.75rem;
+		}
+  	}
+  }
+}
+@media (min-width: 992px) {
+  aside section {
+  	margin: 0 1em;
+  }
+}
+@media (min-width: 1200px) {
+
 }

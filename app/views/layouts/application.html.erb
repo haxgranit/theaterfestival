@@ -21,7 +21,7 @@
                 <% end %>
                </div>
                 <div class="row">
-                    <aside class="col-md-4">
+                    <aside class="col-md-4 col-xs-4 sidebar-area">
                         <section class="search">
                             <h1>Where would you like to see a show?</h1>
                             <%= simple_form_for :show_search, wrapper: :horizontal_form, defaults: { required: false } do |f| %>
@@ -53,7 +53,7 @@
                             <% end %>
                         </section>
                     </aside>
-                    <div class="col-md-8 content-area">
+                    <div class="col-md-8 col-xs-8 content-area">
                         <%= yield %>
                     </div>
                 </div>
