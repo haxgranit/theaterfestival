@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-sm-12">
         <%= simple_form_for(resource,
@@ -10,10 +9,11 @@
             <%= f.input :email, autofocus: true %>
             <%= f.input :first_name, as: :string %>
             <%= f.input :last_name, as: :string %>
-            <%= f.input :password, autocomplete: 'off' %>
-            <div class="progress">
-                <div id="StrengthProgressBar" class="progress-bar"></div>
-            </div>
+            <%= f.input :password do %>
+                <%= f.input_field :password, class: "form-control", autocomplate: 'off' %>
+                <div class="text-xs-center" id="password-strength-text"></div>
+                <progress id="password-strength" class="progress" max="100" aria-describedby="password-strength-text"></progress>
+            <% end %>
             <%= f.input :password_confirmation, autocomplete: 'off' %>
             <%= f.input :time_zone, as: :time_zone, priority: /US/ %>
             <%= f.input :location %>
