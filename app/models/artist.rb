@@ -18,11 +18,10 @@ class Artist < ActiveRecord::Base
   acts_as_mentionable
 
   def social_links
-    if artist_social_metadata.present?
-      artist_social_metadata
-        .attributes
-        .except('id', 'artist_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    artist_social_metadata
+      .try(:attributes)
+      .try(:delete_if) { |_, v| v.blank? }
+      .try(:except, 'id', 'artist_id', 'created_at', 'updated_at')
   end
+
 end

@@ -47,16 +47,14 @@
 </p>
 <% end %>
 
-<% unless @artist.social_links.blank? %>
 <h2>Social Media</h2>
 <ul>
-    <% @artist.social_links.each do |k,v| %>
+    <% @artist.social_links.try(:each) do |k,v| %>
         <li>
             <%= link_to k.humanize, v.to_s %>
         </li>
     <% end %>
 </ul>
-<% end %>
 
 <h2>Shows</h2>
 <ul>

@@ -18,4 +18,5 @@
 //= require turbolinks
 //= require bootstrap-slider
 //= require refile
+//= require handlebars
 //= require_tree .
