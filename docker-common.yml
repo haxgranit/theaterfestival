@@ -37,6 +37,7 @@ services:
     command: bundle exec sidekiq -C config/sidekiq.yml
     volumes:
       - .:/theaterengine
+      - bundle:/bundle
     env_file:
       - .theaterengine.env
 
