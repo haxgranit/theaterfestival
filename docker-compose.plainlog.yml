@@ -36,3 +36,8 @@ sidekiq:
   links:
     - postgres
     - redis
+
+volumes:
+  bundle: {}
+  postgres: {}
+  redis: {}

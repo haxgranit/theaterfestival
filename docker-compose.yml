@@ -1,63 +1,63 @@
-theaterengine:
-  extends:
-    file: docker-common.yml
-    service: web
-  volumes_from:
-    - bundle
-  links:
-    - postgres
-    - redis
-    - elasticsearch
-    - logstash
-    - kibana
-  env_file:
-    - .theaterengine.env
-    - .logging.env
+version: '2'
+services:
+  theaterengine:
+    extends:
+      file: docker-common.yml
+      service: web
+    links:
+      - postgres
+      - redis
+      - elasticsearch
+      - logstash
+      - kibana
+    env_file:
+      - .theaterengine.env
+      - .logging.env
 
 
-postgres:
-  extends:
-    file: docker-common.yml
-    service: postgres
+  postgres:
+    extends:
+      file: docker-common.yml
+      service: postgres
 
-redis:
-  extends:
-    file: docker-common.yml
-    service: redis
+  redis:
+    extends:
+      file: docker-common.yml
+      service: redis
 
-elasticsearch:
-  extends:
-    file: docker-common.yml
-    service: elasticsearch
+  elasticsearch:
+    extends:
+      file: docker-common.yml
+      service: elasticsearch
 
-bundle:
-  extends:
-    file: docker-common.yml
-    service: bundle
+  sidekiq:
+    extends:
+      file: docker-common.yml
+      service: sidekiq
+    links:
+      - postgres
+      - redis
 
-sidekiq:
-  extends:
-    file: docker-common.yml
-    service: sidekiq
-  links:
-    - postgres
-    - redis
+  logstash:
+    image: logstash:latest
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    ports:
+      - '12201:12201/udp'
+    volumes:
+      - './logstash:/etc/logstash/conf.d'
+    links:
+      - elasticsearch
 
-logstash:
-  image: logstash:latest
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
-  ports:
-    - '12201:12201/udp'
-  volumes:
-    - './logstash:/etc/logstash/conf.d'
-  links:
-    - elasticsearch
+  kibana:
+    image: kibana:latest
+    links:
+      - elasticsearch
+    ports:
+      - '5601:5601'
+    volumes:
+      - ./kibana/config/:/opt/kibana/config/
 
-kibana:
-  image: kibana:latest
-  links:
-    - elasticsearch
-  ports:
-    - '5601:5601'
-  volumes:
-    - ./kibana/config/:/opt/kibana/config/
+volumes:
+  bundle: {}
+  postgres: {}
+  redis: {}
