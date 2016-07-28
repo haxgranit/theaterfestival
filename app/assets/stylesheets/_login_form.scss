@@ -133,6 +133,22 @@
 		}
 	}
 }
+.content-area #new_user {
+	margin-bottom: 2em;
+
+	.form-group {
+		display: block;
+	}
+
+	#error_explanation {
+		margin-bottom: 2.5em;
+
+		h2 {
+			font-size: 1rem;
+			font-weight: 600;
+		}
+	}
+}
 
 @media (min-width: 544px) {
 	#signIn {
@@ -199,7 +215,15 @@
 			}
 		}
 	}
+	.content-area #new_user {
+		padding: 0 1em;
+
+		.form-group {
+			display: flex;
+		}
+	}
 }
+
 @media (min-width: 992px) {
 	#signIn {
 		.simple_form {	
