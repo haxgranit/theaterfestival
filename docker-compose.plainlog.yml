@@ -1,43 +1,42 @@
-theaterengine:
-  extends:
-    file: docker-common.yml
-    service: web
-  volumes_from:
-    - bundle
-  links:
-    - postgres
-    - redis
-    - elasticsearch
+version: '2'
+services:
+  theaterengine:
+    extends:
+      file: docker-common.yml
+      service: web
+    links:
+      - postgres
+      - redis
+      - elasticsearch
+    env_file:
+      - .theaterengine.env
 
-postgres:
-  extends:
-    file: docker-common.yml
-    service: postgres
 
-redis:
-  extends:
-    file: docker-common.yml
-    service: redis
+  postgres:
+    extends:
+      file: docker-common.yml
+      service: postgres
 
-elasticsearch:
-  extends:
-    file: docker-common.yml
-    service: elasticsearch
+  redis:
+    extends:
+      file: docker-common.yml
+      service: redis
 
-bundle:
-  extends:
-    file: docker-common.yml
-    service: bundle
+  elasticsearch:
+    extends:
+      file: docker-common.yml
+      service: elasticsearch
 
-sidekiq:
-  extends:
-    file: docker-common.yml
-    service: sidekiq
-  links:
-    - postgres
-    - redis
+  sidekiq:
+    extends:
+      file: docker-common.yml
+      service: sidekiq
+    links:
+      - postgres
+      - redis
 
 volumes:
   bundle: {}
   postgres: {}
   redis: {}
+
