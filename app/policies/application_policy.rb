@@ -15,7 +15,7 @@ class ApplicationPolicy
   end
 
   def create?
-    admin? || true
+    user?
   end
 
   def new?
@@ -34,12 +34,12 @@ class ApplicationPolicy
     admin? || false
   end
 
+  def user?
+    user.present?
+  end
+
   def admin?
-    if user.present?
-      user.admin?
-    else
-      false
-    end
+    user.admin? if user.present? || false
   end
 
   def scope

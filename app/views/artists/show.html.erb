@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= attachment_image_tag(@artist, :profile_image, :fill, 300, 300) %>
 <p>
   <strong>Name:</strong>
@@ -107,7 +105,7 @@
 <% end %>
 <% if @artist.user_id.present? %>
     <%= link_to 'View User Page', user_path(@artist.user_id) %>
-<% elsif current_user.present? %>
-    <%= link_to 'Claim Artist Page', artist_path(@artist, {artist: { user_id: current_user.id } }), method: :patch %>
+<% elsif policy(@artist).claim? %>
+    <%= link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch %>
 <% end %>
 <%= link_to 'Back', artists_path %>

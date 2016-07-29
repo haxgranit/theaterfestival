@@ -77,6 +77,7 @@ Rails.application.routes.draw do
     end
   end
   resources :artists do
+    patch :claim, to: 'artists#claim'
     collection do
       get :autocomplete
     end

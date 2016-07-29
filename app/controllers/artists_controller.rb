@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def autocomplete
     @artists = Artist.search(params[:query], {
@@ -61,6 +62,18 @@ class ArtistsController < ApplicationController
     end
   end
 
+  def claim
+    if user_signed_in?
+      @artist = Artist.find(params[:artist_id])
+      authorize @artist
+      if @artist.update(user_id: current_user.id)
+        redirect_to @artist, notice: 'Artist claimed.'
+        return
+      end
+    end
+    render :show, notice: 'You don\'t have permission to do that.'
+  end
+
   # DELETE /artists/1
   def destroy
     @artist.destroy
@@ -72,6 +85,10 @@ class ArtistsController < ApplicationController
 
   def set_artist
     @artist = Artist.find(params[:id])
+  end
+
+  def claim_params
+    params.require(:artist).permit(:user_id)
   end
 
   # Only allow a trusted parameter "white list" through.
