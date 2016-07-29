@@ -10,7 +10,7 @@
             <%= f.input :first_name, as: :string %>
             <%= f.input :last_name, as: :string %>
             <%= f.input :password do %>
-                <%= f.input_field :password, class: "form-control", autocomplate: 'off' %>
+                <%= f.input_field :password, class: "form-control", autocomplate: :off %>
                 <div class="text-xs-center" id="password-strength-text"></div>
                 <progress id="password-strength" class="progress" max="100" aria-describedby="password-strength-text"></progress>
             <% end %>

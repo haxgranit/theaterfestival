@@ -12,7 +12,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap'
 gem 'compass-rails'
-gem 'bootstrap_form'
 gem 'simple_form'
 gem 'bootstrap-slider-rails'
 gem 'font-awesome-rails'
@@ -46,6 +45,8 @@ gem 'logstash-logger'
 
 gem 'searchkick'
 gem 'twitter-typeahead-rails'
+gem 'handlebars_assets'
+gem 'js-routes'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

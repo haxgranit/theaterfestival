@@ -1,5 +1,6 @@
 <%= simple_form_for(@model, wrapper: :horizontal_form) do |f| %>
-    <%= f.input :artist_id, as: :string %>
+    <%= f.input :stage_name, as: :fake %>
+    <%= f.input :artist_id, as: :hidden %>
     <%= f.input :production_id, as: :string  %>
     <%= f.input :name %>
     <%= f.input :position %>

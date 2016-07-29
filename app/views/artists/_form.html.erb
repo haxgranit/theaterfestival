@@ -1,5 +1,5 @@
 <%= simple_form_for @artist, wrapper: :horizontal_form do |f| %>
-    <%= f.input :stage_name, as: :string %>
+    <%= f.input :stage_name, as: :string, autocomplete: :off %>
     <% if policy(@artist).edit? %>
         <%= f.input :profile_image, as: :attachment %>
         <%= f.input :pictures_images, as: :attachment, multiple: true %>
