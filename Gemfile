@@ -46,6 +46,7 @@ gem 'logstash-logger'
 gem 'searchkick'
 gem 'twitter-typeahead-rails'
 gem 'handlebars_assets'
+gem 'js-routes'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
