@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ShowtimeTicketMetadataControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @showtime_ticket_metadata = showtime_ticket_metadata(:one)
   end

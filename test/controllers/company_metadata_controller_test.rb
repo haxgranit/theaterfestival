@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CompanyMetadataControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @company_metadata = company_metadata(:one)
   end

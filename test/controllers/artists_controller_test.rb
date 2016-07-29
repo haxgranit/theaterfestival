@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ArtistsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @artist = artists(:one)
   end
@@ -19,7 +19,7 @@ class ArtistsControllerTest < ActionController::TestCase
 
   test "should create artist" do
     assert_difference('Artist.count') do
-      post :create, artist: { birth_location: @artist.birth_location, birthdate: @artist.birthdate, education: @artist.education, first_name: @artist.first_name, full_bio: @artist.full_bio, hometown: @artist.hometown, last_name: @artist.last_name, title: @artist.title, user_id: @artist.user_id }
+      post :create, artist: { birth_location: @artist.birth_location, birthdate: @artist.birthdate, education: @artist.education, stage_name: @artist.stage_name, full_bio: @artist.full_bio, hometown: @artist.hometown, title: @artist.title, user_id: @artist.user_id }
     end
 
     assert_redirected_to artist_path(assigns(:artist))
@@ -36,7 +36,7 @@ class ArtistsControllerTest < ActionController::TestCase
   end
 
   test "should update artist" do
-    patch :update, id: @artist, artist: { birth_location: @artist.birth_location, birthdate: @artist.birthdate, education: @artist.education, first_name: @artist.first_name, full_bio: @artist.full_bio, hometown: @artist.hometown, last_name: @artist.last_name, title: @artist.title, user_id: @artist.user_id }
+    patch :update, id: @artist, artist: { birth_location: @artist.birth_location, birthdate: @artist.birthdate, education: @artist.education, stage_name: @artist.stage_name, full_bio: @artist.full_bio, hometown: @artist.hometown, title: @artist.title, user_id: @artist.user_id }
     assert_redirected_to artist_path(assigns(:artist))
   end
 

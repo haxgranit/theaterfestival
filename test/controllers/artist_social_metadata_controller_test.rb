@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ArtistSocialMetadataControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @artist_social_metadata = artist_social_metadata(:one)
   end

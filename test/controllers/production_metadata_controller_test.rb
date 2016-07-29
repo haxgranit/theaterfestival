@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ProductionMetadataControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @production_metadata = production_metadata(:one)
   end

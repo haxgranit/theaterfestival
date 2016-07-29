@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   def setup
     @base_title = "TheaterEngine"
   end

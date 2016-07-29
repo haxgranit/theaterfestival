@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ProductionsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @production = productions(:one)
   end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CompaniesControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @company = companies(:one)
   end

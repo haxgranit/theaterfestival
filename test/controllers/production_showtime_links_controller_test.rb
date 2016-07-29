@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ProductionShowtimeLinksControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @production_showtime_link = production_showtime_links(:one)
   end

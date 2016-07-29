@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CompanyProductionLinksControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   setup do
     @company_production_link = company_production_links(:one)
   end
