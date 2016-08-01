@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   concern :permissible do
-    resources :permissions, options
+    resources :permissions
   end
 
   concern :social do
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post :unfollow
   end
 
-  concerns :search do
+  concern :search do
     collection do
       get :autocomplete
     end

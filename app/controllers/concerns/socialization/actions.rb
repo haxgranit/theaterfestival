@@ -2,7 +2,7 @@ module Socialization::Actions
   extend ActiveSupport::Concern
 
   included do
-    before_action :load_target
+    before_action :load_target, only: :show
   end
 
   def load_target
