@@ -1,9 +1,12 @@
 class Artist < ActiveRecord::Base
+  include Permissible
+
   searchkick word_start: [:stage_name], searchable: [:stage_name]
+
   validates :stage_name, presence: true
   validates_uniqueness_of :user_id, :allow_blank => true
-  attachment :profile_image
 
+  attachment :profile_image
   belongs_to :user
   has_one :artist_social_metadata
   accepts_nested_attributes_for :artist_social_metadata

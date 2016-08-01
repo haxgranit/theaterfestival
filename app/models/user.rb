@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  searchkick word_start: [:full_name], searchable: [:full_name]
+  has_many :permissions
+
   has_one :artist
   acts_as_follower
   acts_as_followable
@@ -25,6 +28,13 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def search_data
+    {
+      full_name: full_name,
+      email: email
+    }
   end
 
   private
