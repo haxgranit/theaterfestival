@@ -19,7 +19,7 @@
                         <%= link_to 'profile', current_user %>
                         <%= link_to 'logout', destroy_user_session_path, method: :delete %>
                     <% else %>
-                    <%= link_to 'sign in', '#', 
+                    <%= link_to 'sign in', '#',
                         'data-toggle' => "collapse",
                         'data-target' => "#signIn" %>
                     <% end %>

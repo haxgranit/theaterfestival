@@ -1,4 +1,5 @@
 class Production < ActiveRecord::Base
+  include Permissible
   searchkick word_start: [:title], searchable: [:title]
   validates :title, :first_performance, presence: true
   attachment :key_image
@@ -28,6 +29,7 @@ class Production < ActiveRecord::Base
 
   def all_companies
     fest_companies = festivals.map { |f| f.companies }.flatten!
-    (fest_companies + companies).uniq
+    (fest_companies + companies).uniq if fest_companies
+    companies
   end
 end

@@ -1,4 +1,41 @@
 $ ->
+  users = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name', 'value', 'email')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote:
+      url: '/users/autocomplete?query=%QUERY'
+      wildcard: '%QUERY')
+
+  users.initialize()
+
+  $('#user.fake').typeahead({
+    hint: true
+    highlight: true
+    minLength: 2
+  },
+    displayKey: 'full_name'
+    templates:
+      suggestion: Handlebars.compile("
+          <div class=\"results\">
+            <p>
+            {{#if full_name}}
+              <strong>{{full_name}}</strong>
+            {{/if}}
+            -
+            {{#if email}}
+              <strong>{{email}}</strong>
+            {{/if}}
+            </p>
+          </div>
+        ")
+    source: users.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+      $('[id$=user_id]').val(suggestion.value)
+      return
+
+
+
+
+$ ->
   artists = new Bloodhound(
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name', 'value', 'credits')
     queryTokenizer: Bloodhound.tokenizers.whitespace
