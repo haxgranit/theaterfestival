@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 57) do
+ActiveRecord::Schema.define(version: 59) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,17 @@ ActiveRecord::Schema.define(version: 57) do
 
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "resource_id"
+    t.string   "resource_type"
+  end
+
+  add_index "permissions", ["resource_type", "resource_id"], name: "index_permissions_on_resource_type_and_resource_id", using: :btree
+  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
@@ -382,6 +393,7 @@ ActiveRecord::Schema.define(version: 57) do
   add_foreign_key "credits", "productions"
   add_foreign_key "festival_production_links", "festivals"
   add_foreign_key "festival_production_links", "productions"
+  add_foreign_key "permissions", "users"
   add_foreign_key "press_items", "productions"
   add_foreign_key "production_metadata", "productions"
   add_foreign_key "production_showtime_links", "productions"

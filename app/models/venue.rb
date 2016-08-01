@@ -1,4 +1,5 @@
 class Venue < ActiveRecord::Base
+  include Permissible
   searchkick word_start: [:name], searchable: [:name]
   validates :company_id, presence: true
 

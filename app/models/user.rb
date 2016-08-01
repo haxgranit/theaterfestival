@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   searchkick word_start: [:full_name], searchable: [:full_name]
+  has_many :permissions
 
   has_one :artist
   acts_as_follower

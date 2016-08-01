@@ -1,4 +1,6 @@
 class Artist < ActiveRecord::Base
+  include Permissible
+
   searchkick word_start: [:stage_name], searchable: [:stage_name]
 
   validates :stage_name, presence: true

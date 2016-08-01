@@ -1,4 +1,5 @@
 class Festival < ActiveRecord::Base
+  include Permissible
   searchkick word_start: [:title], searchable: [:title]
   validates :title, presence: true
 

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  concern :permissible do |options|
+    resources :permissions, options
+  end
   namespace :admin do
     resources :users
     resources :artists
@@ -33,6 +36,7 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+
   resources :production_metadata
   resources :company_metadata
   resources :company_social_metadata
@@ -45,11 +49,13 @@ Rails.application.routes.draw do
   resources :production_showtime_links
   resources :showtimes
   resources :theaters do
+    concerns :permissible
     collection do
       get :autocomplete
     end
   end
   resources :venues do
+    concerns :permissible
     collection do
       get :autocomplete
     end
@@ -57,12 +63,14 @@ Rails.application.routes.draw do
   resources :company_festival_links
   resources :festival_production_links
   resources :festivals do
+    concerns :permissible
     collection do
       get :autocomplete
     end
   end
   resources :reviews
   resources :companies do
+    concerns :permissible
     collection do
       get :autocomplete
     end
@@ -72,23 +80,31 @@ Rails.application.routes.draw do
   resources :writing_credits, controller: :credits, type: 'WritingCredit'
   resources :staff_credits, controller: :credits, type: 'StaffCredit'
   resources :productions do
+    concerns :permissible
     collection do
       get :autocomplete
     end
   end
   resources :artists do
-    patch :claim, to: 'artists#claim'
+    concerns :permissible
     collection do
       get :autocomplete
     end
   end
   devise_for :users
   root 'static#home'
-  resources :users, only: [:show, :index]
+
+
+  resources :users, only: [:show, :index] do
+    collection do
+      get :autocomplete
+    end
+  end
   get 'user/:id/like', to: 'users#like', as: :like
   get 'user/:id/follow', to: 'users#follow', as: :follow
   get 'user/:id/unlike', to: 'users#unlike', as: :unlike
   get 'user/:id/unfollow', to: 'users#unfollow', as: :unfollow
+
 
   namespace :api do
     namespace :v1 do
