@@ -55,16 +55,16 @@
     Follower count: <%= @user.followers(User).count %></p>
 
     <% if current_user %>
-    <% if current_user.likes?(@user) %>
-        <%= link_to 'Unlike', unlike_path(@user) %>
-    <% else %>
-        <%= link_to 'Like', like_path(@user) %>
-    <% end %> |
-    <% if current_user.follows?(@user) %>
-        <%= link_to 'Unfollow', unfollow_path(@user) %>
-    <% else %>
-        <%= link_to 'Follow', follow_path(@user) %>
-    <% end %>
+        <% if current_user.likes?(@user) %>
+            <%= link_to 'Unlike', user_unlike_path(@user), method: :post %>
+        <% else %>
+            <%= link_to 'Like', user_like_path(@user), method: :post %>
+        <% end %> |
+        <% if current_user.follows?(@user) %>
+            <%= link_to 'Unfollow', user_unfollow_path(@user), method: :post %>
+        <% else %>
+            <%= link_to 'Follow', user_follow_path(@user), method: :post %>
+        <% end %>
     <% end %>
   </div>
 </div>
