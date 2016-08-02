@@ -3,7 +3,7 @@ module Socialization::Actions
 
   included do
     before_action :load_target, only: [:like, :unlike, :follow, :unfollow]
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:like, :unlike, :follow, :unfollow]
   end
 
   def load_target
