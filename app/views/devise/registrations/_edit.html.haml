@@ -1,0 +1,29 @@
+= simple_form_for(resource,              |
+  as: resource_name,                     |
+  url: registration_path(resource_name), |
+  html: { method: :put },                |
+  wrapper: :horizontal_form) do |f|      |
+  %h1
+    Edit #{resource_name.to_s.humanize}
+  = devise_error_messages!
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  = f.input :email, autofocus: true
+  - if resource.profile_image_id?
+    = attachment_image_tag(resource, :profile_image, :fill, 300, 300)
+  = f.input :profile_image, as: :attachment, direct: true
+  = f.input :first_name, as: :string
+  = f.input :last_name, as: :string
+  = f.input :password, autocomplete: 'off'
+  %i (leave blank if you don't want to change it)
+  %br/
+  #password-strength-text.text-xs-center
+  %progress#password-strength.progress{"aria-describedby" => "password-strength-text", max: "100"}
+  = f.input :password_confirmation, autocomplete: 'off'
+  = f.input :current_password, autocomplete: "off"
+  %i (we need your current password to confirm your changes)
+  %br/
+  = f.input :time_zone, as: :time_zone, priority: /US/
+  = f.input :location
+  = f.button :submit, class: 'btn btn-primary btn-block'

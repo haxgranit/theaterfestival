@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require tether
-//= require twitter/typeahead.min
 //= require bootstrap-sprockets
+//= require twitter/typeahead.min
 //= require bootstrap-slider
+//= require bootstrap-datepicker
 //= require jquery_ujs
 //= require turbolinks
 //= require refile

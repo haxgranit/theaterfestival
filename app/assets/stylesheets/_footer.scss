@@ -61,6 +61,7 @@ footer {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 1.25em 0 2em;
+  justify-content: center;
 
   h2 {
     color: $white;
@@ -86,7 +87,7 @@ footer {
 @media (min-width: 544px) {
   footer {
     margin-top: 1em;
-    
+
     .featured {
       margin-bottom: 0;
       width: 100%;

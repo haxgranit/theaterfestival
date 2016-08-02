@@ -1,0 +1,39 @@
+#credits{"aria-multiselectable" => "true", :role => "tablist"}
+  .panel.panel-default
+    #productions.panel-heading{:role => "tab"}
+      %h4.panel-title
+        %a{"aria-controls" => "production-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#production-list"}
+          Production Credits
+    #production-list.panel-collapse.collapse{"aria-labelledby" => "productions", :role => "tabpanel"}
+      %table.table
+        %tbody
+          - @artist.production_credits.each do |credit|
+            %tr
+              %td
+                = link_to(credit.production.title, production_path(credit.production))
+              %td
+                = credit.position
+              %td
+                = credit.start_date.strftime('%D')
+                - if credit.end_date.present?
+                  \-
+                  = credit.end_date.strftime('%D')
+  .panel.panel-default
+    #creative.panel-heading{:role => "tab"}
+      %h4.panel-title
+        %a{"aria-controls" => "creative-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#creative-list"}
+          Creative Credits
+    #creative-list.panel-collapse.collapse{"aria-labelledby" => "creative", :role => "tabpanel"}
+      %table.table
+        %tbody
+          - @artist.writing_credits.each do |credit|
+            %tr
+              %td
+                = link_to(credit.production.title, production_path(credit.production))
+              %td
+                = credit.position
+              %td
+                = credit.start_date.strftime('%D')
+                - if credit.end_date.present?
+                  \-
+                  = credit.end_date.strftime('%D')

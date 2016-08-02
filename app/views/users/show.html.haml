@@ -1,14 +1,24 @@
 #user-profile
-  .user-profile-links
-    = link_to 'Home', root_path
+  %header
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.nav-item
+        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
+          News
+      - if policy(@user).edit?
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
+            Notifications
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'tab' }, href: '#settings', role: 'tab'}
+            Settings
+  .tab-content
+    .tab-pane.active{ id: 'news', role: 'tabpanel' }
+      Some news content
     - if policy(@user).edit?
-      | #{link_to 'Edit', edit_user_registration_path} |
-      - if @user.artist.blank?
-        = link_to 'Create Artist Page', new_artist_path
-        |
-      = link_to 'Create Company Page', new_company_path
-    - if @user.artist.present?
-      | #{link_to 'View Artist Page', artist_path(@user.artist)}
+      .tab-pane{ id: 'notifications', role: 'tabpanel' }
+        Some notification content
+      .tab-pane{ id: 'settings', role: 'tabpanel' }
+        = render 'devise/registrations/edit', resource: current_user
   .social-features
     %h1 Social Features
     %p

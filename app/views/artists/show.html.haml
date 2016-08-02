@@ -1,63 +1,51 @@
-= attachment_image_tag(@artist, :profile_image, :fill, 300, 300)
-%p
-  %strong Name:
-  = @artist.stage_name
-- if @artist.title.present?
+.social
+  - if @artist.social_links.present?
+    %ul
+      - @artist.social_links.try(:each) do |k,v|
+        %li
+          = link_to v.to_s do
+            - if k == 'website'
+              <i class="fa fa-globe" aria-hidden="true"></i>
+            - elsif k == 'email'
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            - else
+            <i class="fa fa-#{k.to_s}" aria-hidden="true"></i>
+      - if current_user
+        - if current_user.likes?(@artist)
+          = button_to "Unlike #{@artist.likers(User).count}", artist_unlike_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
+        - else
+          = button_to "Like #{@artist.likers(User).count}", artist_like_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
+        - if current_user.follows?(@artist)
+          = button_to "Unfollow #{@artist.followers(User).count}", artist_unfollow_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
+        - else
+          = button_to "Follow #{@artist.followers(User).count}", artist_follow_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
+      - else
+        %li
+          Likes: #{@artist.likers(User).count}
+        %li
+          Followers: #{@artist.followers(User).count}
+
+- if @artist.full_bio.present?
   %p
-    %strong Title:
-    = @artist.title
-- if @artist.title.present?
-  %p
-    %strong Birthdate:
-    = @artist.birthdate.strftime("%B %d, %Y")
-- if @artist.title.present?
-  %p
-    %strong Birth location:
-    = @artist.birth_location
-- if @artist.title.present?
-  %p
-    %strong Hometown:
-    = @artist.hometown
-- if @artist.title.present?
-  %p
-    %strong Education:
-    = @artist.education
-- if @artist.title.present?
-  %p
-    %strong Full bio:
     = @artist.full_bio
-%h2 Social Media
-%ul
-  - @artist.social_links.try(:each) do |k,v|
-    %li
-      = link_to k.humanize, v.to_s
-%h2 Shows
-%ul
-  - @artist.productions.each do |show|
-    %li
-      = link_to show.title, production_path(show)
-%h2 Production Credits
-%ul
-  - @artist.production_credits.each do |credit|
-    %li
-      = link_to(credit.production.title, production_path(credit.production))
-      \- #{"#{credit.position} - #{credit.name}"}
-%h2 Writing Credits
-%ul
-  - @artist.writing_credits.each do |credit|
-    %li
-      = link_to(credit.production.title, production_path(credit.production))
-      \- #{"#{credit.position} - #{credit.name}"}
-%h2 Images
-%ul
-  - @artist.pictures.each do |p|
-    %li
-      = attachment_image_tag(p, :image, :fill, 300, 300)
-- if policy(@artist).edit?
-  = link_to 'Edit', edit_artist_path(@artist)
-  |
-- if @artist.user_id.present?
-  = link_to 'View User Page', user_path(@artist.user_id)
-- elsif policy(@artist).claim?
-  = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
-= link_to 'Back', artists_path
+%header
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
+        Credits
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+        Media
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
+  .tab-content
+    .tab-pane.active{ id: 'credits', role: 'tabpanel' }
+      = render 'credits'
+    .tab-pane{ id: 'media', role: 'tabpanel' }
+      %ul
+        - @artist.pictures.each do |p|
+          %li
+            = attachment_image_tag(p, :image, :fill, 300, 300)
+
+    .tab-pane{ id: 'info', role: 'tabpanel' }

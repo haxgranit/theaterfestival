@@ -1,13 +1,17 @@
 .user-profile-details
   - provide(:title, @user.full_name)
-  = attachment_image_tag(@user, :profile_image, :fill, 300, 300)
+  = attachment_image_tag(@user, :profile_image, :fill, 400, 400)
   %h1= yield(:title)
-  %p
-    %strong Email:
-    = @user.email
-  %p
-    %strong Time zone:
-    = @user.time_zone
-  %p
-    %strong Location:
-    = @user.location
+  .user-profile-links
+    %ul
+      - if policy(@user).edit?
+        %li
+          = link_to 'Edit', edit_user_registration_path
+      - if @user.artist.blank?
+        %li
+          = link_to 'Create Artist Page', new_artist_path
+      - else
+        %li
+          = link_to 'View Artist Page', artist_path(@user.artist)
+      %li
+        = link_to 'Create Company Page', new_company_path
