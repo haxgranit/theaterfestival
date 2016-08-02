@@ -47,7 +47,7 @@ gem 'twitter-typeahead-rails'
 gem 'bootstrap-slider-rails'
 gem 'handlebars_assets'
 gem 'js-routes'
-gem 'haml-rails'
+gem 'hamlit-rails'
 gem 'autoprefixer-rails'
 
 source 'https://rails-assets.org' do
