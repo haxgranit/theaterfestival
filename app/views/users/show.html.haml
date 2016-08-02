@@ -9,26 +9,6 @@
       = link_to 'Create Company Page', new_company_path
     - if @user.artist.present?
       | #{link_to 'View Artist Page', artist_path(@user.artist)}
-  .user-profile-details
-    - provide(:title, "#{@user.first_name} #{@user.last_name}")
-    %p#notice= notice
-    = attachment_image_tag(@user, :profile_image, :fill, 300, 300)
-    %h1= yield(:title)
-    %p
-      %strong Email:
-      = @user.email
-    %p
-      %strong First name:
-      = @user.first_name
-    %p
-      %strong Last name:
-      = @user.last_name
-    %p
-      %strong Time zone:
-      = @user.time_zone
-    %p
-      %strong Location:
-      = @user.location
   .social-features
     %h1 Social Features
     %p

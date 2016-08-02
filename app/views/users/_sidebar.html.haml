@@ -1,0 +1,13 @@
+.user-profile-details
+  - provide(:title, @user.full_name)
+  = attachment_image_tag(@user, :profile_image, :fill, 300, 300)
+  %h1= yield(:title)
+  %p
+    %strong Email:
+    = @user.email
+  %p
+    %strong Time zone:
+    = @user.time_zone
+  %p
+    %strong Location:
+    = @user.location
