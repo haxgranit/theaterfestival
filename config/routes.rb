@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :artists do
+    patch :claim
     concerns [:permissible, :social, :search]
   end
 
