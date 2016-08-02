@@ -1,0 +1,38 @@
+- provide(:title, 'Home')
+.jumbotron
+  %ul.nav.nav-pill.pagination
+    %li.nav-item
+      = link_to '1', '#', class: 'nav-link active'
+    %li.nav-item
+      = link_to '2', '#', class: 'nav-link'
+    %li.nav-item
+      = link_to '3', '#', class: 'nav-link'
+    %li
+      %a{"aria-label" => "Next", href: "#"}
+        %span{"aria-hidden" => "true"} Next
+  .block-grid
+    - for i in 1..12
+      %figure.block-grid-item.frontpage-show
+        = image_tag 'poster.jpg'
+        %figurecaption
+          %span.full-title
+            %span.title>
+              Title #{i}: Subtitle
+          %span.company Production Company
+          %span.venue Venue of Performance
+          %span.followers
+            %i.fa.fa-plus
+            = rand(10000..50000)
+            Followers
+
+  %ul.nav.nav-pills.pagination
+    %li.nav-item
+      = link_to '1', '#', class: 'nav-link active'
+    %li.nav-item
+      = link_to '2', '#', class: 'nav-link'
+    %li.nav-item
+      = link_to '3', '#', class: 'nav-link'
+    %li
+      %a{"aria-label" => "Next", href: "#"}
+        %span{"aria-hidden" => "true"} Next
+  = link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary btn-signup"

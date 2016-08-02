@@ -1,0 +1,12 @@
+%p#notice= notice
+%h1 Listing Permissions
+%table
+  %thead
+    %tr
+      %th{colspan: "4"}
+  %tbody
+    - @permissions.each do |permission|
+      %tr
+        %td= link_to permission.user.full_name, permission.user
+        %td= link_to 'Edit', edit_polymorphic_path([@permissible, permission])
+%br/

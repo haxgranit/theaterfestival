@@ -1,0 +1,28 @@
+%p#notice= notice
+%p
+  %strong Artist:
+  = link_to @model.artist.stage_name, polymorphic_path(@model.artist)
+%p
+  %strong Production:
+  = link_to @model.production.title, polymorphic_path(@model.production) if @model.production.present?
+%p
+  %strong Name:
+  = @model.name
+%p
+  %strong Position:
+  = @model.position
+%p
+  %strong Start date:
+  = @model.start_date
+%p
+  %strong End date:
+  = @model.end_date
+%p
+  %strong Type:
+  = @model.type
+%p
+  %strong Confirmed:
+  = @model.confirmed
+= link_to 'Edit', edit_production_credit_path(@model)
+|
+= link_to 'Back', production_credits_path

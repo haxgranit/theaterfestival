@@ -1,0 +1,18 @@
+%p#notice= notice
+%h1 Listing Company Festival Links
+%table
+  %thead
+    %tr
+      %th Company
+      %th Festival
+      %th{colspan: "3"}
+  %tbody
+    - @company_festival_links.each do |company_festival_link|
+      %tr
+        %td= company_festival_link.company
+        %td= company_festival_link.festival
+        %td= link_to 'Show', company_festival_link
+        %td= link_to 'Edit', edit_company_festival_link_path(company_festival_link)
+        %td= link_to 'Destroy', company_festival_link, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Company festival link', new_company_festival_link_path

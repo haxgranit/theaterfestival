@@ -1,0 +1,22 @@
+= simple_form_for @artist, wrapper: :horizontal_form do |f|
+  = f.input :stage_name, as: :string, autocomplete: :off
+  - if policy(@artist).edit?
+    = f.input :profile_image, as: :attachment
+    = f.input :pictures_images, as: :attachment, multiple: true
+    = f.input :title, as: :string
+    = f.input :birthdate
+    = f.input :birth_location, as: :string
+    = f.input :hometown, as: :string
+    = f.input :education
+    = f.input :full_bio
+    = f.fields_for :artist_social_metadata, @artist.artist_social_metadata ||= ArtistSocialMetadata.new, wrapper: :horizontal_form do |s|
+      = s.input :email, as: :email
+      = s.input :facebook, as: :url
+      = s.input :instagram, as: :url
+      = s.input :linkedin, as: :url
+      = s.input :snapchat, as: :url
+      = s.input :tumblr, as: :url
+      = s.input :twitter, as: :url
+      = s.input :vine, as: :url
+      = s.input :website, as: :url
+  = f.button :submit, class: 'btn-primary'

@@ -1,0 +1,28 @@
+%p#notice= notice
+%p
+  %strong Production:
+  = @review.production.title
+%p
+  %strong Date:
+  = @review.date
+%p
+  %strong Rating:
+  = @review.rating
+%p
+  %strong Title:
+  = @review.title
+%p
+  %strong Summary:
+  = @review.summary
+%p
+  %strong Full text:
+  = @review.full_text
+%p
+  %strong Agree:
+  = @review.agree
+%p
+  %strong Disagree:
+  = @review.disagree
+= link_to 'Edit', edit_review_path(@review)
+|
+= link_to 'Back', reviews_path

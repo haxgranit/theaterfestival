@@ -1,0 +1,19 @@
+= simple_form_for(@production) do |f|
+  = f.input :title, as: :string
+  = f.input :public
+  = f.input :tagline
+  = f.input :description
+  = f.input :first_performance, order: [:month,:day,:year]
+  = f.input :last_performance, include_blank: true, default: nil, order: [:month, :day, :year]
+  = f.input :key_image, as: :attachment
+  = f.simple_fields_for :production_metadata, @production.production_metadata ||= ProductionMetadata.new do |m|
+    = m.input :performance_type, as: :string
+    = m.input :info_heading, as: :string
+    = m.input :info
+    = m.input :warnings
+    = m.input :warning_info
+    = m.input :running_time, as: :string
+    = m.input :intermissions, as: :string
+    = m.input :recommended_age, as: :string
+    = m.input :website, as: :url
+  = f.button :submit, class: 'btn-primary'

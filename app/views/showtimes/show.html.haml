@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Showtime:
+  = @showtime.showtime
+%p
+  %strong Theater:
+  = @showtime.theater.name
+= link_to 'Edit', edit_showtime_path(@showtime)
+|
+= link_to 'Back', showtimes_path

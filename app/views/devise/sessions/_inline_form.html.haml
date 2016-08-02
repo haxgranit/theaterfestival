@@ -1,0 +1,16 @@
+= simple_form_for(resource,         |
+  as: resource_name,                |
+  url: session_path(resource_name), |
+  wrapper: :horizontal_form,        |
+  html: { id: :sign_in }) do |f|    |
+  .login-wrapper
+    = f.input :email, label: "Email:"
+    = f.input :password, label: "Password:"
+    .form-group.login-btn-wrapper
+      .login-btn
+        = f.button :submit, 'Go', class: 'btn-primary'
+  .login-meta-wrapper
+    = f.input :remember_me, as: :boolean
+    .signup-box-wrapper
+      .signup-box
+        Don't have a login? #{link_to 'Sign up today!', new_user_registration_path}

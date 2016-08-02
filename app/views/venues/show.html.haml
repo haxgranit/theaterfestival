@@ -1,0 +1,38 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @venue.name
+%p
+  %strong Address1:
+  = @venue.address1
+%p
+  %strong Address2:
+  = @venue.address2
+%p
+  %strong Website:
+  = @venue.website
+%p
+  %strong Phone number:
+  = @venue.phone_number
+%p
+  %strong Description:
+  = @venue.description
+%p
+  %strong Company:
+  = @venue.company.name
+%h2 Theaters
+%ul
+  - @venue.theaters.each do |t|
+    %li
+      = link_to t.name, theater_path(t)
+%h2 Showtimes
+%ul
+  - @venue.showtimes.each do |s|
+    %li
+      = link_to s.production.title, production_path(s.production)
+      \- #{link_to s.theater.name, theater_path(s.theater)}
+      \- #{s.local_time.strftime('%b %d at %I:%M %p')}
+= link_to 'Edit', edit_venue_path(@venue)
+|
+= link_to 'Back', venues_path
+= link_to 'Create Theater', new_theater_path

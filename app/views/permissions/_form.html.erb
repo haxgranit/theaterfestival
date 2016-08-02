@@ -1,5 +1,0 @@
-<%= simple_form_for [@permissible, @permission], wrapper: :horizontal_form do |f| %>
-    <%= f.input :user, as: :fake, input_html: { value: (@user.full_name if @user) } %>
-    <%= f.input :user_id, as: :hidden %>
-    <%= f.button :submit %>
-<% end %>

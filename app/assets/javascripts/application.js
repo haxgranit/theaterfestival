@@ -14,9 +14,9 @@
 //= require tether
 //= require twitter/typeahead.min
 //= require bootstrap-sprockets
+//= require bootstrap-slider
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap-slider
 //= require refile
 //= require js-routes
 //= require handlebars

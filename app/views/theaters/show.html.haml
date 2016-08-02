@@ -1,0 +1,26 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @theater.name
+%p
+  %strong Description:
+  = @theater.description
+%p
+  %strong Venue:
+  = link_to @theater.venue.name, venue_path(@theater.venue)
+%h2 Showtimes
+%ul
+  - @theater.showtimes.each do |s|
+    %li
+      = link_to s.production.title, production_path(s.production)
+      \- #{s.local_time.strftime('%b %d at %I:%M %p')}
+- if @theater.theater_metadata.present?
+  %h2 Theater Info
+  %ul
+    - @theater.metadata.each do |k,v|
+      %li
+        = "#{k.humanize} - #{v.to_s}"
+= link_to 'Edit', edit_theater_path(@theater)
+|
+= link_to 'Back', theaters_path
+= link_to 'New Showtime', new_showtime_path(theater_id: @theater.id)

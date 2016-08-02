@@ -1,0 +1,22 @@
+%p#notice= notice
+%p
+  %strong Production:
+  = @press_item.production.title
+%p
+  %strong Date:
+  = @press_item.date
+%p
+  %strong Publication:
+  = @press_item.publication
+%p
+  %strong Quote:
+  = @press_item.quote
+%p
+  %strong Author:
+  = @press_item.author
+%p
+  %strong Link:
+  = @press_item.link
+= link_to 'Edit', edit_press_item_path(@press_item)
+|
+= link_to 'Back', press_items_path

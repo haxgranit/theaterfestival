@@ -1,0 +1,63 @@
+= attachment_image_tag(@artist, :profile_image, :fill, 300, 300)
+%p
+  %strong Name:
+  = @artist.stage_name
+- if @artist.title.present?
+  %p
+    %strong Title:
+    = @artist.title
+- if @artist.title.present?
+  %p
+    %strong Birthdate:
+    = @artist.birthdate.strftime("%B %d, %Y")
+- if @artist.title.present?
+  %p
+    %strong Birth location:
+    = @artist.birth_location
+- if @artist.title.present?
+  %p
+    %strong Hometown:
+    = @artist.hometown
+- if @artist.title.present?
+  %p
+    %strong Education:
+    = @artist.education
+- if @artist.title.present?
+  %p
+    %strong Full bio:
+    = @artist.full_bio
+%h2 Social Media
+%ul
+  - @artist.social_links.try(:each) do |k,v|
+    %li
+      = link_to k.humanize, v.to_s
+%h2 Shows
+%ul
+  - @artist.productions.each do |show|
+    %li
+      = link_to show.title, production_path(show)
+%h2 Production Credits
+%ul
+  - @artist.production_credits.each do |credit|
+    %li
+      = link_to(credit.production.title, production_path(credit.production))
+      \- #{"#{credit.position} - #{credit.name}"}
+%h2 Writing Credits
+%ul
+  - @artist.writing_credits.each do |credit|
+    %li
+      = link_to(credit.production.title, production_path(credit.production))
+      \- #{"#{credit.position} - #{credit.name}"}
+%h2 Images
+%ul
+  - @artist.pictures.each do |p|
+    %li
+      = attachment_image_tag(p, :image, :fill, 300, 300)
+- if policy(@artist).edit?
+  = link_to 'Edit', edit_artist_path(@artist)
+  |
+- if @artist.user_id.present?
+  = link_to 'View User Page', user_path(@artist.user_id)
+- elsif policy(@artist).claim?
+  = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
+= link_to 'Back', artists_path

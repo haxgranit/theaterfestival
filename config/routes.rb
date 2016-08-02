@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_for :users
   resources :users, only: [:show, :index] do
     concerns [:social, :search]
   end
@@ -56,7 +57,6 @@ Rails.application.routes.draw do
   resources :production_credits, controller: :credits, type: 'ProductionCredit'
   resources :writing_credits, controller: :credits, type: 'WritingCredit'
   resources :staff_credits, controller: :credits, type: 'StaffCredit'
-  devise_for :users
   root 'static#home'
 
 

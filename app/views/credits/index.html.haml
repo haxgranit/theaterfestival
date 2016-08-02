@@ -1,0 +1,31 @@
+%p#notice= notice
+%h1 Listing Credits
+%table
+  %thead
+    %tr
+      %th Artist
+      %th Production
+      %th Name
+      %th Position
+      %th Start date
+      %th End date
+      %th Type
+      %th Confirmed
+      %th{colspan: "3"}
+  %tbody
+    - @model.each do |production_credit|
+      %tr
+        %td= production_credit.artist.stage_name
+        %td= production_credit.production.title
+        %td= production_credit.name
+        %td= production_credit.position
+        %td= production_credit.start_date
+        %td= production_credit.end_date
+        %td= production_credit.type
+        %td= production_credit.confirmed
+        %td= link_to 'Show', production_credit
+        %td= link_to 'Destroy', production_credit, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Production credit', new_production_credit_path
+= link_to 'New Writing credit', new_writing_credit_path
+= link_to 'New Staff credit', new_staff_credit_path

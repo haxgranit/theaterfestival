@@ -13,9 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
 gem 'compass-rails'
 gem 'simple_form'
-gem 'bootstrap-slider-rails'
 gem 'font-awesome-rails'
-gem 'bh', github: 'jhenahan/bh', branch: 'v4'
 gem 'bourbon'
 
 gem 'unicorn'
@@ -45,8 +43,11 @@ gem 'logstash-logger'
 
 gem 'searchkick'
 gem 'twitter-typeahead-rails'
+gem 'bootstrap-slider-rails'
 gem 'handlebars_assets'
 gem 'js-routes'
+gem 'haml-rails'
+gem 'autoprefixer-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

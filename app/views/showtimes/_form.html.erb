@@ -1,6 +1,0 @@
-<%= simple_form_for(@showtime, wrapper: :horizontal_form) do |f| %>
-    <%= f.input :showtime %>
-    <%= f.input :theater_id, collection: Theater.all, value_method: :id, label_method: :name, prompt: true  %>
-
-    <%= f.button :submit, class: 'btn-primary' %>
-<% end %>

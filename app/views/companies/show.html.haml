@@ -1,0 +1,43 @@
+%p#notice= notice
+= attachment_image_tag(@company, :company_image, :fill, 300, 300)
+%p
+  %strong Name:
+  = @company.name
+%p
+  %strong Type:
+  = @company.company_type
+%p
+  %strong Website:
+  = @company.website
+%p
+  %strong Description:
+  = @company.description
+%p
+  %strong Email:
+  = @company.email
+- if @company.company_metadata.present?
+  %h2 Company Info
+  %ul
+    - @company.metadata.each do |k,v|
+      %li
+        = "#{k.humanize} - #{v.to_s}"
+- if @company.company_social_metadata.present?
+  %h2 Social Media
+  %ul
+    - @company.social_links.each do |k,v|
+      %li
+        = link_to k.humanize, v.to_s
+- if @company.productions.present?
+  %h2 Shows
+  %ul
+    - @company.productions.each do |show|
+      %li
+        = link_to show.title, production_path(show)
+- if policy(@company).edit?
+  = link_to 'Edit', edit_company_path(@company)
+  |
+= link_to 'Back', companies_path
+%p
+  = link_to 'Create Production', new_production_path
+  |
+  = link_to 'Create Venue', new_venue_path

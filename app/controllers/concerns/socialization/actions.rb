@@ -2,12 +2,13 @@ module Socialization::Actions
   extend ActiveSupport::Concern
 
   included do
-    before_action :load_target, only: :show
+    before_action :load_target, only: [:like, :unlike, :follow, :unfollow]
+    before_action :authenticate_user!
   end
 
   def load_target
-    resource, id = request.path.split('/')[1,2]
-    @target = resource.singularize.classify.constantize.find(id)
+    resource, resource_id = request.path.split('/')[1,2]
+    @target = resource.singularize.classify.constantize.find(resource_id)
   end
 
   def like

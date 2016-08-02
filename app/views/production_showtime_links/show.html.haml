@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Production:
+  = @production_showtime_link.production.title
+%p
+  %strong Showtime:
+  = @production_showtime_link.showtime
+= link_to 'Edit', edit_production_showtime_link_path(@production_showtime_link)
+|
+= link_to 'Back', production_showtime_links_path

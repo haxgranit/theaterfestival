@@ -1,0 +1,8 @@
+= simple_form_for(@review, wrapper: :horizontal_form) do |f|
+  = f.input :production_id
+  = f.input :date, wrapper: :horizontal_form, order: [:month, :day, :year]
+  = f.input :rating, input_html: { min: '0', max: '5', step: '1' }
+  = f.input :title
+  = f.input :summary
+  = f.input :full_text
+  = f.button :submit

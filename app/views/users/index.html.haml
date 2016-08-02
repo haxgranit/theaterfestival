@@ -1,0 +1,21 @@
+- provide(:title, 'All Users')
+%p#notice= notice
+%h1= yield(:title)
+%table
+  %thead
+    %tr
+      %th Email
+      %th First name
+      %th Last name
+      %th Time zone
+      %th Location
+      %th{colspan: "3"}
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.time_zone
+        %td= user.location
+        %td= link_to 'Show', user

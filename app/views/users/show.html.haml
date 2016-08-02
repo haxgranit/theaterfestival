@@ -1,0 +1,47 @@
+#user-profile
+  .user-profile-links
+    = link_to 'Home', root_path
+    - if policy(@user).edit?
+      | #{link_to 'Edit', edit_user_registration_path} |
+      - if @user.artist.blank?
+        = link_to 'Create Artist Page', new_artist_path
+        |
+      = link_to 'Create Company Page', new_company_path
+    - if @user.artist.present?
+      | #{link_to 'View Artist Page', artist_path(@user.artist)}
+  .user-profile-details
+    - provide(:title, "#{@user.first_name} #{@user.last_name}")
+    %p#notice= notice
+    = attachment_image_tag(@user, :profile_image, :fill, 300, 300)
+    %h1= yield(:title)
+    %p
+      %strong Email:
+      = @user.email
+    %p
+      %strong First name:
+      = @user.first_name
+    %p
+      %strong Last name:
+      = @user.last_name
+    %p
+      %strong Time zone:
+      = @user.time_zone
+    %p
+      %strong Location:
+      = @user.location
+  .social-features
+    %h1 Social Features
+    %p
+      Like count: #{@user.likers(User).count}
+      %br/
+      Follower count: #{@user.followers(User).count}
+    - if current_user
+      - if current_user.likes?(@user)
+        = link_to 'Unlike', user_unlike_path(@user), method: :post
+      - else
+        = link_to 'Like', user_like_path(@user), method: :post
+      |
+      - if current_user.follows?(@user)
+        = link_to 'Unfollow', user_unfollow_path(@user), method: :post
+      - else
+        = link_to 'Follow', user_follow_path(@user), method: :post

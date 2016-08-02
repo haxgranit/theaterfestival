@@ -1,0 +1,18 @@
+%p#notice= notice
+%h1 Listing Company Production Links
+%table
+  %thead
+    %tr
+      %th Company
+      %th Production
+      %th{colspan: "3"}
+  %tbody
+    - @company_production_links.each do |company_production_link|
+      %tr
+        %td= company_production_link.company
+        %td= company_production_link.production
+        %td= link_to 'Show', company_production_link
+        %td= link_to 'Edit', edit_company_production_link_path(company_production_link)
+        %td= link_to 'Destroy', company_production_link, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Company production link', new_company_production_link_path
