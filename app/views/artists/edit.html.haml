@@ -1,7 +1,7 @@
 .row
-  .col-md-6.col-md-offset-3
-    %h1 Editing Artist
-    = render 'form'
-    = link_to 'Show', @artist
-    |
-    \#{link_to 'Back', artists_path}
+  %h1 Editing Artist
+  = render 'form'
+.row
+  = link_to 'Show', @artist
+  |
+  = link_to 'Back', artists_path

@@ -4,7 +4,7 @@
     = f.input :profile_image, as: :attachment
     = f.input :pictures_images, as: :attachment, multiple: true
     = f.input :title, as: :string
-    = f.input :birthdate
+    = f.input :birthdate, as: :bootstrap_datepicker, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:month, :day, :year]
     = f.input :birth_location, as: :string
     = f.input :hometown, as: :string
     = f.input :education
