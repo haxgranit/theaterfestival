@@ -1,249 +1,252 @@
 #signIn {
-	background-image: image-url('signin_bg.jpg');
-	background-position: center;
-	background-size: cover;
+  background-image: image-url('signin_bg.jpg');
+  background-position: center;
+  background-size: cover;
 
-	.container {
-		padding: 0;
-	}
+  .container {
+    padding: 0;
+  }
 
-	.simple_form {
-		padding: 2em 0;
-		
-		.login-wrapper {
-			display: flex;
-			flex-wrap: wrap;
-			width: 100%;
+  .simple_form {
+    padding: 2em 0;
 
-			.form-group {
-				flex-wrap: nowrap;
-				margin: 0 0 .25em;
-				width: 100%;
+    .login-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
 
-				label {
-					background-color: rgb(250,247,0);
-					color: rgb(0,0,0);
-					font-weight: 500;
-					height: 38px;
-					width: 30%;
+      .form-group {
+        flex-wrap: nowrap;
+        margin: 0 0 .25em;
+        width: 100%;
 
-					abbr[title="required"] {
-						display: none;
-					}
-				}
+        label {
+          background-color: rgb(250,247,0);
+          color: rgb(0,0,0);
+          font-weight: 500;
+          height: 38px;
+          width: 30%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-				.col-sm-9 {
-					padding-right: 0;
-				    padding-left: .25em;
-				    width: 70%;
-				}
-			}
+          abbr[title="required"] {
+            display: none;
+          }
+        }
 
-			.login-btn-wrapper {
-				display: flex;
-				justify-content: flex-end;
+        .col-sm-9 {
+          padding-right: 0;
+            padding-left: .25em;
+            width: 70%;
+        }
+      }
 
-				.login-btn {
-					background-color: rgb(0,0,0);
-					border-radius: 100%;
-					color: rgb(255,255,255);
-					height: 40px;
-					width: 40px;
-					padding: 5px 4px;
+      .login-btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
 
-					display: flex;
-				    align-items: center;
-				    justify-content: center;
+        .login-btn {
+          background-color: rgb(0,0,0);
+          border-radius: 100%;
+          color: rgb(255,255,255);
+          height: 40px;
+          width: 40px;
+          padding: 5px 4px;
 
-					&:before {
-						content: '>';
-						color: rgb(250,247,0);
-						font-size: .85em;
-						font-weight: 500;
-						margin-right: 2px;
-						margin-top: -1px;
-					}
+          display: flex;
+            align-items: center;
+            justify-content: center;
 
-					.btn-primary {
-						background: none;
-						border: none;
-						font-size: .85em;
-						padding: 0;
-						text-transform: uppercase;
-					}
+          &:before {
+            content: '>';
+            color: rgb(250,247,0);
+            font-size: .85em;
+            font-weight: 500;
+            margin-right: 2px;
+            margin-top: -1px;
+          }
 
-					&:hover {
-						background-color: rgb(250,247,0);
-						
-						.btn-primary {
-							color: rgb(0,0,0);
-							font-weight: 500;
-						}
+          .btn-primary {
+            background: none;
+            border: none;
+            font-size: .85em;
+            padding: 0;
+            text-transform: uppercase;
+          }
 
-						&:before {
-							color: rgb(0,0,0);
-							font-weight: 500;
-						}
-					}
-				}
-			}
-		}
+          &:hover {
+            background-color: rgb(250,247,0);
 
-		.login-meta-wrapper {
-			overflow: hidden;
-			width: 100%;
+            .btn-primary {
+              color: rgb(0,0,0);
+              font-weight: 500;
+            }
 
-			.user_remember_me {
-				margin: 0;
-				width: 100%;
+            &:before {
+              color: rgb(0,0,0);
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
 
-				.checkbox {
-					display: flex;
-    				justify-content: flex-end;
-    				font-size: .75em;
-    				margin: .5em 0;
+    .login-meta-wrapper {
+      overflow: hidden;
+      width: 100%;
 
-					label {
-						background: none;
-						color: rgb(255,255,255);
-						padding: 1px 0 0;
-					}
-				}
-			}
+      .user_remember_me {
+        margin: 0;
+        width: 100%;
 
-			.signup-box-wrapper {
-				display: flex;
-    			justify-content: flex-end;
-    			width: 100%;
+        .checkbox {
+          display: flex;
+            justify-content: flex-end;
+            font-size: .75em;
+            margin: .5em 0;
 
-				.signup-box {
-					background-color: rgb(250,247,0);
-					color: rgb(0,0,0);
-					display: inline-block;
-					font-size: .75em;
-	    			font-weight: 500;
-	    			padding: 4px 13px;
+          label {
+            background: none;
+            color: rgb(255,255,255);
+            padding: 1px 0 0;
+          }
+        }
+      }
 
-					a {
-						color: inherit;
-						text-decoration: underline;	
-					}
-				}
-			}
-		}
-	}
+      .signup-box-wrapper {
+        display: flex;
+          justify-content: flex-end;
+          width: 100%;
+
+        .signup-box {
+          background-color: rgb(250,247,0);
+          color: rgb(0,0,0);
+          display: inline-block;
+          font-size: .75em;
+            font-weight: 500;
+            padding: 4px 13px;
+
+          a {
+            color: inherit;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 }
 .content-area #new_user {
-	margin-bottom: 2em;
+  margin-bottom: 2em;
 
-	.form-group {
-		display: block;
-	}
+  .form-group {
+    display: block;
+  }
 
-	#error_explanation {
-		margin-bottom: 2.5em;
+  #error_explanation {
+    margin-bottom: 2.5em;
 
-		h2 {
-			font-size: 1rem;
-			font-weight: 600;
-		}
-	}
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
 }
 
 @media (min-width: 544px) {
-	#signIn {
-		.simple_form {
-			.login-wrapper {
-				.form-group {
-					justify-content: center;
-					margin: 0;
-					width: 45%;
+  #signIn {
+    .simple_form {
+      .login-wrapper {
+        .form-group {
+          justify-content: center;
+          margin: 0;
+          width: 45%;
 
-					label {
-						font-size: .8em;
-						line-height: 2em;
-						width: auto;
-					}
-					.col-sm-9 {
-						flex: 0 0 68%;
-						padding-right: .5rem;
-					    padding-left: .5rem;
-					    width: auto;
-					}
-				}
+          label {
+            font-size: .8em;
+            line-height: 2em;
+            width: auto;
+          }
+          .col-sm-9 {
+            flex: 0 0 68%;
+            padding-right: .5rem;
+              padding-left: .5rem;
+              width: auto;
+          }
+        }
 
-				.login-btn-wrapper {
-					width: 10%;
-				}
-			}
+        .login-btn-wrapper {
+          width: 10%;
+        }
+      }
 
-			.login-meta-wrapper {
-				width: 88.5%;
-			}
-		}
-	}
+      .login-meta-wrapper {
+        width: 88.5%;
+      }
+    }
+  }
 }
 @media (min-width: 768px) {
-	#signIn {
-		.container {
-			padding-left: 0.9375rem;
-    		padding-right: 0.9375rem;
-		}
-		.simple_form {
-			.login-wrapper {
-				.form-group {
-					justify-content: initial;
-					margin: 0;
-					width: 45%;
+  #signIn {
+    .container {
+      padding-left: 0.9375rem;
+        padding-right: 0.9375rem;
+    }
+    .simple_form {
+      .login-wrapper {
+        .form-group {
+          justify-content: initial;
+          margin: 0;
+          width: 45%;
 
-					label {
-						font-size: 1em;
-						line-height: 1.5em;
-					}
-					.col-sm-9 {
-						flex: 0 0 75%;
-					}
-				}
+          label {
+            font-size: 1em;
+            line-height: 1.5em;
+          }
+          .col-sm-9 {
+            flex: 0 0 75%;
+          }
+        }
 
-				.login-btn-wrapper {
-					justify-content: center;
-					width: 10%;
-				}
-			}
-			.login-meta-wrapper {
-				width: 89%;
-			}
-		}
-	}
-	.content-area #new_user {
-		padding: 0 1em;
+        .login-btn-wrapper {
+          justify-content: center;
+          width: 10%;
+        }
+      }
+      .login-meta-wrapper {
+        width: 89%;
+      }
+    }
+  }
+  .content-area #new_user {
+    padding: 0 1em;
 
-		.form-group {
-			display: flex;
-		}
-	}
+    .form-group {
+      display: flex;
+    }
+  }
 }
 
 @media (min-width: 992px) {
-	#signIn {
-		.simple_form {	
-			.login-wrapper {
-				.form-group {
-					.col-sm-9 {
-						padding-right: 0.9375rem;
-					    padding-left: 0.9375rem;
-					    width: auto;
-					}
-				}
-				.login-btn-wrapper {
-					justify-content: flex-start;
-				}
-			}
-			.login-meta-wrapper {
-				width: 88.5%;
-			}
-		}
-	}
+  #signIn {
+    .simple_form {
+      .login-wrapper {
+        .form-group {
+          .col-sm-9 {
+            padding-right: 0.9375rem;
+              padding-left: 0.9375rem;
+              width: auto;
+          }
+        }
+        .login-btn-wrapper {
+          justify-content: flex-start;
+        }
+      }
+      .login-meta-wrapper {
+        width: 88.5%;
+      }
+    }
+  }
 }
 @media (min-width: 1200px) {
 
