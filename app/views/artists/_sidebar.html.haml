@@ -1,18 +1,19 @@
-.artist-profile-details
-  - provide(:title, @artist.stage_name)
-  = attachment_image_tag(@artist, :profile_image, :fill, 400, 400)
-  %h1
-    = yield(:title)
-    - if @artist.title.present?
-      \-
-      = @artist.title
-.artist-profile-links
-  %ul
-    - if policy(@artist).edit?
-      %li
-        = link_to 'Edit', edit_artist_path(@artist)
-      %li
-        = link_to 'View User Page', user_path(@artist.user_id)
-    - elsif policy(@artist).claim?
-      %li
-        = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
+- if @artist.present?
+  .artist-profile-details
+    - provide(:title, @artist.stage_name)
+    = attachment_image_tag(@artist, :profile_image, :fill, 400, 400)
+    %h1
+      = yield(:title)
+      - if @artist.title.present?
+        \-
+        = @artist.title
+  .artist-profile-links
+    %ul
+      - if policy(@artist).edit?
+        %li
+          = link_to 'Edit', edit_artist_path(@artist)
+        %li
+          = link_to 'View User Page', user_path(@artist.user_id)
+      - elsif policy(@artist).claim?
+        %li
+          = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch

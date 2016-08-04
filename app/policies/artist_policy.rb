@@ -15,7 +15,11 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def claim?
-    artist.user_id.blank? if user.present? && user.artist.blank? || false
+    if user.present? && user.artist.blank?
+      artist.user.blank?
+    else
+      false
+    end
   end
 
   class Scope < Scope
