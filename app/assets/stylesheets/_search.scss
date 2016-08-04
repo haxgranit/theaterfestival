@@ -82,7 +82,7 @@ aside {
 		margin: 0;
 
 		.checkbox {
-			margin: 0 1.5em .4em;
+			margin: 0 1em .4em;
 
 			input[type="checkbox"] {
 			    background-color: #8a8889;
@@ -90,6 +90,7 @@ aside {
 			    color: #FFF;
 			    height: 13px;
 			    margin-top: 5px;
+			    margin-right: 5px;
 			    white-space: nowrap;
 			    overflow: hidden;
 			    padding-left: 5px;
@@ -115,6 +116,7 @@ aside {
 
 @media (min-width: 544px) {
   .search {
+
   	.simple_form {
   		padding: 1em .75em;
 
@@ -135,6 +137,17 @@ aside {
 		}
   	}
   }
+  .filters {
+		.form-group {
+			font-size: .9em;
+			margin: 0;
+
+			.checkbox {
+				display: flex;
+				margin: 0;
+			}
+		}
+	}
 }
 @media (min-width: 768px) {
   .search {
@@ -160,9 +173,7 @@ aside {
   }
 }
 @media (min-width: 992px) {
-  aside section {
-  	margin: 0 1em;
-  }
+
 }
 @media (min-width: 1200px) {
 

@@ -31,10 +31,12 @@ button:focus {
 .pagination {
 	display: flex;
     justify-content: flex-end;
+    margin: 0 0 1em;
     padding: .25em .25em .5em;
 
     &:last-of-type {
-    	padding: 0;
+    	margin: 1em 0;
+        padding: 0;
     }
 
     &.nav-pills .nav-item + .nav-item {
