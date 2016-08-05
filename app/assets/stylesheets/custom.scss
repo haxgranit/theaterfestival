@@ -28,6 +28,27 @@ button:focus {
   background-color: $gray-lighter;
 }
 
+.nav-tabs {
+    margin-bottom: 1em;
+    
+    .nav-item {
+        .nav-link {
+            border: none;
+            background-color: #ddd;
+            color: #55595c;
+            font-size: .9em;
+            font-weight: 400;
+            text-align: center;
+            width: 150px;
+
+            &.active {
+              background-color: $brand-primary;
+              color: #fff;
+            }
+        }
+    }
+}
+
 .pagination {
 	display: flex;
     justify-content: flex-end;

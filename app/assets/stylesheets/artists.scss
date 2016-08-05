@@ -2,15 +2,58 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.artist-profile-details {
+  background-color: rgba(85, 89, 92, 0.25);
+
+  h1 {
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  h2 {
+    background: $brand-primary;
+  }
+  p {
+    color: #fff;
+    margin-top: 1em;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+  h1,
+  h2,
+  p {
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+  }
+}
 .content-area {
+  .tab-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .nav-tabs .nav-item .nav-link {
+      font-size: .85em;
+      width: 110px;
+    }
+  }
   .social {
     ul {
       display: flex;
       list-style: none;
       justify-content: space-between;
       align-items: center;
-      li > a {
-        font-size: 1.5em;
+      li {
+        padding-left: 5px;
+        
+        & > a {
+          color: $gray-dark;
+          font-size: 1.5em;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
       }
     }
   }

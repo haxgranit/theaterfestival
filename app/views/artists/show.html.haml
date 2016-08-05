@@ -1,34 +1,4 @@
-.social
-  - if @artist.social_links.present?
-    %ul
-      - @artist.social_links.try(:each) do |k,v|
-        %li
-          = link_to v.to_s do
-            - if k == 'website'
-              <i class="fa fa-globe" aria-hidden="true"></i>
-            - elsif k == 'email'
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            - else
-            <i class="fa fa-#{k.to_s}" aria-hidden="true"></i>
-      - if current_user
-        - if current_user.likes?(@artist)
-          = button_to "Unlike #{@artist.likers(User).count}", artist_unlike_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
-        - else
-          = button_to "Like #{@artist.likers(User).count}", artist_like_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
-        - if current_user.follows?(@artist)
-          = button_to "Unfollow #{@artist.followers(User).count}", artist_unfollow_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
-        - else
-          = button_to "Follow #{@artist.followers(User).count}", artist_follow_path(@artist), method: :post, remote: true, disabled: !user_signed_in?
-      - else
-        %li
-          Likes: #{@artist.likers(User).count}
-        %li
-          Followers: #{@artist.followers(User).count}
-
-- if @artist.full_bio.present?
-  %p
-    = @artist.full_bio
-%header
+.tab-wrapper
   %ul.nav.nav-tabs{ role: 'tablist' }
     %li.nav-item
       %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
@@ -39,13 +9,25 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
         Info
-  .tab-content
-    .tab-pane.active{ id: 'credits', role: 'tabpanel' }
-      = render 'credits'
-    .tab-pane{ id: 'media', role: 'tabpanel' }
+  .social
+    - if @artist.social_links.present?
       %ul
-        - @artist.pictures.each do |p|
+        - @artist.social_links.try(:each) do |k,v|
           %li
-            = attachment_image_tag(p, :image, :fit, 300, 300)
+            = link_to v.to_s do
+              - if k == 'website'
+                <i class="fa fa-globe" aria-hidden="true"></i>
+              - elsif k == 'email'
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              - else
+              <i class="fa fa-#{k.to_s}" aria-hidden="true"></i>
+.tab-content
+  .tab-pane.active{ id: 'credits', role: 'tabpanel' }
+    = render 'credits'
+  .tab-pane{ id: 'media', role: 'tabpanel' }
+    %ul
+      - @artist.pictures.each do |p|
+        %li
+          = attachment_image_tag(p, :image, :fit, 300, 300)
 
-    .tab-pane{ id: 'info', role: 'tabpanel' }
+  .tab-pane{ id: 'info', role: 'tabpanel' }
