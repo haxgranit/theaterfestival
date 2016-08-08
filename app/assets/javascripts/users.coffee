@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
-  $('#password-strength').zxcvbnProgressBar();
+$ ->
+  $(document).on 'ready turbolinks:load', ->
+    $('#password-strength').zxcvbnProgressBar();
 
-  return
+    return

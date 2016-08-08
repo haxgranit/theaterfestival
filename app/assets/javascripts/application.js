@@ -11,14 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require tether
-//= require bootstrap-sprockets
-//= require twitter/typeahead.min
-//= require bootstrap-slider
-//= require bootstrap-datepicker
 //= require jquery_ujs
 //= require turbolinks
-//= require refile
-//= require js-routes
+//= require tether
+//= require bootstrap
+//= require bootstrap-slider
+//= require bootstrap-datepicker
+//= require twitter/typeahead.min
 //= require handlebars
+//= require js-routes
+//= require refile
 //= require_tree .

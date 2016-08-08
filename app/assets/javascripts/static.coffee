@@ -2,9 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'ready page:load', ->
-  $('#price_range').slider
-    tooltip: 'always'
-    formatter: (value) ->
-      '$' + value[0] + ' - ' + value[1]
-  return
+$ ->
+  $(document).on 'turbolinks:load', ->
+    $('#price_range').slider
+      tooltip: 'always'
+      formatter: (value) ->
+        '$' + value[0] + ' - ' + value[1]
+    return

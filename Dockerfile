@@ -18,6 +18,7 @@ RUN apt-get update -qq && apt-get install -y xvfb
 RUN apt-get update -qq && apt-get install -y nodejs
 
 RUN apt-get update -qq && apt-get install -y imagemagick
+RUN apt-get update -qq && apt-get install -y file
 
 ENV APP_HOME /theaterengine
 RUN mkdir $APP_HOME
