@@ -18,7 +18,7 @@
               = link_to 'community', '#', class: 'nav-community nav-link'
               - if user_signed_in?
                 %li.nav-item
-                  = link_to 'profile', current_user, class: 'nav-link'
+                  = link_to 'profile', profile_path, class: 'nav-link'
                 %li.nav-item
                   = link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link'
               - else

@@ -1,11 +1,11 @@
-- if @artist.present?
+- if @artist.id.present?
   .artist-profile-details
     - provide(:title, @artist.stage_name)
     %h1
       = yield(:title)
     = attachment_image_tag(@artist, :profile_image, :fill, 400, 400)
     - if @artist.title.present?
-      %p 
+      %p
         %strong
           = @artist.title
     - if @artist.full_bio.present?
@@ -27,8 +27,8 @@
       %li
         Likes: #{@artist.likers(User).count}
       %li
-        Followers: #{@artist.followers(User).count}  
-        
+        Followers: #{@artist.followers(User).count}
+
     %ul
       - if policy(@artist).edit?
         %li

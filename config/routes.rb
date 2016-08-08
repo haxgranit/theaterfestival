@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     concerns [:social, :search]
   end
 
+  get :profile, to: 'users#show'
+
   resources :artists do
     patch :claim
     concerns [:permissible, :social, :search]
