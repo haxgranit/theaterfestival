@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
                                       keys: [:email,
                                              :password,
                                              :password_confirmation,
-                                             :current_password,
                                              :first_name,
                                              :last_name,
                                              :time_zone,
@@ -20,11 +19,7 @@ class ApplicationController < ActionController::Base
                                              :profile_image])
 
     devise_parameter_sanitizer.permit(:account_update,
-                                      keys: [:email,
-                                             :password,
-                                             :password_confirmation,
-                                             :current_password,
-                                             :first_name,
+                                      keys: [:first_name,
                                              :last_name,
                                              :time_zone,
                                              :location,
