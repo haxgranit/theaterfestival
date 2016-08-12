@@ -35,6 +35,7 @@ gem 'devise_zxcvbn'
 gem 'pundit'
 
 gem 'socialization'
+gem 'public_activity'
 gem 'valid_url'
 gem 'administrate', github: 'jhenahan/administrate', branch: 'te'
 
@@ -50,6 +51,8 @@ gem 'handlebars_assets'
 gem 'js-routes'
 gem 'hamlit-rails'
 gem 'autoprefixer-rails'
+gem 'ezdz-rails'
+gem 'geokit-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
