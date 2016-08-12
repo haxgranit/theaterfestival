@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
+  include Socialization::Actions
+
   def autocomplete
     render json: Company.search(params[:query], {
                                   fields: ["name"],

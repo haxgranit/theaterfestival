@@ -1,7 +1,6 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
-
   include Socialization::Actions
+  before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
   def autocomplete
     @artists = Artist.search(params[:query], {

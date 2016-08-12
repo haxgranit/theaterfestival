@@ -2,13 +2,19 @@ class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update, :destroy]
 
   def autocomplete
-    render json: Production.search(params[:query], {
-                                     fields: ["title"],
-                                     limit: 10,
-                                     load: false,
-                                     misspellings: {below: 5}
-                                   }).map { |production| { title: production.title,
-                                                           value: production.id } }
+    @productions = Production.search(params[:query], {
+                               fields: ["title"],
+                               limit: 10,
+                               load: true,
+                               misspellings: {below: 5}})
+    result = @productions.map do |production|
+      {
+        title: production.title,
+        value: production.id,
+        company: production.companies.first
+      }
+    end
+    render json: result
   end
 
   # GET /productions
