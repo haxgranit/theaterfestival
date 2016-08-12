@@ -28,6 +28,7 @@ class CreditsController < ApplicationController
     @model = model.new(model_params)
 
     if @model.save
+      @model.create_activity :create, owner: @model.artist, recipient: @model.production
       redirect_to @model, notice: 'Credit was successfully created.'
     else
       render :new

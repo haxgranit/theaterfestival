@@ -1,6 +1,8 @@
 class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update, :destroy]
 
+  include Socialization::Actions
+
   def autocomplete
     @productions = Production.search(params[:query], {
                                fields: ["title"],
@@ -40,6 +42,9 @@ class ProductionsController < ApplicationController
     @production = Production.new(production_params)
 
     if @production.save
+      if @production.company_id.present?
+        @production.create_activity :create, owner: @production.company
+      end
       redirect_to @production, notice: 'Production was successfully created.'
     else
       render :new
@@ -49,6 +54,9 @@ class ProductionsController < ApplicationController
   # PATCH/PUT /productions/1
   def update
     if @production.update(production_params)
+      if @production.company_id.present?
+        @production.create_activity :create, owner: @production.company
+      end
       redirect_to @production, notice: 'Production was successfully updated.'
     else
       render :edit
@@ -78,6 +86,7 @@ class ProductionsController < ApplicationController
                 :first_performance,
                 :last_performance,
                 :key_image,
+                :company_id,
                 production_metadata_attributes: [:id,
                                                  :performance_type,
                                                  :info_heading,
