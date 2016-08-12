@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 59) do
+ActiveRecord::Schema.define(version: 63) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "artist_social_metadata", force: :cascade do |t|
     t.text     "twitter"
@@ -58,7 +75,10 @@ ActiveRecord::Schema.define(version: 59) do
     t.text     "description"
     t.text     "email"
     t.string   "company_image_id"
+    t.integer  "user_id"
   end
+
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "company_festival_links", force: :cascade do |t|
     t.integer  "company_id"
@@ -250,7 +270,10 @@ ActiveRecord::Schema.define(version: 59) do
     t.datetime "updated_at",        null: false
     t.string   "key_image_id"
     t.text     "key_image_credit"
+    t.integer  "company_id"
   end
+
+  add_index "productions", ["company_id"], name: "index_productions_on_company_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "production_id"
@@ -377,12 +400,19 @@ ActiveRecord::Schema.define(version: 59) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.text     "time_zone"
+    t.text     "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   add_index "venues", ["company_id"], name: "index_venues_on_company_id", using: :btree
 
   add_foreign_key "artist_social_metadata", "artists"
   add_foreign_key "artists", "users"
+  add_foreign_key "companies", "users"
   add_foreign_key "company_festival_links", "companies"
   add_foreign_key "company_festival_links", "festivals"
   add_foreign_key "company_metadata", "companies"
@@ -398,6 +428,7 @@ ActiveRecord::Schema.define(version: 59) do
   add_foreign_key "production_metadata", "productions"
   add_foreign_key "production_showtime_links", "productions"
   add_foreign_key "production_showtime_links", "showtimes"
+  add_foreign_key "productions", "companies"
   add_foreign_key "reviews", "productions"
   add_foreign_key "showtime_accessibility_metadata", "showtimes"
   add_foreign_key "showtime_ticket_metadata", "showtimes"
