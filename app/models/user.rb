@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   searchkick word_start: [:full_name], searchable: [:full_name]
   has_many :permissions
-  include PublicActivity::Model
-  tracked
+  include PublicActivity::Common
 
   has_one :artist
   acts_as_follower
@@ -37,16 +36,32 @@ class User < ActiveRecord::Base
     }
   end
 
-  # def activities
-  #   PublicActivity::Activity.where(owner: self)
-  # end
+  def public_activities
+    PublicActivity::Activity.where(owner: self).order(created_at: :desc)
+  end
+
+  def follower_activities
+    acts = Array.new
+    self.followed.each do |f|
+      acts << PublicActivity::Activity.where(owner: f)
+    end
+    acts.flatten.sort_by(&:created_at).reverse!
+  end
 
   def liked
     Like.where(liker: self).map { |l| l.likeable }
   end
 
+  def likers
+    Like.where(likeable: self).map { |l| l.liker }
+  end
+
   def followed
     Follow.where(follower: self).map { |f| f.followable }
+  end
+
+  def followers
+    Follow.where(followable: self).map { |f| f.follower }
   end
 
   private

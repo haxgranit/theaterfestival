@@ -7,6 +7,4 @@ module SocialTarget
     acts_as_mentionable
   end
 
-
-
 end

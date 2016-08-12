@@ -1,4 +1,5 @@
 class Credit < ActiveRecord::Base
+  include PublicActivity::Common
   belongs_to :artist
   belongs_to :production
   scope :production_credits, -> { where(type: 'ProductionCredit') }

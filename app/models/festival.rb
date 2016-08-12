@@ -1,7 +1,6 @@
 class Festival < ActiveRecord::Base
   include Permissible
-  include PublicActivity::Model
-  tracked
+  include PublicActivity::Common
   searchkick word_start: [:title], searchable: [:title]
   validates :title, presence: true
 
