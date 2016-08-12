@@ -130,3 +130,34 @@ $ ->
       source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         $('[id$=credit_production_id]').val(suggestion.value)
         return
+
+
+  $(document).on 'turbolinks:load', ->
+    companies = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      remote:
+        url: '/companies/autocomplete?query=%QUERY'
+        wildcard: '%QUERY')
+
+    companies.initialize()
+
+    $('#company.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'name'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if name}}
+                <strong>{{name}}</strong>
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: companies.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=company_id]').val(suggestion.value)
+        return
