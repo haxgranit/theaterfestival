@@ -8,20 +8,31 @@
         Media
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
-        Info
+        Reviews
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'credits'
   .tab-pane{ id: 'media', role: 'tabpanel' }
-    %ul
+    .block-grid
       - @production.pictures.each do |p|
-        %li
-          = attachment_image_tag(p, :image, :fit, 300, 300)
+        %figure.block-grid-item.frontpage-show
+          = attachment_image_tag(p, :image, :fill, 100, 100)
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    .social
-    - if @production.metadata.present?
-      %ul
-        - @production.metadata.try(:each) do |k,v|
-          %li
-            #{k.humanize}: #{v}
+    .reviews
+      %h3
+        = pluralize(@production.reviews.count, 'Review')
+      - @production.reviews.each do |r|
+        .row
+          .col-sm-1
+            = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+          .col-sm-8.offset-sm-1
+            %p.user
+              = r.user.full_name
+            %p.review-summary
+              = truncate r.full_text, length: 100
+            %p.review-link
+              = link_to 'Review Link', r
+          .col-sm-1
+            %p.date
+              = r.date.strftime("%D")

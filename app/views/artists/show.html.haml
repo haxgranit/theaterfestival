@@ -7,8 +7,8 @@
       %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
         Media
     %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
+        Reviews
   .social
     - if @artist.social_links.present?
       %ul
@@ -25,9 +25,73 @@
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'credits'
   .tab-pane{ id: 'media', role: 'tabpanel' }
-    %ul
+    .block-grid
       - @artist.pictures.each do |p|
-        %li
-          = attachment_image_tag(p, :image, :fit, 300, 300)
+        %figure.block-grid-item.frontpage-show
+          = attachment_image_tag(p, :image, :fill, 100, 100)
 
-  .tab-pane{ id: 'info', role: 'tabpanel' }
+  .tab-pane{ id: 'reviews', role: 'tabpanel' }
+    .reviews
+      - @artist.productions.each do |p|
+        .row
+          .col-sm-2
+            %figure.frontpage-show
+              = attachment_image_tag(p, :key_image, :fill, 100, 150)
+              %figurecaption
+                %span.full-title
+                  %span.title>
+                    = link_to p.title, p
+                %span.company
+                  = link_to p.company.name, p.company if p.company.present?
+                %span.venue
+                  = link_to p.venues.first.name, p.venues.first if p.venues.present?
+                %span.followers
+                  - if current_user.follows?(p)
+                    %i.fa.fa-plus
+                    = p.followers(User).count
+                    Followers
+                  - else
+                    = button_to production_follow_path(p), method: :post do
+                      %i.fa.fa-plus
+                        = p.followers(User).count
+                        Followers
+
+                %span.likes
+                  - if current_user.likes?(p)
+                    %i.fa.fa-thumbs-o-up
+                      = p.likers(User).count
+                      Likes
+                  - else
+                    = button_to production_like_path(p), method: :post do
+                      %i.fa.fa-thumbs-o-up
+                        = p.likers(User).count
+                        Likes
+          .col-sm-9.offset-sm-1
+            %h2
+              = p.title
+            .production-meta
+              %h3
+                = pluralize(p.reviews.count, "Review")
+              %span.production-info
+                = p.company.name
+              - if p.venues.present?
+                %span.production-info
+                  = p.venues.first.name
+                %span.production-info
+                  = p.venues.first.city + ','
+                  = p.venues.first.state
+                  = p.venues.first.zip
+            - p.reviews.each do |r|
+              .row.review
+                .col-sm-1
+                  = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+                .col-sm-8.offset-sm-1
+                  %p.user
+                    = r.user.full_name
+                  %p.review-summary
+                    = truncate r.full_text, length: 100
+                  %p.review-link
+                    = link_to 'Review Link', r
+                .col-sm-1
+                  %p.date
+                    = r.date.strftime("%D")

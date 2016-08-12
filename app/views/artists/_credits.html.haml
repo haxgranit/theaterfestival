@@ -1,39 +1,98 @@
-#credits{"aria-multiselectable" => "true", :role => "tablist"}
-  .panel.panel-default
-    #productions.panel-heading{:role => "tab"}
-      %h4.panel-title
-        %a{"aria-controls" => "production-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#production-list"}
-          Production Credits
-    #production-list.panel-collapse.collapse{"aria-labelledby" => "productions", :role => "tabpanel"}
-      %table.table
-        %tbody
-          - @artist.production_credits.each do |credit|
-            %tr
-              %td
-                = link_to(credit.production.title, production_path(credit.production))
-              %td
-                = credit.position
-              %td
-                = credit.start_date.strftime('%D')
-                - if credit.end_date.present?
-                  \-
-                  = credit.end_date.strftime('%D')
-  .panel.panel-default
-    #creative.panel-heading{:role => "tab"}
-      %h4.panel-title
-        %a{"aria-controls" => "creative-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#creative-list"}
-          Creative Credits
-    #creative-list.panel-collapse.collapse{"aria-labelledby" => "creative", :role => "tabpanel"}
-      %table.table
-        %tbody
-          - @artist.writing_credits.each do |credit|
-            %tr
-              %td
-                = link_to(credit.production.title, production_path(credit.production))
-              %td
-                = credit.position
-              %td
-                = credit.start_date.strftime('%D')
-                - if credit.end_date.present?
-                  \-
-                  = credit.end_date.strftime('%D')
+%ul.nav.nav-pills{ role: 'tablist' }
+  %li.nav-item
+    %a.nav-link.active{ data: { toggle: 'pill' }, href: '#acting', role: 'tab'}
+      Acting
+  %li.nav-item
+    %a.nav-link{ data: { toggle: 'pill' }, href: '#writing', role: 'tab'}
+      Writing
+.tab-content
+  .tab-pane.active{ id: 'acting', role: 'tabpanel'}
+
+    - @artist.production_credits.each do |credit|
+      - p = credit.production
+      .row
+        .col-sm-2
+          %figure.frontpage-show
+            = attachment_image_tag(p, :key_image, :fill, 100, 150)
+            %figurecaption
+              %span.company
+                = link_to p.company.name, p.company if p.company.present?
+              %span.venue
+                = link_to p.venues.first.name, p.venues.first if p.venues.present?
+              %span.followers
+                - if current_user.follows?(p)
+                  %i.fa.fa-plus
+                  = pluralize(p.followers(User).count, 'Follower')
+                - else
+                  = button_to production_follow_path(p), method: :post do
+                    %i.fa.fa-plus
+                      = pluralize(p.followers(User).count, 'Follower')
+              %span.likes
+                - if current_user.likes?(p)
+                  %i.fa.fa-thumbs-o-up
+                    = pluralize(p.likers(User).count, 'Like')
+                - else
+                  = button_to production_like_path(p), method: :post do
+                    %i.fa.fa-thumbs-o-up
+                      = pluralize(p.likers(User).count, 'Like')
+        .col-sm-9.offset-sm-1
+          .production-meta
+            %h3
+              = p.title
+            %span.production-info
+              = credit.position
+            %span.production-info
+              = credit.start_date.strftime('%D')
+          - if p.venues.present?
+            .production-venues
+              %p
+                = p.venues.first.theaters.first.name + ','
+                = p.venues.first.name + ','
+                = p.venues.first.city + ','
+                = p.venues.first.state
+
+
+  .tab-pane{ id: 'writing', role: 'tabpanel'}
+
+    - @artist.writing_credits.each do |credit|
+      - p = credit.production
+      .row
+        .col-sm-2
+          %figure.frontpage-show
+            = attachment_image_tag(p, :key_image, :fill, 100, 150)
+            %figurecaption
+              %span.company
+                = link_to p.company.name, p.company if p.company.present?
+              %span.venue
+                = link_to p.venues.first.name, p.venues.first if p.venues.present?
+              %span.followers
+                - if current_user.follows?(p)
+                  %i.fa.fa-plus
+                  = pluralize(p.followers(User).count, 'Follower')
+                - else
+                  = button_to production_follow_path(p), method: :post do
+                    %i.fa.fa-plus
+                      = pluralize(p.followers(User).count, 'Follower')
+              %span.likes
+                - if current_user.likes?(p)
+                  %i.fa.fa-thumbs-o-up
+                    = pluralize(p.likers(User).count, 'Like')
+                - else
+                  = button_to production_like_path(p), method: :post do
+                    %i.fa.fa-thumbs-o-up
+                      = pluralize(p.likers(User).count, 'Like')
+        .col-sm-9.offset-sm-1
+          .production-meta
+            %h3
+              = p.title
+            %span.production-info
+              = credit.position
+            %span.production-info
+              = credit.start_date.strftime('%D')
+          - if p.venues.present?
+            .production-venues
+              %p
+                = p.venues.first.theaters.first.name + ','
+                = p.venues.first.name + ','
+                = p.venues.first.city + ','
+                = p.venues.first.state
