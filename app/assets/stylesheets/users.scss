@@ -10,9 +10,6 @@
   }
 }
 
-.profile_image {
-  max-width: 100%;
-}
 
 .cancel-account {
   margin-top: 3rem;
@@ -23,7 +20,7 @@
 }
 
 .user-profile-details {
-    background-color: rgba(85, 89, 92, 0.25);
+  @extend %profile-sidebar;
 
     .user-profile-links {
       margin: 1em 1em 0;

@@ -1,0 +1,30 @@
+%profile-sidebar {
+  background-color: rgba(85, 89, 92, 0.50);
+
+  h1 {
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  h2 {
+    background: $brand-primary;
+  }
+  p {
+    color: #fff;
+    margin-top: 1em;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+  h1,
+  h2,
+  p {
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+}
