@@ -14,25 +14,9 @@
   .tab-content
     .tab-pane.active{ id: 'news', role: 'tabpanel' }
       Some news content
+      = render_activities(@user.activities)
     - if policy(@user).edit?
       .tab-pane{ id: 'notifications', role: 'tabpanel' }
         Some notification content
       .tab-pane{ id: 'settings', role: 'tabpanel' }
         = render 'devise/registrations/edit', resource: current_user
-
-  .social-features
-    %h1 Social Features
-    %p
-      Like count: #{@user.likers(User).count}
-      %br/
-      Follower count: #{@user.followers(User).count}
-    - if current_user
-      - if current_user.likes?(@user)
-        = link_to 'Unlike', user_unlike_path(@user), method: :post
-      - else
-        = link_to 'Like', user_like_path(@user), method: :post
-      |
-      - if current_user.follows?(@user)
-        = link_to 'Unfollow', user_unfollow_path(@user), method: :post
-      - else
-        = link_to 'Follow', user_follow_path(@user), method: :post

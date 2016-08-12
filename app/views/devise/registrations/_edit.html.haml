@@ -9,7 +9,7 @@
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-  = f.input :profile_image, as: :attachment, direct: true
+  = f.input :profile_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(resource, :profile_image) } }
   = f.input :first_name, as: :string
   = f.input :last_name, as: :string
   = f.input :time_zone, as: :time_zone, priority: /US/
