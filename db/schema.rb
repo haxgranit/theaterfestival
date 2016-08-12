@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 63) do
+ActiveRecord::Schema.define(version: 64) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,9 +286,11 @@ ActiveRecord::Schema.define(version: 63) do
     t.integer  "disagree"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   add_index "reviews", ["production_id"], name: "index_reviews_on_production_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "showtime_accessibility_metadata", force: :cascade do |t|
     t.integer  "seat_capacity"
@@ -430,6 +432,7 @@ ActiveRecord::Schema.define(version: 63) do
   add_foreign_key "production_showtime_links", "showtimes"
   add_foreign_key "productions", "companies"
   add_foreign_key "reviews", "productions"
+  add_foreign_key "reviews", "users"
   add_foreign_key "showtime_accessibility_metadata", "showtimes"
   add_foreign_key "showtime_ticket_metadata", "showtimes"
   add_foreign_key "showtimes", "theaters"

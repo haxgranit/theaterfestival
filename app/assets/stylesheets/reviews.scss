@@ -1,3 +1,27 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.reviews {
+  img {
+    width: 100%;
+  }
+}
+
+.production-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+    color: grey;
+    font-weight: bold;
+  }
+  span { color: grey; }
+}
+
+.row.review {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
