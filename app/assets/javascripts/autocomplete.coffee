@@ -100,13 +100,33 @@ $ ->
 
   $(document).on 'turbolinks:load', ->
     productions = new Bloodhound(
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title')
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
       remote:
         url: '/productions/autocomplete?query=%QUERY'
         wildcard: '%QUERY')
+
     productions.initialize()
-    $('[id*=production_id]').typeahead null,
+
+    $('#title.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
       displayKey: 'title'
-      source: productions.ttAdapter()
-    return
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if title}}
+                <strong>{{title}}</strong>
+              {{/if}}
+              {{#if company}}
+                  - {{company}}
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=credit_production_id]').val(suggestion.value)
+        return
