@@ -1,5 +1,10 @@
 class Production < ActiveRecord::Base
   include Permissible
+  include Metadata
+  include SocialTarget
+  include PublicActivity::Model
+  tracked
+
   searchkick word_start: [:title], searchable: [:title]
   validates :title, :first_performance, presence: true
   attachment :key_image
@@ -17,19 +22,13 @@ class Production < ActiveRecord::Base
   has_many :production_showtime_links
   has_one :production_metadata
   accepts_nested_attributes_for :production_metadata
+  has_many :pictures, as: :has_image
+  accepts_attachments_for :pictures, attachment: :image
+
 
   def metadata
-    if production_metadata.present?
-      production_metadata
-        .attributes
-        .except('id', 'production_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    collect_metadata(production_metadata)
   end
 
-  def all_companies
-    fest_companies = festivals.map { |f| f.companies }.flatten!
-    (fest_companies + companies).uniq if fest_companies
-    companies
-  end
+
 end

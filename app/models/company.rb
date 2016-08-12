@@ -1,11 +1,14 @@
 class Company < ActiveRecord::Base
   include Permissible
+  include Metadata
+  include SocialTarget
+  include PublicActivity::Model
+  tracked
 
   searchkick word_start: [:name], searchable: [:name]
   validates :name, presence: true
-  validates :website, url: true
+  validates :website, url: true, allow_blank: true
   attachment :company_image
-
 
 
   has_many :company_festival_links
@@ -24,20 +27,10 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :company_social_metadata
 
   def social_links
-    if company_social_metadata
-      company_social_metadata
-        .attributes
-        .except('id', 'company_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    collect_metadata company_social_metadata
   end
 
   def metadata
-    if company_metadata
-      company_metadata
-        .attributes
-        .except('id', 'company_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    collect_metadata company_metadata
   end
 end

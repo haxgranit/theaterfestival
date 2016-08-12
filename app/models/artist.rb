@@ -1,5 +1,9 @@
 class Artist < ActiveRecord::Base
   include Permissible
+  include Metadata
+  include SocialTarget
+  include PublicActivity::Model
+  tracked
 
   searchkick word_start: [:stage_name], searchable: [:stage_name]
 
@@ -16,15 +20,11 @@ class Artist < ActiveRecord::Base
   has_many :pictures, as: :has_image
   accepts_attachments_for :pictures, attachment: :image
   accepts_nested_attributes_for :pictures
-  acts_as_followable
-  acts_as_likeable
-  acts_as_mentionable
+
+  alias_attribute :name, :stage_name
 
   def social_links
-    artist_social_metadata
-      .try(:attributes)
-      .try(:delete_if) { |_, v| v.blank? }
-      .try(:except, 'id', 'artist_id', 'created_at', 'updated_at')
+    collect_metadata(artist_social_metadata)
   end
 
 end
