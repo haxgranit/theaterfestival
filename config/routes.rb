@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     concerns [:permissible, :social, :search]
   end
 
+  resources :activities
+
   resources :press_items
   resources :reviews
   resources :showtimes
