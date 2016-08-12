@@ -5,6 +5,35 @@
 .artist-profile-details {
   @extend %profile-sidebar;
 }
+
+figure.profile-image {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+figurecaption.social {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  .button_to {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0;
+    button {
+      background: transparent;
+      border: none;
+      font-size: 1.5em;
+      padding: 1em;
+    }
+
+    .like, .unlike { color: $brand-primary; }
+    .follow, .unfollow { background-color: $brand-primary; color: white; }
+  }
+}
+
 .content-area {
   .tab-wrapper {
     display: flex;

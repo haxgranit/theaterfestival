@@ -86,6 +86,7 @@
     }
 
     .company {
+      a { color: $gray-light; }
       color: $gray-light;
       font-size: .85em;
       font-style: italic;
@@ -93,6 +94,7 @@
     }
 
     .venue {
+      a { color: $gray-light; }
       color: $gray-light;
       font-size: .85em;
       font-weight: 400;
@@ -103,11 +105,20 @@
       color: $brand-primary;
       font-size: .85em;
       line-height: 1.2em;
+      .fa {
+        color: $brightgreen;
+      }
+    }
+    .likes {
+      color: $brand-primary;
+      font-size: .85em;
+      line-height: 1.2em;
+      .fa {
+        color: $brand-primary;
+      }
     }
 
-    .fa {
-      color: $brightgreen;
-    }
+
   }
 }
 
