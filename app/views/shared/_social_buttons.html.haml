@@ -1,0 +1,18 @@
+%span.followers
+  - if user_signed_in? && current_user.follows?(target)
+    %i.fa.fa-plus
+      = pluralize(target.followers(User).count, 'Follower')
+  - else
+    = button_to polymorphic_path([target, 'follow']), method: :post do
+      %i.fa.fa-plus
+        = pluralize(target.followers(User).count, 'Follower')
+
+%span.likes
+  - if user_signed_in? && current_user.likes?(target)
+    %i.fa.fa-thumbs-o-up
+      = pluralize(target.likers(User).count, 'Liker')
+    Likes
+  - else
+    = button_to polymorphic_path([target, 'like']), method: :post do
+      %i.fa.fa-thumbs-o-up
+        = pluralize(target.likers(User).count, 'Liker')

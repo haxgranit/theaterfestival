@@ -1,0 +1,12 @@
+.social
+  - if target.social_links.present?
+    %ul
+      - target.social_links.try(:each) do |k,v|
+        %li
+          = link_to v.to_s do
+            - if k == 'website'
+              <i class="fa fa-globe" aria-hidden="true"></i>
+            - elsif k == 'email'
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            - else
+            <i class="fa fa-#{k.to_s}" aria-hidden="true"></i>

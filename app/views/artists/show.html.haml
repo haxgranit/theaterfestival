@@ -9,18 +9,7 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
         Reviews
-  .social
-    - if @artist.social_links.present?
-      %ul
-        - @artist.social_links.try(:each) do |k,v|
-          %li
-            = link_to v.to_s do
-              - if k == 'website'
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              - elsif k == 'email'
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-              - else
-              <i class="fa fa-#{k.to_s}" aria-hidden="true"></i>
+  = render partial: 'shared/social_links', locals: { target: @artist }
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'credits'
@@ -45,27 +34,7 @@
                   = link_to p.company.name, p.company if p.company.present?
                 %span.venue
                   = link_to p.venues.first.name, p.venues.first if p.venues.present?
-                %span.followers
-                  - if current_user.follows?(p)
-                    %i.fa.fa-plus
-                    = p.followers(User).count
-                    Followers
-                  - else
-                    = button_to production_follow_path(p), method: :post do
-                      %i.fa.fa-plus
-                        = p.followers(User).count
-                        Followers
-
-                %span.likes
-                  - if current_user.likes?(p)
-                    %i.fa.fa-thumbs-o-up
-                      = p.likers(User).count
-                      Likes
-                  - else
-                    = button_to production_like_path(p), method: :post do
-                      %i.fa.fa-thumbs-o-up
-                        = p.likers(User).count
-                        Likes
+                = render partial: 'shared/social_buttons', locals: { target: p }
           .col-sm-9.offset-sm-1
             %h2
               = p.title
