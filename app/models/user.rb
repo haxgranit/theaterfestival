@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :permissions
   include PublicActivity::Common
 
+  has_one :company
   has_one :artist
   acts_as_follower
   acts_as_liker

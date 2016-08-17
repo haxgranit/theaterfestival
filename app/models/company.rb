@@ -9,6 +9,8 @@ class Company < ActiveRecord::Base
   validates :website, url: true, allow_blank: true
   attachment :company_image
 
+  belongs_to :user
+
 
   has_many :company_festival_links
   has_many :festivals, through: :company_festival_links
