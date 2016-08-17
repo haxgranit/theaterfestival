@@ -10,9 +10,8 @@
 %span.likes
   - if user_signed_in? && current_user.likes?(target)
     %i.fa.fa-thumbs-o-up
-      = pluralize(target.likers(User).count, 'Liker')
-    Likes
+      = pluralize(target.likers(User).count, 'Like')
   - else
     = button_to polymorphic_path([target, 'like']), method: :post do
       %i.fa.fa-thumbs-o-up
-        = pluralize(target.likers(User).count, 'Liker')
+        = pluralize(target.likers(User).count, 'Like')
