@@ -51,6 +51,19 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def claim
+    if user_signed_in?
+      @company = Company.find(params[:company_id])
+      authorize @company
+      if @company.update(user_id: current_user.id)
+        redirect_to @company, notice: 'Company claimed.'
+        return
+      end
+    end
+    render :show, notice: 'You don\'t have permission to do that.'
+  end
+
+
   # DELETE /companies/1
   def destroy
     @company.destroy
