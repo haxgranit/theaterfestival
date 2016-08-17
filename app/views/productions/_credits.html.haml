@@ -5,10 +5,12 @@
         %a{"aria-controls" => "artist-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#artist-list"}
           Production Credits
     #artist-list.panel-collapse.collapse{"aria-labelledby" => "artists", :role => "tabpanel"}
-      %table.table
+      %table.table.table-striped
         %tbody
           - @production.production_credits.each do |credit|
             %tr
+              %td
+                = attachment_image_tag(credit.artist, :profile_image, :fill, 100, 100)
               %td
                 = link_to(credit.artist.stage_name, artist_path(credit.artist))
               %td
@@ -24,10 +26,12 @@
         %a{"aria-controls" => "creative-list", "aria-expanded" => "false", "data-parent" => "#credits", "data-toggle" => "collapse", :href => "#creative-list"}
           Creative Credits
     #creative-list.panel-collapse.collapse{"aria-labelledby" => "creative", :role => "tabpanel"}
-      %table.table
+      %table.table.table-striped
         %tbody
           - @production.writing_credits.each do |credit|
             %tr
+              %td
+                = attachment_image_tag(credit.artist, :profile_image, :fill, 100, 100)
               %td
                 = link_to(credit.artist.stage_name, artist_path(credit.artist))
               %td
