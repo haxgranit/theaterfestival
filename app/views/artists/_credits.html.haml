@@ -1,68 +1,21 @@
-%ul.nav.nav-pills{ role: 'tablist' }
-  %li.nav-item
-    %a.nav-link.active{ data: { toggle: 'pill' }, href: '#acting', role: 'tab'}
-      Acting
-  %li.nav-item
-    %a.nav-link{ data: { toggle: 'pill' }, href: '#writing', role: 'tab'}
-      Writing
+.tab-wrapper
+  %ul.nav.nav-pills{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#acting', role: 'tab'}
+        Acting
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#writing', role: 'tab'}
+        Writing
 .tab-content
   .tab-pane.active{ id: 'acting', role: 'tabpanel'}
 
     - @artist.production_credits.each do |credit|
       - p = credit.production
-      .row
-        .col-sm-2
-          %figure.frontpage-show
-            = attachment_image_tag(p, :key_image, :fill, 100, 150)
-            %figurecaption
-              %span.company
-                = link_to p.company.name, p.company if p.company.present?
-              %span.venue
-                = link_to p.venues.first.name, p.venues.first if p.venues.present?
-              = render partial: 'shared/social_buttons', locals: { target: p }
-        .col-sm-9.offset-sm-1
-          .production-meta
-            %h3
-              = p.title
-            %span.production-info
-              = credit.position
-            %span.production-info
-              = credit.start_date.strftime('%D')
-          - if p.venues.present?
-            .production-venues
-              %p
-                = p.venues.first.theaters.first.name + ','
-                = p.venues.first.name + ','
-                = p.venues.first.city + ','
-                = p.venues.first.state
-
-
+      = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'credit_form', locals: { target: :production_credits }
   .tab-pane{ id: 'writing', role: 'tabpanel'}
 
     - @artist.writing_credits.each do |credit|
       - p = credit.production
-      .row
-        .col-sm-2
-          %figure.frontpage-show
-            = attachment_image_tag(p, :key_image, :fill, 100, 150)
-            %figurecaption
-              %span.company
-                = link_to p.company.name, p.company if p.company.present?
-              %span.venue
-                = link_to p.venues.first.name, p.venues.first if p.venues.present?
-              = render partial: 'shared/social_buttons', locals: { target: p }
-        .col-sm-9.offset-sm-1
-          .production-meta
-            %h3
-              = p.title
-            %span.production-info
-              = credit.position
-            %span.production-info
-              = credit.start_date.strftime('%D')
-          - if p.venues.present?
-            .production-venues
-              %p
-                = p.venues.first.theaters.first.name + ','
-                = p.venues.first.name + ','
-                = p.venues.first.city + ','
-                = p.venues.first.state
+      = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'credit_form', locals: { target: :writing_credits }

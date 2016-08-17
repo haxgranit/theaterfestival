@@ -17,7 +17,7 @@
     .block-grid
       - @artist.pictures.each do |p|
         %figure.block-grid-item.frontpage-show
-          = attachment_image_tag(p, :image, :fill, 100, 100)
+          = link_to attachment_image_tag(p, :image, format: 'jpg'), attachment_url(p, :image, format: 'jpg'), data: { lightbox: 'images'}
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
     .reviews
