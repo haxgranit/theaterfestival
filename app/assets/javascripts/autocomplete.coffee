@@ -1,5 +1,5 @@
 $ ->
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     users = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name', 'value', 'email')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -36,7 +36,7 @@ $ ->
 
 
 
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     artists = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name', 'value', 'credits')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -98,7 +98,7 @@ $ ->
       source: artists.ttAdapter()
 
 
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     productions = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -122,17 +122,17 @@ $ ->
                 <strong>{{title}}</strong>
               {{/if}}
               {{#if company}}
-                  - {{company}}
+                  - {{company.name}}
               {{/if}}
               </p>
             </div>
           ")
       source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-        $('[id$=credit_production_id]').val(suggestion.value)
+        $('[id$=production_id]').val(suggestion.value)
         return
 
 
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     companies = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
       queryTokenizer: Bloodhound.tokenizers.whitespace

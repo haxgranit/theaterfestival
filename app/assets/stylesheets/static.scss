@@ -2,12 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#header-image {width: 100%; margin-bottom:-125px; }
 #main-content {
-    background-image: image-url('banner.jpg');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: 100%;
-    padding-top: 125px;
 
     .sidebar-area {
       -webkit-box-ordinal-group: 2;
@@ -129,8 +128,8 @@
 }
 
 @media (min-width: 544px) {
+  #header-image {margin-bottom:-300px; }
   #main-content {
-    padding-top: 300px;
 
     .container > .row {
       flex-direction: row;
