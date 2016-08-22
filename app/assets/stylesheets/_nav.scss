@@ -1,76 +1,96 @@
 .navbar.navbar-light {
-    font-weight: bold;
-    margin: 0;
+  font-weight: bold;
+  margin: 0;
 
-    .container {
-    	padding: 0;
+  .container {
+    padding: 0;
+  }
+
+  .navbar-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 0;
+    width: 100%;
+
+    .nav-link {
+      color: rgba(0, 0, 0, 1);
+      font-size: .9rem;
+      padding-left: 19px;
+      position: relative;
+
+      &:before {
+        content: '>';
+        background-color: rgb(250,247,0);
+        border-radius: 100%;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 16px;
+        height: 16px;
+        width: 16px;
+        padding: 0 0 0 5px;
+        position: absolute;
+        left: 0;
+        top: 11px;
+        transition: .25s all;
+      }
+
+      &.nav-show:before {
+        background-color: rgb(255,0,0);
+      }
+
+      &.nav-community:before {
+        background-color: rgb(26,217,48);
+      }
+
+      &[aria-expanded="true"]:before {
+        transform: rotate(-90deg);
+      }
     }
+  }
+}
 
-    .navbar-nav {
-    	display: flex;
-    	justify-content: space-between;
-    	padding: .5em 0;
-    	width: 100%;
-
-    	.nav-link {
-	    	color: rgba(0, 0, 0, 1);
-	    	font-size: .9rem;
-	    	padding-left: 19px;
-	    	position: relative;
-
-	    	&:before {
-	    		content: '>';
-	    		background-color: rgb(250,247,0);
-	    		border-radius: 100%;
-			    display: inline-block;
-			    font-size: 12px;
-			    line-height: 16px;
-			    height: 16px;
-			    width: 16px;
-			    padding: 0 0 0 5px;
-			    position: absolute;
-			    left: 0;
-			    top: 11px;
-			    transition: .25s all;
-	    	}
-
-	    	&.nav-show:before {
-	    		background-color: rgb(255,0,0);
-	    	}
-
-	    	&.nav-community:before {
-	    		background-color: rgb(26,217,48);
-	    	}
-
-	    	&[aria-expanded="true"]:before {
-	    		transform: rotate(-90deg);
-	    	}
-	    }
+.tab-pane {
+  .nav-pills {
+    .nav-link {
+      color: grey;
+      &.active {
+        color: grey;
+        font-weight: bold;
+        background-color: transparent;
+      }
     }
+  }
+}
+
+.navbar-brand img {
+  height: 50px;
 }
 
 @media (min-width: 544px) {
-	.navbar.navbar-light {
-		.navbar-nav {
-		    justify-content: flex-end;
-		    padding: 0;
-		    width: auto;
-		}
-	}
+  .navbar.navbar-light {
+    .navbar-nav {
+      justify-content: flex-end;
+      padding: 0;
+      width: auto;
+    }
+  }
 }
 @media (min-width: 768px) {
-	.navbar.navbar-light {
-		.container {
-			padding-left: 0.9375rem;
-    		padding-right: 0.9375rem;
-		}
-		.navbar-nav {
-		    .nav-link {
-		    	font-size: 1rem;
-		    	padding-left: 20px;
-		    }
-		}
-	}
+  .navbar.navbar-light {
+    .container {
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-nav {
+      .nav-link {
+        font-size: 1rem;
+        padding-left: 20px;
+      }
+    }
+  }
 }
 @media (min-width: 992px) {
 

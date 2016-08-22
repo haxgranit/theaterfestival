@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
+  include Socialization::Actions
+
   def autocomplete
     render json: Company.search(params[:query], {
                                   fields: ["name"],
@@ -48,6 +50,19 @@ class CompaniesController < ApplicationController
       render :edit
     end
   end
+
+  def claim
+    if user_signed_in?
+      @company = Company.find(params[:company_id])
+      authorize @company
+      if @company.update(user_id: current_user.id)
+        redirect_to @company, notice: 'Company claimed.'
+        return
+      end
+    end
+    render :show, notice: 'You don\'t have permission to do that.'
+  end
+
 
   # DELETE /companies/1
   def destroy

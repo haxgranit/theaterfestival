@@ -1,0 +1,21 @@
+.nested-fields.row {
+  border: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.nested-fields .form-group {
+  margin: 0;
+  padding: 1rem;
+}
+
+a.btn.remove_fields {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  align-self: flex-end;
+}
+
+.links, .actions {
+  display: inline-block;
+}
+
+.form-group.hidden { display: none; }

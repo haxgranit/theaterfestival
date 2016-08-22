@@ -1,66 +1,41 @@
-%p#notice= notice
-= attachment_image_tag(@production, :key_image, :fill, 300, 300)
-%p
-  %strong Title:
-  = @production.title
-%p
-  %strong Public:
-  = @production.public
-%p
-  %strong Tagline:
-  = @production.tagline
-%p
-  %strong Description:
-  = @production.description
-%p
-  %strong First performance:
-  = @production.first_performance
-%p
-  %strong Last performance:
-  = @production.last_performance
-%h2 Creative
-%ul
-  - @production.writing_credits.each do |wc|
-    %li
-      = link_to wc.artist.stage_name, artist_path(wc.artist)
-      \- #{wc.position}
-%h2 Cast
-%ul
-  - @production.production_credits.each do |pc|
-    %li
-      = link_to pc.artist.stage_name, artist_path(pc.artist)
-      \- #{pc.position}
-%h2 Showtimes
-%ul
-  - @production.showtimes.each do |s|
-    %li
-      = link_to s.theater.name, theater_path(s.theater)
-      \- #{link_to s.venue.name, venue_path(s.venue)}
-      \- #{s.local_time.strftime('%b %d at %I:%M %p')}
-- if @production.production_metadata.present?
-  %h2 Other Info
-  %ul
-    - @production.metadata.each do |k,v|
-      %li
-        = "#{k.humanize} - #{v.to_s}"
-- if @production.all_companies
-  %h2 Companies
-  - @production.all_companies.each do |c|
-    %li
-      = link_to c.name, company_path(c)
-%h2 Reviews
-%ul
-  - @production.reviews.each do |r|
-    %li
-      = link_to r.title, review_path(r)
-      \- #{'*'*r.rating}
-  - @production.press_items.each do |pi|
-    = link_to pi.quote, pi.link
-= link_to 'Edit', edit_production_path(@production)
-|
-= link_to 'Back', productions_path
-%p
-  = link_to 'Write A Review', new_review_path(review: { production_id: @production.id })
-  |
-  \#{link_to 'Create a Production Credit', new_production_credit_path(production_credit: { production_id: @production.id })} |
-  \#{link_to 'Create a Writing Credit', new_writing_credit_path(writing_credit: { production_id: @production.id })}
+.tab-wrapper
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
+        Credits
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+        Media
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
+        Reviews
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '', role: 'tab'}
+        Tickets
+.tab-content
+  .tab-pane.active{ id: 'credits', role: 'tabpanel' }
+    = render 'credits'
+  .tab-pane{ id: 'media', role: 'tabpanel' }
+    .block-grid
+      - @production.pictures.each do |p|
+        %figure.block-grid-item.frontpage-show
+          = attachment_image_tag(p, :image, :fill, 100, 100)
+
+  .tab-pane{ id: 'reviews', role: 'tabpanel' }
+    .reviews
+      %h3
+        = pluralize(@production.reviews.count, 'Review')
+      - @production.reviews.each do |r|
+        .row
+          .col-sm-1
+            = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+          .col-sm-8.offset-sm-1
+            %p.user
+              = r.user.full_name
+            %p.review-summary
+              = truncate r.full_text, length: 100
+            %p.review-link
+              = link_to 'Review Link', r
+          .col-sm-1
+            %p.date
+              = r.date.strftime("%D")

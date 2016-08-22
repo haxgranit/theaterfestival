@@ -35,6 +35,7 @@ gem 'devise_zxcvbn'
 gem 'pundit'
 
 gem 'socialization'
+gem 'public_activity'
 gem 'valid_url'
 gem 'administrate', github: 'jhenahan/administrate', branch: 'te'
 
@@ -50,6 +51,10 @@ gem 'handlebars_assets'
 gem 'js-routes'
 gem 'hamlit-rails'
 gem 'autoprefixer-rails'
+gem 'ezdz-rails'
+gem 'geokit-rails'
+gem 'cocoon'
+gem 'lightbox2-rails', github: 'gavinkflam/lightbox2-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -72,5 +77,6 @@ group :development do
   gem 'spring'
 
   # Guard deps
-  gem 'guard-bundler', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
 end

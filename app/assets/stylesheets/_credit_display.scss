@@ -1,0 +1,15 @@
+.production-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+    color: grey;
+    font-weight: bold;
+    &:before {
+      content: '> '
+    }
+  }
+  span { color: grey; }
+}

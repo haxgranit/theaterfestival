@@ -16,9 +16,12 @@
 //= require tether
 //= require bootstrap
 //= require bootstrap-slider
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 //= require twitter/typeahead.min
+//= require lightbox
 //= require handlebars
+//= require cocoon
 //= require js-routes
 //= require refile
+//= require jquery.ezdz
 //= require_tree .

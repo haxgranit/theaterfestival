@@ -1,5 +1,7 @@
 = simple_form_for(@production) do |f|
   = f.input :title, as: :string
+  = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }
+  = f.input :company_id, as: :hidden
   = f.input :public
   = f.input :tagline
   = f.input :description

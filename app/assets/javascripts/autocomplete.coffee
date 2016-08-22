@@ -1,5 +1,5 @@
 $ ->
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     users = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name', 'value', 'email')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -36,7 +36,7 @@ $ ->
 
 
 
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     artists = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name', 'value', 'credits')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -98,15 +98,66 @@ $ ->
       source: artists.ttAdapter()
 
 
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     productions = new Bloodhound(
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title')
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
       remote:
         url: '/productions/autocomplete?query=%QUERY'
         wildcard: '%QUERY')
+
     productions.initialize()
-    $('[id*=production_id]').typeahead null,
+
+    $('#title.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
       displayKey: 'title'
-      source: productions.ttAdapter()
-    return
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if title}}
+                <strong>{{title}}</strong>
+              {{/if}}
+              {{#if company}}
+                  - {{company.name}}
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=production_id]').val(suggestion.value)
+        return
+
+
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
+    companies = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      remote:
+        url: '/companies/autocomplete?query=%QUERY'
+        wildcard: '%QUERY')
+
+    companies.initialize()
+
+    $('#company.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'name'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if name}}
+                <strong>{{name}}</strong>
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: companies.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=company_id]').val(suggestion.value)
+        return

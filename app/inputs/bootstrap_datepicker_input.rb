@@ -1,6 +1,7 @@
 class BootstrapDatepickerInput < SimpleForm::Inputs::Base
-  def input
-    text_field_options = input_html_options.with_indifferent_access
+  def input(wrapper_options = nil)
+    merged_input_options = merge_wrapper_options(input_html_options, wrapper_options)
+    text_field_options = merged_input_options.with_indifferent_access
     format =  text_field_options.delete(:format)
     hidden_field_options = text_field_options.dup
     hidden_field_options[:class] = text_field_options[:class].dup # so they won't work with same array object

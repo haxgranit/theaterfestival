@@ -4,6 +4,9 @@
       %li.nav-item
         %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
           News
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#follows', role: 'tab'}
+          Follows
       - if policy(@user).edit?
         %li.nav-item
           %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
@@ -13,25 +16,53 @@
             Settings
   .tab-content
     .tab-pane.active{ id: 'news', role: 'tabpanel' }
-      Some news content
+      %h2 #{@user.first_name}'s Activity
+      = render_activities(@user.public_activities)
+      %h2 Newsfeed
+      = render_activities(@user.follower_activities)
+    .tab-pane{ id: 'follows', role: 'tabpanel' }
+      %ul.nav.nav-pills{ role: 'tablist' }
+        %li.nav-item
+          %a.nav-link.active{ data: { toggle: 'pill' }, href: '#productions', role: 'tab'}
+            Productions
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'pill' }, href: '#artists', role: 'tab'}
+            Artists
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'pill' }, href: '#companies', role: 'tab'}
+            Companies
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'pill' }, href: '#venues', role: 'tab'}
+            Venues
+      .tab-content
+        .tab-pane.active{ id: 'productions', role: 'tabpanel'}
+          .block-grid
+            - @user.followed.select { |f| f.class == Production }.each do |p|
+              %figure.block-grid-item.frontpage-show
+                = attachment_image_tag(p, :key_image, :fill, 100, 150)
+                %figurecaption
+                  %span.full-title
+                    %span.title>
+                      = link_to p.title, p
+                  %span.company
+                    = link_to p.company.name, p.company if p.company.present?
+                  %span.venue
+                    = link_to p.venues.first.name, p.venues.first if p.venues.present?
+                  = render partial: 'shared/social_buttons', locals: { target: p }
+        .tab-pane{ id: 'artists', role: 'tabpanel'}
+          .block-grid
+            - @user.followed.select { |f| f.class == Artist }.each do |a|
+              %figure.block-grid-item.frontpage-show
+                = attachment_image_tag(a, :profile_image, :fill, 100, 150)
+                %figurecaption
+                  %span.full-title
+                    %span.title>
+                      = link_to a.stage_name, a
+                  = render partial: 'shared/social_buttons', locals: { target: a }
+
+
     - if policy(@user).edit?
       .tab-pane{ id: 'notifications', role: 'tabpanel' }
         Some notification content
       .tab-pane{ id: 'settings', role: 'tabpanel' }
         = render 'devise/registrations/edit', resource: current_user
-  .social-features
-    %h1 Social Features
-    %p
-      Like count: #{@user.likers(User).count}
-      %br/
-      Follower count: #{@user.followers(User).count}
-    - if current_user
-      - if current_user.likes?(@user)
-        = link_to 'Unlike', user_unlike_path(@user), method: :post
-      - else
-        = link_to 'Like', user_like_path(@user), method: :post
-      |
-      - if current_user.follows?(@user)
-        = link_to 'Unfollow', user_unfollow_path(@user), method: :post
-      - else
-        = link_to 'Follow', user_follow_path(@user), method: :post

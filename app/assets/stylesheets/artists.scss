@@ -3,30 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .artist-profile-details {
-  background-color: rgba(85, 89, 92, 0.25);
+  @extend %profile-sidebar;
+}
 
-  h1 {
-    font-size: 1.1em;
-    font-weight: 500;
-  }
-  h2 {
-    background: $brand-primary;
-  }
-  p {
-    color: #fff;
-    margin-top: 1em;
+figure.profile-image {
+  position: relative;
+}
 
-    strong {
-      font-weight: 500;
+figurecaption.social {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  .button_to {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0;
+    button {
+      background: transparent;
+      border: none;
+      font-size: 1.5em;
+      padding: 1em;
     }
-  }
-  h1,
-  h2,
-  p {
-    padding-left: 1.25em;
-    padding-right: 1.25em;
+
+    .like, .unlike { color: $brand-primary; }
+    .follow, .unfollow { background-color: $brand-primary; color: white; }
   }
 }
+
 .content-area {
   .tab-wrapper {
     display: flex;
@@ -45,7 +50,7 @@
       align-items: center;
       li {
         padding-left: 5px;
-        
+
         & > a {
           color: $gray-dark;
           font-size: 1.5em;

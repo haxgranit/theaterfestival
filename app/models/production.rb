@@ -1,12 +1,24 @@
 class Production < ActiveRecord::Base
   include Permissible
+  include Metadata
+  include SocialTarget
+  include PublicActivity::Common
+  paginates_per 9
+
   searchkick word_start: [:title], searchable: [:title]
   validates :title, :first_performance, presence: true
   attachment :key_image
 
   has_many :credits
   delegate :writing_credits, :production_credits, to: :credits
+  has_many :production_credits, inverse_of: :production
+  has_many :writing_credits, inverse_of: :production
+
+  accepts_nested_attributes_for :production_credits
+  accepts_nested_attributes_for :writing_credits
+
   has_many :artists, through: :credits
+  belongs_to :company
   has_many :companies, through: :company_production_links
   has_many :company_production_links
   has_many :festivals, through: :festival_production_links
@@ -14,22 +26,20 @@ class Production < ActiveRecord::Base
   has_many :press_items
   has_many :reviews
   has_many :showtimes, through: :production_showtime_links
+  has_many :theaters, through: :showtimes
+  has_many :venues, through: :theaters
   has_many :production_showtime_links
   has_one :production_metadata
   accepts_nested_attributes_for :production_metadata
+  has_many :pictures, as: :has_image
+  accepts_attachments_for :pictures, attachment: :image
+
+  alias_attribute :name, :title
+
 
   def metadata
-    if production_metadata.present?
-      production_metadata
-        .attributes
-        .except('id', 'production_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    collect_metadata(production_metadata)
   end
 
-  def all_companies
-    fest_companies = festivals.map { |f| f.companies }.flatten!
-    (fest_companies + companies).uniq if fest_companies
-    companies
-  end
+
 end

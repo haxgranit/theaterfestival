@@ -1,0 +1,25 @@
+.followers, .likes {
+  .fa {
+    white-space: nowrap;
+  }
+}
+
+.followers.active {
+  .btn {
+  background-color: #0d0;
+  }
+  color: white !important;
+  .fa {
+    color: white !important;
+  }
+}
+
+.likes.active {
+  .btn {
+  background-color: $brand-primary;
+  }
+  color: white !important;
+  .fa {
+    color: white !important;
+  }
+}

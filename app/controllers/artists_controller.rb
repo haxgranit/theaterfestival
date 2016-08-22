@@ -1,7 +1,6 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
-
   include Socialization::Actions
+  before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
   def autocomplete
     @artists = Artist.search(params[:query], {
@@ -55,6 +54,7 @@ class ArtistsController < ApplicationController
   # PATCH/PUT /artists/1
   def update
     @artist = Artist.find(params[:id])
+
     authorize @artist
     if @artist.update(artist_params)
       redirect_to @artist, notice: 'Artist was successfully updated.'
@@ -105,6 +105,22 @@ class ArtistsController < ApplicationController
               :user_id,
               :profile_image,
               pictures_images: [],
+              production_credits_attributes: [:id,
+                                              :name,
+                                              :position,
+                                              :production_id,
+                                              :artist_id,
+                                              :start_date,
+                                              :end_date,
+                                              :_destroy],
+              writing_credits_attributes: [:id,
+                                           :name,
+                                           :position,
+                                           :production_id,
+                                           :artist_id,
+                                           :start_date,
+                                           :end_date,
+                                           :_destroy],
               artist_social_metadata_attributes: [:id,
                                                   :email,
                                                   :facebook,

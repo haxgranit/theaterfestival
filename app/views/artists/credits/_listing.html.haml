@@ -1,0 +1,29 @@
+.row
+  .col-sm-2
+    %figure.frontpage-show
+      = link_to attachment_image_tag(target, :key_image, :fill, 100, 150), target
+      %figurecaption
+        %span.company
+          = link_to target.company.name, target.company if target.company.present?
+        %span.venue
+          = link_to target.venues.first.name, target.venues.first if target.venues.present?
+        = render partial: 'shared/social_buttons', locals: { target: target }
+  .col-sm-9.offset-sm-1
+    .production-meta
+      %h3
+        = target.title
+      %span.production-info
+        = credit.position
+      %span.production-info
+        = credit.start_date.strftime('%D')
+    - if credit.name?
+      %p
+        Credited as #{credit.name}
+    - if target.venues.present?
+      - v = target.venues.first
+      .production-venues
+        %p
+          = link_to(v.theaters.first.name, v.theaters.first) + ','
+          = v.name + ','
+          = v.city + ','
+          = v.state

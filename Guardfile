@@ -15,12 +15,6 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-# https://github.com/guard/guard-bundler/issues/32
-Open3.popen3("gem contents bundler") do |i, o|
-  Kernel.system("gem install bundler") if o.read.empty?
-end
-
-
 guard :minitest, spring: true, all_on_start: false do
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
   watch(%r{^test/test_helper\.rb$}) { 'test' }
@@ -78,18 +72,41 @@ guard :minitest, spring: true, all_on_start: false do
   watch(%r{^test/.+_test\.rb$})
 end
 
+guard 'livereload' do
+  extensions = {
+    css: :css,
+    scss: :css,
+    sass: :css,
+    js: :js,
+    coffee: :js,
+    html: :html,
+    png: :png,
+    gif: :gif,
+    jpg: :jpg,
+    jpeg: :jpeg,
+    # less: :less, # uncomment if you want LESS stylesheets done in browser
+  }
 
-guard :bundler do
-  #Open3.popen3("gem contents bundler") do |i, o|
-  #  Kernel.system("gem install bundler") if o.read.empty?
-  #end
-  require 'guard/bundler'
-  require 'guard/bundler/verify'
-  helper = Guard::Bundler::Verify.new
+  rails_view_exts = %w(erb haml slim)
 
-  files = ['Gemfile']
-  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+  # file types LiveReload may optimize refresh for
+  compiled_exts = extensions.values.uniq
+  watch(%r{public/.+\.(#{compiled_exts * '|'})})
 
-  # Assume files are symlinked from somewhere
-  files.each { |file| watch(helper.real_path(file)) }
+  extensions.each do |ext, type|
+    watch(%r{
+          (?:app|vendor)
+          (?:/assets/\w+/(?<path>[^.]+) # path+base without extension
+           (?<ext>\.#{ext})) # matching extension (must be first encountered)
+          (?:\.\w+|$) # other extensions
+          }x) do |m|
+      path = m[1]
+      "/assets/#{path}.#{type}"
+    end
+  end
+
+  # file needing a full reload of the page anyway
+  watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
+  watch(%r{app/helpers/.+\.rb})
+  watch(%r{config/locales/.+\.yml})
 end

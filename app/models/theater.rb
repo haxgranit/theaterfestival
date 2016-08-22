@@ -1,5 +1,6 @@
 class Theater < ActiveRecord::Base
   include Permissible
+  include PublicActivity::Common
   searchkick word_start: [:name], searchable: [:name]
   validates :name, :venue_id, presence: true
   validates_uniqueness_of :name, scope: [:venue_id]

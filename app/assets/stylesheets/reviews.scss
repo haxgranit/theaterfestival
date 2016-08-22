@@ -1,3 +1,15 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.reviews {
+  img {
+    width: 100%;
+  }
+}
+
+
+.row.review {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
