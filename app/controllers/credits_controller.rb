@@ -39,6 +39,7 @@ class CreditsController < ApplicationController
   def update
     model = get_model(params[:type])
 
+    @model.create_activity :create, owner: @model.artist, recipient: @model.production
     if model.update(model_params)
       redirect_to @model, notice: 'Credit was successfully updated.'
     else

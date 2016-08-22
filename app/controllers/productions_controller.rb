@@ -13,7 +13,7 @@ class ProductionsController < ApplicationController
       {
         title: production.title,
         value: production.id,
-        company: production.companies.first
+        company: production.company
       }
     end
     render json: result

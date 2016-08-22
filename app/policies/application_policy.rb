@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    admin? || false
+    admin? || true
   end
 
   def edit?

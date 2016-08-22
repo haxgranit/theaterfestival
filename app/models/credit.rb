@@ -1,7 +1,7 @@
 class Credit < ActiveRecord::Base
   include PublicActivity::Common
-  belongs_to :artist
-  belongs_to :production
+  belongs_to :artist, inverse_of: :credits
+  belongs_to :production, inverse_of: :credits
 
   validates :artist, :production, :position, :start_date, presence: true
 

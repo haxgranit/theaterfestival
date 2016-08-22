@@ -15,8 +15,8 @@ class Artist < ActiveRecord::Base
   accepts_nested_attributes_for :artist_social_metadata
   has_many :credits
   delegate :writing_credits, :production_credits, to: :credits
-  has_many :production_credits
-  has_many :writing_credits
+  has_many :production_credits, inverse_of: :artist
+  has_many :writing_credits, inverse_of: :artist
   accepts_nested_attributes_for :production_credits, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :writing_credits, reject_if: :all_blank, allow_destroy: true
   has_many :productions, -> { uniq }, through: :credits

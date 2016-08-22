@@ -29,15 +29,16 @@
       %p.user-stat
         Likes:
         = @production.likers(User).count
-      %p.venue-info
-        - v = @production.venues.first
-        = v.name
-        %br
-        = @production.theaters.first.name
-        %br
-        #{v.address}, #{v.city}, #{v.state} #{v.zip}
-        %br
-        = link_to v.website, v.website
+      - if @production.venues.present?
+        %p.venue-info
+          - v = @production.venues.first
+          = v.name
+          %br
+          = @production.theaters.first.name
+          %br
+          #{v.address}, #{v.city}, #{v.state} #{v.zip}
+          %br
+          = link_to v.website, v.website
       - if @production.description.present?
         %h2
           Production Description

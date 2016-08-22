@@ -54,6 +54,7 @@ class ArtistsController < ApplicationController
   # PATCH/PUT /artists/1
   def update
     @artist = Artist.find(params[:id])
+
     authorize @artist
     if @artist.update(artist_params)
       redirect_to @artist, notice: 'Artist was successfully updated.'

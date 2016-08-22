@@ -48,23 +48,7 @@
                     = link_to p.company.name, p.company if p.company.present?
                   %span.venue
                     = link_to p.venues.first.name, p.venues.first if p.venues.present?
-                  %span.followers
-                    - if current_user.follows?(p)
-                      %i.fa.fa-plus
-                      = pluralize(p.followers(User).count, 'Follower')
-                    - else
-                      = button_to production_follow_path(p), method: :post do
-                        %i.fa.fa-plus
-                          = pluralize(p.followers(User).count, 'Follower')
-
-                  %span.likes
-                    - if current_user.likes?(p)
-                      %i.fa.fa-thumbs-o-up
-                        = pluralize(p.likers(User).count, 'Like')
-                    - else
-                      = button_to production_like_path(p), method: :post do
-                        %i.fa.fa-thumbs-o-up
-                          = pluralize(p.likers(User).count, 'Like')
+                  = render partial: 'shared/social_buttons', locals: { target: p }
         .tab-pane{ id: 'artists', role: 'tabpanel'}
           .block-grid
             - @user.followed.select { |f| f.class == Artist }.each do |a|
@@ -74,23 +58,7 @@
                   %span.full-title
                     %span.title>
                       = link_to a.stage_name, a
-                  %span.followers
-                    - if current_user.follows?(a)
-                      %i.fa.fa-plus
-                      = pluralize(a.followers(User).count, 'Follower')
-                    - else
-                      = button_to artist_follow_path(a), method: :post do
-                        %i.fa.fa-plus
-                          = pluralize(a.followers(User).count, 'Follower')
-                  %span.likes
-                    - if current_user.likes?(a)
-                      %i.fa.fa-thumbs-o-up
-                        = pluralize(a.likers(User).count, 'Like')
-                    - else
-                      = button_to artist_like_path(a), method: :post do
-                        %i.fa.fa-thumbs-o-up
-                          = pluralize(a.likers(User).count, 'Like')
-
+                  = render partial: 'shared/social_buttons', locals: { target: a }
 
 
     - if policy(@user).edit?

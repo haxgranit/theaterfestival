@@ -3,6 +3,7 @@ class Production < ActiveRecord::Base
   include Metadata
   include SocialTarget
   include PublicActivity::Common
+  paginates_per 9
 
   searchkick word_start: [:title], searchable: [:title]
   validates :title, :first_performance, presence: true
@@ -10,6 +11,12 @@ class Production < ActiveRecord::Base
 
   has_many :credits
   delegate :writing_credits, :production_credits, to: :credits
+  has_many :production_credits, inverse_of: :production
+  has_many :writing_credits, inverse_of: :production
+
+  accepts_nested_attributes_for :production_credits
+  accepts_nested_attributes_for :writing_credits
+
   has_many :artists, through: :credits
   belongs_to :company
   has_many :companies, through: :company_production_links
