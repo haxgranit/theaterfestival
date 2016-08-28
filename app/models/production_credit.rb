@@ -1,2 +1,0 @@
-class ProductionCredit < Credit
-end

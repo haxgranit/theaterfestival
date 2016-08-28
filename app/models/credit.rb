@@ -1,11 +1,12 @@
 class Credit < ActiveRecord::Base
-  include PublicActivity::Common
-  belongs_to :artist, inverse_of: :credits
-  belongs_to :production, inverse_of: :credits
+  include PublicActivity::Model
+  tracked owner: :artist, recipient: :creditable
 
-  validates :artist, :production, :position, :start_date, presence: true
+  belongs_to :artist
+  belongs_to :creditable, polymorphic: true
+  enum credit_type: [:production, :creative, :staff]
 
-  scope :production_credits, -> { where(type: 'ProductionCredit') }
-  scope :writing_credits, -> { where(type: 'WritingCredit') }
-  scope :staff_credits, -> { where(type: 'StaffCredit') }
+
+  validates :artist, :creditable, :position, :start_date, presence: true
+
 end
