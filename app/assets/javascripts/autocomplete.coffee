@@ -98,7 +98,9 @@ $ ->
       source: artists.ttAdapter()
 
 
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', (e, added_item) ->
+    testing = added_item
+    console.log(testing)
     productions = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -106,7 +108,7 @@ $ ->
         url: '/productions/autocomplete?query=%QUERY'
         wildcard: '%QUERY')
 
-    productions.initialize()
+    productions.initialize();
 
     $('#title.fake').typeahead({
       hint: true
@@ -128,7 +130,8 @@ $ ->
             </div>
           ")
       source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-        $('[id$=production_id]').val(suggestion.value)
+        added_item.find('[id$=creditable_id]').val(suggestion.value)
+        added_item.find('[id$=creditable_type]').val(suggestion.type)
         return
 
 
