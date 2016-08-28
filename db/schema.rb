@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 65) do
+ActiveRecord::Schema.define(version: 68) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,21 +131,19 @@ ActiveRecord::Schema.define(version: 65) do
   add_index "company_social_metadata", ["company_id"], name: "index_company_social_metadata_on_company_id", unique: true, using: :btree
 
   create_table "credits", force: :cascade do |t|
-    t.integer  "artist_id"
-    t.integer  "production_id"
-    t.text     "name"
-    t.text     "position"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.boolean  "confirmed"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "type"
-    t.boolean  "original"
+    t.integer "artist_id"
+    t.integer "creditable_id"
+    t.string  "creditable_type"
+    t.string  "credited_as"
+    t.string  "position"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.boolean "original_cast"
+    t.boolean "confirmed"
+    t.integer "credit_type"
   end
 
   add_index "credits", ["artist_id"], name: "index_credits_on_artist_id", using: :btree
-  add_index "credits", ["production_id"], name: "index_credits_on_production_id", using: :btree
 
   create_table "festival_production_links", force: :cascade do |t|
     t.integer  "festival_id"
@@ -423,7 +421,6 @@ ActiveRecord::Schema.define(version: 65) do
   add_foreign_key "company_production_links", "productions"
   add_foreign_key "company_social_metadata", "companies"
   add_foreign_key "credits", "artists"
-  add_foreign_key "credits", "productions"
   add_foreign_key "festival_production_links", "festivals"
   add_foreign_key "festival_production_links", "productions"
   add_foreign_key "permissions", "users"
