@@ -9,13 +9,13 @@
 .tab-content
   .tab-pane.active{ id: 'acting', role: 'tabpanel'}
 
-    - @artist.production_credits.each do |credit|
-      - p = credit.production
+    - @artist.credits.production.each do |credit|
+      - p = credit.creditable
       = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'credit_form', locals: { target: :production_credits }
+    = render partial: 'credit_form', locals: { target: :credits, type: 'production' }
   .tab-pane{ id: 'writing', role: 'tabpanel'}
 
-    - @artist.writing_credits.each do |credit|
-      - p = credit.production
+    - @artist.credits.creative.each do |credit|
+      - p = credit.creditable
       = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'credit_form', locals: { target: :writing_credits }
+    = render partial: 'credit_form', locals: { target: :credits, type: 'creative' }

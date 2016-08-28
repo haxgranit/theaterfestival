@@ -42,7 +42,7 @@
               %h3
                 = pluralize(p.reviews.count, "Review")
               %span.production-info
-                = p.company.name
+                = p.company.name if p.company.present?
               - if p.venues.present?
                 %span.production-info
                   = p.venues.first.name

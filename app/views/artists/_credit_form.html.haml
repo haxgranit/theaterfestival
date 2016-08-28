@@ -1,6 +1,6 @@
-= simple_form_for @artist, defaults: {wrapper_html: {class: 'col-sm-4'}} do |f|
+= simple_form_for @artist, defaults: {wrapper_html: {class: "col-sm-4 #{type}-#{target.to_s}"}} do |f|
   - if user_signed_in?
     .links
-      = link_to_add_association 'Add Credit', f, target, class: 'btn btn-primary'
+      = link_to_add_association 'Add Credit', f, target, render_options: { locals: { credit_type: type } }, class: 'btn btn-primary'
     .actions
       = f.button :submit, 'Save Credits'
