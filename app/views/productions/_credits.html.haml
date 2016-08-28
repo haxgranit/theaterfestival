@@ -7,7 +7,7 @@
     #artist-list.panel-collapse.collapse.in{"aria-labelledby" => "artists", :role => "tabpanel"}
       %table.table.table-striped
         %tbody
-          - @production.production_credits.each do |credit|
+          - @production.credits(:production).each do |credit|
             %tr
               %td
                 = attachment_image_tag(credit.artist, :profile_image, :fill, 100, 100)
@@ -28,7 +28,7 @@
     #creative-list.panel-collapse.collapse{"aria-labelledby" => "creative", :role => "tabpanel"}
       %table.table.table-striped
         %tbody
-          - @production.writing_credits.each do |credit|
+          - @production.credits(:creative).each do |credit|
             %tr
               %td
                 = attachment_image_tag(credit.artist, :profile_image, :fill, 100, 100)

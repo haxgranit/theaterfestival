@@ -2,7 +2,8 @@ class Company < ActiveRecord::Base
   include Permissible
   include Metadata
   include SocialTarget
-  include PublicActivity::Common
+  include PublicActivity::Model
+  tracked
 
   searchkick word_start: [:name], searchable: [:name]
   validates :name, presence: true

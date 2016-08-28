@@ -16,9 +16,9 @@
         = credit.position
       %span.production-info
         = credit.start_date.strftime('%D')
-    - if credit.name?
+    - if credit.credited_as?
       %p
-        Credited as #{credit.name}
+        Credited as #{credit.credited_as}
     - if target.venues.present?
       - v = target.venues.first
       .production-venues

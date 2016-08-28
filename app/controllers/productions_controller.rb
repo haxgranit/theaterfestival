@@ -13,6 +13,7 @@ class ProductionsController < ApplicationController
       {
         title: production.title,
         value: production.id,
+        type: 'Production',
         company: production.company
       }
     end
