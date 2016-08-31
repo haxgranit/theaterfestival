@@ -4,7 +4,10 @@
     - @productions = Production.all.order(created_at: :desc).page(params[:page])
     - for production in @productions
       %figure.block-grid-item.frontpage-show
-        = attachment_image_tag production, :key_image, :fill, 150, 200
+        - if production.key_image_id.present?
+          = attachment_image_tag production, :key_image, :fill, 150, 200
+        - else
+          = image_tag('unknown.png', size: '150x200')
         %figurecaption
           %span.full-title
             %span.title>
