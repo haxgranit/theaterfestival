@@ -3,6 +3,12 @@ Rails.application.routes.draw do
     resources :permissions
   end
 
+  concern :albums do
+    resources :photo_albums, path: :albums do
+      resources :photos
+    end
+  end
+
   concern :claimable do
     patch :claim
   end
@@ -28,19 +34,19 @@ Rails.application.routes.draw do
   get :profile, to: 'users#show'
 
   resources :artists do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :search, :claimable, :albums]
   end
 
   resources :companies do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :search, :claimable, :albums]
   end
 
   resources :festivals do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :search, :claimable, :albums]
   end
 
   resources :productions do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :search, :claimable, :albums]
   end
 
   resources :theaters do
@@ -48,7 +54,7 @@ Rails.application.routes.draw do
   end
 
   resources :venues do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :search, :claimable, :albums]
   end
 
   resources :activities

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 68) do
+ActiveRecord::Schema.define(version: 70) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,29 @@ ActiveRecord::Schema.define(version: 68) do
 
   add_index "permissions", ["resource_type", "resource_id"], name: "index_permissions_on_resource_type_and_resource_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
+
+  create_table "photo_albums", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "has_album_id"
+    t.string   "has_album_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "photo_albums", ["has_album_type", "has_album_id"], name: "index_photo_albums_on_has_album_type_and_has_album_id", using: :btree
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "credit"
+    t.date     "photo_date"
+    t.integer  "photo_album_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "photos", ["photo_album_id"], name: "index_photos_on_photo_album_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "title"
@@ -424,6 +447,7 @@ ActiveRecord::Schema.define(version: 68) do
   add_foreign_key "festival_production_links", "festivals"
   add_foreign_key "festival_production_links", "productions"
   add_foreign_key "permissions", "users"
+  add_foreign_key "photos", "photo_albums"
   add_foreign_key "press_items", "productions"
   add_foreign_key "production_metadata", "productions"
   add_foreign_key "production_showtime_links", "productions"
