@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 70) do
+ActiveRecord::Schema.define(version: 71) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,8 +223,12 @@ ActiveRecord::Schema.define(version: 70) do
     t.string   "credit"
     t.date     "photo_date"
     t.integer  "photo_album_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_id"
+    t.string   "photo_filename"
+    t.integer  "photo_size"
+    t.string   "photo_content_type"
   end
 
   add_index "photos", ["photo_album_id"], name: "index_photos_on_photo_album_id", using: :btree
