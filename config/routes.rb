@@ -22,39 +22,44 @@ Rails.application.routes.draw do
 
   concern :search do
     collection do
+      get :search_internal, as: :search, path: :search
+    end
+  end
+  concern :autocomplete do
+    collection do
       get :autocomplete
     end
   end
 
   devise_for :users, controllers: {registrations: 'users/registrations'}
   resources :users, only: [:show, :index] do
-    concerns [:social, :search]
+    concerns [:social, :autocomplete]
   end
 
   get :profile, to: 'users#show'
 
   resources :artists do
-    concerns [:permissible, :social, :search, :claimable, :albums]
+    concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
 
   resources :companies do
-    concerns [:permissible, :social, :search, :claimable, :albums]
+    concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
 
   resources :festivals do
-    concerns [:permissible, :social, :search, :claimable, :albums]
+    concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
 
   resources :productions do
-    concerns [:permissible, :social, :search, :claimable, :albums]
+    concerns [:permissible, :social, :autocomplete, :search, :claimable, :albums]
   end
 
   resources :theaters do
-    concerns [:permissible, :social, :search, :claimable]
+    concerns [:permissible, :social, :autocomplete, :claimable]
   end
 
   resources :venues do
-    concerns [:permissible, :social, :search, :claimable, :albums]
+    concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
 
   resources :activities

@@ -1,26 +1,2 @@
-%p#notice= notice
-%h1 Listing Productions
-%table
-  %thead
-    %tr
-      %th Title
-      %th Public
-      %th Tagline
-      %th Description
-      %th First performance
-      %th Last performance
-      %th{colspan: "3"}
-  %tbody
-    - @productions.each do |production|
-      %tr
-        %td= production.title
-        %td= production.public
-        %td= production.tagline
-        %td= production.description
-        %td= production.first_performance
-        %td= production.last_performance
-        %td= link_to 'Show', production
-        %td= link_to 'Edit', edit_production_path(production)
-        %td= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Production', new_production_path
+.block-grid#productions
+  = render 'productions/index'

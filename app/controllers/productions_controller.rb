@@ -2,6 +2,7 @@ class ProductionsController < ApplicationController
   before_action :set_production, only: [:show, :edit, :update, :destroy]
 
   include Socialization::Actions
+  include SearchSetup
 
   def autocomplete
     @productions = Production.search(params[:query], {
@@ -20,10 +21,11 @@ class ProductionsController < ApplicationController
     render json: result
   end
 
-  # GET /productions
-  def index
-    @productions = Production.all
+  def search_internal
+    set_production_search
+    render :index
   end
+
 
   # GET /productions/1
   def show
