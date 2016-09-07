@@ -2,10 +2,13 @@ class Production < ActiveRecord::Base
   include Permissible
   include Metadata
   include SocialTarget
-  include PublicActivity::Common
+  include HasAlbum
+  include PublicActivity::Model
+  tracked
   paginates_per 9
 
   searchkick word_start: [:title], searchable: [:title]
+
   validates :title, :first_performance, presence: true
   attachment :key_image
 

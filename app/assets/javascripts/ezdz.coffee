@@ -1,3 +1,3 @@
 $ ->
-  $(document).on 'turbolinks:load', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     $('input[type="file"]').ezdz()

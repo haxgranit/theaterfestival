@@ -1,0 +1,7 @@
+.nested-fields
+  = f.input :title
+  = f.input :description
+  = f.input :credit
+  = f.input :photo_date, as: :bootstrap_datepicker
+  = f.input :photo, as: :attachment
+  = link_to_remove_association "remove photo", f

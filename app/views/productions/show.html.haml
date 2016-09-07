@@ -16,6 +16,7 @@
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'credits'
   .tab-pane{ id: 'media', role: 'tabpanel' }
+    = render 'productions/photos/form'
     .block-grid
       - @production.pictures.each do |p|
         %figure.block-grid-item.frontpage-show
