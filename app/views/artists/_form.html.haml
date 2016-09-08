@@ -1,7 +1,6 @@
 = simple_form_for @artist, wrapper: :horizontal_form do |f|
   = f.input :stage_name, as: :string, autocomplete: :off
   = f.input :profile_image, as: :attachment, input_html: { data: { value: attachment_url(@artist, :profile_image)}}
-  = f.input :pictures_images, as: :attachment, input_html: { multiple: true }
   = f.input :title, as: :string
   = f.input :birthdate, as: :bootstrap_datepicker, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:month, :day, :year]
   = f.input :birth_location, as: :string

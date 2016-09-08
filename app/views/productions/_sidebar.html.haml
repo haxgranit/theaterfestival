@@ -1,53 +1,54 @@
-- if @production.id.present?
-  - provide(:title, @production.title)
-  .production-profile-details
-    %h1
-      = yield(:title)
+- if @production.present?
+  - if @production.id.present?
+    - provide(:title, @production.title)
+    .production-profile-details
+      %h1
+        = yield(:title)
 
-    %figure.profile-image
-      = attachment_image_tag(@production, :key_image, :fill, 400, 400)
-      %figurecaption.social
-        - if user_signed_in?
-          - if current_user.likes?(@production)
-            = button_to production_unlike_path(@production), method: :post, class: 'unlike' do
-              %i.fa.fa-thumbs-up
-          - else
-            = button_to production_like_path(@production), method: :post, class: 'like' do
-              %i.fa.fa-thumbs-o-up
-          - if current_user.follows?(@production)
-            = button_to production_unfollow_path(@production), method: :post, class: 'unfollow' do
-              %i.fa.fa-minus
-          - else
-            = button_to production_follow_path(@production), method: :post, class: 'follow' do
-              %i.fa.fa-plus
-    #user-stats
-      %p.user-stat
-        User Reviews #2,321
-      %p.user-stat
-        Followers:
-        = @production.followers(User).count
-      %p.user-stat
-        Likes:
-        = @production.likers(User).count
-      - if @production.venues.present?
-        %p.venue-info
-          - v = @production.venues.first
-          = v.name
-          %br
-          = @production.theaters.first.name
-          %br
-          #{v.address}, #{v.city}, #{v.state} #{v.zip}
-          %br
-          = link_to v.website, v.website
-      - if @production.description.present?
-        %h2
-          Production Description
-        %p
-          = @production.description
-      %ul
-        - if policy(@production).edit?
-          %li
-            = link_to 'Edit', edit_production_path(@production)
-        - elsif policy(@production).claim?
-          %li
-            = link_to 'Claim Production Page', production_claim_path(@production), method: :patch
+      %figure.profile-image
+        = attachment_image_tag(@production, :key_image, :fill, 400, 400)
+        %figurecaption.social
+          - if user_signed_in?
+            - if current_user.likes?(@production)
+              = button_to production_unlike_path(@production), method: :post, class: 'unlike' do
+                %i.fa.fa-thumbs-up
+            - else
+              = button_to production_like_path(@production), method: :post, class: 'like' do
+                %i.fa.fa-thumbs-o-up
+            - if current_user.follows?(@production)
+              = button_to production_unfollow_path(@production), method: :post, class: 'unfollow' do
+                %i.fa.fa-minus
+            - else
+              = button_to production_follow_path(@production), method: :post, class: 'follow' do
+                %i.fa.fa-plus
+      #user-stats
+        %p.user-stat
+          User Reviews #2,321
+        %p.user-stat
+          Followers:
+          = @production.followers(User).count
+        %p.user-stat
+          Likes:
+          = @production.likers(User).count
+        - if @production.venues.present?
+          %p.venue-info
+            - v = @production.venues.first
+            = v.name
+            %br
+            = @production.theaters.first.name
+            %br
+            #{v.address}, #{v.city}, #{v.state} #{v.zip}
+            %br
+            = link_to v.website, v.website
+        - if @production.description.present?
+          %h2
+            Production Description
+          %p
+            = @production.description
+        %ul
+          - if policy(@production).edit?
+            %li
+              = link_to 'Edit', edit_production_path(@production)
+          - elsif policy(@production).claim?
+            %li
+              = link_to 'Claim Production Page', production_claim_path(@production), method: :patch
