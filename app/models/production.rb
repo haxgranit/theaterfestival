@@ -23,6 +23,7 @@ class Production < ActiveRecord::Base
   has_many :festival_production_links
   has_many :press_items
   has_many :reviews
+  accepts_nested_attributes_for :reviews
   has_many :showtimes
   accepts_nested_attributes_for :showtimes
   has_many :theaters, through: :showtimes

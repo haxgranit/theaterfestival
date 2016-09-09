@@ -1,0 +1,7 @@
+#albums
+  = simple_form_for @production, wrapper: :horizontal_form do |f|
+    - if user_signed_in?
+      .links
+        = link_to_add_association 'Write Review', f, :reviews, partial: 'productions/reviews/review_fields', class: 'btn btn-primary'
+      .actions
+        = f.button :submit, 'Save Review'

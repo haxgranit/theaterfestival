@@ -39,7 +39,7 @@
             %br
             #{v.address}, #{v.city}, #{v.state} #{v.zip}
             %br
-            = link_to v.website, v.website
+            = link_to v.website, v.website if v.website.present?
         - if @production.description.present?
           %h2
             Production Description

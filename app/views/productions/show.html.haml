@@ -20,22 +20,7 @@
     = render 'productions/photos/form'
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    .reviews
-      %h3
-        = pluralize(@production.reviews.count, 'Review')
-      - @production.reviews.each do |r|
-        .row
-          .col-sm-1
-            = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
-          .col-sm-8.offset-sm-1
-            %p.user
-              = r.user.full_name
-            %p.review-summary
-              = truncate r.full_text, length: 100
-            %p.review-link
-              = link_to 'Review Link', r
-          .col-sm-1
-            %p.date
-              = r.date.strftime("%D")
+    = render 'productions/reviews/listing'
+    = render 'productions/reviews/form'
   .tab-pane{ id: 'showtimes', role: 'tabpanel' }
     = render 'productions/showtimes/showtimes'
