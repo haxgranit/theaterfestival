@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
   include Permissible
   include Metadata
   include SocialTarget
+  include HasAlbum
   include PublicActivity::Model
   tracked
 

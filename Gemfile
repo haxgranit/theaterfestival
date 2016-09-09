@@ -47,6 +47,8 @@ gem 'searchkick'
 gem 'twitter-typeahead-rails'
 gem 'bootstrap-slider-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'handlebars_assets'
 gem 'js-routes'
 gem 'hamlit-rails'

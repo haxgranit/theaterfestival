@@ -1,0 +1,23 @@
+.tab-wrapper
+  %ul.nav.nav-pills{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#acting', role: 'tab'}
+        Acting
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#writing', role: 'tab'}
+        Writing
+.tab-content
+  .tab-pane.active{ id: 'acting', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        - @production.credits.production.each do |credit|
+          - p = credit.creditable
+          = render partial: 'productions/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'productions/credits/credit_form', locals: { target: :credits, type: 'production' }
+  .tab-pane{ id: 'writing', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        - @production.credits.creative.each do |credit|
+          - p = credit.creditable
+          = render partial: 'productions/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'productions/credits/credit_form', locals: { target: :credits, type: 'creative' }

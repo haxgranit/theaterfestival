@@ -23,7 +23,8 @@ class Production < ActiveRecord::Base
   has_many :festival_production_links
   has_many :press_items
   has_many :reviews
-  has_many :showtimes, through: :production_showtime_links
+  has_many :showtimes
+  accepts_nested_attributes_for :showtimes
   has_many :theaters, through: :showtimes
   has_many :venues, through: :theaters
   has_many :production_showtime_links
@@ -66,14 +67,20 @@ class Production < ActiveRecord::Base
     results = []
     result_times = []
     showtimes.group_by(&:theater).each do |theater, times|
+      v = theater.venue
+
       times.each do |t|
         result_times << {
-          time: t.showtime.in_time_zone(theater.venue.time_zone)
+          time: t.showtime.in_time_zone(v.time_zone)
         }
       end
 
       results << {
-        venue: theater.venue.id,
+        venue: { id: v.id,
+                 address: v.address,
+                 city: v.city,
+                 state: v.state,
+                 zip: v.zip},
         theater: theater.id,
         times: result_times
       }
@@ -85,16 +92,16 @@ class Production < ActiveRecord::Base
     {
       title: title,
       company: company.try(:name),
-      # upcoming: {
+      upcoming: {
         today: today?,
         tomorrow: tomorrow?,
-        weekend: this_weekend?,
-      # },
-      # size: {
+        weekend: this_weekend?
+      },
+      size: {
         broadway: broadway?,
         offbroadway: offbroadway?,
-        black_box: black_box?,
-      # },
+        black_box: black_box?
+      },
       showtimes: showtime_json
     }
   end

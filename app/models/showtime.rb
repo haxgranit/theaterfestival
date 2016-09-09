@@ -1,10 +1,9 @@
 class Showtime < ActiveRecord::Base
-  validates :showtime, :theater_id, presence: true
+  validates :showtime, :theater_id, :production_id, presence: true
   validates_uniqueness_of :showtime, scope: [:theater_id]
 
   belongs_to :theater
-  has_one :production_showtime_link
-  has_one :production, through: :production_showtime_link
+  belongs_to :production
   has_one :venue, through: :theater
   has_one :showtime_ticket_metadata
   has_one :showtime_accessibility_metadata

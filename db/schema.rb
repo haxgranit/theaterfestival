@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 71) do
+ActiveRecord::Schema.define(version: 72) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,10 +360,12 @@ ActiveRecord::Schema.define(version: 71) do
   create_table "showtimes", force: :cascade do |t|
     t.datetime "showtime"
     t.integer  "theater_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "production_id"
   end
 
+  add_index "showtimes", ["production_id"], name: "index_showtimes_on_production_id", using: :btree
   add_index "showtimes", ["theater_id"], name: "index_showtimes_on_theater_id", using: :btree
 
   create_table "theater_metadata", force: :cascade do |t|
@@ -461,6 +463,7 @@ ActiveRecord::Schema.define(version: 71) do
   add_foreign_key "reviews", "users"
   add_foreign_key "showtime_accessibility_metadata", "showtimes"
   add_foreign_key "showtime_ticket_metadata", "showtimes"
+  add_foreign_key "showtimes", "productions"
   add_foreign_key "showtimes", "theaters"
   add_foreign_key "theater_metadata", "theaters"
   add_foreign_key "theaters", "venues"

@@ -70,7 +70,7 @@ $ ->
             </div>
           ")
       source: artists.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-        $('[id$=credit_artist_id]').val(suggestion.value)
+        $('[id$=artist_id]').val(suggestion.value)
         return
 
     Handlebars.registerHelper 'route_to', (route, resource_id, caption) ->
@@ -163,4 +163,37 @@ $ ->
           ")
       source: companies.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         $('[id$=company_id]').val(suggestion.value)
+        return
+
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
+    theaters = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value', 'venue')
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      remote:
+        url: '/theaters/autocomplete?query=%QUERY'
+        wildcard: '%QUERY')
+
+    theaters.initialize()
+
+    $('#theater.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'name'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if name}}
+                <strong>{{name}}</strong>
+              {{/if}}
+              {{#if venue}}
+                - {{venue}}
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: theaters.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=theater_id]').val(suggestion.value)
         return

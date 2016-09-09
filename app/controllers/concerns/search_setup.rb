@@ -4,19 +4,26 @@ module SearchSetup
   private
 
   def set_production_search
-    aggs = [:today, :tomorrow, :weekend]
+    conditions = params[:conditions] || {}
+    conditions.delete_if { |_,v| v == "0" || v.blank? }
+    aggs = ['upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
+           'size.broadway', 'size.offbroadway', 'size.black_box']
     if params.try(:[], :search).try(:[], :title).present?
       @productions = Production.search(params[:search][:title],
-                                       fields: ['title'],
+                                       fields: ['title', 'conditions'],
                                        load: true,
                                        page: params[:page],
-                                       per_page: 9)
+                                       per_page: 9,
+                                       where: conditions,
+                                       aggs: aggs)
     else
       @productions = Production.search('*',
-                                       fields: ['title'],
+                                       fields: ['title', 'conditions'],
                                        load: true,
                                        page: params[:page],
-                                       per_page: 9)
+                                       per_page: 9,
+                                       where: conditions,
+                                       aggs: aggs)
     end
   end
 

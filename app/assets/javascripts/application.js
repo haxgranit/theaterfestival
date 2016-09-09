@@ -17,6 +17,9 @@
 //= require bootstrap
 //= require bootstrap-slider
 //= require bootstrap-datepicker/core
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
 //= require twitter/typeahead.min
 //= require lightbox
 //= require handlebars

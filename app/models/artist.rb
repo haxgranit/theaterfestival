@@ -2,6 +2,7 @@ class Artist < ActiveRecord::Base
   include Permissible
   include Metadata
   include SocialTarget
+  include HasAlbum
   include PublicActivity::Model
 
   searchkick word_start: [:stage_name], searchable: [:stage_name]

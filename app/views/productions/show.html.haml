@@ -10,17 +10,14 @@
       %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
         Reviews
     %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '', role: 'tab'}
-        Tickets
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
+        Showtimes
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
-    = render 'credits'
+    = render 'productions/credits/credits'
   .tab-pane{ id: 'media', role: 'tabpanel' }
+    = render 'productions/photos/listing'
     = render 'productions/photos/form'
-    .block-grid
-      - @production.pictures.each do |p|
-        %figure.block-grid-item.frontpage-show
-          = attachment_image_tag(p, :image, :fill, 100, 100)
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
     .reviews
@@ -40,3 +37,5 @@
           .col-sm-1
             %p.date
               = r.date.strftime("%D")
+  .tab-pane{ id: 'showtimes', role: 'tabpanel' }
+    = render 'productions/showtimes/showtimes'

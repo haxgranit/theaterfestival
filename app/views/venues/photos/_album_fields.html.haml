@@ -1,0 +1,11 @@
+.nested-fields.row
+  = f.input :title, class: "col-sm-4"
+  = f.input :description, class: "col-sm-4"
+  = f.input :has_album_id, as: :hidden, value: f.object.id, class: "col-sm-4"
+  = f.input :has_album_type, as: :hidden, value: 'Venue', class: "col-sm-4"
+  = link_to_remove_association "Remove Album", f, class: 'btn btn-primary'
+  .photos.container-fluid
+    = f.simple_fields_for :photos do |f|
+      = render 'venues/photos/photo_fields', f: photo
+    .links
+      = link_to_add_association 'Add Photo', f, :photos, partial: 'venues/photos/photo_fields', class: 'btn btn-primary'

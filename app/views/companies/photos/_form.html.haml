@@ -1,0 +1,7 @@
+#albums
+  = simple_form_for @company do |f|
+    - if user_signed_in?
+      .links
+        = link_to_add_association 'Add Album', f, :albums, partial: 'companies/photos/album_fields', class: 'btn btn-primary'
+      .actions
+        = f.button :submit, 'Create Albums'

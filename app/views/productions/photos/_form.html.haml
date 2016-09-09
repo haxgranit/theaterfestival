@@ -1,5 +1,5 @@
 #albums
-  = simple_form_for @production, defaults: {wrapper_html: {class: "col-sm-4"} } do |f|
+  = simple_form_for @production do |f|
     - if user_signed_in?
       .links
         = link_to_add_association 'Add Album', f, :albums, partial: 'productions/photos/album_fields', class: 'btn btn-primary'

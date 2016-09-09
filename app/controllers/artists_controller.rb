@@ -14,7 +14,7 @@ class ArtistsController < ApplicationController
        credits: artist.credits
         .limit(4)
         .map do |credit|
-         {production: credit.production.title,
+         {production: credit.creditable.title,
           position: credit.position}
        end
       }
@@ -116,6 +116,21 @@ class ArtistsController < ApplicationController
                                    :credited_as,
                                    :credit_type,
                                    :_destroy],
+              albums_attributes: [:id,
+                                  :title,
+                                  :description,
+                                  :has_album_id,
+                                  :has_album_type,
+                                  :_destroy,
+                                  photos_attributes: [:id,
+                                                      :title,
+                                                      :description,
+                                                      :credit,
+                                                      :photo_date,
+                                                      :photo_album_id,
+                                                      :photo,
+                                                      :_destroy
+                                                     ]],
               artist_social_metadata_attributes: [:id,
                                                   :email,
                                                   :facebook,

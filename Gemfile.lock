@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: 41e30d424e9a56ea4b310087615e1fdc94d87810
+  specs:
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/gavinkflam/lightbox2-rails.git
   revision: d7f2788ee278cce7541d65f634753d36e72581d2
   specs:
@@ -21,6 +28,15 @@ GIT
       rails (~> 4.2)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
 
 GEM
   remote: https://rubygems.org/
@@ -241,8 +257,6 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    momentjs-rails (2.11.1)
-      railties (>= 3.1)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     neat (1.8.0)
@@ -451,6 +465,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   compass-rails
+  datetimepicker-rails!
   devise
   devise_zxcvbn
   ezdz-rails
@@ -471,6 +486,7 @@ DEPENDENCIES
   logstash-logger
   mini_backtrace
   minitest-reporters
+  momentjs-rails (~> 2.9)!
   pg (~> 0.15)
   pry-rails
   public_activity

@@ -1,0 +1,16 @@
+- @artist.albums.each do |a|
+  %h2
+    = a.title
+  .block-grid
+    - a.photos.each do |p|
+      %figure.block-grid-item.frontpage-show
+        = link_to attachment_image_tag(p, :photo, :fill, 100, 100), |
+        attachment_url(p, :photo, format: 'jpg'), |
+        data: { lightbox: a.title, title: p.title } |
+        = button_to 'X', polymorphic_path([@artist, a, p]), method: :delete
+  - if user_signed_in?
+    = simple_form_for [@artist,a], wrapper: :horizontal_form do |f|
+      .links
+        = link_to_add_association 'Add Photo', f, :photos, partial: 'artists/photos/photo_fields', class: 'btn btn-primary'
+      .actions
+        = f.button :submit, 'Save Photos'

@@ -1,0 +1,9 @@
+%tr
+  %td
+    = time.showtime.in_time_zone(time.theater.venue.time_zone)
+  %td
+    = link_to(time.production.title, production_path(time.production))
+  %td
+    = link_to(time.theater.venue.name, venue_path(time.theater.venue))
+    \-
+    = time.theater.name

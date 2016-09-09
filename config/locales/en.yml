@@ -25,6 +25,17 @@ en:
     datepicker:
       default: "mm/dd/yyyy"
       long: "MM dd, yyyy"
+    datetimepicker:
+      default: "mm/dd/yyyy hh:mm"
+      long: "MM dd, yyyy, hh:mm"
     formats:
       default: "%m/%d/%Y"
       long: ! '%B %d, %Y'
+  upcoming:
+    weekend: 'This Weekend'
+    today: 'Today/Tonight'
+    tomorrow: 'Tomorrow'
+  size:
+    broadway: 'Broadway (> 500 seats)'
+    offbroadway: 'Off-Broadway (100-499 seats)'
+    black_box: 'Black Box (<100 seats)'

@@ -5,10 +5,11 @@ class TheatersController < ApplicationController
     render json: Theater.search(params[:query], {
                                  fields: ["name"],
                                  limit: 10,
-                                 load: false,
+                                 load: true,
                                  misspellings: {below: 5}
                                }).map { |theater| { name: theater.name,
-                                                   value: theater.id } }
+                                                    value: theater.id,
+                                                    venue: theater.venue.name } }
   end
 
   # GET /theaters

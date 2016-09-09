@@ -12,10 +12,10 @@
     - @artist.credits.production.each do |credit|
       - p = credit.creditable
       = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'credit_form', locals: { target: :credits, type: 'production' }
+    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
   .tab-pane{ id: 'writing', role: 'tabpanel'}
 
     - @artist.credits.creative.each do |credit|
       - p = credit.creditable
       = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'credit_form', locals: { target: :credits, type: 'creative' }
+    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'creative' }
