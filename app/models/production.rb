@@ -60,6 +60,10 @@ class Production < ActiveRecord::Base
     showtimes.select { |s| s.black_box? }.present?
   end
 
+  def guaranteed_price?
+    showtimes.select { |s| s.ticketing.fetch('guaranteed_price') }.present?
+  end
+
   def metadata
     collect_metadata(production_metadata)
   end
@@ -72,7 +76,8 @@ class Production < ActiveRecord::Base
 
       times.each do |t|
         result_times << {
-          time: t.showtime.in_time_zone(v.time_zone)
+          time: t.showtime.in_time_zone(v.time_zone),
+          guaranteed_price: t.ticketing.fetch('guaranteed_price')
         }
       end
 
@@ -103,6 +108,7 @@ class Production < ActiveRecord::Base
         offbroadway: offbroadway?,
         black_box: black_box?
       },
+      guaranteed_price: guaranteed_price?,
       showtimes: showtime_json
     }
   end

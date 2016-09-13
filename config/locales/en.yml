@@ -39,3 +39,4 @@ en:
     broadway: 'Broadway (> 500 seats)'
     offbroadway: 'Off-Broadway (100-499 seats)'
     black_box: 'Black Box (<100 seats)'
+  guaranteed_price: 'Guaranteed Price'

@@ -13,9 +13,11 @@
           - @productions.aggs.each do |agg|
             - agg_name = agg[0]
             - agg_keys = agg[1]
-            - agg_count = agg_keys.dig('buckets', 1, 'doc_count')
-            - if agg_count.try :nonzero?
-              = a.input agg_name, label: "#{I18n.t agg_name} (#{agg_count})"
+            - buckets = agg_keys.dig('buckets').select { |key, hash| key['key_as_string'] == 'true'}
+            - if buckets.present?
+              - agg_count = buckets.dig(0,'doc_count')
+              - if agg_count.try :nonzero?
+                = a.input agg_name, label: "#{I18n.t agg_name} (#{agg_count})"
       = f.button :submit, 'Search', class: 'btn-primary form-group row'
 
 -# %section.price

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 72) do
+ActiveRecord::Schema.define(version: 74) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -336,7 +336,6 @@ ActiveRecord::Schema.define(version: 72) do
   add_index "showtime_accessibility_metadata", ["showtime_id"], name: "index_showtime_accessibility_metadata_on_showtime_id", unique: true, using: :btree
 
   create_table "showtime_ticket_metadata", force: :cascade do |t|
-    t.numrange "guaranteed_price"
     t.text     "guaranteed_price_note"
     t.text     "ticket_link"
     t.text     "reservation_link"
@@ -353,6 +352,7 @@ ActiveRecord::Schema.define(version: 72) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "showtime_id"
+    t.decimal  "guaranteed_price"
   end
 
   add_index "showtime_ticket_metadata", ["showtime_id"], name: "index_showtime_ticket_metadata_on_showtime_id", unique: true, using: :btree
@@ -421,8 +421,6 @@ ActiveRecord::Schema.define(version: 72) do
 
   create_table "venues", force: :cascade do |t|
     t.text     "name"
-    t.text     "address1"
-    t.text     "address2"
     t.text     "website"
     t.text     "phone_number"
     t.text     "description"

@@ -7,7 +7,8 @@ module SearchSetup
     conditions = params[:conditions] || {}
     conditions.delete_if { |_,v| v == "0" || v.blank? }
     aggs = ['upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
-           'size.broadway', 'size.offbroadway', 'size.black_box']
+            'size.broadway', 'size.offbroadway', 'size.black_box',
+           'guaranteed_price']
     if params.try(:[], :search).try(:[], :title).present?
       @productions = Production.search(params[:search][:title],
                                        fields: ['title', 'conditions'],

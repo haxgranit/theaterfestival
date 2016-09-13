@@ -30,7 +30,15 @@ class Showtime < ActiveRecord::Base
     # Showtime-specific accessibility info overrides theater-specific info
     s = showtime_accessibility_metadata.try(:attributes).try(:compact)
     t = theater.theater_metadata.try(:attributes)
-    s.try(:reverse_merge!, t)
+    if s.present?
+      s.try(:reverse_merge!, t)
+    else
+      t
+    end
+  end
+
+  def ticketing
+    showtime_ticket_metadata.try(:attributes).try(:compact)
   end
 
   def broadway?

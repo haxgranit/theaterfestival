@@ -56,7 +56,21 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
 
     authorize @artist
-    if @artist.update(artist_params)
+    my_params = artist_params
+    if my_params[:credits_attributes].present?
+      credit_params = my_params[:credits_attributes]
+      credit_params.each do |_, v|
+        if v.fetch('creditable_id').blank? &&
+           v.fetch('creditable_type') == 'Production'
+          @production = Production.new
+          @production.title = v.fetch('title')
+          @production.first_performance = Date.today
+          @production.save
+          v['creditable_id'] = @production.id
+        end
+      end
+    end
+    if @artist.update(my_params)
       redirect_to @artist, notice: 'Artist was successfully updated.'
     else
       render :edit
@@ -106,6 +120,7 @@ class ArtistsController < ApplicationController
               :profile_image,
               pictures_images: [],
               credits_attributes: [:id,
+                                   :title,
                                    :name,
                                    :position,
                                    :creditable_id,

@@ -1,4 +1,5 @@
 class Credit < ActiveRecord::Base
+  attr_accessor :title
   include PublicActivity::Model
   tracked owner: :artist, recipient: :creditable
 

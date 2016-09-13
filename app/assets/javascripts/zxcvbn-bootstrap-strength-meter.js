@@ -5,7 +5,7 @@
 
         //init settings
         var settings = $.extend({
-            passwordInput: '#user_password',
+            passwordInput: '.content-area #user_password',
             userInputs: [],
             progressBarText: '#password-strength-text',
             ratings: ["Very weak", "Weak", "OK", "Strong", "Very strong"],

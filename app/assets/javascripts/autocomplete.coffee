@@ -134,6 +134,31 @@ $ ->
         added_item.find('[id$=creditable_type]').val(suggestion.type)
         return
 
+    $('[id$=title][id*=credits_attributes]').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'title'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if title}}
+                <strong>{{title}}</strong>
+              {{/if}}
+              {{#if company}}
+                  - {{company.name}}
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        added_item.find('[id$=creditable_id]').val(suggestion.value)
+        added_item.find('[id$=creditable_type]').val(suggestion.type)
+        return
+
+
 
   $(document).on 'turbolinks:load cocoon:after-insert', ->
     companies = new Bloodhound(
