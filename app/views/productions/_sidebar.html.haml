@@ -6,7 +6,10 @@
         = yield(:title)
 
       %figure.profile-image
-        = attachment_image_tag(@production, :key_image, :fill, 400, 400)
+        - if @production.key_image_id.present?
+          = attachment_image_tag(@production, :key_image, :fill, 400, 400)
+        - else
+          = image_tag('unknown.png', size: '400x400')
         %figurecaption.social
           - if user_signed_in?
             - if current_user.likes?(@production)

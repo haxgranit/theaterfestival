@@ -36,7 +36,7 @@ $ ->
 
 
 
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert', (e, added_item) ->
     artists = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name', 'value', 'credits')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -70,7 +70,7 @@ $ ->
             </div>
           ")
       source: artists.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-        $('[id$=artist_id]').val(suggestion.value)
+        added_item.find('[id$=artist_id]').val(suggestion.value)
         return
 
     Handlebars.registerHelper 'route_to', (route, resource_id, caption) ->

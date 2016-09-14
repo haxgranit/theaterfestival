@@ -128,6 +128,7 @@ class ProductionsController < ApplicationController
                                      :rating,
                                      :title,
                                      :summary,
+                                     :user_id,
                                      :full_text],
                 production_metadata_attributes: [:id,
                                                  :performance_type,
