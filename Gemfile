@@ -44,6 +44,7 @@ gem 'logstash-event'
 gem 'logstash-logger'
 
 gem 'searchkick'
+gem 'typhoeus'
 gem 'twitter-typeahead-rails'
 gem 'bootstrap-slider-rails'
 gem 'bootstrap-datepicker-rails'
