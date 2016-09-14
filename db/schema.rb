@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 74) do
+ActiveRecord::Schema.define(version: 76) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 74) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "profile_image_id"
+    t.string   "banner_image_id"
   end
 
   add_index "artists", ["user_id"], name: "index_artists_on_user_id", unique: true, using: :btree
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 74) do
     t.text     "email"
     t.string   "company_image_id"
     t.integer  "user_id"
+    t.string   "banner_image_id"
   end
 
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
@@ -158,8 +160,10 @@ ActiveRecord::Schema.define(version: 74) do
   create_table "festivals", force: :cascade do |t|
     t.text     "title"
     t.text     "subtitle"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "banner_image_id"
+    t.string   "festival_image_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -297,6 +301,7 @@ ActiveRecord::Schema.define(version: 74) do
     t.string   "key_image_id"
     t.text     "key_image_credit"
     t.integer  "company_id"
+    t.string   "banner_image_id"
   end
 
   add_index "productions", ["company_id"], name: "index_productions_on_company_id", using: :btree
@@ -425,8 +430,8 @@ ActiveRecord::Schema.define(version: 74) do
     t.text     "phone_number"
     t.text     "description"
     t.integer  "company_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.text     "time_zone"
     t.text     "address"
     t.string   "city"
@@ -434,6 +439,8 @@ ActiveRecord::Schema.define(version: 74) do
     t.string   "zip"
     t.float    "lat"
     t.float    "lng"
+    t.string   "banner_image_id"
+    t.string   "venue_image_id"
   end
 
   add_index "venues", ["company_id"], name: "index_venues_on_company_id", using: :btree

@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   validate :timezone_exists
 
   attachment :profile_image
+  attachment :banner_image
 
   def full_name
     "#{first_name} #{last_name}"

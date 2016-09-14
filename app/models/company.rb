@@ -10,6 +10,7 @@ class Company < ActiveRecord::Base
   validates :name, presence: true
   validates :website, url: true, allow_blank: true
   attachment :company_image
+  attachment :banner_image
 
   belongs_to :user
 

@@ -85,6 +85,7 @@ class CompaniesController < ApplicationController
                 :description,
                 :email,
                 :company_image,
+                :banner_image,
                 company_social_metadata_attributes: [:id,
                                                      :email,
                                                      :facebook,

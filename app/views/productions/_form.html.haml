@@ -7,7 +7,8 @@
   = f.input :description
   = f.input :first_performance, order: [:month,:day,:year]
   = f.input :last_performance, include_blank: true, default: nil, order: [:month, :day, :year]
-  = f.input :key_image, as: :attachment
+  = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }
+  = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }
   = f.simple_fields_for :production_metadata, @production.production_metadata ||= ProductionMetadata.new do |m|
     = m.input :performance_type, as: :string
     = m.input :info_heading, as: :string

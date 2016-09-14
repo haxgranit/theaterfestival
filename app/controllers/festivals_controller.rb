@@ -65,6 +65,8 @@ class FestivalsController < ApplicationController
     def festival_params
       params.require(:festival).permit(:title,
                                        :subtitle,
+                                       :festival_image,
+                                       :banner_image,
                                        albums_attributes: [:id,
                                                            :title,
                                                            :description,

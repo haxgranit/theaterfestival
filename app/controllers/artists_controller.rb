@@ -118,6 +118,7 @@ class ArtistsController < ApplicationController
               :full_bio,
               :user_id,
               :profile_image,
+              :banner_image,
               pictures_images: [],
               credits_attributes: [:id,
                                    :title,

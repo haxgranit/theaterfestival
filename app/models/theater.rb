@@ -1,5 +1,6 @@
 class Theater < ActiveRecord::Base
   include Permissible
+  include Metadata
   include PublicActivity::Common
   searchkick word_start: [:name], searchable: [:name]
   validates :name, :venue_id, presence: true
@@ -12,11 +13,7 @@ class Theater < ActiveRecord::Base
   accepts_nested_attributes_for :theater_metadata
 
   def metadata
-    if theater_metadata
-      theater_metadata
-        .attributes
-        .except('id', 'theater_id', 'created_at', 'updated_at')
-        .delete_if { |_, v| v.blank? }
-    end
+    collect_metadata(theater_metadata)
   end
+
 end

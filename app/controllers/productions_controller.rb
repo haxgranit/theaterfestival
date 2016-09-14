@@ -89,6 +89,7 @@ class ProductionsController < ApplicationController
                 :first_performance,
                 :last_performance,
                 :key_image,
+                :banner_image,
                 :company_id,
                 albums_attributes: [:id,
                                     :title,

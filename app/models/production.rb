@@ -11,6 +11,7 @@ class Production < ActiveRecord::Base
 
   validates :title, :first_performance, presence: true
   attachment :key_image
+  attachment :banner_image
 
   has_many :credits, as: :creditable
   accepts_nested_attributes_for :credits
@@ -31,8 +32,6 @@ class Production < ActiveRecord::Base
   has_many :production_showtime_links
   has_one :production_metadata
   accepts_nested_attributes_for :production_metadata, reject_if: :all_blank, allow_destroy: true
-  has_many :pictures, as: :has_image
-  accepts_attachments_for :pictures, attachment: :image
 
   alias_attribute :name, :title
 

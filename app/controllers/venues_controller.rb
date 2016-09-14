@@ -59,6 +59,8 @@ class VenuesController < ApplicationController
                                     :website,
                                     :phone_number,
                                     :description,
+                                    :venue_image,
+                                    :banner_image,
                                     :company_id,
                                     albums_attributes: [:id,
                                                         :title,

@@ -17,14 +17,16 @@ class ApplicationController < ActionController::Base
                                              :last_name,
                                              :time_zone,
                                              :location,
-                                             :profile_image])
+                                             :profile_image,
+                                             :banner_image])
 
     devise_parameter_sanitizer.permit(:account_update,
                                       keys: [:first_name,
                                              :last_name,
                                              :time_zone,
                                              :location,
-                                             :profile_image])
+                                             :profile_image,
+                                             :banner_image])
   end
 
 end

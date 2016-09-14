@@ -1,4 +1,6 @@
 = simple_form_for(@festival) do |f|
   = f.input :title
   = f.input :subtitle
+  = f.input :festival_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@festival, :festival_image) } }
+  = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@festival, :banner_image) } }
   = f.button :submit

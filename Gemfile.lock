@@ -158,6 +158,8 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
+    ethon (0.9.0)
+      ffi (>= 1.3.0)
     eventmachine (1.2.0.1)
     execjs (2.7.0)
     ezdz-rails (0.5.1)
@@ -423,6 +425,8 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
+    typhoeus (1.1.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
@@ -509,6 +513,7 @@ DEPENDENCIES
   spring
   turbolinks
   twitter-typeahead-rails
+  typhoeus
   uglifier (>= 1.3.0)
   unicorn
   unicorn-rails
@@ -516,4 +521,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

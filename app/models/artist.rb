@@ -11,6 +11,7 @@ class Artist < ActiveRecord::Base
   validates_uniqueness_of :user_id, :allow_blank => true
 
   attachment :profile_image
+  attachment :banner_image
   belongs_to :user
   has_one :artist_social_metadata
   accepts_nested_attributes_for :artist_social_metadata
@@ -23,9 +24,6 @@ class Artist < ActiveRecord::Base
   has_many :companies, -> { uniq }, through: :credits, source: :creditable,
            source_type:'Company'
 
-  has_many :pictures, as: :has_image
-  accepts_attachments_for :pictures, attachment: :image
-  accepts_nested_attributes_for :pictures
 
   alias_attribute :name, :stage_name
 
