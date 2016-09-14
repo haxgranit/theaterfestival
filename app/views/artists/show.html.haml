@@ -14,10 +14,7 @@
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'artists/credits/credits'
   .tab-pane{ id: 'media', role: 'tabpanel' }
-    .block-grid
-      - @artist.pictures.each do |p|
-        %figure.block-grid-item.frontpage-show
-          = link_to attachment_image_tag(p, :image, :fill, 100, 100, format: 'jpg'), attachment_url(p, :image, format: 'jpg'), data: { lightbox: 'images'}
+    = render 'artists/photos/listing'
     = render 'artists/photos/form'
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
