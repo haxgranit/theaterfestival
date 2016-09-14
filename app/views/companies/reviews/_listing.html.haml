@@ -1,0 +1,42 @@
+.reviews
+  - @company.productions.each do |p|
+    .row
+      .col-sm-2
+        %figure.frontpage-show
+          = attachment_image_tag(p, :key_image, :fill, 100, 150)
+          %figurecaption
+            %span.full-title
+              %span.title>
+                = link_to p.title, p
+            %span.venue
+              = link_to p.venues.first.name, p.venues.first if p.venues.present?
+            = render partial: 'shared/social_buttons', locals: { target: p }
+      .col-sm-9.offset-sm-1
+        %h2
+          = p.title
+        .production-meta
+          %h3
+            = pluralize(p.reviews.count, "Review")
+          %span.production-info
+            = p.company.name if p.company.present?
+          - if p.venues.present?
+            %span.production-info
+              = p.venues.first.name
+            %span.production-info
+              = p.venues.first.city + ','
+              = p.venues.first.state
+              = p.venues.first.zip
+        - p.reviews.each do |r|
+          .row.review
+            .col-sm-1
+              = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+            .col-sm-8.offset-sm-1
+              %p.user
+                = r.user.full_name
+              %p.review-summary
+                = truncate r.full_text, length: 100
+              %p.review-link
+                = link_to 'Review Link', r
+            .col-sm-1
+              %p.date
+                = r.date.strftime("%D")

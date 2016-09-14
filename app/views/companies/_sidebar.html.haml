@@ -20,9 +20,11 @@
             = button_to company_follow_path(@company), method: :post, class: 'follow' do
               %i.fa.fa-plus
 
+    - if @company.name.present?
+      %p
+        %strong
+          = @company.name
     #user-stats
-      %p.user-stat
-        User Reviews #2,321
       %p.user-stat
         Followers:
         = @company.followers(User).count
@@ -40,11 +42,9 @@
   .company-profile-links
 
     %ul
-      - if policy(@company).edit?
-        %li
-          = link_to 'Edit', edit_company_path(@company)
-        %li
-          = link_to 'View User Page', user_path(@company.user_id)
-      - elsif policy(@company).claim?
-        %li
-          = link_to 'Claim Company Page', company_claim_path(@company), method: :patch
+      %li
+        = link_to 'Edit', edit_company_path(@company)
+      %li
+        = link_to 'View User Page', user_path(@company.user_id) if @company.user.present?
+      %li
+        = link_to 'Claim Company Page', company_claim_path(@company), method: :patch

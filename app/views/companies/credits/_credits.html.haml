@@ -1,0 +1,5 @@
+%table.table.table-striped
+  %tbody
+    - @company.credits.staff.each do |credit|
+      = render partial: 'companies/credits/listing', locals: { target: @company, credit: credit }
+= render partial: 'companies/credits/credit_form', locals: { target: :credits, type: 'staff' }

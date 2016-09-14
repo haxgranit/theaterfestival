@@ -13,14 +13,17 @@ class Company < ActiveRecord::Base
   attachment :banner_image
 
   belongs_to :user
+  has_many :productions
+
+  has_many :credits, as: :creditable
+  accepts_nested_attributes_for :credits
+  has_many :artists, through: :credits
 
 
   has_many :company_festival_links
   has_many :festivals, through: :company_festival_links
-  has_many :festival_production_links, through: :productions
-  has_many :productions, through: :festival_production_links, as: :festival_productions
   has_many :company_production_links
-  has_many :productions, through: :company_production_links
+  has_many :coproductions, through: :company_production_links, source: :production
 
   has_many :venues
   has_many :theaters, through: :venues
@@ -37,4 +40,9 @@ class Company < ActiveRecord::Base
   def metadata
     collect_metadata company_metadata
   end
+
+  def all_productions
+
+  end
+
 end
