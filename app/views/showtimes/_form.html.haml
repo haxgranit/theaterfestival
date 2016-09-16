@@ -1,4 +1,8 @@
 = simple_form_for(@showtime, wrapper: :horizontal_form) do |f|
-  = f.input :showtime
-  = f.input :theater_id, collection: Theater.all, value_method: :id, label_method: :name, prompt: true
+  - if current_user.company.present?
+    - @theaters = Theater.joins(:venue).merge(Venue.where("company_id = #{current_user.company.id}"))
+  - else
+    - @theaters = Theater.all
+  = f.input :showtime, as: :datetime_picker
+  = f.input :theater_id, collection: @theaters, value_method: :id, label_method: :name, prompt: true
   = f.button :submit, class: 'btn-primary'

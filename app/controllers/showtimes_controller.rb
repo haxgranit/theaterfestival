@@ -24,18 +24,18 @@ class ShowtimesController < ApplicationController
     @showtime = Showtime.new(showtime_params)
 
     if @showtime.save
-      redirect_to @showtime, notice: 'Showtime was successfully created.'
+      redirect_to :back, notice: 'Showtime was successfully created.'
     else
-      render :new
+      render :back
     end
   end
 
   # PATCH/PUT /showtimes/1
   def update
     if @showtime.update(showtime_params)
-      redirect_to @showtime, notice: 'Showtime was successfully updated.'
+      redirect_to :back, notice: 'Showtime was successfully updated.'
     else
-      render :edit
+      render :back
     end
   end
 
