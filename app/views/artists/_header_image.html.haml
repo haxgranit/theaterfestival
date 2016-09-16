@@ -1,4 +1,4 @@
 - if @artist.banner_image_id.present?
   = attachment_image_tag(@artist, :banner_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
-- else
+- elsif @artist.profile_image_id.present?
   = attachment_image_tag(@artist, :profile_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
