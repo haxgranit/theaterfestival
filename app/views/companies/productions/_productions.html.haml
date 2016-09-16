@@ -32,6 +32,7 @@
                   = link_to(production.venues.first.name, production.venues.first) if production.venues.present?
               = render partial: 'shared/social_buttons', locals: { target: production }
       = paginate @productions, param_name: :production_page
+      = render partial: 'companies/productions/production_form', locals: { target: :productions }
 
   .tab-pane{ id: 'coproductions', role: 'tabpanel' }
     - if @company.coproductions.present?

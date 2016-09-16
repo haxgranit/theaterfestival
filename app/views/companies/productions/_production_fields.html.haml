@@ -1,0 +1,9 @@
+.nested-fields.row
+  = f.input :title, as: :string, required: true
+  = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }
+  = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }
+  = f.input :public
+  = f.input :description
+  = f.input :first_performance, as: :date_picker
+  = f.input :last_performance, as: :date_picker
+  = link_to_remove_association "Remove Production", f, class: 'btn btn-primary'

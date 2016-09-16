@@ -14,6 +14,7 @@ class Company < ActiveRecord::Base
 
   belongs_to :user
   has_many :productions
+  accepts_nested_attributes_for :productions
 
   has_many :credits, as: :creditable
   accepts_nested_attributes_for :credits
