@@ -13,6 +13,7 @@
         = f.input_field :password, class: "form-control", autocomplate: :off
         #password-strength-text.text-xs-center
         %progress#password-strength.progress{"aria-describedby" => "password-strength-text", max: "100"}
+        #password-feedback.text-xs-center
       = f.input :password_confirmation, autocomplete: 'off'
       = f.input :time_zone, as: :time_zone, priority: /US/
       = f.input :location

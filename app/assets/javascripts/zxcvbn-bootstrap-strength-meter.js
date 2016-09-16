@@ -8,6 +8,7 @@
             passwordInput: '.content-area #user_password',
             userInputs: [],
             progressBarText: '#password-strength-text',
+            passwordFeedback: '#password-feedback',
             ratings: ["Very weak", "Weak", "OK", "Strong", "Very strong"],
             //all progress bar classes removed before adding score specific css class
             allProgressBarClasses: "progress-danger progress-warning progress-success progress-striped progress-animated",
@@ -32,12 +33,20 @@
         function UpdateProgressBar() {
             var progressBar = settings.progressBar;
             var progressBarText = settings.progressBarText;
+            var passwordFeedback = settings.passwordFeedback;
             var password = $(settings.passwordInput).val();
             if (password) {
                 var result = zxcvbn(password, settings.userInputs);
                 //result.score: 0, 1, 2, 3 or 4 - if crack time is less than 10**2, 10**4, 10**6, 10**8, Infinity.
                 var score = result.score + 1;
                 $(progressBar).val(score*20);
+
+                var suggestions = '<p>' +
+                    result.feedback.warning +
+                    '</p>' +
+                    '<p>' +
+                    result.feedback.suggestions +
+                    '</p>';
 
                 if (score == 1 ) {
                     //weak
@@ -64,11 +73,13 @@
                     $(progressBar).removeClass(settings.allProgressBarClasses).addClass(settings.progressBarClass4);
                     $(progressBarText).html(settings.ratings[4]);
                 }
+                $(passwordFeedback).html(suggestions);
             }
             else {
                 $(progressBar).val(0);
                 $(progressBar).removeClass(settings.allProgressBarClasses).addClass(settings.progressBarClass0);
                 $(progressBarText).html('');
+                $(passwordFeedback).html('');
             }
         }
     };
