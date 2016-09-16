@@ -7,7 +7,7 @@ class VenuePolicy < ApplicationPolicy
   end
 
   def update?
-    admin?
+    true
   end
 
   def edit?

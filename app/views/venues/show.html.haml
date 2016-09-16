@@ -1,32 +1,19 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @venue.name
-%p
-  %strong Website:
-  = @venue.website
-%p
-  %strong Phone number:
-  = @venue.phone_number
-%p
-  %strong Description:
-  = @venue.description
-%p
-  %strong Company:
-  = @venue.company.name
-%h2 Theaters
-%ul
-  - @venue.theaters.each do |t|
-    %li
-      = link_to t.name, theater_path(t)
-%h2 Showtimes
-%ul
-  - @venue.showtimes.each do |s|
-    %li
-      = link_to s.production.title, production_path(s.production)
-      \- #{link_to s.theater.name, theater_path(s.theater)}
-      \- #{s.local_time.strftime('%b %d at %I:%M %p')}
-= link_to 'Edit', edit_venue_path(@venue)
-|
-= link_to 'Back', venues_path
-= link_to 'Create Theater', new_theater_path
+.tab-wrapper
+  %ul.nav.nav-tabs{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
+        Showtimes
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+        Media
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#theaters', role: 'tab'}
+        Theaters
+.tab-content
+  .tab-pane.active{ id: 'showtimes', role: 'tabpanel' }
+    = render 'venues/showtimes/showtimes'
+  .tab-pane{ id: 'media', role: 'tabpanel' }
+    = render 'venues/photos/listing'
+    = render 'venues/photos/form'
+  .tab-pane{ id: 'theaters', role: 'tabpanel' }
+    = render 'venues/theaters/theaters'

@@ -4,7 +4,6 @@ class Showtime < ActiveRecord::Base
 
   belongs_to :theater
   belongs_to :production
-  has_one :venue, through: :theater
   has_one :showtime_ticket_metadata
   has_one :showtime_accessibility_metadata
 

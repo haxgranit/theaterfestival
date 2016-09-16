@@ -44,7 +44,7 @@ class TheatersController < ApplicationController
   # PATCH/PUT /theaters/1
   def update
     if @theater.update(theater_params)
-      redirect_to @theater, notice: 'Theater was successfully updated.'
+      redirect_to @theater.venue, notice: 'Theater was successfully updated.'
     else
       render :edit
     end

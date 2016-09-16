@@ -99,8 +99,6 @@ $ ->
 
 
   $(document).on 'turbolinks:load cocoon:after-insert', (e, added_item) ->
-    testing = added_item
-    console.log(testing)
     productions = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -156,6 +154,29 @@ $ ->
       source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         added_item.find('[id$=creditable_id]').val(suggestion.value)
         added_item.find('[id$=creditable_type]').val(suggestion.type)
+        return
+
+    $('#showtimes #title.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'title'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              <p>
+              {{#if title}}
+                <strong>{{title}}</strong> This worked
+              {{/if}}
+              {{#if company}}
+                  - {{company.name}}
+              {{/if}}
+              </p>
+            </div>
+          ")
+      source: productions.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        added_item.find('[id$=production_id]').val(suggestion.value)
         return
 
 

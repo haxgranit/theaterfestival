@@ -1,0 +1,42 @@
+- if @venue.present?
+  .venue-profile-details
+    - provide(:title, @venue.name)
+    %h1
+      = yield(:title)
+    %figure.profile-image
+      - if @venue.venue_image_id.present?
+        = attachment_image_tag(@venue, :venue_image, :fill, 400, 400)
+      - else
+        = image_tag('unknown.png', size: '400x400')
+      %figurecaption.social
+        = render partial: 'shared/social_figure', locals: { target: @venue }
+    - if @venue.name.present?
+      %p
+        %strong
+          = @venue.name
+    #user-stats
+      %p.user-stat
+        Followers:
+        = @venue.followers(User).count
+      %p.user-stat
+        Likes:
+        = @venue.likers(User).count
+    - if @venue.description.present?
+      %h2
+        Description
+      %p
+        = @venue.description
+      %h2
+        Contact
+      %p
+        = @venue.phone
+      %p
+        = link_to 'Website', @venue.website
+  - if policy(@venue).edit?
+    .venue-profile-links
+      %ul
+        %li
+          = link_to 'Edit', edit_venue_path(@venue)
+        - if @venue.company.present?
+          %li
+            = link_to 'View Company Page', company_path(@venue.company_id)
