@@ -24,7 +24,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists
   def index
-    @artists = Artist.all
+    redirect_to new_artist_path
   end
 
   # GET /artists/1

@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
+    redirect_to new_company_path
   end
 
   # GET /companies/1

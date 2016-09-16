@@ -13,7 +13,7 @@ class FestivalsController < ApplicationController
 
   # GET /festivals
   def index
-    @festivals = Festival.all
+    redirect_to new_festival_path
   end
 
   # GET /festivals/1
