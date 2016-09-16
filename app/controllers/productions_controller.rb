@@ -21,6 +21,10 @@ class ProductionsController < ApplicationController
     render json: result
   end
 
+  def index
+    redirect_to root_path
+  end
+
   def search_internal
     set_production_search
     render :index
