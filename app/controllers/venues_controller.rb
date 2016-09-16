@@ -1,5 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  include Socialization::Actions
 
   # GET /venues
   def index
@@ -53,29 +54,41 @@ class VenuesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def venue_params
-      params.require(:venue).permit(:name,
-                                    :address1,
-                                    :address2,
-                                    :website,
-                                    :phone_number,
+      params.require(:venue)
+        .permit(:name,
+                :address1,
+                :address2,
+                :website,
+                :phone_number,
+                :description,
+                :venue_image,
+                :banner_image,
+                :company_id,
+                albums_attributes: [:id,
+                                    :title,
                                     :description,
-                                    :venue_image,
-                                    :banner_image,
-                                    :company_id,
-                                    albums_attributes: [:id,
+                                    :has_album_id,
+                                    :has_album_type,
+                                    :_destroy,
+                                    photos_attributes: [:id,
                                                         :title,
                                                         :description,
-                                                        :has_album_id,
-                                                        :has_album_type,
-                                                        :_destroy,
-                                                        photos_attributes: [:id,
-                                                                            :title,
-                                                                            :description,
-                                                                            :credit,
-                                                                            :photo_date,
-                                                                            :photo_album_id,
-                                                                            :photo,
-                                                                            :_destroy
-                                                                           ]])
+                                                        :credit,
+                                                        :photo_date,
+                                                        :photo_album_id,
+                                                        :photo,
+                                                        :_destroy
+                                                       ]],
+                theaters_attributes: [:id,
+                                      :name,
+                                      :description,
+                                      :venue_id,
+                                      :_destroy],
+                showtimes_attributes: [:id,
+                                       :title,
+                                       :production_id,
+                                       :showtime,
+                                       :theater_id,
+                                       :_destroy])
     end
 end
