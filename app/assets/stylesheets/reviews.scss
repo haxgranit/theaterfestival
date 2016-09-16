@@ -13,3 +13,42 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+
+#add-review {
+  .row.vertical {
+    display: block;
+  }
+
+  .star-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  input.star{
+    display: none;
+  }
+
+  label.collection_radio_buttons {
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    transition: all .2s;
+  }
+
+  input.star:checked ~ label.collection_radio_buttons:before {
+    content:'\f005';
+    color: #FD4;
+    transition: all .25s;
+  }
+
+  label.collection_radio_buttons:hover{
+    transform: rotate(-15deg) scale(1.3);
+  }
+
+  label.collection_radio_buttons:before{
+    content:'\f006';
+    font-family: FontAwesome;
+  }
+}

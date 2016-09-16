@@ -1,7 +1,7 @@
-.nested-fields.row
-  = f.input :title, as: :string, class: 'col-sm-12'
-  = f.input :date, as: :bootstrap_datepicker, class: 'col-sm-12'
-  = f.input :rating, as: :string, class: 'col-sm-12'
-  = f.input :full_text, class: 'col-sm-12'
-  = f.input :user_id, as: :hidden, value: current_user.id
+.nested-fields.row.vertical
+  = f.input :title, as: :string
+  = f.input :date, as: :bootstrap_datepicker
+  = f.input :rating, collection: 5.downto(1), as: :radio_buttons, item_label_class: 'star', value_method: false, label: false, item_wrapper_tag: false, item_input_class: 'star', input_html: { class: 'star' }, wrapper_html: { class: 'star-buttons' }
+  = f.input :full_text
+  = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
   = link_to_remove_association "Cancel", f, class: 'btn btn-primary'
