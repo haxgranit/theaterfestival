@@ -1,0 +1,2 @@
+$("#social-<%= @target.id %>").html("<%= escape_javascript render(partial: 'shared/social_buttons', locals: { target: @target  }) %>");
+$('figurecaption.social').html("<%= escape_javascript render(partial: 'shared/social_figure', locals: { target: @target }) %>")

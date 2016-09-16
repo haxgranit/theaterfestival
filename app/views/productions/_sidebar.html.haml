@@ -11,19 +11,7 @@
         - else
           = image_tag('unknown.png', size: '400x400')
         %figurecaption.social
-          - if user_signed_in?
-            - if current_user.likes?(@production)
-              = button_to production_unlike_path(@production), method: :post, class: 'unlike' do
-                %i.fa.fa-thumbs-up
-            - else
-              = button_to production_like_path(@production), method: :post, class: 'like' do
-                %i.fa.fa-thumbs-o-up
-            - if current_user.follows?(@production)
-              = button_to production_unfollow_path(@production), method: :post, class: 'unfollow' do
-                %i.fa.fa-minus
-            - else
-              = button_to production_follow_path(@production), method: :post, class: 'follow' do
-                %i.fa.fa-plus
+          = render partial: 'shared/social_figure', locals: { target: @production }
       #user-stats
         %p.user-stat
           User Reviews #2,321

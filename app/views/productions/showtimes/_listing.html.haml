@@ -1,6 +1,6 @@
 %tr
   %td
-    = time.showtime.in_time_zone(time.theater.venue.time_zone)
+    = time.local_time.strftime('%b %d at %I:%M %p')
   %td
     = link_to(time.production.title, production_path(time.production))
   %td

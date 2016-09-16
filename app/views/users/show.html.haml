@@ -37,6 +37,8 @@
       .tab-content
         .tab-pane.active{ id: 'productions', role: 'tabpanel'}
           .block-grid
+            - @productions = @user.followed.select { |f| f.class == Production }
+            = render 'productions/production_list'
             - @user.followed.select { |f| f.class == Production }.each do |p|
               %figure.block-grid-item.frontpage-show
                 = attachment_image_tag(p, :key_image, :fill, 100, 150)
@@ -63,6 +65,9 @@
 
     - if policy(@user).edit?
       .tab-pane{ id: 'notifications', role: 'tabpanel' }
-        Some notification content
+        %h3 Welcome to TheaterEngine
+        %p
+          Things are pretty light here right now, but once we've got something
+          to notify you about, it'll appear here.
       .tab-pane{ id: 'settings', role: 'tabpanel' }
         = render 'devise/registrations/edit', resource: current_user

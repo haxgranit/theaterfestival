@@ -14,5 +14,6 @@
       - if production.venues.present?
         %span.venue
           = link_to(production.venues.first.name, production.venues.first) if production.venues.present?
-      = render partial: 'shared/social_buttons', locals: { target: production }
+      %div{id: "social-#{production.id}"}
+        = render partial: 'shared/social_buttons', locals: { target: production }
 = paginate @productions

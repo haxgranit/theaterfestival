@@ -4,22 +4,12 @@
     %h1
       = yield(:title)
     %figure.profile-image
-      = attachment_image_tag(@company, :company_image, :fill, 400, 400)
+      - if @company.company_image_id.present?
+        = attachment_image_tag(@company, :company_image, :fill, 400, 400)
+      - else
+        = image_tag('unknown.png', size: '400x400')
       %figurecaption.social
-        - if user_signed_in?
-          - if current_user.likes?(@company)
-            = button_to company_unlike_path(@company), method: :post, class: 'unlike' do
-              %i.fa.fa-thumbs-up
-          - else
-            = button_to company_like_path(@company), method: :post, class: 'like' do
-              %i.fa.fa-thumbs-o-up
-          - if current_user.follows?(@company)
-            = button_to company_unfollow_path(@company), method: :post, class: 'unfollow' do
-              %i.fa.fa-minus
-          - else
-            = button_to company_follow_path(@company), method: :post, class: 'follow' do
-              %i.fa.fa-plus
-
+        = render partial: 'shared/social_figure', locals: { target: @company }
     - if @company.name.present?
       %p
         %strong

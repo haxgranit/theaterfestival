@@ -1,33 +1,36 @@
 .user-profile-details
   - provide(:title, @user.full_name)
   %h1= yield(:title)
-  = attachment_image_tag(@user, :profile_image, :fill, 400, 400)
+  - if @user.profile_image_id.present?
+    = attachment_image_tag(@user, :profile_image, :fill, 400, 400)
+  - else
+    = image_tag('unknown.png', size: '400x400')
   #user-stats
     %p.user-stat
-      User Reviews #2,321
+      Following:
+      = @user.followed.count
     %p.user-stat
-      All Followed #211
-    %p.user-stat
-      All Liked: #54
-    %p.user-stat
-      Followers:
-      = @user.followers.count
-  #user-info
-    %p
-      Location:
-      = @user.location
+      Liked:
+      = @user.liked.count
+  - if @user.location?
+    #user-info
+      %p
+        Location:
+        = @user.location
 
 
   - if policy(@user).edit?
     .user-profile-links
       %ul
-        %li
-          = link_to 'Edit', edit_user_registration_path
         - if @user.artist.blank?
           %li
             = link_to 'Create Artist Page', new_artist_path
         - else
           %li
             = link_to 'View Artist Page', artist_path(@user.artist)
-        %li
-          = link_to 'Create Company Page', new_company_path
+        - if @user.company.blank?
+          %li
+            = link_to 'Create Company Page', new_company_path
+        - else
+          %li
+            = link_to 'View Company Page', company_path(@user.company)

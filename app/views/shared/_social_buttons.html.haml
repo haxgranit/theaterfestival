@@ -5,7 +5,7 @@
         = pluralize(target.followers(User).count, 'Follower')
 - else
   %span.followers
-    = button_to polymorphic_path([target, 'follow']), method: :post, class: 'btn btn-secondary' do
+    = button_to polymorphic_path([target, 'follow']), method: :post, class: 'btn btn-secondary', remote: true do
       %i.fa.fa-plus
         = pluralize(target.followers(User).count, 'Follower')
 
@@ -16,6 +16,6 @@
         = pluralize(target.likers(User).count, 'Like')
 - else
   %span.likes
-    = button_to polymorphic_path([target, 'like']), method: :post, class: 'btn btn-secondary'do
+    = button_to polymorphic_path([target, 'like']), method: :post, class: 'btn btn-secondary', remote: true do
       %i.fa.fa-thumbs-o-up
         = pluralize(target.likers(User).count, 'Like')
