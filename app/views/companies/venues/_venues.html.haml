@@ -1,0 +1,5 @@
+%table.table.table-striped
+  %tbody
+    - @company.venues.each do |venue|
+      = render partial: 'companies/venues/listing', locals: { target: @company, venue: venue }
+= render partial: 'companies/venues/venue_form', locals: { target: :venues }

@@ -1,0 +1,14 @@
+.nested-fields.row
+  = f.input :name, as: :string, required: true
+  = f.input :venue_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@venue, :venue_image) } }
+  = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@venue, :banner_image) } }
+  = f.input :website, as: :url
+  = f.input :phone_number, as: :tel
+  = f.input :description
+  = f.input :time_zone, as: :time_zone, priority: /US/
+  = f.input :address
+  = f.input :city
+  = f.input :state
+  = f.input :zip
+  = debug f.object
+  = link_to_remove_association "Remove Venue", f, class: 'btn btn-primary'

@@ -26,6 +26,7 @@ class Company < ActiveRecord::Base
   has_many :coproductions, through: :company_production_links, source: :production
 
   has_many :venues
+  accepts_nested_attributes_for :venues
   has_many :theaters, through: :venues
   has_many :showtimes, through: :theaters
   has_one :company_metadata

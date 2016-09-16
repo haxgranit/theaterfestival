@@ -12,6 +12,11 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#staff', role: 'tab'}
         Staff
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#venues', role: 'tab'}
+        Venues
+
+  = render partial: 'shared/social_links', locals: { target: @company }
 .tab-content
   .tab-pane.active{ id: 'productions', role: 'tabpanel' }
     = render 'companies/productions/productions'
@@ -23,3 +28,5 @@
     = render 'companies/reviews/listing'
   .tab-pane{ id: 'staff', role: 'tabpanel'}
     = render 'companies/credits/credits'
+  .tab-pane{ id: 'venues', role: 'tabpanel' }
+    = render 'companies/venues/venues'

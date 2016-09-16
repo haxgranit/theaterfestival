@@ -1,0 +1,7 @@
+%tr
+  %td
+    = attachment_image_tag(venue, :venue_image, :fill, 100, 100)
+  %td
+    = link_to(venue.name, venue_path(venue))
+  %td
+    #{venue.address}, #{venue.city}, #{venue.state} #{venue.zip}
