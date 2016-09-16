@@ -14,6 +14,10 @@
       %p
         %strong
           = @company.name
+    - if @company.company_type.present?
+      %p
+        %em
+          @company.company_type
     #user-stats
       %p.user-stat
         Followers:
@@ -21,20 +25,19 @@
       %p.user-stat
         Likes:
         = @company.likers(User).count
-    #user-info
-      %p
-
     - if @company.description.present?
       %h2
         Description
       %p
         = @company.description
-  .company-profile-links
-
-    %ul
-      %li
-        = link_to 'Edit', edit_company_path(@company)
-      %li
-        = link_to 'View User Page', user_path(@company.user_id) if @company.user.present?
-      %li
-        = link_to 'Claim Company Page', company_claim_path(@company), method: :patch
+  - if policy(@company).edit?
+    .company-profile-links
+      %ul
+        %li
+          = link_to 'Edit', edit_company_path(@company)
+        - if @company.user.present?
+          %li
+            = link_to 'View User Page', user_path(@company.user_id)
+        - else
+          %li
+            = link_to 'Claim Company Page', company_claim_path(@company), method: :patch

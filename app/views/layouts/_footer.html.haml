@@ -1,79 +1,68 @@
 %footer
-  #nav-footer.row
-    .col-md-offset-1.col-md-2.col-sm-4.col-xs-6
-      %h2 find a show
-      %ul.nav.nav-pills.nav-stacked.nav-footer
-        %li.nav-item
-          = link_to 'Country', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'State', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'City', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Neighborhood', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Recently Added', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Currently Running', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Closing Soon', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'User Favorites', '#', class: 'nav-link'
-    .col-md-2.col-sm-3.col-xs-6
-      %h2 list a show
-      %ul.nav.nav-pills.nav-stacked.nav-footer
-        %li.nav-item
-          = link_to 'Information', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Sign Up', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Contact', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'FAQ', '#', class: 'nav-link'
-    .col-md-2.col-sm-3.col-xs-6
-      %h2 my local shows
-      %ul.nav.nav-pills.nav-stacked.nav-footer
-        %li.nav-item
-          = link_to 'Cabaret', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Carousel', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Cats', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Chess', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Cinderella', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Company', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Crazy For You', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Cruel Intentions', '#', class: 'nav-link'
-    .col-md-2.col-sm-3.col-xs-6
-      %h2 coming soon
-      %ul.nav.nav-pills.nav-stacked.nav-footer
-        %li.nav-item
-          = link_to 'Fame', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'The Fantasticks', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Fiddler On The Roof', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Finian\'s Rainbow', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Footloose', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Full Monty', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Funny Girl', '#', class: 'nav-link'
-    .col-md-2.col-sm-3.col-xs-6
-      %h2 sign up
-      %ul.nav.nav-pills.nav-stacked.nav-footer
-        %li.nav-item
-          = link_to 'Country', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'State', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'City', '#', class: 'nav-link'
-        %li.nav-item
-          = link_to 'Neighborhood', '#', class: 'nav-link'
+  .container.container-fluid
+    #nav-footer.row.flex-items-xs-around
+
+      .col-xs-2
+        %h2 find a show
+        %ul.nav.nav-pills.nav-stacked.nav-footer
+          %li.nav-item
+            = link_to 'Country', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'State', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'City', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Neighborhood', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Recently Added', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Currently Running', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Closing Soon', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'User Favorites', '#', class: 'nav-link'
+      .col-xs-2
+        %h2 list a show
+        %ul.nav.nav-pills.nav-stacked.nav-footer
+          %li.nav-item
+            = link_to 'Information', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Sign Up', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Contact', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'FAQ', '#', class: 'nav-link'
+      .col-xs-2
+        %h2 my local shows
+        %ul.nav.nav-pills.nav-stacked.nav-footer
+          - @local_shows = Production.order("RANDOM()").limit(5)
+          - for p in @local_shows
+            %li.nav-item
+              = link_to p.title, p, class: 'nav-link'
+      .col-xs-2
+        %h2 coming soon
+        %ul.nav.nav-pills.nav-stacked.nav-footer
+          - @coming_soon = Production.joins(:showtimes) |
+                                    .merge(Showtime    |
+                                            .where("showtime > '#{DateTime.now}'") |
+                                              .order(:showtime)).limit(5) |
+          - for p in @coming_soon
+            %li.nav-item
+              = link_to p.title, p, class: 'nav-link'
+      .col-xs-2
+        %h2 sign up
+        %ul.nav.nav-pills.nav-stacked.nav-footer
+          %li.nav-item
+            = link_to 'Country', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'State', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'City', '#', class: 'nav-link'
+          %li.nav-item
+            = link_to 'Neighborhood', '#', class: 'nav-link'
+
+    #secondary-footer.row.flex-items-xs-around
+      .col-xs-3
+        One of two columns
+      .col-xs-3
+        One of two columns

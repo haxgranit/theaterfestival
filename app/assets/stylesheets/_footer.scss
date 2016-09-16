@@ -1,4 +1,10 @@
 footer {
+  background-image: image-url('footer_bg.jpg');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 1.25em 0 2em;
+
   img {
     width: 100%;
   }
@@ -55,13 +61,8 @@ footer {
   }
 }
 
+
 #nav-footer {
-  background-image: image-url('footer_bg.jpg');
-  background-position: bottom right;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 1.25em 0 2em;
-  justify-content: center;
 
   h2 {
     color: $white;
@@ -80,6 +81,9 @@ footer {
       color: $gray-light;
       line-height: 1;
       padding: 0;
+      &:hover {
+        color: white;
+      }
     }
   }
 }

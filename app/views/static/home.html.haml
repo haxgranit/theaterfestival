@@ -1,5 +1,3 @@
 - provide(:title, 'Home')
 .jumbotron
   = render template: 'productions/index'
-
-  = link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary btn-signup" unless user_signed_in?

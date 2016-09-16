@@ -29,12 +29,14 @@
         Full Bio
       %p
         = @artist.full_bio
-  .artist-profile-links
-
-    %ul
-      %li
-        = link_to 'Edit', edit_artist_path(@artist)
-      %li
-        = link_to 'View User Page', user_path(@artist.user_id) if @artist.user.present?
-      %li
-        = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
+  - if policy(@artist).edit?
+    .artist-profile-links
+      %ul
+        %li
+          = link_to 'Edit', edit_artist_path(@artist)
+        - if @artist.user.present?
+          %li
+            = link_to 'View User Page', user_path(@artist.user_id)
+        - else
+          %li
+            = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
