@@ -1,7 +1,7 @@
 - if user_signed_in? && current_user.follows?(target)
   %span.followers.active
-    .btn
-      %i.fa.fa-plus
+    = button_to polymorphic_path([target, 'unfollow']), method: :post, class: 'btn btn-secondary', remote: true do
+      %i.fa.fa-minus
         = pluralize(target.followers(User).count, 'Follower')
 - else
   %span.followers
@@ -11,8 +11,8 @@
 
 - if user_signed_in? && current_user.likes?(target)
   %span.likes.active
-    .btn
-      %i.fa.fa-thumbs-o-up
+    = button_to polymorphic_path([target, 'unlike']), method: :post, class: 'btn btn-secondary', remote: true do
+      %i.fa.fa-thumbs-up
         = pluralize(target.likers(User).count, 'Like')
 - else
   %span.likes
