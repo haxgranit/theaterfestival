@@ -82,7 +82,6 @@ jQuery(document).ready(function($){
 		//store some image data (width, top position, ...)
 		//store window data to calculate quick view panel position
 		var parentListItem = image.parent('.cd-item'),
-			currentProduction = parentListItem.data('production'),
 			topSelected = image.offset().top - $(window).scrollTop(),
 			leftSelected = image.offset().left,
 			widthSelected = image.width(),
@@ -99,7 +98,7 @@ jQuery(document).ready(function($){
 			//hide the image in the gallery
 			parentListItem.addClass('empty-box');
 			//place the quick view over the image gallery and give it the dimension of the gallery image
-			$('.cd-quick-view[data-production=' + currentProduction + ']').css({
+			$('.cd-quick-view').css({
 			    "top": topSelected,
 			    "left": leftSelected,
 			    "width": widthSelected,
@@ -111,12 +110,12 @@ jQuery(document).ready(function($){
 			    'width': finalWidth+'px',
 			}, 1000, [ 400, 20 ], function(){
 				//animate the quick view: animate its width to the final value
-				$('.cd-quick-view[data-production=' + currentProduction + ']').addClass('animate-width').velocity({
+				$('.cd-quick-view').addClass('animate-width').velocity({
 					'left': quickViewLeft+'px',
 			    	'width': quickViewWidth+'px',
 				}, 300, 'ease' ,function(){
 					//show quick view content
-					$('.cd-quick-view[data-production=' + currentProduction + ']').addClass('add-content');
+					$('.cd-quick-view').addClass('add-content');
 				});
 			}).addClass('is-visible');
 		} else {
