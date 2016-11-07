@@ -1,1 +1,39 @@
 = image_tag 'banner.png', class: 'img-fluid', id: 'header-image'
+.container.container-fluid.homepage-header
+  .homepage-callout.row
+    .col-sm-12
+      %h2
+        Your local guide to theater, everywhere
+  .homepage-sections.row
+    .col-sm-4
+      %h3
+        Fans
+      %p
+        Browse for shows playing in  your area, or anywhere. Follow companies, artists, and  productions to get all their current information
+      %p
+        = link_to 'Get Started', '#'
+    .col-sm-4
+      %h3
+        Producers
+      %p
+        List your plays, festivals, and touring productions alongside other shows in your area. Upload photos, videos, reviews, and more. Help audiences find your production
+      %p
+        = link_to 'Sign Up', '#'
+
+    .col-sm-4
+      %h3
+        Artists
+      %p
+        Create a profile that collects your theater credits, media files, reviews and more as a digital resume that allows audiences and producers to become fans of you and follow your work. 
+      %p
+        = link_to 'Create Profile', '#'
+.search-bar.container.container-fluid
+  .row
+    .col-sm-7
+      %span
+        TheaterEngine allows users to instantly search & find their favorite shows anywhere!
+    .col-sm-5
+      = simple_form_for(:artist, wrapper: :inline_form) do |f|
+        = f.input :stage_name, as: :fake
+        = f.button :submit, 'Search'
+

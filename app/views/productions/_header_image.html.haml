@@ -1,4 +1,5 @@
-- if @production.banner_image_id.present?
-  = attachment_image_tag(@production, :banner_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
-- elsif @production.key_image_id.present?
-  = attachment_image_tag(@production, :key_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
+-if @production.present?
+  - if @production.banner_image_id.present?
+    = attachment_image_tag(@production, :banner_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
+  - elsif @production.key_image_id.present?
+    = attachment_image_tag(@production, :key_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')

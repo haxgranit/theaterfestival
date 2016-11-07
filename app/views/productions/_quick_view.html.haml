@@ -1,0 +1,24 @@
+.cd-quick-view{data: { production: p.id }}
+  .cd-slider-wrapper
+    %ul.cd-slider
+      %li.selected
+        = attachment_image_tag(p, :key_image, :fill, 300, 300)
+      - if p.albums.present?
+        - for photo in p.albums.first.photos
+          %li
+            = attachment_image_tag(photo, :photo, :fill, 300, 300)
+    %ul.cd-slider-navigation
+      %li
+        %a.cd-next{data: {turbolinks: false}} Prev
+      %li
+        %a.cd-prev{data: {turbolinks: false}} Next
+  .cd-item-info
+    %h2
+      = p.title
+    %p 
+      = p.description
+    %ul.cd-item-action
+      %li
+        %button.btn.btn-primary
+          Learn More
+  %a.cd-close{data: {turbolinks: false}} Close
