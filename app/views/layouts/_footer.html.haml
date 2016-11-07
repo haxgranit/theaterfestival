@@ -1,68 +1,22 @@
 %footer
   .container.container-fluid
     #nav-footer.row.flex-items-xs-around
-
+      .col-xs-1
+        = image_tag('redlogo.png')
       .col-xs-2
-        %h2 find a show
-        %ul.nav.nav-pills.nav-stacked.nav-footer
-          %li.nav-item
-            = link_to 'Country', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'State', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'City', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Neighborhood', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Recently Added', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Currently Running', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Closing Soon', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'User Favorites', '#', class: 'nav-link'
-      .col-xs-2
-        %h2 list a show
-        %ul.nav.nav-pills.nav-stacked.nav-footer
-          %li.nav-item
-            = link_to 'Information', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Sign Up', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Contact', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'FAQ', '#', class: 'nav-link'
-      .col-xs-2
-        %h2 my local shows
-        %ul.nav.nav-pills.nav-stacked.nav-footer
-          - @local_shows = Production.order("RANDOM()").limit(5)
-          - for p in @local_shows
-            %li.nav-item
-              = link_to p.title, p, class: 'nav-link'
-      .col-xs-2
-        %h2 coming soon
-        %ul.nav.nav-pills.nav-stacked.nav-footer
-          - @coming_soon = Production.joins(:showtimes) |
-                                    .merge(Showtime    |
-                                            .where("showtime > '#{DateTime.now}'") |
-                                              .order(:showtime)).limit(5) |
-          - for p in @coming_soon
-            %li.nav-item
-              = link_to p.title, p, class: 'nav-link'
-      .col-xs-2
-        %h2 sign up
-        %ul.nav.nav-pills.nav-stacked.nav-footer
-          %li.nav-item
-            = link_to 'Country', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'State', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'City', '#', class: 'nav-link'
-          %li.nav-item
-            = link_to 'Neighborhood', '#', class: 'nav-link'
-
-    #secondary-footer.row.flex-items-xs-around
-      .col-xs-3
-        One of two columns
-      .col-xs-3
-        One of two columns
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-pinterest"></i>
+        <i class="fa fa-instagram"></i>
+      .col-xs-5
+        %ul
+          %li
+            Legal
+          %li
+            Press
+          %li
+            Contact Information
+          %li
+            Privacy Policy
+      .col-xs-4
+        All Rights Reserved TheaterEngine 2016

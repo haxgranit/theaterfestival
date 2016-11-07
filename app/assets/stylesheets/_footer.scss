@@ -3,7 +3,32 @@ footer {
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 1.25em 0 2em;
+  min-height: 200px;
+  margin-top: 1em;
+  color: white;
+  .row {
+    align-items: center;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  
+  ul li {
+    color: white;
+    + li::before {
+      content: " | ";
+      padding-right: 1em;
+      padding-left: 1em;
+    }
+  }
+
+  .fa {
+    font-size: 2em;
+    color: white;
+}
 
   img {
     width: 100%;
