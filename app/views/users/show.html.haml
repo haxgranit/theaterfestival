@@ -38,7 +38,8 @@
         .tab-pane.active{ id: 'productions', role: 'tabpanel'}
           .block-grid
             - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production }).page(params[:production_page])
-            = render 'productions/production_list'
+            - if @productions.present?
+              = render 'productions/production_list'
         .tab-pane{ id: 'artists', role: 'tabpanel'}
           .block-grid
             - @user.followed.select { |f| f.class == Artist }.each do |a|
