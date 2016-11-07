@@ -19,6 +19,7 @@ RUN apt-get update -qq && apt-get install -y nodejs
 
 RUN apt-get update -qq && apt-get install -y imagemagick
 RUN apt-get update -qq && apt-get install -y file
+RUN apt-get update -qq && apt-get install -y libcurl4-gnutls-dev
 
 ENV APP_HOME /theaterengine
 RUN mkdir $APP_HOME
