@@ -14,7 +14,7 @@ class ArtistsController < ApplicationController
        credits: artist.credits
         .limit(4)
         .map do |credit|
-         {production: credit.creditable.title,
+         {production: credit.creditable.name,
           position: credit.position}
        end
       }

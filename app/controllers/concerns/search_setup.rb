@@ -4,7 +4,7 @@ module SearchSetup
   private
 
   def set_production_search
-    conditions = params[:conditions] || {}
+    conditions = params[:conditions] || {'upcoming.someday': true}
     conditions.delete_if { |_,v| v == "0" || v.blank? }
     aggs = ['upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
             'size.broadway', 'size.offbroadway', 'size.black_box',
@@ -14,7 +14,7 @@ module SearchSetup
                                        fields: ['title', 'conditions'],
                                        load: true,
                                        page: params[:page],
-                                       per_page: 9,
+                                       per_page: 30,
                                        where: conditions,
                                        aggs: aggs)
     else
@@ -22,7 +22,7 @@ module SearchSetup
                                        fields: ['title', 'conditions'],
                                        load: true,
                                        page: params[:page],
-                                       per_page: 9,
+                                       per_page: 30,
                                        where: conditions,
                                        aggs: aggs)
     end

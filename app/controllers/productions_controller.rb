@@ -30,7 +30,6 @@ class ProductionsController < ApplicationController
     render :index
   end
 
-
   # GET /productions/1
   def show
   end
