@@ -33,7 +33,13 @@ class Production < ActiveRecord::Base
   has_one :production_metadata
   accepts_nested_attributes_for :production_metadata, reject_if: :all_blank, allow_destroy: true
 
+  #scope :upcoming, -> { joins(:showtimes).where 'showtimes.showtime > ?', DateTime.now }
+
   alias_attribute :name, :title
+
+  def future_shows?
+    showtimes.select { |s| s.showtime > DateTime.now }.present?
+  end
 
   def tomorrow?
     showtimes.select { |s| s.tomorrow? }.present?
@@ -60,12 +66,11 @@ class Production < ActiveRecord::Base
   end
 
   def guaranteed_price?
-    showtimes.select { |s| s.ticketing.fetch('guaranteed_price') }.present?
+    showtimes.select { |s| s.ticketing.try(:fetch, 'guaranteed_price') }.present?
   end
 
   def metadata
-    collect_metadata(production_metadata)
-  end
+    collect_metadata(production_metadata) end
 
   def showtime_json
     results = []
@@ -76,7 +81,7 @@ class Production < ActiveRecord::Base
       times.each do |t|
         result_times << {
           time: t.showtime.in_time_zone(v.time_zone),
-          guaranteed_price: t.ticketing.fetch('guaranteed_price')
+          guaranteed_price: t.ticketing.try(:fetch, 'guaranteed_price')
         }
       end
 
@@ -100,7 +105,8 @@ class Production < ActiveRecord::Base
       upcoming: {
         today: today?,
         tomorrow: tomorrow?,
-        weekend: this_weekend?
+        weekend: this_weekend?,
+        someday: future_shows?
       },
       size: {
         broadway: broadway?,
