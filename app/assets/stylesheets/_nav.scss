@@ -45,6 +45,17 @@
       &[aria-expanded="true"]:before {
         transform: rotate(-90deg);
       }
+
+      &.dropdown-toggle:after { content: none; }
+      &.dropdown-toggle[aria-expanded=true]:before { transform: rotate(90deg); }
+    }
+
+    .dropdown-menu {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid grey;
+      a {
+        color: white;
+      }
     }
   }
 }
