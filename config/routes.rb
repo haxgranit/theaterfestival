@@ -77,7 +77,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      jsonapi_resources :artists
+      jsonapi_resources :companies
+      jsonapi_resources :productions
+      jsonapi_resources :showtimes
+      jsonapi_resources :theaters
       jsonapi_resources :users
+      jsonapi_resources :venues
     end
   end
 end
