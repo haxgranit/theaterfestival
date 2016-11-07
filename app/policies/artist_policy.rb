@@ -11,7 +11,7 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def edit?
-    artist.user_id == user.id if user.present? || true
+    true
   end
 
   def claim?
