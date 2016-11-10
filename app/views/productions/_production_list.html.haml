@@ -5,8 +5,7 @@
       - t = production.theaters.first
 
     %li.cd-item{ data: { production: production.id } }
-      = attachment_image_tag production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png'
-      %a.cd-trigger{ data: { turbolinks: false } } Quick View
+      = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger')
       %div
         = link_to c.name, c if c.present?
       %div
@@ -17,74 +16,5 @@
           \-
           = production.last_performance.to_formatted_s(:rfc822)
 
-  - production = @productions.first
-  - c = production.company if production.company.present?
-  - if production.theaters.present?
-    - t = production.theaters.first
-    - if t.venue.present?
-      - v = t.venue
 
-  .cd-quick-view{ data: { production: production.id } }
-    .cd-slider-wrapper
-      %ul.cd-slider
-        %li.selected
-          = attachment_image_tag production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png'
-      %ul.cd-slider-navigation
-        %li
-          %a.cd-next{ data: { turbolinks: false } } Prev
-        %li
-          %a.cd-prev{ data: { turbolinks: false } } Next
-    .cd-item-info
-      %ul.cd-item-action
-        %li
-          = button_to 'View Page', production, class: 'btn', data: { turbolinks: false }, method: :get
-        %li
-          %button.btn{ data: { turbolinks: false } } Buy Now
-        %li
-          %button.btn.cd-close{ data: { turbolinks: false } } X
-
-      - if c.present?
-        %p
-          = c.name
-      - if t.present?
-        %p
-          = t.name
-          - if v.present?
-            \:
-            = v.name
-      %h2
-        = production.title
-      %section
-        %h3 Key Creative
-        - c = production.credits
-        - for credit in c.where(credit_type: 1)
-          %p
-            = credit.artist.name
-            \-
-            = credit.position
-      %section
-        %h3 Key Cast
-        - for credit in c.where(credit_type: 0)
-          %p
-            = credit.artist.name
-            \-
-            = credit.position
-      %section
-        - for show in production.showtimes.limit(3)
-          %p
-            = show.showtime.to_formatted_s(:long_ordinal)
-            at
-            = show.theater.venue.name
-      %section
-        <h3>General Admission</h3>
-        <p><span>Price Range:</span> $15-$30</p>
-        <p><span>Running Time:</span> 90 Minutes
-
-      %section
-        %p
-          Tickets will be available at The Flea Theater's Box Office one hour prior to showtime
-      %section
-        <h3>Description</h3>
-        %p
-          = truncate production.description, length: 200
-
+  .cd-quick-view

@@ -34,6 +34,11 @@ class ProductionsController < ApplicationController
   def show
   end
 
+  def quickview
+    set_production
+    render :quickview, layout: false
+  end
+
   # GET /productions/new
   def new
     @production = Production.new

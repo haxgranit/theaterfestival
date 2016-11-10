@@ -52,6 +52,9 @@ Rails.application.routes.draw do
 
   resources :productions do
     concerns [:permissible, :social, :autocomplete, :search, :claimable, :albums]
+    member do
+      get :quickview
+    end
   end
 
   resources :theaters do
