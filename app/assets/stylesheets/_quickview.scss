@@ -307,7 +307,9 @@ Main components
 
 -------------------------------- */
 .cd-items {
-  padding: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 @media only screen and (min-width: 768px) {
   .cd-items {
@@ -341,9 +343,7 @@ Main components
 }
 @media only screen and (min-width: 1024px) {
   .cd-item {
-    width: 22%;
-    float: left;
-    margin: 0 4% 2.8em 0;
+    flex: 0 1 22%;
   }
   .cd-item:nth-child(2n) {
     margin-right: 4%;
@@ -362,49 +362,12 @@ Main components
   }
 }
 
-.cd-trigger {
-  position: absolute;
-  height: 100%;
-  line-height: 50px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.1);
-  text-align: center;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: opacity 0.2s, background-color 0.2s;
-  -moz-transition: opacity 0.2s, background-color 0.2s;
-  transition: opacity 0.2s, background-color 0.2s;
-}
-.no-touch .cd-trigger:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
 @media only screen and (min-width: 1024px) {
-  .cd-trigger {
-    /* always visible on small devices */
-    visibility: visible;
-    opacity: 1;
-  }
 }
 @media only screen and (min-width: 1170px) {
-  .cd-trigger {
-    /* only visible on hover on big devices */
-    opacity: 0;
-  }
 }
 
 @media only screen and (min-width: 1170px) {
-  .no-touch .cd-item:hover .cd-trigger {
-    opacity: 1;
-  }
-
-  .touch .cd-item .cd-trigger {
-    opacity: 1;
-  }
 }
 .cd-quick-view {
   /* quick view non available on small devices */

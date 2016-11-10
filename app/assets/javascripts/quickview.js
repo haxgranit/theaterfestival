@@ -8,13 +8,17 @@ jQuery(document).ready(function($){
 	$('.cd-trigger').on('click', function(event){
 		var selectedImage = $(this).parent('.cd-item').children('img'),
 			slectedImageUrl = selectedImage.attr('src');
+		var productionId = $(this).parent('.cd-item').data('production');
 
 		$('body').addClass('overlay-layer');
 		animateQuickView(selectedImage, sliderFinalWidth, maxQuickWidth, 'open');
 
+
 		//update the visible slider image in the quick view panel
 		//you don't need to implement/use the updateQuickView if retrieving the quick view data with ajax
-		updateQuickView(slectedImageUrl);
+		$.get('/productions/' + productionId + '/quickview', function(data) {
+			$('.cd-quick-view').html(data);
+		}, 'html');
 	});
 
 	//close the quick view panel
