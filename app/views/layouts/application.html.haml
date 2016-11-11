@@ -13,9 +13,6 @@
     #main-content
       = render 'header_image'
       .container.container-fluid
-        .row.notifications
-          - flash.each do |message_type, message|
-            = content_tag(:div, message, class: "alert alert-#{message_type}", role: 'alert')
         .row
           %aside.col-md-4.col-xs-4.sidebar-area
             = render 'sidebar'
