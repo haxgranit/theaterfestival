@@ -41,6 +41,14 @@ class Production < ActiveRecord::Base
     showtimes.select { |s| s.showtime > DateTime.now }.present?
   end
 
+  def closing_soon?
+    if last_performance.present?
+      last_performance <= 7.days.from_now
+    else
+      false
+    end
+  end
+
   def tomorrow?
     showtimes.select { |s| s.tomorrow? }.present?
   end
@@ -102,6 +110,7 @@ class Production < ActiveRecord::Base
     {
       title: title,
       company: company.try(:name),
+      closing_soon: closing_soon?,
       upcoming: {
         today: today?,
         tomorrow: tomorrow?,

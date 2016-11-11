@@ -8,9 +8,12 @@
 
 figure.profile-image {
   position: relative;
+  img {
+    height: auto;
+  }
 }
 
-figurecaption.social {
+figurecaption.social, .cd-item .social {
   display: flex;
   justify-content: flex-end;
   align-self: flex-end;
@@ -31,6 +34,8 @@ figurecaption.social {
     .follow, .unfollow { background-color: $brand-primary; color: white; }
   }
 }
+
+.cd-item .social { bottom: 95px; }
 
 .content-area {
   .tab-wrapper {
