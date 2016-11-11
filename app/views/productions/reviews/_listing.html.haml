@@ -4,7 +4,7 @@
   - @production.reviews.each do |r|
     .row
       .col-sm-1
-        = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+        = attachment_image_tag(r.user, :profile_image, :fill, 150, 150)
       .col-sm-8.offset-sm-1
         %p.user
           = r.user.full_name
