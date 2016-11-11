@@ -31,9 +31,8 @@
   .row
     .col-sm-7
       %span
-        TheaterEngine allows users to instantly search & find their favorite shows anywhere!
+        TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
     .col-sm-5
       = simple_form_for(:artist, wrapper: :inline_form) do |f|
         = f.input :stage_name, as: :fake
-        = f.button :submit, 'Search'
 
