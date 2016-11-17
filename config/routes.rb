@@ -50,8 +50,9 @@ Rails.application.routes.draw do
     concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
 
-  resources :productions do
+  resources :productions, only: [:new, :create, :show, :index] do
     concerns [:permissible, :social, :autocomplete, :search, :claimable, :albums]
+    resources :steps, only: [:show, :update], controller: 'production/steps'
     member do
       get :quickview
     end

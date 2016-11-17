@@ -13,7 +13,7 @@
         #navbar-collapse-login.collapse.navbar-toggleable-xs
           %ul.nav.navbar-nav
             %li.nav-item
-              = link_to 'create a show', new_production_path, class: 'nav-community nav-link'
+              = link_to 'create a show', productions_path, method: :post, class: 'nav-community nav-link'
               - if user_signed_in?
                 %li.nav-item
                   = attachment_image_tag current_user, :profile_image, :fill, 50, 50

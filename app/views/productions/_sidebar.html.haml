@@ -39,8 +39,6 @@
             = @production.description
         %ul
           - if policy(@production).edit?
-            %li
-              = link_to 'Edit', edit_production_path(@production)
           - elsif policy(@production).claim?
             %li
               = link_to 'Claim Production Page', production_claim_path(@production), method: :patch

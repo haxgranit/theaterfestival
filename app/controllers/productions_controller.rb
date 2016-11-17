@@ -50,16 +50,10 @@ class ProductionsController < ApplicationController
 
   # POST /productions
   def create
-    @production = Production.new(production_params)
+    @production = Production.new
+    @production.save(validate: false)
 
-    if @production.save
-      if @production.company_id.present?
-        @production.create_activity :create, owner: @production.company
-      end
-      redirect_to @production, notice: 'Production was successfully created.'
-    else
-      render :new
-    end
+    redirect_to production_step_path(@production, Production.form_steps.first)
   end
 
   # PATCH/PUT /productions/1

@@ -1,4 +1,11 @@
 class Production < ActiveRecord::Base
+
+  cattr_accessor :form_steps do
+    %w(timing production_type production_title production_data production_dates production_info production_people)
+  end
+
+  attr_accessor :form_step
+
   include Permissible
   include Metadata
   include SocialTarget
@@ -9,7 +16,8 @@ class Production < ActiveRecord::Base
 
   searchkick word_start: [:title], searchable: [:title]
 
-  validates :title, :first_performance, presence: true
+  validates :title, presence: true, if: -> { required_for_step?(:production_title) }
+  validates :first_performance, presence: true, if: -> { required_for_step?(:production_dates) }
   attachment :key_image
   attachment :banner_image
 
@@ -36,6 +44,15 @@ class Production < ActiveRecord::Base
   #scope :upcoming, -> { joins(:showtimes).where 'showtimes.showtime > ?', DateTime.now }
 
   alias_attribute :name, :title
+
+  def required_for_step?(step)
+    # All fields are required if no form step is present
+    return true if form_step.nil?
+
+    # All fields from previous steps are required if the
+    # step parameter appears before or we are on the current step
+    return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
+  end
 
   def future_shows?
     showtimes.select { |s| s.showtime > DateTime.now }.present?
@@ -126,5 +143,4 @@ class Production < ActiveRecord::Base
       showtimes: showtime_json
     }
   end
-
 end

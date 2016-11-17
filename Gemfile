@@ -58,6 +58,7 @@ gem 'ezdz-rails'
 gem 'geokit-rails'
 gem 'cocoon'
 gem 'lightbox2-rails', github: 'gavinkflam/lightbox2-rails'
+gem 'wicked'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
