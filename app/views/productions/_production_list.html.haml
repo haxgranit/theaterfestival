@@ -12,7 +12,7 @@
         .social
           = render partial: 'shared/social_figure', locals: { target: production }
         %div
-          = link_to production.title, production
+          = link_to truncate(production.title, length: 35), production
         %div
           - if v.present?
             = link_to v.name, v

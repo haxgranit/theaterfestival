@@ -9,6 +9,9 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#theaters', role: 'tab'}
         Theaters
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
 .tab-content
   .tab-pane.active{ id: 'showtimes', role: 'tabpanel' }
     = render 'venues/showtimes/showtimes'

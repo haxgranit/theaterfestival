@@ -16,10 +16,12 @@
             Settings
   .tab-content
     .tab-pane.active{ id: 'news', role: 'tabpanel' }
-      %h2 #{@user.first_name}'s Activity
-      = render_activities(@user.public_activities)
-      %h2 Newsfeed
-      = render_activities(@user.follower_activities)
+      - if current_user == @user
+        %h2 #{@user.first_name}'s Activity
+        = render_activities(@user.public_activities)
+      - if user_signed_in?
+        %h2 Newsfeed
+        = render_activities(@user.follower_activities)
     .tab-pane{ id: 'follows', role: 'tabpanel' }
       %ul.nav.nav-pills{ role: 'tablist' }
         %li.nav-item
@@ -36,23 +38,21 @@
             Venues
       .tab-content
         .tab-pane.active{ id: 'productions', role: 'tabpanel'}
-          .block-grid
-            - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production }).page(params[:production_page])
-            - if @productions.present?
-              = render 'productions/production_list'
+          - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production }).page(params[:production_page])
+          - if @productions.present?
+            = render 'productions/production_list'
         .tab-pane{ id: 'artists', role: 'tabpanel'}
-          .block-grid
+          %ul.cd-items
             - @user.followed.select { |f| f.class == Artist }.each do |a|
-              %figure.block-grid-item.frontpage-show
+              %li.cd-item
                 - if a.profile_image_id.present?
                   = attachment_image_tag(a, :profile_image, :fill, 100, 150)
                 - else
                   = image_tag('unknown.png', size: '150x200')
-                %figurecaption
-                  %span.full-title
-                    %span.title>
-                      = link_to a.stage_name, a
-                  = render partial: 'shared/social_buttons', locals: { target: a }
+                .social
+                  = render partial: 'shared/social_figure', locals: { target: a }
+                %div
+                  = link_to a.name, a
         .tab-pane{ id: 'companies', role: 'tabpanel'}
           .block-grid
             - @user.followed.select { |f| f.class == Company }.each do |a|

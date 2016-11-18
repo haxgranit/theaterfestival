@@ -18,8 +18,8 @@ figurecaption.social, .cd-item .social {
   justify-content: flex-end;
   align-self: flex-end;
   position: absolute;
-  bottom: 0;
   right: 0;
+  top: 0;
   .button_to {
     background: rgba(0, 0, 0, 0.5);
     padding: 0;
@@ -35,7 +35,13 @@ figurecaption.social, .cd-item .social {
   }
 }
 
-.cd-item .social { bottom: 95px; }
+.cd-item .social { 
+  .button_to {
+    button {
+      padding: 0.5em;
+    }
+  }
+}
 
 .content-area {
   .tab-wrapper {

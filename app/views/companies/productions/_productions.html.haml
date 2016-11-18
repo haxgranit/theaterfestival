@@ -9,30 +9,42 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#festivals', role: 'tab'}
         Festivals
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
+
 .tab-content
   .tab-pane.active{ id: 'shows', role: 'tabpanel' }
     - if @company.productions.present?
-      .block-grid
-        - @productions = @company.productions.page(params[:production_page])
+      - @productions = @company.productions.page(params[:production_page]).per(30)
+      %ul.cd-items.cd-container
         - for production in @productions
-          %figure.block-grid-item.frontpage-show
-            - if production.key_image_id.present?
-              = attachment_image_tag production, :key_image, :fill, 150, 200
-            - else
-              = image_tag('unknown.png', size: '150x200')
-            %figurecaption
-              %span.full-title
-                %span.title>
-                  = link_to truncate(production.title, length: 25), production
-              - if production.company.present?
-                %span.company
-                  = link_to production.company.name, production.company
-              - if production.venues.present?
-                %span.venue
-                  = link_to(production.venues.first.name, production.venues.first) if production.venues.present?
-              = render partial: 'shared/social_buttons', locals: { target: production }
+          - c = @company
+          - if production.theaters.present?
+            - t = production.theaters.first
+            - if t.venue.present?
+              - v = t.venue
+
+          %li.cd-item{ data: { production: production.id } }
+            = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger')
+            .social
+              = render partial: 'shared/social_figure', locals: { target: production }
+            %div
+              = link_to truncate(production.title, length: 35), production
+            %div
+              - if v.present?
+                = link_to v.name, v
+              - elsif t.present?
+                = link_to t.name, t
+            %div
+              = production.first_performance.to_formatted_s(:rfc822)
+              - if production.last_performance.present?
+                \-
+                = production.last_performance.to_formatted_s(:rfc822)
+
+
       = paginate @productions, param_name: :production_page
-      = render partial: 'companies/productions/production_form', locals: { target: :productions }
+      .cd-quick-view
 
   .tab-pane{ id: 'coproductions', role: 'tabpanel' }
     - if @company.coproductions.present?
