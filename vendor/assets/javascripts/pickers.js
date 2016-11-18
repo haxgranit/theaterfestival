@@ -1,4 +1,4 @@
-$(document).on('ready page:change cocoon:after-insert', function() {
+$(document).on('ready turbolinks:load changeDate page:change cocoon:after-insert', function() {
   $('.datetimepicker').datetimepicker({
     // put here your custom picker options, that should be applied for all pickers
     icons: {
