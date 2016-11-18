@@ -1,19 +1,19 @@
 .tab-wrapper
   %ul.nav.nav-pills{ role: 'tablist' }
     %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#acting', role: 'tab'}
-        Acting
+      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#cast', role: 'tab'}
+        Cast
     %li.nav-item
-      %a.nav-link{ data: { toggle: 'pill' }, href: '#writing', role: 'tab'}
-        Writing
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#creative', role: 'tab'}
+        Creative
 .tab-content
-  .tab-pane.active{ id: 'acting', role: 'tabpanel'}
+  .tab-pane.active{ id: 'cast', role: 'tabpanel'}
 
     - @artist.credits.production.each do |credit|
       - p = credit.creditable
       = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
     = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
-  .tab-pane{ id: 'writing', role: 'tabpanel'}
+  .tab-pane{ id: 'creative', role: 'tabpanel'}
 
     - @artist.credits.creative.each do |credit|
       - p = credit.creditable
