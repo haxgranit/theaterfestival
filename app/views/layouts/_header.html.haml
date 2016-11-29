@@ -14,10 +14,8 @@
           %ul.nav.navbar-nav
             %li.nav-item
               - if session[:geo_location].present? || cookies[:geo_location].present?
-                Hello
                 - location = session[:geo_location] || cookies[:geo_location]
                 - address = Geokit::Geocoders::GoogleGeocoder.reverse_geocode location
-                = location
                 = address.full_address
             %li.nav-item
               = link_to 'create a show', productions_path, method: :post, class: 'nav-community nav-link'
