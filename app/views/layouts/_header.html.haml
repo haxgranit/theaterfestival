@@ -13,30 +13,37 @@
         #navbar-collapse-login.collapse.navbar-toggleable-xs
           %ul.nav.navbar-nav
             %li.nav-item
+              - if session[:geo_location].present? || cookies[:geo_location].present?
+                Hello
+                - location = session[:geo_location] || cookies[:geo_location]
+                - address = Geokit::Geocoders::GoogleGeocoder.reverse_geocode location
+                = location
+                = address.full_address
+            %li.nav-item
               = link_to 'create a show', productions_path, method: :post, class: 'nav-community nav-link'
-              - if user_signed_in?
-                %li.nav-item
-                  = attachment_image_tag current_user, :profile_image, :fill, 50, 50
-                %li.nav-item
-                  .dropdown
-                    %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
-                      = current_user.first_name
-                      = current_user.last_name
-                    .dropdown-menu{'aria-labelledby': 'profileDropdown' }
-                      = link_to 'Newsfeed', profile_path( anchor: :news ), class: 'dropdown-item'
-                      = link_to 'Notifications', profile_path( anchor: :notifications ), class: 'dropdown-item'
-                      = link_to 'Settings', profile_path( anchor: :settings ), class: 'dropdown-item'
-                      - if current_user.artist.present?
-                        = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
-                      - else
-                        = link_to 'Create Artist Page', new_artist_path, class: 'dropdown-item'
-                      = link_to 'Fan Page', profile_path( anchor: :follows ), class: 'dropdown-item'
-                      - if current_user.company.present?
-                        = link_to 'Company Page', company_path( current_user.company ), class: 'dropdown-item'
-                      - else
-                        = link_to 'Create Company', new_company_path, class: 'dropdown-item'
-                      = link_to 'Add a Show', new_production_path, class: 'dropdown-item'
-                      = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-              - else
-                %li.nav-item
-                  = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
+            - if user_signed_in?
+              %li.nav-item
+                = attachment_image_tag current_user, :profile_image, :fill, 50, 50
+              %li.nav-item
+                .dropdown
+                  %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
+                    = current_user.first_name
+                    = current_user.last_name
+                  .dropdown-menu{'aria-labelledby': 'profileDropdown' }
+                    = link_to 'Newsfeed', profile_path( anchor: :news ), class: 'dropdown-item'
+                    = link_to 'Notifications', profile_path( anchor: :notifications ), class: 'dropdown-item'
+                    = link_to 'Settings', profile_path( anchor: :settings ), class: 'dropdown-item'
+                    - if current_user.artist.present?
+                      = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
+                    - else
+                      = link_to 'Create Artist Page', new_artist_path, class: 'dropdown-item'
+                    = link_to 'Fan Page', profile_path( anchor: :follows ), class: 'dropdown-item'
+                    - if current_user.company.present?
+                      = link_to 'Company Page', company_path( current_user.company ), class: 'dropdown-item'
+                    - else
+                      = link_to 'Create Company', new_company_path, class: 'dropdown-item'
+                    = link_to 'Add a Show', new_production_path, class: 'dropdown-item'
+                    = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+            - else
+              %li.nav-item
+                = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}

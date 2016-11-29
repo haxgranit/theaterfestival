@@ -1,4 +1,5 @@
 class Venue < ActiveRecord::Base
+  acts_as_mappable
   include Permissible
   include HasAlbum
   include SocialTarget

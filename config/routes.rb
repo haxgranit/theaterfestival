@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: {registrations: 'users/registrations'}
+  devise_for :users, controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}
   resources :users, only: [:show, :index] do
     concerns [:social, :autocomplete]
   end
