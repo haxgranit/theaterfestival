@@ -33,3 +33,16 @@
     = render 'companies/credits/credits'
   .tab-pane{ id: 'venues', role: 'tabpanel' }
     = render 'companies/venues/venues'
+  .tab-pane{ id: 'info', role: 'tabpanel' }
+    - if @company.description.present?
+      %h2
+        Description
+      %p
+        = @company.description
+    - if @company.email.present?
+      %h2
+        Contact
+      %p
+        = mail_to @company.email, 'Email'
+      %p
+        = link_to 'Website', @company.website

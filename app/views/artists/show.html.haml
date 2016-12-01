@@ -9,6 +9,9 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
         Reviews
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
   = render partial: 'shared/social_links', locals: { target: @artist }
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
@@ -62,3 +65,9 @@
                 .col-sm-1
                   %p.date
                     = r.date.strftime("%D")
+  .tab-pane{ id: 'info', role: 'tabpanel' }
+    - if @artist.full_bio.present?
+      %h2
+        Full Bio
+      %p
+        = @artist.full_bio

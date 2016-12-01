@@ -8,14 +8,8 @@
         Creative
 .tab-content
   .tab-pane.active{ id: 'cast', role: 'tabpanel'}
-
-    - @artist.credits.production.each do |credit|
-      - p = credit.creditable
-      = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
+    - production_credits = @artist.credits.production.map(&:creditable)
+    = render partial: 'productions/production_list', locals: { productions: production_credits }
   .tab-pane{ id: 'creative', role: 'tabpanel'}
-
-    - @artist.credits.creative.each do |credit|
-      - p = credit.creditable
-      = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'creative' }
+    - creative_credits = @artist.credits.creative.map(&:creditable)
+    = render partial: 'productions/production_list', locals: { productions: creative_credits }

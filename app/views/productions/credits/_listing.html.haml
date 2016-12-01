@@ -1,6 +1,6 @@
 %tr
   %td
-    = attachment_image_tag(credit.artist, :profile_image, :fill, 100, 100)
+    = attachment_image_tag(credit.artist, :profile_image, :fill, 50, 75)
   %td
     = link_to(credit.artist.stage_name, artist_path(credit.artist))
     - if credit.credited_as.present?

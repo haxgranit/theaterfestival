@@ -12,6 +12,9 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
         Showtimes
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'productions/credits/credits'
@@ -24,3 +27,9 @@
     = render 'productions/reviews/form'
   .tab-pane{ id: 'showtimes', role: 'tabpanel' }
     = render 'productions/showtimes/showtimes'
+  .tab-pane{ id: 'info', role: 'tabpanel' }
+    - if @production.description.present?
+      %h2
+        Production Description
+      %p
+        = @production.description

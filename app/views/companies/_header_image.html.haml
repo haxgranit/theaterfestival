@@ -1,4 +1,5 @@
-- if @company.banner_image_id.present?
-  = attachment_image_tag(@company, :banner_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
-- elsif @company.company_image_id.present?
-  = attachment_image_tag(@company, :company_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
+.container.container-fluid.header-image
+  - if @company.banner_image_id.present?
+    = attachment_image_tag(@company, :banner_image, :fill, 800, 200, class: 'img-fluid')
+  - elsif @company.company_image_id.present?
+    = attachment_image_tag(@company, :company_image, :fill, 800, 200, class: 'img-fluid')

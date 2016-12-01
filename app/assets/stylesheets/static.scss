@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#main-content {
+  min-width: 768px;
+  > .container {
+    min-width: 768px;
+  }
+}
+
 .search-bar {
   background: rgba(70, 70, 70, 0.9);
   color: white;
@@ -20,6 +27,13 @@
     .btn {
       padding: 0 1em;
     }
+  }
+}
+
+.container.header-image {
+  padding: 0;
+  .img-fluid {
+    width: 100%;
   }
 }
 

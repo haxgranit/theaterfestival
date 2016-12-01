@@ -1,6 +1,8 @@
-- if @productions.any?
+- if @productions.present?
+  - productions = @productions
+- if productions.any?
   %ul.cd-items.cd-container
-    - for production in @productions
+    - for production in productions
       - c = production.company if production.company.present?
       - if production.theaters.present?
         - t = production.theaters.first

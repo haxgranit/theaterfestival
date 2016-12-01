@@ -36,21 +36,33 @@
         = v.name
   %h2
     = production.title
-  %section
-    %h3 Key Creative
-    - c = production.credits
-    - for credit in c.where(credit_type: 1)
+  - if production.credits.creative.present?
+    %section
       %p
-        = credit.artist.name
+        - fst, *rest = production.credits.creative
+        = fst.artist.name
         \-
-        = credit.position
-  %section
-    %h3 Key Cast
-    - for credit in c.where(credit_type: 0)
+        = fst.position
+        - if rest.present?
+          - for credit in rest
+            \,
+            = credit.artist.name
+            \-
+            = credit.position
+  - if production.credits.production.present?
+    %section
+      %h3 Starring
       %p
-        = credit.artist.name
+        - fst, *rest = production.credits.production
+        = fst.artist.name
         \-
-        = credit.position
+        = fst.position
+        - if rest.present?
+          - for credit in rest
+            \,
+            = credit.artist.name
+            \-
+            = credit.position
   %section
     - for show in production.showtimes.limit(3)
       %p

@@ -36,11 +36,17 @@ figurecaption.social, .cd-item .social {
 }
 
 .cd-item .social { 
+  opacity: 0;
+  transition: all 0.5s;
   .button_to {
     button {
       padding: 0.5em;
     }
   }
+}
+
+.cd-item:hover .social {
+  opacity: 1;
 }
 
 .content-area {

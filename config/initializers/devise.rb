@@ -146,7 +146,7 @@ config.secret_key = 'dc910e1ce7beae4b4c7994e9aa94cbfc633a372a0340247fdcf53b821b1
 
   # ==> Configuration for :validatable
   # Password strength as determined by zxcvbn
-  config.min_password_score = 3
+  config.min_password_score = 2
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

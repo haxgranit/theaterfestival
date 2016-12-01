@@ -23,12 +23,6 @@
         = @artist.likers(User).count
     #user-info
       %p
-
-    - if @artist.full_bio.present?
-      %h2
-        Full Bio
-      %p
-        = @artist.full_bio
   - if policy(@artist).edit?
     .artist-profile-links
       %ul

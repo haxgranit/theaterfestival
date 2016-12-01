@@ -16,6 +16,6 @@
         #password-feedback.text-xs-center
       = f.input :password_confirmation, autocomplete: 'off'
       = f.input :time_zone, as: :time_zone, priority: /US/
-      = f.input :location
+      = f.input :location, label: 'Current City'
       = f.button :submit, class: 'btn btn-primary btn-block'
     = render "devise/shared/links"

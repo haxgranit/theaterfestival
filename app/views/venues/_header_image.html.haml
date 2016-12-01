@@ -1,0 +1,4 @@
+-if @venue.present?
+  .container.container-fluid.header-image
+    - if @venue.banner_image_id.present?
+      = attachment_image_tag(@venue, :banner_image, :fill, 800, 200, id: 'header-image', class: 'img-fluid')
