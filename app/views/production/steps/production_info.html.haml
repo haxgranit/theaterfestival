@@ -6,5 +6,6 @@
     = simple_form_for @production, method: :put, url: wizard_path do |f|
       = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }
       = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }
-      = f.input :company_id, collection: Company.all, label_method: :name, value_method: :id, label: 'Production Company'
+      = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }, label: 'Production Company'
+      = f.input :company_id, as: :hidden
       = f.button :submit, 'Next Step'
