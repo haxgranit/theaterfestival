@@ -1,0 +1,19 @@
+.create-show
+  %h1
+    Create a Show
+  - if current_user.company.present?
+    .question
+      %p
+        Which company produced the show?
+    .form
+      = simple_form_for @production, method: :put, url: wizard_path do |f|
+        = f.input :company_id, collection: Company.all, value_method: :id, label_method: :name, prompt: true
+        = f.button :submit, class: 'btn-primary'
+  - else
+    .question
+      %p
+        You do not have edit permissions on any existing companies. Would you like to create a new one?
+
+    .answers
+      = button_to "Yes", new_company_path, class: 'btn btn-primary', form: {target: '_blank'}, method: :get, params: { create_show: true }
+      = button_to "No", :back, class: 'btn btn-primary', method: :get

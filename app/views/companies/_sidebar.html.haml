@@ -8,8 +8,6 @@
         = attachment_image_tag(@company, :company_image, :fill, 400, 400)
       - else
         = image_tag('unknown.png', size: '400x400')
-      %figurecaption.social
-        = render partial: 'shared/social_figure', locals: { target: @company }
     - if @company.name.present?
       %p
         %strong

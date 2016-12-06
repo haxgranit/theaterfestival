@@ -3,7 +3,14 @@ class Production::StepsController < ApplicationController
   steps *Production.form_steps
 
   def show
+    @user = current_user
     @production = Production.find(params[:production_id])
+    case step
+    when :company
+      if @production.archived?
+        skip_step
+      end
+    end
     render_wizard
   end
 
@@ -25,6 +32,8 @@ class Production::StepsController < ApplicationController
                              [:archived]
                            when "production_title"
                              [:title]
+                           when "company"
+                             [:company_id]
                            when "production_dates"
                              [:first_performance, :last_performance]
                            when "production_info"

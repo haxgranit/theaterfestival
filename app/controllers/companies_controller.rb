@@ -25,6 +25,9 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    if params[:create_show] == 'true'
+      @user = current_user
+    end
   end
 
   # GET /companies/1/edit
@@ -34,7 +37,6 @@ class CompaniesController < ApplicationController
   # POST /companies
   def create
     @company = Company.new(company_params)
-
     if @company.save
       redirect_to @company, notice: 'Company was successfully created.'
     else
@@ -86,6 +88,7 @@ class CompaniesController < ApplicationController
                 :email,
                 :company_image,
                 :banner_image,
+                :user_id,
                 productions_attributes: [:id,
                                          :title,
                                          :key_image,

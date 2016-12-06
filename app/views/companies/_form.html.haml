@@ -1,5 +1,7 @@
 = simple_form_for @company, wrapper: :horizontal_form do |f|
   = f.input :name, as: :string
+  - if @user.present?
+    = f.input :user_id, as: :hidden, input_html: { value: @user.id }
   - if policy(@company).edit?
     = f.input :company_type, as: :string
     = f.input :website, as: :url
