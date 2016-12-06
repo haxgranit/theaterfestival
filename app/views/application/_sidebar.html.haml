@@ -1,11 +1,21 @@
 - if @productions.present?
+  - if session[:geo_location].present? || cookies[:geo_location].present?
+    - location = session[:geo_location] || cookies[:geo_location]
+    - if session[:address].blank?
+      - addr_temp = Geokit::Geocoders::GoogleGeocoder.reverse_geocode location
+      = debug addr_temp
+      - session[:address][:full] = addr_temp.full_address
+      - session[:address][:city] = addr_temp.city
+      - session[:address][:state] = addr_temp.state
+      - session[:address][:zip] = addr_temp.zipcode
+    
   %section.search
     %h1 Where would you like to see a show?
     = simple_form_for :search, url: search_productions_path, wrapper: :horizontal_form, defaults: { required: false }, method: :get, remote: true do |f|
       = simple_fields_for :conditions, wrapper: :horizontal_form, defaults: { required: false, as: :boolean } do |a|
-        = a.input 'showtimes.venue.city', as: :string, placeholder: '', label: 'City'
-        = a.input 'showtimes.venue.state', as: :string, placeholder: '', label: 'State'
-        = a.input 'showtimes.venue.zip', as: :string, placeholder: '', label: 'Zip'
+        = a.input 'showtimes.venue.city', as: :string, placeholder: '', label: 'City', input_html: { value:  session[:address][:city] }
+        = a.input 'showtimes.venue.state', as: :string, placeholder: '', label: 'State', input_html: { value:  session[:address][:state] }
+        = a.input 'showtimes.venue.zip', as: :string, placeholder: '', label: 'Zip', input_html: { value:  session[:address][:zip] }
         %section.filters
           %h2 Filter Search
           - @productions.aggs.each do |agg|
