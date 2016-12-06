@@ -8,5 +8,9 @@
       Does this production have future performance dates, or did it occur in the past?
 
   .answers
-    = link_to 'past', next_wizard_path({past_or_future: 'past'}), class: 'btn btn-primary'
-    = link_to 'future', next_wizard_path({past_or_future: 'future'}), class: 'btn btn-primary'
+    = simple_form_for @production, method: :put, url: wizard_path do |f|
+      = f.input :archived, as: :hidden, input_html: { value: true }
+      = f.button :submit, 'Past', class: 'btn btn-primary'
+    = simple_form_for @production, method: :put, url: wizard_path do |f|
+      = f.input :archived, as: :hidden, input_html: { value: false }
+      = f.button :submit, 'Future', class: 'btn btn-primary'

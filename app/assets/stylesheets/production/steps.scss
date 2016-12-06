@@ -19,7 +19,8 @@
   }
 
   .answers {
-    a.btn {
+    form { display: inline-block;  }
+    .btn {
       font-size: 1.75em;
       text-transform: uppercase;
       font-weight: bold;

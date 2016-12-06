@@ -93,6 +93,7 @@ class ProductionsController < ApplicationController
                 :key_image,
                 :banner_image,
                 :company_id,
+                :archived,
                 albums_attributes: [:id,
                                     :title,
                                     :description,

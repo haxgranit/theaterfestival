@@ -21,6 +21,8 @@ class Production::StepsController < ApplicationController
 
   def production_params(step)
     permitted_attributes = case step
+                           when "timing"
+                             [:archived]
                            when "production_title"
                              [:title]
                            when "production_dates"

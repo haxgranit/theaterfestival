@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 76) do
+ActiveRecord::Schema.define(version: 77) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -302,6 +302,7 @@ ActiveRecord::Schema.define(version: 76) do
     t.text     "key_image_credit"
     t.integer  "company_id"
     t.string   "banner_image_id"
+    t.boolean  "archived"
   end
 
   add_index "productions", ["company_id"], name: "index_productions_on_company_id", using: :btree
