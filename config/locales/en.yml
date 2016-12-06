@@ -21,10 +21,15 @@
 
 en:
   hello: "Hello world"
+  datepicker:
+    dformat: '%m/%d/%Y'
+    pformat: 'MM/DD/YYYY'
   date:
     datepicker:
       default: "mm/dd/yyyy"
       long: "MM dd, yyyy"
+      dformat: '%m/%d/%Y'
+      pformat: 'MM/DD/YYYY'
     datetimepicker:
       default: "mm/dd/yyyy hh:mm"
       long: "MM dd, yyyy, hh:mm"

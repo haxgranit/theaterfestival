@@ -4,6 +4,10 @@
 
   .form
     = simple_form_for @production, method: :put, url: wizard_path do |f|
-      = f.input :first_performance, as: :date_picker
-      = f.input :last_performance, as: :date_picker
+      - if @production.archived?
+        - date_limit = { date_options: { maxDate: Date.today.strftime('%Y/%m/%d') } }
+      - else
+        - date_limit = { date_options: { maxDate: false } }
+      = f.input :first_performance, as: :date_picker, input_html: { data: date_limit }
+      = f.input :last_performance, as: :date_picker, input_html: { data: date_limit }
       = f.button :submit, 'Next Step'
