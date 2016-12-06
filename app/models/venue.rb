@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-  acts_as_mappable
+  acts_as_mappable, auto_geocode: { field: :full_address, error_message: 'Error geocoding' }
   include Permissible
   include HasAlbum
   include SocialTarget
@@ -15,4 +15,10 @@ class Venue < ActiveRecord::Base
   accepts_nested_attributes_for :theaters
   has_many :showtimes, through: :theaters
   accepts_nested_attributes_for :showtimes
+
+  private
+
+  def full_address
+    "#{address}, #{city}, #{state}, #{zip}"
+  end
 end
