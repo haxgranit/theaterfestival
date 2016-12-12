@@ -1,19 +1,19 @@
 GIT
-  remote: git://github.com/derekprior/momentjs-rails.git
+  remote: https://github.com/derekprior/momentjs-rails.git
   revision: fa8ac4899554775945704fd6b7a7b3c5ce1bde17
   specs:
     momentjs-rails (2.15.1)
       railties (>= 3.1)
 
 GIT
-  remote: git://github.com/gavinkflam/lightbox2-rails.git
+  remote: https://github.com/gavinkflam/lightbox2-rails.git
   revision: d7f2788ee278cce7541d65f634753d36e72581d2
   specs:
     lightbox2-rails (2.8.2.1)
       railties (>= 3.1)
 
 GIT
-  remote: git://github.com/jhenahan/administrate.git
+  remote: https://github.com/jhenahan/administrate.git
   revision: 01f7d39b1af728fe122a278c1c72c32ec5a1d973
   branch: te
   specs:
@@ -30,7 +30,7 @@ GIT
       selectize-rails (~> 0.6)
 
 GIT
-  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  remote: https://github.com/zpaulovics/datetimepicker-rails.git
   revision: 36d21cec5da7f5b214925804f60e63c61c747023
   branch: master
   submodules: true
@@ -389,7 +389,7 @@ GEM
       activemodel
       elasticsearch (>= 1)
       hashie
-    selectize-rails (0.12.3)
+    selectize-rails (0.12.4)
     shellany (0.0.1)
     sidekiq (4.1.4)
       concurrent-ruby (~> 1.0)
