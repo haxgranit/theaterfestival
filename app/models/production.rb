@@ -14,7 +14,7 @@ class Production < ActiveRecord::Base
   tracked
   paginates_per 9
 
-  searchkick word_start: [:title], searchable: [:title]
+  searchkick word_start: [:title], searchable: [:title], locations: ["location"]
 
   validates :title, presence: true, if: -> { required_for_step?(:production_title) }
   validates :first_performance, presence: true, if: -> { required_for_step?(:production_dates) }
@@ -52,6 +52,15 @@ class Production < ActiveRecord::Base
     # All fields from previous steps are required if the
     # step parameter appears before or we are on the current step
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
+  end
+
+  def location
+    if showtimes.present? && showtimes.first.venue.present?
+      venue = showtimes.first.venue
+      [venue.lat, venue.lng]
+    else
+      []
+    end
   end
 
   def future_shows?
@@ -128,6 +137,7 @@ class Production < ActiveRecord::Base
       title: title,
       company: company.try(:name),
       closing_soon: closing_soon?,
+      location: location,
       upcoming: {
         today: today?,
         tomorrow: tomorrow?,

@@ -13,6 +13,8 @@ services:
 
 
   postgres:
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
     extends:
       file: docker-common.yml
       service: postgres

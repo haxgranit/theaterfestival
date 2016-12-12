@@ -1,7 +1,8 @@
 Geokit::default_units = :miles # others :kms, :nms, :meters
 Geokit::default_formula = :sphere
+Geokit::Geocoders::provider_order=[:google]
 
-Geokit::Geocoders::request_timeout = 3
+Geokit::Geocoders::request_timeout = 10
 
 # This is your Google Maps geocoder keys (all optional).
 # See http://www.google.com/apis/maps/signup.html

@@ -30,7 +30,9 @@ services:
 
   elasticsearch:
     image: elasticsearch:latest
-    command: elasticsearch -Des.network.host=0.0.0.0
+    command: elasticsearch 
+    environment:
+      ES_JAVA_OPTS: "-Des.network.host=0.0.0.0"
 
   sidekiq:
     build: .
