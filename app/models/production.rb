@@ -135,6 +135,8 @@ class Production < ActiveRecord::Base
   def search_data
     {
       title: title,
+      name: title,
+      image: Refile.attachment_url(self, :key_image, :fill, 50, 100, format: 'jpg'),
       company: company.try(:name),
       closing_soon: closing_soon?,
       location: location,

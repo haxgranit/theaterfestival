@@ -5,7 +5,7 @@ class Artist < ActiveRecord::Base
   include HasAlbum
   include PublicActivity::Model
 
-  searchkick word_start: [:stage_name], searchable: [:stage_name]
+  searchkick word_start: [:name], searchable: [:name]
 
   validates :stage_name, presence: true
   validates_uniqueness_of :user_id, :allow_blank => true
@@ -29,6 +29,19 @@ class Artist < ActiveRecord::Base
 
   def social_links
     collect_metadata(artist_social_metadata)
+  end
+
+  def search_data
+    {
+        id: id,
+        name: name,
+        image: Refile.attachment_url(self, :profile_image, :fill, 50, 100, format: 'jpg'),
+        credits: credits
+                     .limit(4)
+                     .map do |credit|
+          {production: credit.creditable.name,position: credit.position}
+        end
+    }
   end
 
 end

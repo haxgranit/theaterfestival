@@ -21,4 +21,12 @@ class Venue < ActiveRecord::Base
   def full_address
     "#{address}, #{city}, #{state}, #{zip}"
   end
+
+  def search_data
+    {
+        id: id,
+        name: name,
+        image: Refile.attachment_url(self, :venue_image, :fill, 50, 100, format: 'jpg'),
+    }
+  end
 end
