@@ -1,5 +1,46 @@
 $ ->
   $(document).on 'turbolinks:load cocoon:after-insert', ->
+    agg = new Bloodhound(
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value', 'image')
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      remote:
+        url: '/search/autocomplete?query=%QUERY'
+        wildcard: '%QUERY')
+
+    agg.initialize()
+
+    $('#name.fake').typeahead({
+      hint: true
+      highlight: true
+      minLength: 2
+    },
+      displayKey: 'name'
+      templates:
+        suggestion: Handlebars.compile("
+            <div class=\"results\">
+              {{#if image}}
+              <div class=\"col-sm-3\">
+                <img src=\"{{image}}\">
+              </div>
+              {{/if}}
+              {{#if name}}
+		      <div class=\"col-sm-9\">
+			<strong>{{name}}</strong>
+		      {{#if credits}}
+			<ul>
+			  {{#each credits}}
+			  <li>{{production}} - {{position}}</li>
+			  {{/each}}
+			</ul>
+		      {{/if}}
+		      </div>
+              {{/if}}
+            </div>
+          ")
+      source: agg.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+        $('[id$=user_id]').val(suggestion.value)
+        return
+  $(document).on 'turbolinks:load cocoon:after-insert', ->
     users = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name', 'value', 'email')
       queryTokenizer: Bloodhound.tokenizers.whitespace
