@@ -7,4 +7,7 @@ class StaticController < ApplicationController
     set_production_search
   end
 
+  def create_show
+  end
+
 end

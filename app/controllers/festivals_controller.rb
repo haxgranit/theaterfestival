@@ -31,13 +31,10 @@ class FestivalsController < ApplicationController
 
   # POST /festivals
   def create
-    @festival = Festival.new(festival_params)
+    @festival = Festival.new
+    @festival.save(validate: false)
 
-    if @festival.save
-      redirect_to @festival, notice: 'Festival was successfully created.'
-    else
-      render :new
-    end
+    redirect_to festival_step_path(@festival, Festival.form_steps.first)
   end
 
   # PATCH/PUT /festivals/1

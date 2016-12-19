@@ -27,6 +27,7 @@ module SearchSetup
                                      load: true,
                                      page: params[:page],
                                      per_page: 30,
+                                     execute: false,
                                      where: conditions,
                                      aggs: aggs)
   end
