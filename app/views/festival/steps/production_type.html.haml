@@ -1,0 +1,10 @@
+.create-show
+  %h1
+    Create a Show
+  .question
+    %p
+      Is this show a single production, or part of a festival?
+
+  .answers
+    = link_to 'production', next_wizard_path({past_or_future: @timing}), class: 'btn btn-primary'
+    = link_to 'festival', festival_path({past_or_future: @timing}), method: :post, class: 'btn btn-primary'

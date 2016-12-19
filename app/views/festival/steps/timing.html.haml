@@ -1,0 +1,16 @@
+.create-show
+  %h1
+    Create a Show
+  %p.explanation
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+  .question
+    %p
+      Does this production have future performance dates, or did it occur in the past?
+
+  .answers
+    = simple_form_for @festival, method: :put, url: wizard_path do |f|
+      = f.input :archived, as: :hidden, input_html: { value: true }
+      = f.button :submit, 'Past', class: 'btn btn-primary'
+    = simple_form_for @festival, method: :put, url: wizard_path do |f|
+      = f.input :archived, as: :hidden, input_html: { value: false }
+      = f.button :submit, 'Future', class: 'btn btn-primary'

@@ -55,14 +55,10 @@
       %p
         - fst, *rest = production.credits.production
         = fst.artist.name
-        \-
-        = fst.position
         - if rest.present?
           - for credit in rest
             \,
             = credit.artist.name
-            \-
-            = credit.position
   %section
     - for show in production.showtimes.limit(3)
       %p

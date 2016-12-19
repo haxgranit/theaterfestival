@@ -13,12 +13,7 @@
         #navbar-collapse-login.collapse.navbar-toggleable-xs
           %ul.nav.navbar-nav
             %li.nav-item
-              - if session[:geo_location].present? || cookies[:geo_location].present?
-                - location = session[:geo_location] || cookies[:geo_location]
-                - address = Geokit::Geocoders::GoogleGeocoder.reverse_geocode location
-                = address.full_address
-            %li.nav-item
-              = link_to 'create a show', productions_path, method: :post, class: 'nav-community nav-link'
+              = link_to 'create a show', create_show_path, class: 'nav-community nav-link'
             - if user_signed_in?
               %li.nav-item
                 = attachment_image_tag current_user, :profile_image, :fill, 50, 50
@@ -45,3 +40,11 @@
             - else
               %li.nav-item
                 = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
+    .search-bar.container-fluid
+      .row
+        .col-sm-7
+          %span
+            TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
+        .col-sm-5
+          = simple_form_for(:search, wrapper: :inline_form) do |f|
+            = f.input :name, as: :fake

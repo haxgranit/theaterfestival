@@ -1,0 +1,11 @@
+.create-show
+  %h1
+    Create a Show
+  .question
+    %p
+      What is the title of the production?
+
+  .form
+    = simple_form_for @production, method: :put, url: wizard_path do |f|
+      = f.input :title, as: :string
+      = f.button :submit, 'Next Step'

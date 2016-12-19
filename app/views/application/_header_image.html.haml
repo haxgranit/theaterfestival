@@ -27,12 +27,4 @@
         Create a profile that collects your theater credits, media files, reviews and more as a digital resume that allows audiences and producers to become fans of you and follow your work. 
       %p
         = link_to 'Create Profile', '#'
-.search-bar.container.container-fluid
-  .row
-    .col-sm-7
-      %span
-        TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
-    .col-sm-5
-      = simple_form_for(:artist, wrapper: :inline_form) do |f|
-        = f.input :stage_name, as: :fake
 
