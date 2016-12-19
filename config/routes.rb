@@ -38,6 +38,10 @@ Rails.application.routes.draw do
 
   get :profile, to: 'users#show'
 
+  resource :search, controller: 'search' do
+    concerns [:autocomplete]
+  end
+
   resources :artists do
     concerns [:permissible, :social, :autocomplete, :claimable, :albums]
   end
@@ -48,6 +52,10 @@ Rails.application.routes.draw do
 
   resources :festivals do
     concerns [:permissible, :social, :autocomplete, :claimable, :albums]
+    resources :steps, only: [:show, :update], controller: 'festival/steps'
+    member do
+      get :quickview
+    end
   end
 
   resources :productions, only: [:new, :create, :show, :index] do
@@ -76,6 +84,8 @@ Rails.application.routes.draw do
   resources :company_festival_links
   resources :festival_production_links
   resources :production_showtime_links
+
+  get :create_show, to: 'static#create_show'
 
   root 'static#home'
 
