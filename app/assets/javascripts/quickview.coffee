@@ -1,5 +1,5 @@
 $ ->
- $(document).on 'turbolinks:load', ->
+ $(document).on 'turbolinks:load ajax:complete', ->
   #final width --> this is the quick view image slider width
   #maxQuickWidth --> this is the max-width of the quick-view panel
   sliderFinalWidth = 400

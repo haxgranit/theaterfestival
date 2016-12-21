@@ -112,7 +112,6 @@ class ArtistsController < ApplicationController
       .permit(:stage_name,
               :title,
               :birthdate,
-              :birth_location,
               :hometown,
               :education,
               :full_bio,
