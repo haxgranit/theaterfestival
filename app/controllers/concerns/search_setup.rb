@@ -6,7 +6,7 @@ module SearchSetup
   def set_production_search
     c = params[:conditions] || {}
     conditions = {'upcoming.someday': true}
-    conditions.delete_if { |_,v| v == "0" || v.blank? }
+    c.delete_if { |_,v| v == "0" || v.blank? }
     if c['showtimes.venue.city'].present? || c['showtimes.venue.state'].present? || c['showtimes.venue.zip'].present?
       city, state, zip = c['showtimes.venue.city'], c['showtimes.venue.state'], c['showtimes.venue.zip']
       loc = Geokit::Geocoders::MultiGeocoder.geocode("#{city}, #{state} #{zip}")
@@ -19,9 +19,15 @@ module SearchSetup
         conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
       end
     end
-    if params[:sort] == 'favorites'
+    if c[:favorites].present?
       sort = { likes: :desc }
     end
+    c.except!('showtimes.venue.city', 'showtimes.venue.state', 'showtimes.venue.zip', :favorites)
+
+    conditions.merge!(c)
+    logger.debug c
+    logger.debug conditions
+
     aggs = ['closing_soon', 'upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
             'size.broadway', 'size.offbroadway', 'size.black_box',
            'guaranteed_price']

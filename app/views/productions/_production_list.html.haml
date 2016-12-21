@@ -1,9 +1,6 @@
 - if @productions.present?
   - productions = @productions
 - if productions.present?
-  %ul.production-filters
-    %li
-      = link_to 'User Favorites', params.merge(sort: 'favorites'), remote: true
   %ul.cd-items.cd-container
     - for production in productions
       - c = production.company if production.company.present?

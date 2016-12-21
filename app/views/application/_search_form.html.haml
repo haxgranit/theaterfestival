@@ -1,0 +1,26 @@
+- if session[:geo_location].present?
+  - location = session[:geo_location]
+  - address = Geokit::Geocoders::GoogleGeocoder.reverse_geocode location
+%h1 Where would you like to see a show?
+= simple_form_for :search, url: search_productions_path, wrapper: :horizontal_form, defaults: { required: false }, method: :get, remote: true do |f|
+  = simple_fields_for :conditions, wrapper: :horizontal_form, defaults: { required: false, as: :boolean } do |a|
+    = a.input 'showtimes.venue.city', as: :string, placeholder: '', label: 'City', input_html: { value: address.city }
+    = a.input 'showtimes.venue.state', as: :string, placeholder: '', label: 'State', input_html: { value: address.state }
+    = a.input 'showtimes.venue.zip', as: :string, placeholder: '', label: 'Zip', input_html: { value: address.zip }
+    %section.filters
+      %h2 Filter Search
+      = a.input :favorites, label: 'User Favorites'
+      - if @productions.present?
+        - @productions.aggs.each do |agg|
+          - agg_name = agg[0]
+          - agg_keys = agg[1]
+          - buckets = agg_keys.dig('buckets').select { |key, hash| key['key_as_string'] == 'true'}
+          - if buckets.present?
+            - agg_count = buckets.dig(0,'doc_count')
+            - if agg_count.try :nonzero?
+              = a.input agg_name, label: "#{I18n.t agg_name} (#{agg_count})"
+  = f.button :submit, 'Search', class: 'btn-primary form-group row'
+
+-# %section.price
+-#   %h2 Price Range
+-#   %input#price_range{"data-slider-max" => "1000", "data-slider-min" => "10", "data-slider-step" => "5", "data-slider-value" => "[20,800]", type: "text", value: ""}/
