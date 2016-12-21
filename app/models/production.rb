@@ -136,7 +136,7 @@ class Production < ActiveRecord::Base
     {
       title: title,
       name: title,
-      image: Refile.attachment_url(self, :key_image, :fill, 50, 100, format: 'jpg'),
+      image: Refile.attachment_url(self, :key_image, :fill, 50, 75, format: 'jpg'),
       likes: self.likers(User).count,
       company: company.try(:name),
       closing_soon: closing_soon?,

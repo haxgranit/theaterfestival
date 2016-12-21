@@ -35,7 +35,7 @@ class Artist < ActiveRecord::Base
     {
         id: id,
         name: name,
-        image: Refile.attachment_url(self, :profile_image, :fill, 50, 100, format: 'jpg'),
+        image: Refile.attachment_url(self, :profile_image, :fill, 50, 50, format: 'jpg'),
         credits: credits
                      .limit(4)
                      .map do |credit|

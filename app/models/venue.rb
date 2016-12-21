@@ -26,7 +26,7 @@ class Venue < ActiveRecord::Base
     {
         id: id,
         name: name,
-        image: Refile.attachment_url(self, :venue_image, :fill, 50, 100, format: 'jpg'),
+        image: Refile.attachment_url(self, :venue_image, :fill, 50, 50, format: 'jpg'),
     }
   end
 end
