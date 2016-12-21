@@ -1,7 +1,7 @@
 class Api::V1::UserResource < JSONAPI::Resource
-  attributes :first_name, :last_name, :email, :password, :time_zone
+  attributes :first_name, :last_name, :email, :password
 
   def fetchable_fields
-    super - [:password, :time_zone]
+    super - [:password]
   end
 end

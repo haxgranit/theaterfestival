@@ -12,6 +12,5 @@
   = f.input :profile_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(resource, :profile_image) } }
   = f.input :first_name, as: :string
   = f.input :last_name, as: :string
-  = f.input :time_zone, as: :time_zone, priority: /US/
   = f.input :location, label: 'Current City'
   = f.button :submit, class: 'btn btn-primary btn-block'

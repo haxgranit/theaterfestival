@@ -17,12 +17,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :zxcvbnable
 
-  validates :email, :first_name, :last_name, :time_zone, presence: true
+  validates :email, :first_name, :last_name, presence: true
   validates :password, presence: true, confirmation: true, on: :create
 
   validates :email, length: { maximum: 254 }
-
-  validate :timezone_exists
 
   attachment :profile_image
   attachment :banner_image
@@ -67,11 +65,5 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def timezone_exists
-    return if ActiveSupport::TimeZone[time_zone].present?
-    errors.add(:time_zone, "does not exist")
-  end
-
 
 end
