@@ -7,14 +7,14 @@
       %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
         Media
     %li.nav-item
+      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+        Info
+    %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
         Reviews
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
         Showtimes
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'productions/credits/credits'
