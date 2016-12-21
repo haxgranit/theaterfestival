@@ -41,10 +41,11 @@
               %li.nav-item
                 = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
     .search-bar.container-fluid
-      .row
-        .col-sm-7
-          %span
-            TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
-        .col-sm-5
-          = simple_form_for(:search, wrapper: :inline_form) do |f|
-            = f.input :name, as: :fake
+      .container
+        .row
+          .col-sm-7
+            %span
+              TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
+          .col-sm-5
+            = simple_form_for(:search, wrapper: :inline_form) do |f|
+              = f.input :name, as: :fake
