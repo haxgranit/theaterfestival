@@ -1,5 +1,13 @@
 $ ->
   $(document).on 'turbolinks:load cocoon:after-insert', ->
+    Handlebars.registerHelper 'route_to', (route, resource_id, caption) ->
+      url = Routes[route](resource_id)
+      new (Handlebars.SafeString)('<a href=\'' + url + '\'>' + caption + '</a>')
+
+    Handlebars.registerHelper 'url_to', (route, resource_id, caption) ->
+      url = Routes[route](resource_id)
+      new (Handlebars.SafeString)(url)
+
     agg = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value', 'image')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -17,7 +25,8 @@ $ ->
       displayKey: 'name'
       templates:
         suggestion: Handlebars.compile("
-            <div class=\"results\">
+	    <a href=\"{{path}}\">
+            <div class=\"results row\">
               {{#if image}}
               <div class=\"col-sm-3\">
                 <img src=\"{{image}}\">
@@ -36,6 +45,7 @@ $ ->
 		      </div>
               {{/if}}
             </div>
+	    </a>
           ")
       source: agg.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         $('[id$=user_id]').val(suggestion.value)
@@ -114,9 +124,6 @@ $ ->
         added_item.find('[id$=artist_id]').val(suggestion.value)
         return
 
-    Handlebars.registerHelper 'route_to', (route, resource_id, caption) ->
-      url = Routes[route](resource_id)
-      new (Handlebars.SafeString)('<a href=\'' + url + '\'>' + caption + '</a>')
 
     $('form#new_artist #artist_stage_name').typeahead null,
       displayKey: 'stage_name'

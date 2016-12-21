@@ -134,6 +134,8 @@ class Production < ActiveRecord::Base
 
   def search_data
     {
+      id: id,
+      path: "/productions/#{id}",
       title: title,
       name: title,
       image: Refile.attachment_url(self, :key_image, :fill, 50, 75, format: 'jpg'),
