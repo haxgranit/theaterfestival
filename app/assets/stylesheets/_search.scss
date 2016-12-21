@@ -146,6 +146,20 @@ aside {
     }
   }
 }
+
+
+
+.production-filters {
+  display: flex;
+  li {
+    margin-right: 1em;
+    a {
+      color: $gray-dark;
+      text-decoration: underline;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .search {
     .simple_form {
