@@ -1,0 +1,10 @@
+.production-filters {
+  display: flex;
+  li {
+    margin-right: 1em;
+    a {
+      color: $gray-dark;
+      text-decoration: underline;
+    }
+  }
+}

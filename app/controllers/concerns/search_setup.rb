@@ -19,6 +19,9 @@ module SearchSetup
         conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
       end
     end
+    if params[:sort] == 'favorites'
+      sort = { likes: :desc }
+    end
     aggs = ['closing_soon', 'upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
             'size.broadway', 'size.offbroadway', 'size.black_box',
            'guaranteed_price']
@@ -29,6 +32,7 @@ module SearchSetup
                                      per_page: 30,
                                      execute: false,
                                      where: conditions,
+                                     order: sort,
                                      aggs: aggs)
   end
 
