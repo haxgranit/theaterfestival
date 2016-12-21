@@ -42,6 +42,7 @@ class Production < ActiveRecord::Base
   accepts_nested_attributes_for :production_metadata, reject_if: :all_blank, allow_destroy: true
 
   #scope :upcoming, -> { joins(:showtimes).where 'showtimes.showtime > ?', DateTime.now }
+  scope :search_import, -> { includes(:festivals) }
 
   alias_attribute :name, :title
 
@@ -143,6 +144,7 @@ class Production < ActiveRecord::Base
       company: company.try(:name),
       closing_soon: closing_soon?,
       location: location,
+      festivals: festivals,
       upcoming: {
         today: today?,
         tomorrow: tomorrow?,

@@ -8,13 +8,41 @@ class Festival < ActiveRecord::Base
   include Permissible
   include HasAlbum
   include PublicActivity::Common
-  searchkick word_start: [:title], searchable: [:title]
+  searchkick word_start: [:title], searchable: [:title], locations: ["location"]
   validates :title, presence: true
   attachment :festival_image
   attachment :banner_image
 
   has_many :companies, through: :company_festival_links
   has_many :productions, through: :festival_production_links
+  has_many :showtimes, through: :productions
   has_many :company_festival_links
   has_many :festival_production_links
+
+  def location
+    if showtimes.present? && showtimes.first.venue.present?
+      venue = showtimes.first.venue
+      [venue.lat, venue.lng]
+    else
+      []
+    end
+  end
+
+  def future_shows?
+    showtimes.select { |s| s.showtime > DateTime.now }.present?
+  end
+
+
+  def search_data
+    {
+      id: id,
+      title: title,
+      subtitle: subtitle,
+      location: location,
+      upcoming: {
+        someday: future_shows?
+      }
+    }
+  end
+
 end
