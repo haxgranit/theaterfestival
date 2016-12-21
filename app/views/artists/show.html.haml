@@ -12,7 +12,6 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
         Info
-  = render partial: 'shared/social_links', locals: { target: @artist }
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
     = render 'artists/credits/credits'
@@ -35,7 +34,6 @@
                   = link_to p.company.name, p.company if p.company.present?
                 %span.venue
                   = link_to p.venues.first.name, p.venues.first if p.venues.present?
-                = render partial: 'shared/social_buttons', locals: { target: p }
           .col-sm-9.offset-sm-1
             %h2
               = p.title
@@ -66,6 +64,7 @@
                   %p.date
                     = r.date.strftime("%D")
   .tab-pane{ id: 'info', role: 'tabpanel' }
+    = render partial: 'shared/social_links', locals: { target: @artist }
     - if @artist.full_bio.present?
       %h2
         Full Bio

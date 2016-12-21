@@ -10,10 +10,6 @@
         = image_tag('unknown.png', size: '400x400')
       %figurecaption.social
         = render partial: 'shared/social_figure', locals: { target: @artist }
-    - if @artist.title.present?
-      %p
-        %strong
-          = @artist.title
     #user-stats
       %p.user-stat
         Followers:

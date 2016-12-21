@@ -1,32 +1,12 @@
-.row
-  .col-sm-2
-    %figure.frontpage-show
-      - if target.key_image_id.present?
-        = link_to attachment_image_tag(target, :key_image, :fill, 100, 150), target
-      - else
-        = link_to image_tag('unknown.png', size: '100x150'), target
-      %figurecaption
-        %span.company
-          = link_to target.company.name, target.company if target.company.present?
-        %span.venue
-          = link_to target.venues.first.name, target.venues.first if target.venues.present?
-        = render partial: 'shared/social_buttons', locals: { target: target }
-  .col-sm-9.offset-sm-1
-    .production-meta
-      %h3
-        = target.title
-      %span.production-info
-        = credit.position
-      %span.production-info
-        = credit.start_date.strftime('%D')
-    - if credit.credited_as?
-      %p
-        Credited as #{credit.credited_as}
-    - if target.venues.present?
-      - v = target.venues.first
-      .production-venues
-        %p
-          = link_to(v.theaters.first.name, v.theaters.first) + ','
-          = v.name + ','
-          = v.city + ','
-          = v.state
+%tr
+  %td
+    = attachment_image_tag(credit.creditable, :key_image, :fill, 50, 50)
+  %td
+    = link_to(credit.creditable.name, production_path(credit.creditable))
+  %td
+    = credit.position
+  %td
+    = credit.start_date.strftime('%D')
+    - if credit.end_date.present?
+      \-
+      = credit.end_date.strftime('%D').row

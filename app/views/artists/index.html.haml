@@ -4,9 +4,7 @@
   %thead
     %tr
       %th Name
-      %th Title
       %th Birthdate
-      %th Birth location
       %th Hometown
       %th Education
       %th Full bio
@@ -15,9 +13,7 @@
     - @artists.each do |artist|
       %tr
         %td= artist.stage_name
-        %td= artist.title
         %td= artist.birthdate
-        %td= artist.birth_location
         %td= artist.hometown
         %td= artist.education
         %td= artist.full_bio
