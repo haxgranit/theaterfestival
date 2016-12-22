@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :productions, only: [:new, :create, :show, :index] do
+  resources :productions do
     concerns [:permissible, :social, :autocomplete, :search, :claimable, :albums]
     resources :steps, only: [:show, :update], controller: 'production/steps'
     member do
