@@ -1,20 +1,6 @@
-%p#notice= notice
-%p
-  %strong Title:
-  = @festival.title
-%p
-  %strong Subtitle:
-  = @festival.subtitle
-%h2 Companies
-%ul
-  - @festival.companies.each do |c|
-    %li
-      = link_to c.name, company_path(c)
-%h2 Shows
-%ul
-  - @festival.productions.each do |p|
-    %li
-      = link_to p.title, production_path(p)
+- productions = @festival.productions
+= render partial: 'festivals/production_list', locals: { productions: productions }
+
 = link_to 'Edit', edit_festival_path(@festival)
 |
 = link_to 'Back', festivals_path

@@ -1,0 +1,27 @@
+- if @festival.present?
+  - if @festival.id.present?
+    - provide(:title, @festival.title)
+    .festival-profile-details
+      %h1
+        = yield(:title)
+        = @festival.subtitle
+
+      %figure.profile-image
+        - if @festival.festival_image_id.present?
+          = attachment_image_tag(@festival, :festival_image, :fill, 400, 400)
+        - else
+          = image_tag('unknown.png', size: '400x400')
+        %figurecaption.social
+          = render partial: 'shared/social_figure', locals: { target: @festival }
+      #user-stats
+        %p.user-stat
+          Followers:
+          = @festival.followers(User).count
+        %p.user-stat
+          Likes:
+          = @festival.likers(User).count
+        %ul
+          - if policy(@festival).edit?
+          - elsif policy(@festival).claim?
+            %li
+              = link_to 'Claim Production Page', festival_claim_path(@festival), method: :patch
