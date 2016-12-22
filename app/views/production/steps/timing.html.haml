@@ -1,16 +1,15 @@
 .create-show
   %h1
     Create a Show
-  %p.explanation
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-  .question
-    %p
-      Does this production have future performance dates, or did it occur in the past?
-
   .answers
+    %p
+      Anyone can create a past show without future performance dates. Input credits for your resume, archive your
+      theater's production history, or just put shows in for fun! All credits will appear on your Artist or Company Page.
     = simple_form_for @production, method: :put, url: wizard_path do |f|
       = f.input :archived, as: :hidden, input_html: { value: true }
       = f.button :submit, 'Past', class: 'btn btn-primary'
+    %p
+      Only a show's producer can create a show page with future performance dates. Is that you? Go right ahead!
     = simple_form_for @production, method: :put, url: wizard_path do |f|
       = f.input :archived, as: :hidden, input_html: { value: false }
       = f.button :submit, 'Future', class: 'btn btn-primary'

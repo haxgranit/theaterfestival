@@ -1,10 +1,12 @@
 .create-show
   %h1
     Create a Show
-  .question
-    %p
-      Is this show a single production, or part of a festival?
 
   .answers
-    = link_to 'production', productions_path, method: :post, class: 'btn btn-primary'
+    %p
+      Is this show a Single Title Production? This is most shows. i.e. Hamlet, Our Town, Rent.
+    = link_to 'single title', productions_path, method: :post, class: 'btn btn-primary'
+    %p
+      Or is it a Festival? A festival can be any production with multiple titles, even if they're performing in
+      different venues. i.e. Fringe festival, one-act festival, new works festival.
     = link_to 'festival', festivals_path, method: :post, class: 'btn btn-primary'
