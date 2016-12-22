@@ -35,7 +35,7 @@ class Artist < ActiveRecord::Base
     {
         id: id,
         name: name,
-        image: Refile.attachment_url(self, :profile_image, :fill, 50, 50, format: 'jpg', fallback: 'unknown50x50.png'),
+        image: Refile.attachment_url(self, :profile_image, :fill, 50, 50, format: 'jpg') || ActionController::Base.helpers.asset_url('unknown50x50.png'),
         path: "/artists/#{id}",
         credits: credits
                      .limit(4)

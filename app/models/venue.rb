@@ -27,7 +27,7 @@ class Venue < ActiveRecord::Base
         id: id,
         name: name,
         path: "/venues/#{id}",
-        image: Refile.attachment_url(self, :venue_image, :fill, 50, 50, format: 'jpg'),
+        image: Refile.attachment_url(self, :venue_image, :fill, 50, 50, format: 'jpg') || ActionController::Base.helpers.asset_url('unknown50x50.png'),
     }
   end
 end
