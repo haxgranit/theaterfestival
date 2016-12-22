@@ -3,3 +3,5 @@
   %tbody
     - @production.companies.each do |company|
       = render partial: 'production/steps/companies/listing', locals: { company: company }
+
+= link_to 'Back', wizard_path(:production_people), class: 'btn btn-primary'

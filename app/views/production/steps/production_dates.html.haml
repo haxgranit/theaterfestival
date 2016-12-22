@@ -14,3 +14,5 @@
         %p To the best of your knowledge, enter the date of the last performance of this production.
         = f.input :last_performance, as: :date_picker, input_html: { data: date_limit }, label: false, input_html: { value: @production.last_performance }
       = f.button :submit, 'Save'
+
+= link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

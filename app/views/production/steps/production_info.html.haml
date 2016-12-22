@@ -13,3 +13,5 @@
       %p Enter the description for #{@production.title}
       = f.input :description, label: false
       = f.button :submit, 'Next Step'
+
+= link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

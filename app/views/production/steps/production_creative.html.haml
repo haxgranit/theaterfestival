@@ -11,3 +11,5 @@
     - @production.credits.creative.each do |credit|
       - p = credit.creditable
       = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
+
+= link_to 'Back', wizard_path(:production_people), class: 'btn btn-primary'
