@@ -11,8 +11,11 @@ module SearchSetup
     no_search = c.empty?
 
     if c['showtimes.venue.city'].present? || c['showtimes.venue.state'].present? || c['showtimes.venue.zip'].present?
-      city, state, zip = c['showtimes.venue.city'], c['showtimes.venue.state'], c['showtimes.venue.zip']
-      loc = Geokit::Geocoders::MultiGeocoder.geocode("#{city}, #{state} #{zip}")
+      @city, @state, @zip = c['showtimes.venue.city'], c['showtimes.venue.state'], c['showtimes.venue.zip']
+      @city = '' if @city.blank?
+      @state = '' if @state.blank?
+      @zip = '' if @zip.blank?
+      loc = Geokit::Geocoders::MultiGeocoder.geocode("#{@city}, #{@state} #{@zip}")
       if loc.success
         conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
       end

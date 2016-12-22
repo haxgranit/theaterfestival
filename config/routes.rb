@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/home'
+
   concern :permissible do
     resources :permissions
   end
@@ -87,7 +89,7 @@ Rails.application.routes.draw do
 
   get :create_show, to: 'static#create_show'
 
-  root 'static#home'
+  root 'home#home'
 
   namespace :api do
     namespace :v1 do
