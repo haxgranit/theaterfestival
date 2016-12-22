@@ -16,30 +16,36 @@ class Production::StepsController < ApplicationController
 
   def update
     @production = Production.find(params[:production_id])
-    p = production_params(:company)
-    if p[:company_id].blank?
-      c = Company.new
-      c.name = params[:company]
-      if c.save(validate: false)
-        @production.company = c
-        @production.save(validate: false)
-      end
-    end
-
-    if p[:credits_attributes].present?
-      pc = p[:credits_attributes]
-      pc.each do |k, v|
-        if params[:stage_name].present? &&
-            pc[:artist_id].blank?
-          a = Artist.new
-          a.stage_name = v.fetch('stage_name')
-          a.save
-          pc[k][:artist_id] = a.id
+    case step
+      when :company
+        if production_params(step)[:company_id].blank?
+          c = Company.new
+          c.name = params[:company]
+          if c.save(validate: false)
+            @production.company = c
+            @production.save(validate: false)
+          end
         end
-
-      end
+      when 'production_cast', 'production_creative'
+        if production_params(step)['credits_attributes'].present?
+          pc = production_params(step)['credits_attributes']
+          pc.each do |k, v|
+            if params[:stage_name].present? &&
+                pc[k][:artist_id].blank?
+              a = Artist.new
+              a.stage_name = params[:stage_name]
+              a.save!(validate: false)
+              pc[k][:artist_id] = a.id
+            end
+          end
+          final_credit = production_params(step).merge!(credits_attributes: pc)
+          @production.update!(final_credit)
+        end
+      else
+        @production.update!(production_params(step))
     end
-    @production.update(production_params(step))
+
+
     if past_step? 'production_data'
       redirect_to wizard_path('production_data', production_id: @production.id)
     else
@@ -72,19 +78,7 @@ class Production::StepsController < ApplicationController
                                                  :intermissions,
                                                  :recommended_age,
                                                  :website]]
-                           when "production_cast"
-                             [credits_attributes: [:id,
-                                                   :name,
-                                                   :position,
-                                                   :creditable_id,
-                                                   :creditable_type,
-                                                   :artist_id,
-                                                   :start_date,
-                                                   :end_date,
-                                                   :credited_as,
-                                                   :credit_type,
-                                                   :_destroy]]
-                           when "production_creative"
+                           when "production_cast", "production_creative"
                              [credits_attributes: [:id,
                                                    :name,
                                                    :position,
