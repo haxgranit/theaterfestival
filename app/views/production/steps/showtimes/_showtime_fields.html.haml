@@ -1,0 +1,6 @@
+.nested-fields.row
+  = f.input :theater, as: :fake, required: true, input_html: { value: (f.object.theater.name if f.object.theater.present?)}
+  = f.input :theater_id, as: :hidden
+  = f.input :production_id, as: :hidden, input_html: { value: @production.id }
+  = f.input :showtime, as: :datetime_picker
+  = link_to_remove_association "Remove Showtime", f, class: 'btn btn-primary'

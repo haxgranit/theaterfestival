@@ -109,6 +109,12 @@ class Production::StepsController < ApplicationController
                                                    :_destroy]]
                              when "production_coproducers"
                                [company_production_links_attributes: [:id, :company_id, :production_id, :_destroy]]
+                             when "production_showtimes"
+                               [showtimes_attributes: [:id,
+                                                      :theater_id,
+                                                      :production_id,
+                                                      :showtime,
+                                                      :_destroy]]
                            end
     params.require(:production).permit(permitted_attributes).merge(form_step: step)
   end

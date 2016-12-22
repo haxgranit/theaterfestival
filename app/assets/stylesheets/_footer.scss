@@ -18,6 +18,7 @@ footer {
   
   ul li {
     color: white;
+    white-space: nowrap;
     + li::before {
       content: " | ";
       padding-right: 1em;

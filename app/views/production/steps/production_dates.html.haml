@@ -15,4 +15,10 @@
         = f.input :last_performance, as: :date_picker, input_html: { data: date_limit }, label: false, input_html: { value: @production.last_performance }
       = f.button :submit, 'Save'
 
+  - if !@production.archived?
+    %p
+      Click below to add upcoming and recent showtimes.
+    %p
+      = link_to 'Showtimes', wizard_path(:production_showtimes), class: 'btn btn-primary'
+
 = link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'
