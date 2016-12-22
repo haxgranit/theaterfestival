@@ -13,11 +13,9 @@
         - @production.credits.production.each do |credit|
           - p = credit.creditable
           = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'production/steps/credits/credit_form', locals: { target: :credits, type: 'production' }
   .tab-pane{ id: 'creative', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
         - @production.credits.creative.each do |credit|
           - p = credit.creditable
           = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'production/steps/credits/credit_form', locals: { target: :credits, type: 'creative' }
