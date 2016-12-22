@@ -19,7 +19,7 @@
             - agg_count = buckets.dig(0,'doc_count')
             - if agg_count.try :nonzero?
               = a.input agg_name, label: "#{I18n.t agg_name} (#{agg_count})"
-  = f.button :submit, 'Search', class: 'btn-primary form-group row'
+  = f.button :submit, 'Search', class: 'btn-primary form-group row search-button'
 
 -# %section.price
 -#   %h2 Price Range
