@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 80) do
+ActiveRecord::Schema.define(version: 81) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 80) do
     t.boolean "original_cast"
     t.boolean "confirmed"
     t.integer "credit_type"
+    t.boolean "key_credit"
   end
 
   add_index "credits", ["artist_id"], name: "index_credits_on_artist_id", using: :btree
