@@ -9,7 +9,7 @@
       - else
         - date_limit = { date_options: { maxDate: false } }
       %p To the best of your knowledge, enter the date of the first performance of this production.
-      = f.input :first_performance, as: :date_picker, input_html: { data: date_limit }, label: false, input_html: { value: @production.first_performance }
+      = f.input :first_performance, as: :date_picker, input_html: { data: date_limit }, label: false, input_html: { value: @production.first_performance }, required: true
       - if @production.archived?
         %p To the best of your knowledge, enter the date of the last performance of this production.
         = f.input :last_performance, as: :date_picker, input_html: { data: date_limit }, label: false, input_html: { value: @production.last_performance }
