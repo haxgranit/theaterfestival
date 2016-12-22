@@ -6,7 +6,7 @@
   = f.input :creditable_type, as: :hidden, input_html: { value: f.object.creditable_type }
   = f.input :credited_as, as: :string, input_html: { placeholder: 'Credited As' }
   = f.input :position, as: :string, input_html: { placeholder: 'Role' }, required: true, label: 'Credit'
-  = f.input :key_credit
+  = f.input :key_credit, label: 'Key Credit?'
   = f.input :start_date, as: :bootstrap_datepicker, wrapper: :vertical_form, required: true
   = f.input :end_date, as: :bootstrap_datepicker, wrapper: :vertical_form
   = f.input :credit_type, as: :hidden, input_html: { value: credit_type }
