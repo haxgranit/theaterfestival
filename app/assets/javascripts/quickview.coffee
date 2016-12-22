@@ -62,7 +62,8 @@ $ ->
         'top': topSelected
         'left': leftSelected
         'width': widthSelected).velocity({
-        'top': finalTop + 'px'
+        'top': 0
+        'bottom': 0
         'left': finalLeft + 'px'
         'width': finalWidth + 'px'
       }, 1000, [
@@ -82,7 +83,7 @@ $ ->
     else
       #close the quick view reverting the animation
       $('.cd-quick-view').removeClass('add-content').velocity {
-        'top': finalTop + 'px'
+        'top': 0
         'left': finalLeft + 'px'
         'width': finalWidth + 'px'
       }, 300, 'ease', ->
@@ -116,14 +117,21 @@ $ ->
     selectedImage = $(this).parent('.cd-item').children('img')
     slectedImageUrl = selectedImage.attr('src')
     productionId = $(this).parent('.cd-item').data('production')
+    festivalId = $(this).parent('.cd-item').data('festival')
     $('body').addClass 'overlay-layer'
     animateQuickView selectedImage, sliderFinalWidth, maxQuickWidth, 'open'
     #update the visible slider image in the quick view panel
     #you don't need to implement/use the updateQuickView if retrieving the quick view data with ajax
-    $.get '/productions/' + productionId + '/quickview', ((data) ->
-      $('.cd-quick-view').html data
-      return
-    ), 'html'
+    if productionId?
+      $.get '/productions/' + productionId + '/quickview', ((data) ->
+        $('.cd-quick-view').html data
+        return
+      ), 'html'
+    if festivalId?
+      $.get '/festivals/' + festivalId + '/quickview', ((data) ->
+        $('.cd-quick-view').html data
+        return
+      ), 'html'
     return
   #close the quick view panel
   $('body').on 'click', (event) ->

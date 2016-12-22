@@ -5,10 +5,6 @@
     - for production in productions
       - if production.class == Production
         - c = production.company if production.company.present?
-        - if production.theaters.present?
-          - t = production.theaters.first
-          - if t.venue.present?
-            - v = t.venue
 
         %li.cd-item{ data: { production: production.id } }
           = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger')
@@ -17,28 +13,7 @@
           %div
             = link_to truncate(production.title, length: 35), production
           %div
-            - if v.present?
-              = link_to v.name, v
-            - elsif t.present?
-              = link_to t.name, t
-          %div
-            - if production.first_performance.present?
-              = production.first_performance.to_formatted_s(:rfc822)
-              - if production.last_performance.present?
-                \-
-                = production.last_performance.to_formatted_s(:rfc822)
-      - elsif production.class == Festival
-        %li.cd-item{ data: { festival: production.id } }
-          = attachment_image_tag(production, :festival_image, :fill, 600, 800, fallback: 'unknown600x800', class: 'cd-trigger')
-          .social
-            = render partial: 'shared/social_figure', locals: { target: production }
-          %div
-            = link_to truncate(production.title, length: 35), production
-
-
+            - if c.present?
+              = link_to c.name, c
 
     .cd-quick-view
-- else
-  %p
-    Sorry, we couldn't find any results matching your criteria. Maybe you'd like to
-    = link_to 'create a show?', new_production_path

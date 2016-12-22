@@ -14,6 +14,7 @@ class Festival < ActiveRecord::Base
   attachment :festival_image
   attachment :banner_image
 
+  belongs_to :company
   has_many :companies, through: :company_festival_links
   has_many :productions, through: :festival_production_links
   has_many :showtimes, through: :productions

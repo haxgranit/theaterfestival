@@ -21,6 +21,11 @@ class FestivalsController < ApplicationController
   def show
   end
 
+  def quickview
+    set_festival
+    render :quickview, layout: false
+  end
+
   # GET /festivals/new
   def new
     @festival = Festival.new
