@@ -126,6 +126,7 @@ class ProductionsController < ApplicationController
                                        :production_id,
                                        :showtime,
                                        :_destroy],
+                company_production_links_attributes: [:id, :company_id, :production_id, :_destroy],
                 reviews_attributes: [:id,
                                      :production_id,
                                      :date,

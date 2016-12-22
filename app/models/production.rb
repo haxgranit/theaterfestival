@@ -28,8 +28,10 @@ class Production < ActiveRecord::Base
   belongs_to :company
   has_many :companies, through: :company_production_links
   has_many :company_production_links
+  accepts_nested_attributes_for :company_production_links
   has_many :festivals, through: :festival_production_links
   has_many :festival_production_links
+  accepts_nested_attributes_for :company_production_links
   has_many :press_items
   has_many :reviews
   accepts_nested_attributes_for :reviews

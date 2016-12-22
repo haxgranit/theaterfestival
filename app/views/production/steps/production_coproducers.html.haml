@@ -1,5 +1,5 @@
-  %table.table.table-striped
-    %tbody
-      - @production.companies.each do |company|
-        = render partial: 'production/steps/companies/listing', locals: { company: company }
-    = render partial: 'production/steps/companies/company_form', locals: { target: :credits }
+= render partial: 'production/steps/companies/company_form', locals: { target: :company_production_links }
+%table.table.table-striped
+  %tbody
+    - @production.companies.each do |company|
+      = render partial: 'production/steps/companies/listing', locals: { company: company }

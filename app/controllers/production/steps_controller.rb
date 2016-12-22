@@ -16,9 +16,10 @@ class Production::StepsController < ApplicationController
 
   def update
     @production = Production.find(params[:production_id])
+    p = production_params(step)
     case step
       when :company
-        if production_params(step)[:company_id].blank?
+        if p[:company_id].blank?
           c = Company.new
           c.name = params[:company]
           if c.save(validate: false)
@@ -27,8 +28,8 @@ class Production::StepsController < ApplicationController
           end
         end
       when 'production_cast', 'production_creative'
-        if production_params(step)['credits_attributes'].present?
-          pc = production_params(step)['credits_attributes']
+        if p['credits_attributes'].present?
+          pc = p['credits_attributes']
           pc.each do |k, v|
             if params[:stage_name].present? &&
                 pc[k][:artist_id].blank?
@@ -38,8 +39,24 @@ class Production::StepsController < ApplicationController
               pc[k][:artist_id] = a.id
             end
           end
-          final_credit = production_params(step).merge!(credits_attributes: pc)
+          final_credit = p.merge!(credits_attributes: pc)
           @production.update!(final_credit)
+        end
+      when 'production_coproducers'
+        if p['company_production_links_attributes'].present?
+          pc = p['company_production_links_attributes']
+          pc.each do |k,v|
+            if params[:company].present? &&
+                pc[k][:company_id].blank?
+              c = Company.new
+              c.name = params[:company]
+              c.save!(validate: false)
+              pc[k][:company_id] = c.id
+              pc[k][:production_id] = @production.id
+            end
+          end
+          final_company = p.merge!(company_production_links_attributes: pc)
+          @production.update!(final_company)
         end
       else
         @production.update!(production_params(step))
@@ -90,6 +107,8 @@ class Production::StepsController < ApplicationController
                                                    :credited_as,
                                                    :credit_type,
                                                    :_destroy]]
+                             when "production_coproducers"
+                               [company_production_links_attributes: [:id, :company_id, :production_id, :_destroy]]
                            end
     params.require(:production).permit(permitted_attributes).merge(form_step: step)
   end
