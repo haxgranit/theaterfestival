@@ -7,6 +7,7 @@ class Festival < ActiveRecord::Base
 
   include Permissible
   include HasAlbum
+  include SocialTarget
   include PublicActivity::Common
   searchkick word_start: [:title], searchable: [:title], locations: ["location"]
   validates :title, presence: true

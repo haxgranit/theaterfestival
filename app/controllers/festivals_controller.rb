@@ -1,4 +1,5 @@
 class FestivalsController < ApplicationController
+  include Socialization::Actions
   before_action :set_festival, only: [:show, :edit, :update, :destroy]
 
   def autocomplete

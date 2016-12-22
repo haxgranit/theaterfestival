@@ -1,1 +1,11 @@
-= render 'production/steps/credits/credits'
+.create-show
+  %h1
+    Create a Show
+  .question
+    %p
+      What information would you like to edit?
+
+  .answers
+    = link_to 'cast', wizard_path(:production_cast), class: 'btn btn-primary'
+    = link_to 'creative team', wizard_path(:production_creative), class: 'btn btn-primary'
+    = link_to 'coproduction companies', wizard_path(:production_coproducers), class: 'btn btn-primary'

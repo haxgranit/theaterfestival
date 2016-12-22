@@ -4,7 +4,7 @@ class ArtistsController < ApplicationController
 
   def autocomplete
     @artists = Artist.search(params[:query], {
-                              fields: ["stage_name"],
+                              fields: ["name"],
                               limit: 10,
                               load: true,
                               misspellings: {below: 5}})

@@ -4,8 +4,12 @@
 
   .form
     = simple_form_for @production, method: :put, url: wizard_path do |f|
-      = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }
-      = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }
-      = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }, label: 'Production Company'
-      = f.input :company_id, as: :hidden
+      %p Please load the key image for #{@production.title}
+      = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }, label: false
+      %p Add a banner image (optional)
+      = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }, label: false
+      %p Enter the tagline for #{@production.title} (if applicable)
+      = f.input :tagline, as: :string, label: false
+      %p Enter the description for #{@production.title}
+      = f.input :description, label: false
       = f.button :submit, 'Next Step'

@@ -1,0 +1,13 @@
+.create-show
+  %h1
+    Create a Show
+  .question
+    %p
+      What information would you like to edit?
+
+  = render partial: 'production/steps/credits/credit_form', locals: { target: :credits, type: 'production' }
+%table.table.table-striped
+  %tbody
+    - @production.credits.production.each do |credit|
+      - p = credit.creditable
+      = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
