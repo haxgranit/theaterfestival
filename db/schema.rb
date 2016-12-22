@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 79) do
+ActiveRecord::Schema.define(version: 80) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,7 +165,10 @@ ActiveRecord::Schema.define(version: 79) do
     t.string   "banner_image_id"
     t.string   "festival_image_id"
     t.boolean  "archived"
+    t.integer  "company_id"
   end
+
+  add_index "festivals", ["company_id"], name: "index_festivals_on_company_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
@@ -458,6 +461,7 @@ ActiveRecord::Schema.define(version: 79) do
   add_foreign_key "credits", "artists"
   add_foreign_key "festival_production_links", "festivals"
   add_foreign_key "festival_production_links", "productions"
+  add_foreign_key "festivals", "companies"
   add_foreign_key "permissions", "users"
   add_foreign_key "photos", "photo_albums"
   add_foreign_key "press_items", "productions"

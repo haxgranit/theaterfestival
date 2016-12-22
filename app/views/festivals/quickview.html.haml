@@ -1,0 +1,80 @@
+- production = @production
+- c = production.company if production.company.present?
+- if production.theaters.present?
+  - t = production.theaters.first
+  - if t.venue.present?
+    - v = t.venue
+.cd-slider-wrapper
+  %ul.cd-slider
+    %li.selected
+      %figure.profile-image
+        = attachment_image_tag production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png'
+        %figurecaption.social
+          = render partial: 'shared/social_figure', locals: { target: production }
+  %ul.cd-slider-navigation
+    %li
+      %a.cd-next{ data: { turbolinks: false } } Prev
+    %li
+      %a.cd-prev{ data: { turbolinks: false } } Next
+.cd-item-info
+  %ul.cd-item-action
+    %li
+      = button_to 'View Page', production, class: 'btn', data: { turbolinks: false }, method: :get
+    %li
+      = button_to 'Buy Now', production.showtimes.first.showtime_ticket_metadata.ticket_link, class: 'btn', method: :get
+    %li
+      %button.btn.cd-close{ data: { turbolinks: false } } X
+
+  - if c.present?
+    %p
+      = c.name
+  - if t.present?
+    %p
+      = t.name
+      - if v.present?
+        \:
+        = v.name
+  %h2
+    = production.title
+  - if production.credits.creative.present?
+    %section
+      %p
+        - fst, *rest = production.credits.creative
+        = fst.artist.name
+        \-
+        = fst.position
+        - if rest.present?
+          - for credit in rest
+            \,
+            = credit.artist.name
+            \-
+            = credit.position
+  - if production.credits.production.present?
+    %section
+      %h3 Starring
+      %p
+        - fst, *rest = production.credits.production
+        = fst.artist.name
+        - if rest.present?
+          - for credit in rest
+            \,
+            = credit.artist.name
+  %section
+    - for show in production.showtimes.limit(3)
+      %p
+        = show.showtime.to_formatted_s(:long_ordinal)
+        at
+        = show.theater.venue.name
+  %section
+    <h3>General Admission</h3>
+    <p><span>Price Range:</span> $15-$30</p>
+    <p><span>Running Time:</span> 90 Minutes
+
+  %section
+    %p
+      Tickets will be available at The Flea Theater's Box Office one hour prior to showtime
+  %section
+    <h3>Description</h3>
+    %p
+      = truncate production.description, length: 200
+
