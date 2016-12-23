@@ -18,7 +18,7 @@ class Production::StepsController < ApplicationController
     @production = Production.find(params[:production_id])
     p = production_params(step)
     case step
-      when :company
+      when 'company'
         if p[:company_id].blank?
           c = Company.new
           c.name = params[:company]
@@ -26,6 +26,8 @@ class Production::StepsController < ApplicationController
             @production.company = c
             @production.save(validate: false)
           end
+        else
+          @production.update!(production_params(step))
         end
       when 'production_cast', 'production_creative'
         if p['credits_attributes'].present?
