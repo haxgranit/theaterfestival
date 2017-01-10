@@ -1,0 +1,8 @@
+.create-show
+  %h2 #{@festival.title}
+  .question
+    %p Will this or has this Festival reoccured with the same Festival title?
+  .answers
+    = link_to 'yes', wizard_path(:festival_subtitle), class: 'btn btn-primary'
+    = link_to 'no', wizard_path(:festival_shows), class: 'btn btn-primary'
+    = link_to 'I don\'t know', wizard_path(:festival_shows), class: 'btn btn-primary'

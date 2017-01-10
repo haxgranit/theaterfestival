@@ -1,6 +1,6 @@
 class Festival < ActiveRecord::Base
   cattr_accessor :form_steps do
-    %w(timing festival_title company festival_data festival_shows festival_info)
+    %w(timing festival_title recurring festival_subtitle company festival_data festival_shows festival_info)
   end
 
   attr_accessor :form_step
@@ -10,7 +10,6 @@ class Festival < ActiveRecord::Base
   include SocialTarget
   include PublicActivity::Common
   searchkick word_start: [:title], searchable: [:title], locations: ["location"]
-  validates :title, presence: true
   attachment :festival_image
   attachment :banner_image
 
@@ -20,6 +19,7 @@ class Festival < ActiveRecord::Base
   has_many :showtimes, through: :productions
   has_many :company_festival_links
   has_many :festival_production_links
+  accepts_nested_attributes_for :festival_production_links
 
   def location
     if showtimes.present? && showtimes.first.venue.present?

@@ -1,0 +1,5 @@
+= simple_form_for @festival, method: :put, url: wizard_path, defaults: {wrapper_html: {class: "col-sm-4"}} do |f|
+  .links
+    = link_to_add_association 'Add Production', f, target, class: 'btn btn-primary', partial: 'festival/steps/productions/production_fields'
+  .actions
+    = f.button :submit, 'Save'

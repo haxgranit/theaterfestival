@@ -1,0 +1,6 @@
+%h2 Productions Featured in #{@festival.title}
+= render partial: 'festival/steps/productions/production_form', locals: { target: :festival_production_links }
+%table.table.table-striped
+  %tbody
+    - @festival.productions.each do |production|
+      = render partial: 'festival/steps/productions/listing', locals: { production: production }

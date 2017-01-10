@@ -24,6 +24,8 @@
       = c.name
   %h2
     = festival.title
+    \-
+    = festival.subtitle if festival.subtitle.present?
   %section
     - productions = festival.productions
     = render partial: 'festivals/production_list', locals: { productions: productions }

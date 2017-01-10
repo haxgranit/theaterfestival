@@ -1,0 +1,11 @@
+.create-show
+  %h1
+    Create a Festival
+  .question
+    %p
+      What is the title of the festival?
+
+  .form
+    = simple_form_for @festival, method: :put, url: wizard_path do |f|
+      = f.input :title, as: :string
+      = f.button :submit, 'Next Step'

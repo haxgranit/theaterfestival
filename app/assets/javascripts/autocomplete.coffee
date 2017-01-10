@@ -204,7 +204,7 @@ $ ->
         added_item.find('[id$=creditable_type]').val(suggestion.type)
         return
 
-    $('#showtimes #title.fake').typeahead({
+    $('#showtimes #title.fake, .nested-fields [id$=title]').typeahead({
       hint: true
       highlight: true
       minLength: 2

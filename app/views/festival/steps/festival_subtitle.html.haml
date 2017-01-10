@@ -1,0 +1,10 @@
+%h2 #{@festival.title}
+
+%p
+  Please enter a Festival Subtitle. This can be anything you want, but should |
+  represent the nature of the Festival's reoccurance. [i.e. Year, Cycle, Episode, |
+  etc.] |
+
+  = simple_form_for @festival, method: :put, url: wizard_path do |f|
+    = f.input :subtitle, as: :string
+    = f.button :submit, 'Next Step'

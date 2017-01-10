@@ -29,7 +29,22 @@ class Production::StepsController < ApplicationController
         else
           @production.update!(production_params(step))
         end
-      when 'production_cast', 'production_creative'
+      when 'production_dates'
+        if p[:"first_performance(2i)"] == ''
+          p[:"first_performance(2i)"] = '1'
+          p[:"first_performance(3i)"] = '1'
+          mask = 4
+        elsif p[:"first_performance(3i)"] == ''
+          # no day is given, insert a fake day
+          p[:"first_performance(3i)"] = '1'
+          mask = 6 # 110
+        else
+          # full-date
+          mask = 7 # 111
+        end
+
+        @production.update!(p.merge(date_mask: mask))
+      when 'production_cast', 'production_creative', 'production_coproducers'
         if p['credits_attributes'].present?
           pc = p['credits_attributes']
           pc.each do |k, v|
@@ -83,7 +98,7 @@ class Production::StepsController < ApplicationController
                            when "company"
                              [:company_id]
                            when "production_dates"
-                             [:first_performance, :last_performance]
+                             [:first_performance, :last_performance, :date_mask]
                            when "production_info"
                              [:key_image, :banner_image, :tagline,
                               :description,
@@ -104,13 +119,29 @@ class Production::StepsController < ApplicationController
                                                    :creditable_id,
                                                    :creditable_type,
                                                    :artist_id,
+                                                   :key_credit,
                                                    :start_date,
                                                    :end_date,
                                                    :credited_as,
                                                    :credit_type,
                                                    :_destroy]]
                              when "production_coproducers"
-                               [company_production_links_attributes: [:id, :company_id, :production_id, :_destroy]]
+                               [company_production_links_attributes: [:id,
+                                                                      :company_id,
+                                                                      :production_id,
+                                                                      :_destroy],
+                                credits_attributes: [:id,
+                                                     :name,
+                                                     :position,
+                                                     :creditable_id,
+                                                     :creditable_type,
+                                                     :artist_id,
+                                                     :key_credit,
+                                                     :start_date,
+                                                     :end_date,
+                                                     :credited_as,
+                                                     :credit_type,
+                                                     :_destroy]]
                              when "production_showtimes"
                                [showtimes_attributes: [:id,
                                                       :theater_id,

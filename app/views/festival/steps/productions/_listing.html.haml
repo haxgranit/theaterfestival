@@ -1,0 +1,7 @@
+%tr
+  %td
+    = attachment_image_tag(production, :key_image, :fill, 50, 75)
+  %td
+    = link_to(production.title, production)
+  %td
+    = link_to('Edit', production_step_path(production.id, :production_data))

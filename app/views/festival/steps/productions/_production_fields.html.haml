@@ -1,0 +1,4 @@
+.nested-fields.row
+  = f.input :title, required: true, input_html: { value: (f.object.production.title if f.object.production.present?), placeholder: 'Production Title', class: 'title'}
+  = f.input :production_id, as: :hidden
+  = link_to_remove_association "Cancel", f, class: 'btn btn-primary'

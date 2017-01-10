@@ -17,7 +17,6 @@ class Production < ActiveRecord::Base
   searchkick word_start: [:title], searchable: [:title], locations: ["location"]
 
   validates :title, presence: true, if: -> { required_for_step?(:production_title) }
-  validates :first_performance, presence: true, if: -> { required_for_step?(:production_dates) }
   attachment :key_image
   attachment :banner_image
 

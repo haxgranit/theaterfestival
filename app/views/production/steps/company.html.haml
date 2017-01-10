@@ -9,3 +9,12 @@
       = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }, label: 'Production Company'
       = f.input :company_id, as: :hidden
       = f.button :submit, 'Next Step', class: 'btn-primary'
+
+
+    %h2 Coproduction Companies on #{@production.title}
+    %p If Co-Production enter additional Production Companies:
+    = render partial: 'production/steps/companies/company_form', locals: { target: :company_production_links }
+    %table.table.table-striped
+      %tbody
+        - @production.companies.each do |company|
+          = render partial: 'production/steps/companies/listing', locals: { company: company }
