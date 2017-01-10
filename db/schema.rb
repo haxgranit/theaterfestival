@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 81) do
+ActiveRecord::Schema.define(version: 82) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -308,6 +308,7 @@ ActiveRecord::Schema.define(version: 81) do
     t.integer  "company_id"
     t.string   "banner_image_id"
     t.boolean  "archived"
+    t.integer  "date_mask"
   end
 
   add_index "productions", ["company_id"], name: "index_productions_on_company_id", using: :btree
