@@ -4,3 +4,6 @@
   %tbody
     - @festival.productions.each do |production|
       = render partial: 'festival/steps/productions/listing', locals: { production: production }
+
+
+= link_to 'Back', wizard_path(:festival_data), class: 'btn btn-primary'
