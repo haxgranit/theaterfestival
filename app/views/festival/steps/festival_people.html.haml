@@ -1,1 +1,11 @@
-= render 'production/steps/credits/credits'
+.create-show
+  %h1
+    Create a Show
+  .question
+    %p
+      What information would you like to edit?
+
+  .answers
+    = link_to 'staff', wizard_path(:festival_staff), class: 'btn btn-primary'
+
+= link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

@@ -1,0 +1,11 @@
+%h2 Staff Credits for #{@festival.title}
+%p What staff of #{@festival.title} would you like to credit along with this festival?
+
+= render partial: 'festival/steps/credits/credit_form', locals: { collection: @festival, target: :credits, type: 'staff' }
+%table.table.table-striped
+  %tbody
+    - @festival.credits.staff.each do |credit|
+      - p = credit.creditable
+      = render partial: 'festival/steps/credits/listing', locals: { target: p, credit: credit }
+
+= link_to 'Back', wizard_path(:festival_people), class: 'btn btn-primary'

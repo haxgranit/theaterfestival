@@ -20,7 +20,7 @@ class Festival::StepsController < ApplicationController
     case step
       when "festival_shows"
         fp = f[:festival_production_links_attributes]
-        updated = fp.each do |k, v|
+        fp.each do |k, v|
           if v[:title].present?
             if v[:production_id].blank?
               p = Production.new({title: v[:title], first_performance: Date.today, archived: @festival.archived})
@@ -32,6 +32,21 @@ class Festival::StepsController < ApplicationController
         end
 
         f = festival_params(step).merge!(festival_production_links_attributes: fp)
+        @festival.update!(f)
+      when "festival_staff"
+        fc = f[:credits_attributes]
+        fc.each do |k, v|
+          if v[:stage_name].present?
+            if v[:artist_id].blank?
+              a = Artist.new({stage_name: v[:stage_name]})
+              a.save!(validate: false)
+              v[:artist_id] = a.id
+            end
+            fc[k] = v.except(:stage_name)
+          end
+        end
+
+        f = festival_params(step).merge!(credits_attributes: fc)
         @festival.update!(f)
       else
         @festival.update!(festival_params(step))
@@ -59,6 +74,19 @@ class Festival::StepsController < ApplicationController
                                [festival_production_links_attributes: [:title, :production_id, :festival_id, :_destroy]]
                              when "festival_info"
                                [:festival_image, :banner_image, :company_id]
+                             when "festival_staff"
+                               [credits_attributes: [:id,
+                                                     :stage_name,
+                                                     :position,
+                                                     :creditable_id,
+                                                     :creditable_type,
+                                                     :artist_id,
+                                                     :key_credit,
+                                                     :start_date,
+                                                     :end_date,
+                                                     :credited_as,
+                                                     :credit_type,
+                                                     :_destroy]]
                            end
     params.require(:festival).permit(permitted_attributes).merge(form_step: step)
   end

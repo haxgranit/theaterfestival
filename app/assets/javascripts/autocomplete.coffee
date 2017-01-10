@@ -97,7 +97,7 @@ $ ->
 
     artists.initialize()
 
-    $('#stage_name.fake').typeahead({
+    $('#stage_name.fake, .nested-fields [id$=stage_name]').typeahead({
       hint: true
       highlight: true
       minLength: 2
