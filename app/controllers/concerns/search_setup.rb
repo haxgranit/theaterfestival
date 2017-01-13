@@ -18,6 +18,7 @@ module SearchSetup
       loc = Geokit::Geocoders::MultiGeocoder.geocode("#{@city}, #{@state} #{@zip}")
       if loc.success
         conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
+        session[:geo_location] = loc
       end
     elsif session[:geo_location].present?
       loc = session[:geo_location]
