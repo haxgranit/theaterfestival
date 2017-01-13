@@ -13,6 +13,8 @@ class ShowtimesController < ApplicationController
   # GET /showtimes/new
   def new
     @showtime = Showtime.new
+    @showtime.build_showtime_accessibility_metadata
+    @showtime.build_showtime_ticket_metadata
   end
 
   # GET /showtimes/1/edit

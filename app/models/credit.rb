@@ -5,7 +5,7 @@ class Credit < ActiveRecord::Base
 
   belongs_to :artist
   belongs_to :creditable, polymorphic: true
-  enum credit_type: [:production, :creative, :staff]
+  enum credit_type: [:production, :creative, :staff, :other]
 
 
   validates :artist, :creditable, :position, :start_date, presence: true

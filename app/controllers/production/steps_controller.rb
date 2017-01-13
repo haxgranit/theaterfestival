@@ -112,7 +112,7 @@ class Production::StepsController < ApplicationController
                                                  :intermissions,
                                                  :recommended_age,
                                                  :website]]
-                           when "production_cast", "production_creative"
+                           when "production_cast", "production_creative", "production_other"
                              [credits_attributes: [:id,
                                                    :name,
                                                    :position,

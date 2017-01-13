@@ -1,12 +1,14 @@
 class Showtime < ActiveRecord::Base
-  validates :showtime, :theater_id, :production_id, presence: true
   validates_uniqueness_of :showtime, scope: [:theater_id]
+  validates :time, :date, presence: true
 
   belongs_to :theater
   belongs_to :production
-  delegate :venue, to: :theater
+  has_one :venue, through: :theater
   has_one :showtime_ticket_metadata
   has_one :showtime_accessibility_metadata
+  accepts_nested_attributes_for :showtime_ticket_metadata
+  accepts_nested_attributes_for :showtime_accessibility_metadata
 
   def local_time
     showtime.in_time_zone(venue.time_zone)
