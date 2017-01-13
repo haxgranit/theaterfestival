@@ -1,3 +1,5 @@
+- type = target.class.name.downcase
+= image_tag("icon-#{type}.png", width: 50)
 - if user_signed_in?
   - if current_user.likes?(target)
     = button_to polymorphic_path([target,:unlike]), method: :post, class: 'unlike', remote: true do
