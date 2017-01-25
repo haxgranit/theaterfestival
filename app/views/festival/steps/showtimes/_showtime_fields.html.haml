@@ -1,0 +1,52 @@
+.nested-fields.row
+  = f.simple_fields_for :showtimes do |s|
+    = s.input :date, label: 'Showtime Date'
+    = s.input :time, label: 'Time'
+    #accordion.col-sm-12{"aria-multiselectable" => "true", :role => "tablist"}
+      .card
+        #headingOne.card-header{:role => "tab"}
+          %h5.mb-0
+            %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
+              Venue
+        .collapse.show{:id => "collapseOne", "aria-labelledby" => "headingOne", :role => "tabpanel"}
+          .card-block
+            .row
+              = s.input :venue
+              = s.input :theater
+              = s.simple_fields_for :venue do |v|
+                = v.input :address, label: "Venue Address", wrapper_html: {class: 'col-sm-12'}
+              = s.simple_fields_for :showtime_accessibility_metadata, ShowtimeAccessibilityMetadata.new do |a|
+                .container
+                  = a.input :seat_capacity, label: 'Seats in House'
+                .container
+                  = a.input :wheelchair_accessible, label: 'Wheelchair Accessible?'
+                .container
+                  = a.input :hearing_devices, label: 'Hearing Devices?'
+                .container
+                  = a.input :wheelchair_accessible_info, label: 'Additional Accessibility Info', wrapper_html: {class: 'col-sm-12'}
+
+      .card
+        #headingTwo.card-header{:role => "tab"}
+          %h5.mb-0
+            %a.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
+              Ticketing
+        #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+          .card-block
+            = s.simple_fields_for :showtime_ticket_metadata, ShowtimeTicketMetadata.new, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-sm-12'}} do |t|
+              = t.input :ticket_link, as: :url, label: 'Online Ticketing Link'
+              = t.input :reservation_phone, as: :string, label: 'Box Office Phone Number'
+              = t.input :in_person_ticketing_info, label: 'Buying Tickets in Person Info'
+              = t.input :guaranteed_price, label: 'Guaranteed Price (if available)' do
+                .input-group
+                  %span.input-group-addon
+                    $
+                  = t.input_field :guaranteed_price, class: 'form-control'
+              = t.input :discount_options, collection: ['Senior Discount', 'Student Discount', 'Under 30 Discount', 'Rush Tickets', 'Lottery Tickets', 'Standing Room', 'VIP'], selected: 'Student Discount'
+              = t.input :additional_ticket_type_price, label: 'Price' do
+                .input-group
+                  %span.input-group-addon
+                    $
+                  = t.input_field :additional_ticket_type_price, as: :string, class: 'form-control'
+              = t.input :additional_ticket_type_info, label: 'Info'
+
+    = link_to_remove_association "Cancel", f, class: 'btn btn-primary'

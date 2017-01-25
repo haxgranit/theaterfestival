@@ -1,6 +1,6 @@
 class Festival < ActiveRecord::Base
   cattr_accessor :form_steps do
-    %w(timing festival_title recurring festival_subtitle company festival_data festival_shows festival_people festival_info festival_staff)
+    %w(timing festival_title company festival_shows festival_data festival_showtimes festival_people festival_info festival_staff)
   end
 
   attr_accessor :form_step
@@ -17,6 +17,7 @@ class Festival < ActiveRecord::Base
   has_many :companies, through: :company_festival_links
   has_many :productions, through: :festival_production_links
   has_many :showtimes, through: :productions
+  accepts_nested_attributes_for :productions
   has_many :company_festival_links
   has_many :festival_production_links
   accepts_nested_attributes_for :festival_production_links

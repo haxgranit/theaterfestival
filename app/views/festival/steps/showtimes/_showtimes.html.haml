@@ -1,0 +1,5 @@
+%table.table.table-striped
+  %tbody
+    - @festival.showtimes.each do |time|
+      = render partial: 'festival/steps/showtimes/listing', locals: { time: time }
+= render partial: 'festival/steps/showtimes/showtime_form'

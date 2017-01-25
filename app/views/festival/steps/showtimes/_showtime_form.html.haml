@@ -1,0 +1,8 @@
+= simple_form_for @festival, defaults: {wrapper_html: {class: "col-sm-6"}} do |f|
+  - if user_signed_in?
+    .links
+      = link_to_add_association 'Add Showtime', f, :showtimes,        |
+      class: 'btn btn-primary',                                 |
+      partial: 'festival/steps/showtimes/showtime_fields'
+    .actions
+      = f.button :submit, 'Save Showtime'
