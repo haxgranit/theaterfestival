@@ -27,4 +27,5 @@
 //= require js-routes
 //= require refile
 //= require jquery.ezdz
+//= require select2-full
 //= require_tree .

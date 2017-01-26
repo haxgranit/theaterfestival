@@ -291,3 +291,74 @@ $ ->
       source: theaters.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         $('[id$=theater_id]').val(suggestion.value)
         return
+
+
+    $(document).on 'turbolinks:load cocoon:after-insert', ->
+      theaters = new Bloodhound(
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        remote:
+          url: '/venues/autocomplete?query=%QUERY'
+          wildcard: '%QUERY')
+
+      theaters.initialize()
+
+      $('[id$=_venue]').typeahead({
+        hint: true
+        highlight: true
+        minLength: 2
+      },
+        displayKey: 'name'
+        templates:
+          suggestion: Handlebars.compile("
+              <div class=\"results\">
+                <p>
+                {{#if name}}
+                  <strong>{{name}}</strong>
+                {{/if}}
+                </p>
+              </div>
+            ")
+        source: theaters.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
+          $('[id$=venue_id]').val(suggestion.value)
+          venue_info(suggestion.value)
+
+  venue_info = (venue) ->
+    $.ajax(
+      url: '/api/v1/venues/' + venue
+      type: 'GET').done((data, textStatus, jqXHR) ->
+        console.log 'HTTP Request Succeeded: ' + jqXHR.status
+        $('[id$=venue_address]').val(data.data.attributes.address)
+        return
+    ).fail((jqXHR, textStatus, errorThrown) ->
+      console.log 'HTTP Request Failed'
+      return
+    ).always ->
+      return
+
+    $.ajax(
+      url: '/api/v1/venues/' + venue + '/theaters/'
+      type: 'GET').done((data, textStatus, jqXHR) ->
+        console.log 'HTTP Request Succeeded: ' + jqXHR.status
+        $.each data.data, (index, value) ->
+          console.log(value)
+          $('[id$=showtimes_theater]').append $('<option>',
+              value: value.id
+              text: value.attributes.name)
+        return
+    ).fail((jqXHR, textStatus, errorThrown) ->
+      console.log 'HTTP Request Failed'
+      return
+    ).always ->
+      return
+
+    $('[id$=showtimes_theater]').select2 theme: "classic"
+
+  return
+
+  formatTheaterSelection = (theater) ->
+    theater.name
+
+  formatTheater = (theater) ->
+    markup = '<div class=\'select2-result-repository clearfix\'>' + '<div class=\'select2-result-repository__meta\'>' + '<div class=\'select2-result-repository__title\'>' + theater.name + '</div>'
+    markup
