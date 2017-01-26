@@ -12,6 +12,18 @@
       = f.input :tagline, as: :string, label: false
       %p Enter the description for #{@production.title}
       = f.input :description, label: false
+
+      %h3 Additional Information
+      = f.simple_fields_for :production_metadata, @production.production_metadata ||= ProductionMetadata.new do |m|
+        = m.input :performance_type, as: :string
+        = m.input :info_heading, as: :string
+        = m.input :info
+        = m.input :warnings
+        = m.input :warning_info
+        = m.input :running_time, as: :string
+        = m.input :intermissions, as: :string
+        = m.input :recommended_age, as: :string
+        = m.input :website, as: :url
       = f.button :submit, 'Next Step'
 
 = link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

@@ -2,6 +2,16 @@ class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
   include Socialization::Actions
 
+  def autocomplete
+    render json: Venue.search(params[:query], {
+        fields: ["name"],
+        limit: 10,
+        load: true,
+        misspellings: {below: 5}
+    }).map { |venue| { name: venue.name,
+                         value: venue.id } }
+  end
+
   # GET /venues
   def index
     @venues = Venue.all

@@ -30,7 +30,7 @@ class Production < ActiveRecord::Base
   accepts_nested_attributes_for :company_production_links
   has_many :festivals, through: :festival_production_links
   has_many :festival_production_links
-  accepts_nested_attributes_for :company_production_links
+  accepts_nested_attributes_for :festival_production_links
   has_many :press_items
   has_many :reviews
   accepts_nested_attributes_for :reviews

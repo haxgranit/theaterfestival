@@ -5,7 +5,23 @@
     %p
       What information would you like to edit?
 
+  %h2 #{@festival.title}
+  - for subtitle in @subtitles
+    .row
+      %table.table.table-striped
+        %thead
+          = subtitle.subtitle
+        %tbody
+          - subtitle.productions.each do |production|
+            = render partial: 'festival/steps/productions/listing', locals: { production: production }
+  .row
+    = link_to 'add subtitle', '#', class: 'btn btn-primary'
   .answers
-    = link_to 'times', wizard_path(:festival_showtimes), class: 'btn btn-primary'
-    = link_to 'info', wizard_path(:festival_info), class: 'btn btn-primary'
-    = link_to 'people', wizard_path(:festival_people), class: 'btn btn-primary'
+    .row
+      .col-sm-12
+        = render partial: 'festival/steps/productions/production_form', locals: { target: :festival_production_links }
+    .row
+      .col-sm-12
+        = link_to 'times', wizard_path(:festival_showtimes), class: 'btn btn-primary'
+        = link_to 'info', wizard_path(:festival_info), class: 'btn btn-primary'
+        = link_to 'people', wizard_path(:festival_people), class: 'btn btn-primary'

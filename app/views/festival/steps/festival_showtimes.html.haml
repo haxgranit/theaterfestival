@@ -1,14 +1,12 @@
 .create-show
   %h1
     Create a Show
-  = simple_form_for @festival, method: :put, url: wizard_path, defaults: {wrapper_html: {class: "col-sm-6"}} do |f|
-    = f.association :productions, collection: @festival.productions, as: :check_boxes
-    = render partial: 'festival/steps/showtimes/showtime_fields', locals: { f: f }
+  = simple_form_for @festival, url: wizard_path, method: :put, defaults: {wrapper_html: { class: 'col-sm-6' } } do |f|
+    = f.association :productions, collection: @festival.productions, as: :check_boxes, wrapper: :horizontal_radio_and_checkboxes, wrapper_html: { class: 'col-sm-12' }
     .links
-      = f.simple_fields_for :productions do |p|
-        = link_to_add_association 'Add Showtime', p, :showtimes,  |
-        class: 'btn btn-primary',                                 |
-        partial: 'festival/steps/showtimes/showtime_fields'
+      = link_to_add_association 'Add Showtime', f, :festival_production_links,  |
+      class: 'btn btn-primary',                                 |
+      partial: 'festival/steps/showtimes/showtime_fields'
     .actions
       = f.button :submit, 'Save Showtime'
 

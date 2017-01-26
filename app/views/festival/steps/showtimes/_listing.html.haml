@@ -1,6 +1,8 @@
 %tr
   %td
     = time.local_time.strftime('%b %d at %I:%M %p')
+    %br
+    = link_to time.production.title, production_path(time.production)
   %td
     = link_to(time.theater.venue.name, venue_path(time.theater.venue))
     \-
@@ -8,3 +10,5 @@
   %td
     - if time.try(:showtime_ticket_metadataA).try(:ticket_link).present?
       = link_to 'Buy Tickets', time.showtime_ticket_metadata.ticket_link
+  %td
+    = link_to 'Edit', edit_showtime_path(time)
