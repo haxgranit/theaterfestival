@@ -149,7 +149,7 @@ class Production::StepsController < ApplicationController
                                                       :showtime,
                                                       :_destroy]]
                            end
-    params.require(:production).permit(permitted_attributes).merge(form_step: step)
+    params.require(:production).permit!
   end
 
 end

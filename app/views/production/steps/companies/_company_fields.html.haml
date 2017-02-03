@@ -1,4 +1,4 @@
 .nested-fields.row
   = f.input :company, as: :fake, required: true, input_html: { value: (f.object.company.name if f.object.company.present?), placeholder: 'Coproduction Company'}
   = f.input :company_id, as: :hidden
-  = link_to_remove_association "Cancel", f, class: 'btn btn-primary'
+  = link_to_remove_association 'Cancel', f, class: 'btn btn-primary'

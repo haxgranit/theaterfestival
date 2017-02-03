@@ -6,5 +6,5 @@
     \-
     = time.theater.name
   %td
-    - if time.try(:showtime_ticket_metadataA).try(:ticket_link).present?
+    - if time.try(:showtime_ticket_metadata).try(:ticket_link).present?
       = link_to 'Buy Tickets', time.showtime_ticket_metadata.ticket_link

@@ -320,15 +320,19 @@ $ ->
               </div>
             ")
         source: theaters.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-          $('[id$=venue_id]').val(suggestion.value)
-          venue_info(suggestion.value)
+          console.log 'this is' + $(this)
+          here = $(this).closest('.row')
+          here.find('[id$=venue_id]').val(suggestion.value)
+          venue_info(here, suggestion.value)
 
-  venue_info = (venue) ->
+  venue_info = (el, venue) ->
+    console.log el
     $.ajax(
       url: '/api/v1/venues/' + venue
       type: 'GET').done((data, textStatus, jqXHR) ->
         console.log 'HTTP Request Succeeded: ' + jqXHR.status
-        $('[id$=venue_address]').val(data.data.attributes.address)
+        el.find('[id$=venue_address]').val(data.data.attributes.address)
+        # $('[id$=venue_address]').val(data.data.attributes.address)
         return
     ).fail((jqXHR, textStatus, errorThrown) ->
       console.log 'HTTP Request Failed'
@@ -341,18 +345,19 @@ $ ->
       type: 'GET').done((data, textStatus, jqXHR) ->
         console.log 'HTTP Request Succeeded: ' + jqXHR.status
         $.each data.data, (index, value) ->
+          el.find('[id$=_theater]').html ''
           console.log(value)
-          $('[id$=showtimes_theater]').append $('<option>',
+          el.find('[id$=_theater]').append $('<option>',
               value: value.id
               text: value.attributes.name)
-        return
+          return
     ).fail((jqXHR, textStatus, errorThrown) ->
       console.log 'HTTP Request Failed'
       return
     ).always ->
       return
 
-    $('[id$=showtimes_theater]').select2 theme: "classic"
+    el.find('[id$=_theater]').select2 theme: "classic"
 
   return
 
