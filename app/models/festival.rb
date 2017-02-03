@@ -38,7 +38,7 @@ class Festival < ActiveRecord::Base
   end
 
   def future_shows?
-    showtimes.select { |s| s.showtime > DateTime.now }.present?
+    showtimes.select { |s| s.date > Date.today }.present?
   end
 
 
