@@ -7,35 +7,43 @@ class Showtime < ActiveRecord::Base
   has_one :venue, through: :theater
   has_one :showtime_ticket_metadata
   has_one :showtime_accessibility_metadata
+  accepts_nested_attributes_for :venue
+  accepts_nested_attributes_for :theater
   accepts_nested_attributes_for :showtime_ticket_metadata
   accepts_nested_attributes_for :showtime_accessibility_metadata
 
-  def local_time
-    showtime.in_time_zone(venue.time_zone)
-  end
+  # def local_time
+  #   showtime.in_time_zone(venue.time_zone)
+  # end
 
   def tomorrow?
-    showtime.to_date == Date.tomorrow
+    self.date == Date.tomorrow
   end
 
   def today?
-    showtime.to_date == Date.today
+    self.date == Date.today
   end
 
   def weekend?
     this_sunday = Date.today.sunday
     weekend = [this_sunday, this_sunday - 1.day, this_sunday - 2.days]
-    weekend.include? showtime.to_date
+    weekend.include? date
   end
 
   def accessibility
     # Showtime-specific accessibility info overrides theater-specific info
-    s = showtime_accessibility_metadata.try(:attributes).try(:compact)
-    t = theater.theater_metadata.try(:attributes)
-    if s.present?
-      s.try(:reverse_merge!, t)
-    else
+    if showtime_accessibility_metadata.present?
+      s = showtime_accessibility_metadata.try(:attributes).try(:compact)
+    end
+    if theater.present?
+      t = theater.try(:theater_metadata).try(:attributes)
+    end
+    if s.present? && t.present?
+      s.try(:reverse_merge, t)
+    elsif s.blank? && t.present?
       t
+    else
+      nil
     end
   end
 

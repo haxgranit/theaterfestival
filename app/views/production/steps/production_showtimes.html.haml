@@ -1,7 +1,7 @@
 .create-show
   %h1
     Create a Show
-  = simple_form_for @production, method: :put, url: wizard_path, defaults: {wrapper_html: {class: 'col-sm-6'}} do |f|
+  = simple_form_for @production, url: wizard_path, defaults: {wrapper_html: {class: 'col-sm-6'}} do |f|
     .links
       = link_to_add_association 'Add Showtime', f, :showtimes,        |
       class: 'btn btn-primary',                                 |

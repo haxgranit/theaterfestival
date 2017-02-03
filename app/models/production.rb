@@ -20,27 +20,30 @@ class Production < ActiveRecord::Base
   attachment :key_image
   attachment :banner_image
 
-  has_many :credits, as: :creditable
-  accepts_nested_attributes_for :credits
-  has_many :artists, through: :credits
 
   belongs_to :company
+  has_many :artists, through: :credits
   has_many :companies, through: :company_production_links
   has_many :company_production_links
-  accepts_nested_attributes_for :company_production_links
-  has_many :festivals, through: :festival_production_links
+  has_many :credits, as: :creditable
   has_many :festival_production_links
-  accepts_nested_attributes_for :festival_production_links
+  has_many :festivals, through: :festival_production_links
   has_many :press_items
+  has_many :production_showtime_links
   has_many :reviews
-  accepts_nested_attributes_for :reviews
   has_many :showtimes
-  accepts_nested_attributes_for :showtimes
   has_many :theaters, through: :showtimes
   has_many :venues, through: :theaters
-  has_many :production_showtime_links
   has_one :production_metadata
+
+  accepts_nested_attributes_for :company_production_links
+  accepts_nested_attributes_for :credits
+  accepts_nested_attributes_for :festival_production_links
   accepts_nested_attributes_for :production_metadata, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :reviews
+  accepts_nested_attributes_for :showtimes
+  accepts_nested_attributes_for :theaters
+  accepts_nested_attributes_for :venues
 
   #scope :upcoming, -> { joins(:showtimes).where 'showtimes.showtime > ?', DateTime.now }
   scope :search_import, -> { includes(:festivals) }
@@ -66,7 +69,7 @@ class Production < ActiveRecord::Base
   end
 
   def future_shows?
-    showtimes.select { |s| s.showtime > DateTime.now }.present?
+    showtimes.select { |s| s.date > Date.today }.present?
   end
 
   def closing_soon?
@@ -116,7 +119,8 @@ class Production < ActiveRecord::Base
 
       times.each do |t|
         result_times << {
-          time: t.showtime.in_time_zone(v.time_zone),
+          date: t.date,
+          time: t.time,
           guaranteed_price: t.ticketing.try(:fetch, 'guaranteed_price')
         }
       end

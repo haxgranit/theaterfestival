@@ -10,11 +10,13 @@
       .collapse.show{:id => 'venue_new_showtimes_', 'aria-labelledby' => 'headingOne', :role => 'tabpanel'}
         .card-block
           .row
-            = f.input :venue
-            = f.input :theater, collection: []
-            = f.simple_fields_for :venue do |v|
-              = v.input :address, label: 'Venue Address', wrapper_html: {class: 'col-sm-12'}
-            = f.simple_fields_for :showtime_accessibility_metadata, ShowtimeAccessibilityMetadata.new do |a|
+            = f.simple_fields_for :theater_placeholder do |t|
+              = t.input :venue
+              = t.input :venue_id, as: :hidden
+            = f.input :theater_id, collection: []
+            = f.simple_fields_for :theater_placeholder do |t|
+              = t.input :address, label: 'Venue Address', wrapper_html: {class: 'col-sm-12'}
+            = f.simple_fields_for :showtime_accessibility_metadata, ShowtimeAccessibilityMetadata.new(showtime: f.object) do |a|
               .container
                 = a.input :seat_capacity, label: 'Seats in House'
               .container
@@ -24,28 +26,28 @@
               .container
                 = a.input :wheelchair_accessible_info, label: 'Additional Accessibility Info', wrapper_html: {class: 'col-sm-12'}
 
-    .card
-      #headingTwo.card-header{:role => 'tab'}
-        %h5.mb-0
-          %a.collapsed{'aria-controls' => 'ticket_new_showtimes_', 'aria-expanded' => 'false', 'data-parent' => '#accordion', 'data-toggle' => 'collapse', :href => '#ticket_new_showtimes_'}
-            Ticketing
-      .collapse{:id => 'ticket_new_showtimes_', 'aria-labelledby' => 'headingTwo', :role => 'tabpanel'}
-        .card-block
-          = f.simple_fields_for :showtime_ticket_metadata, ShowtimeTicketMetadata.new, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-sm-12'}} do |t|
-            = t.input :ticket_link, as: :url, label: 'Online Ticketing Link'
-            = t.input :reservation_phone, as: :string, label: 'Box Office Phone Number'
-            = t.input :in_person_ticketing_info, label: 'Buying Tickets in Person Info'
-            = t.input :guaranteed_price, label: 'Guaranteed Price (if available)' do
-              .input-group
-                %span.input-group-addon
-                  $
-                = t.input_field :guaranteed_price, class: 'form-control'
-            = t.input :discount_options, collection: ['Senior Discount', 'Student Discount', 'Veteran Discount'], selected: 'Student Discount'
-            = t.input :additional_ticket_type_price, label: 'Price' do
-              .input-group
-                %span.input-group-addon
-                  $
-                = t.input_field :additional_ticket_type_price, as: :string, class: 'form-control'
-            = t.input :additional_ticket_type_info, label: 'Info'
+    -#.card
+    -#  #headingTwo.card-header{:role => 'tab'}
+    -#    %h5.mb-0
+    -#      %a.collapsed{'aria-controls' => 'ticket_new_showtimes_', 'aria-expanded' => 'false', 'data-parent' => '#accordion', 'data-toggle' => 'collapse', :href => '#ticket_new_showtimes_'}
+    -#        Ticketing
+    -#  .collapse{:id => 'ticket_new_showtimes_', 'aria-labelledby' => 'headingTwo', :role => 'tabpanel'}
+    -#    .card-block
+    -#      = f.simple_fields_for :showtime_ticket_metadata, ShowtimeTicketMetadata.new, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-sm-12'}} do |t|
+    -#        = t.input :ticket_link, as: :url, label: 'Online Ticketing Link'
+    -#        = t.input :reservation_phone, as: :string, label: 'Box Office Phone Number'
+    -#        = t.input :in_person_ticketing_info, label: 'Buying Tickets in Person Info'
+    -#        = t.input :guaranteed_price, label: 'Guaranteed Price (if available)' do
+    -#          .input-group
+    -#            %span.input-group-addon
+    -#              $
+    -#            = t.input_field :guaranteed_price, class: 'form-control'
+    -#        = t.input :discount_options, collection: ['Senior Discount', 'Student Discount', 'Veteran Discount'], selected: 'Student Discount'
+    -#        = t.input :additional_ticket_type_price, label: 'Price' do
+    -#          .input-group
+    -#            %span.input-group-addon
+    -#              $
+    -#            = t.input_field :additional_ticket_type_price, as: :string, class: 'form-control'
+    -#        = t.input :additional_ticket_type_info, label: 'Info'
 
   = link_to_remove_association 'Cancel', f, class: 'btn btn-primary'

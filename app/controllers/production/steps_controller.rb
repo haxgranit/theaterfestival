@@ -6,10 +6,10 @@ class Production::StepsController < ApplicationController
     @user = current_user
     @production = Production.find(params[:production_id])
     case step
-    when :company
-      if @production.archived?
-        skip_step
-      end
+      when :company
+        if @production.archived?
+          skip_step
+        end
     end
     render_wizard
   end
@@ -73,6 +73,32 @@ class Production::StepsController < ApplicationController
             end
           end
           final_company = p.merge!(company_production_links_attributes: pc)
+          @production.update!(final_company)
+        end
+      when 'production_showtimes'
+        if p['showtimes_attributes'].present?
+          pc = p['showtimes_attributes']
+          pc.each do |k,v|
+            if pc[k][:theater_placeholder].present?
+              if pc[k][:theater_placeholder][:venue].present?
+                if pc[k][:theater_placeholder][:venue_id].blank?
+                  c = Venue.new
+                  c.name = pc[k][:theater_placeholder][:venue]
+                  c.address = pc[k][:theater_placeholder][:address]
+                  c.save!(validate: false)
+                  t = Theater.new
+                  t.name = pc[k][:theater_placeholder][:venue]
+                  t.venue = c
+                  t.save!(validate: false)
+                  pc[k][:theater_id] = t.id
+                end
+              end
+            end
+          end
+          pc.each do |_, v|
+            v.except!(:theater_placeholder)
+          end
+          final_company = p.merge!(showtimes_attributes: pc)
           @production.update!(final_company)
         end
       else

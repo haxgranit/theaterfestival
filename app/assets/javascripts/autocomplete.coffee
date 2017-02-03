@@ -303,7 +303,7 @@ $ ->
 
       theaters.initialize()
 
-      $('[id$=_venue]').typeahead({
+      $('[id$=venue]').typeahead({
         hint: true
         highlight: true
         minLength: 2
@@ -320,7 +320,6 @@ $ ->
               </div>
             ")
         source: theaters.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
-          console.log 'this is' + $(this)
           here = $(this).closest('.row')
           here.find('[id$=venue_id]').val(suggestion.value)
           venue_info(here, suggestion.value)
@@ -345,9 +344,9 @@ $ ->
       type: 'GET').done((data, textStatus, jqXHR) ->
         console.log 'HTTP Request Succeeded: ' + jqXHR.status
         $.each data.data, (index, value) ->
-          el.find('[id$=_theater]').html ''
+          el.find('[id$=_theater_id]').html ''
           console.log(value)
-          el.find('[id$=_theater]').append $('<option>',
+          el.find('[id$=_theater_id]').append $('<option>',
               value: value.id
               text: value.attributes.name)
           return
