@@ -16,7 +16,7 @@
   .tab-pane.active{ id: 'cast', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.artist.each do |credit|
+        - @artist.credits.production.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
     = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
