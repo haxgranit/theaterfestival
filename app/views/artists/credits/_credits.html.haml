@@ -6,11 +6,17 @@
     %li.nav-item
       %a.nav-link{ data: { toggle: 'pill' }, href: '#creative', role: 'tab'}
         Creative
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#staff', role: 'tab'}
+        Staff
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#other', role: 'tab'}
+        Other
 .tab-content
   .tab-pane.active{ id: 'cast', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.production.each do |credit|
+        - @artist.credits.artist.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
     = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
@@ -20,4 +26,17 @@
         - @artist.credits.creative.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'creative' }
+  .tab-pane{ id: 'creative', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        - @artist.credits.staff.each do |credit|
+          - p = credit.creditable
+          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'staff' }
+  .tab-pane{ id: 'creative', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        - @artist.credits.other.each do |credit|
+          - p = credit.creditable
+          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'other' }
