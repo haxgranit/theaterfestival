@@ -108,7 +108,8 @@ class Production < ActiveRecord::Base
   end
 
   def metadata
-    collect_metadata(production_metadata) end
+    collect_metadata(production_metadata).except('production_id')
+  end
 
   def showtime_json
     results = []

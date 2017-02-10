@@ -33,3 +33,9 @@
         Production Description
       %p
         = @production.description
+    - if @production.metadata.present?
+      - @production.metadata.each do |k,v|
+        %h3
+          = k.titleize
+        %p
+          = v
