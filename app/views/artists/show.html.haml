@@ -46,9 +46,7 @@
                 %span.production-info
                   = p.venues.first.name
                 %span.production-info
-                  = p.venues.first.city + ','
-                  = p.venues.first.state
-                  = p.venues.first.zip
+                  = p.venues.first.address
             - p.reviews.each do |r|
               .row.review
                 .col-sm-1
