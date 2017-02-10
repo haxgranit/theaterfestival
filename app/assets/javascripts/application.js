@@ -28,4 +28,11 @@
 //= require refile
 //= require jquery.ezdz
 //= require select2-full
+//= require best_in_place
 //= require_tree .
+
+$(function() {
+    return $(document).on('ready turbolinks:load', function() {
+        jQuery(".best_in_place").best_in_place();
+    });
+});

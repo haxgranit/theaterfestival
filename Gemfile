@@ -65,6 +65,7 @@ gem 'cocoon'
 gem 'lightbox2-rails', github: 'gavinkflam/lightbox2-rails'
 gem 'wicked'
 gem 'select2-rails'
+gem 'best_in_place'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
