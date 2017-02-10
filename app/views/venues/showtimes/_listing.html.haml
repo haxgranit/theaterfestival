@@ -1,6 +1,7 @@
 %tr
   %td
-    = time.local_time.strftime('%b %d at %I:%M %p')
+    = time.date.strftime('%b %d')
+    = time.time.strftime('at %I:%M %p')
   %td
     = link_to(time.production.title, production_path(time.production))
   %td
