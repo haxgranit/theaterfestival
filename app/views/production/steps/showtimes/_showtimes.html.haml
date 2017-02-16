@@ -1,5 +1,5 @@
 %table.table.table-striped
-  %tbody
-    - @production.showtimes.each do |time|
-      = render partial: 'production/steps/showtimes/listing', locals: { time: time }
-= render partial: 'production/steps/showtimes/showtime_form'
+  %tbody.showtimes
+    = render 'production/steps/showtimes/listing'
+
+= link_to 'New Showtime', new_showtime_path('production_id': @production.id), remote: true, class: 'new-showtime-button'

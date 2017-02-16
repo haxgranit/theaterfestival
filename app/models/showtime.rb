@@ -1,12 +1,11 @@
 class Showtime < ActiveRecord::Base
-  validates_uniqueness_of :showtime, scope: [:theater_id]
   validates :time, :date, presence: true
 
   belongs_to :theater
   belongs_to :production
   has_one :venue, through: :theater
-  has_one :showtime_ticket_metadata
-  has_one :showtime_accessibility_metadata
+  has_one :showtime_ticket_metadata, dependent: :destroy
+  has_one :showtime_accessibility_metadata, dependent: :destroy
   accepts_nested_attributes_for :venue
   accepts_nested_attributes_for :theater
   accepts_nested_attributes_for :showtime_ticket_metadata

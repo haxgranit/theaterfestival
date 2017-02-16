@@ -1,4 +1,4 @@
-%tr
+= content_tag_for(:tr, @showtimes) do |time|
   %td
     = time.date.strftime('%b %d')
     = time.time.strftime('at %I:%M %p')
@@ -9,3 +9,7 @@
   %td
     - if time.try(:showtime_ticket_metadata).try(:ticket_link).present?
       = link_to 'Buy Tickets', time.showtime_ticket_metadata.ticket_link
+  %td
+    = link_to 'Edit showtime', edit_showtime_path(time), remote: true
+  %td
+    = link_to 'Delete Showtime', time, remote: true, method: :delete

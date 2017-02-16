@@ -1,0 +1,3 @@
+$('form').hide();
+$('tr#<%= dom_id(@showtime) %>').fadeOut();
+$('.content-area').append('<%= j render('form') %>');

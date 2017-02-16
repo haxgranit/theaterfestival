@@ -5,6 +5,7 @@ class Production::StepsController < ApplicationController
   def show
     @user = current_user
     @production = Production.find(params[:production_id])
+    @showtimes = @production.showtimes
     case step
       when :company
         if @production.archived?

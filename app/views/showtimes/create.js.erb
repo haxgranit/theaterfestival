@@ -1,0 +1,3 @@
+$('form').hide();
+$('.showtimes').append('<%= j render partial: 'production/steps/showtimes/listing', locals: {time: @showtime} %>');
+$('.new-showtime-button').show();
