@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, except: [:show, :index, :autocomplete, :search_internal, :quickview]
-  #before_action :get_session_location
+  before_action :get_session_location
 
 
   private
