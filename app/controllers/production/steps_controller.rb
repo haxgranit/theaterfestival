@@ -149,7 +149,6 @@ class Production::StepsController < ApplicationController
                                                    :key_credit,
                                                    :start_date,
                                                    :end_date,
-                                                   :credited_as,
                                                    :credit_type,
                                                    :_destroy]]
                              when "production_coproducers"
@@ -166,7 +165,6 @@ class Production::StepsController < ApplicationController
                                                      :key_credit,
                                                      :start_date,
                                                      :end_date,
-                                                     :credited_as,
                                                      :credit_type,
                                                      :_destroy]]
                              when "production_showtimes"

@@ -116,7 +116,6 @@ class CompaniesController < ApplicationController
                                      :artist_id,
                                      :start_date,
                                      :end_date,
-                                     :credited_as,
                                      :credit_type,
                                      :_destroy],
                 venues_attributes: [:id,

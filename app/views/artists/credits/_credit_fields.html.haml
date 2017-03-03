@@ -3,7 +3,6 @@
                                                            placeholder: 'Credit Source'} |
   = f.input :creditable_id, as: :hidden, input_html: { value: f.object.creditable_id }
   = f.input :creditable_type, as: :hidden, input_html: { value: credit_type.classify }
-  = f.input :credited_as, as: :string, input_html: { placeholder: 'Credited As' }
   = f.input :position, as: :string, input_html: { placeholder: 'Role' }, required: true, label: 'Credit'
   = f.input :start_date, as: :bootstrap_datepicker, wrapper: :vertical_form, required: true
   = f.input :end_date, as: :bootstrap_datepicker, wrapper: :vertical_form

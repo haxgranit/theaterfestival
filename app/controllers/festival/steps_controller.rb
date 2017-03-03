@@ -87,7 +87,6 @@ class Festival::StepsController < ApplicationController
                                                      :key_credit,
                                                      :start_date,
                                                      :end_date,
-                                                     :credited_as,
                                                      :credit_type,
                                                      :_destroy]]
                            end
