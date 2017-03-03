@@ -1,5 +1,10 @@
-- if @productions.present?
-  - productions = @productions
+- if @productions.empty?
+  - productions = @no_result
+  %p
+    Oh no! Looks like no one's listed any shows in your area. Got a show? List it here and you'll have this page all to yourself! Here are a few to get you started.
+    = link_to 'create a show?', new_production_path
+- else
+  - production = @productions
 - if productions.present?
   %ul.cd-items.cd-container
     - for production in productions
@@ -39,7 +44,3 @@
 
 
     .cd-quick-view
-- else
-  %p
-    Oh no! Looks like no one's listed any shows in your area. Got a show? List it here and you'll have this page all to yourself!
-    = link_to 'create a show?', new_production_path

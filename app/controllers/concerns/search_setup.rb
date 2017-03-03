@@ -58,6 +58,13 @@ module SearchSetup
                                        order: sort,
                                        aggs: aggs)
     end
-  end
 
+
+    @no_result = Production.search('*',
+                                   fields: ['title'],
+                                   load: true,
+                                   limit: 4,
+                                   boost_by_distance: { location: { origin: { lat: loc.lat, lon: loc.lng}, within: '2000mi' } },
+			           execute: false)
+  end
 end
