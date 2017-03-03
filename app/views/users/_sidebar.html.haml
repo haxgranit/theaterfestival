@@ -27,10 +27,9 @@
             = link_to 'Create Artist Page', new_artist_path
         - else
           %li
+
+            <i class="fa fa-certificate"></i>
             = link_to 'View Artist Page', artist_path(@user.artist)
         - if @user.company.blank?
           %li
             = link_to 'Create Company Page', new_company_path
-        - else
-          %li
-            = link_to 'View Company Page', company_path(@user.company)

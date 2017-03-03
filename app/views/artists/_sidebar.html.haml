@@ -1,5 +1,5 @@
 - if @artist.id.present?
-  .artist-profile-details
+  .user-profile-details
     - provide(:title, @artist.stage_name)
     %h1
       = yield(:title)
@@ -18,15 +18,15 @@
         Likes:
         = @artist.likers(User).count
     #user-info
-      %p
-  - if policy(@artist).edit?
-    .artist-profile-links
-      %ul
-        %li
-          = link_to 'Edit', edit_artist_path(@artist)
-        - if @artist.user.present?
+    - if policy(@artist).edit?
+      .user-profile-links
+        %ul
           %li
-            = link_to 'View User Page', user_path(@artist.user_id)
-        - else
-          %li
-            = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
+            = link_to 'Edit', edit_artist_path(@artist)
+          - if @artist.user.present?
+            %li
+              <i class="fa fa-user-circle"></i>
+              = link_to 'View User Page', user_path(@artist.user_id)
+          - else
+            %li
+              = link_to 'Claim Artist Page', artist_claim_path(@artist), method: :patch
