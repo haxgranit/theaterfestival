@@ -6,4 +6,5 @@ class Permission < ActiveRecord::Base
                                     message:"Permission has already been given to this user."
                                   }
   validates :resource_type, :resource_id, presence: true
+
 end

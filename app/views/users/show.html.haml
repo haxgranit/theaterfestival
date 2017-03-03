@@ -12,6 +12,9 @@
           %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
             Notifications
         %li.nav-item
+          %a.nav-link{ data: { toggle: 'tab' }, href: '#permissions', role: 'tab'}
+            My Content
+        %li.nav-item
           %a.nav-link{ data: { toggle: 'tab' }, href: '#settings', role: 'tab'}
             Settings
   .tab-content
@@ -87,5 +90,17 @@
         %p
           Things are pretty light here right now, but once we've got something
           to notify you about, it'll appear here.
+      .tab-pane{ id: 'permissions', role: 'tabpanel' }
+        %h2 My Content
+        %p This is a list of all the things you have edit permissions for.
+        %table.table.table-striped
+          %tbody
+            - @user.permissions.each do |p|
+              %tr
+                %td
+                  = link_to p.resource.name, polymorphic_path(p.resource)
+                %td
+                  = link_to 'Edit', edit_polymorphic_path(p.resource)
+        Table of things you control
       .tab-pane{ id: 'settings', role: 'tabpanel' }
         = render 'devise/registrations/edit', resource: current_user
