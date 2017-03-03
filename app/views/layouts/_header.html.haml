@@ -4,14 +4,14 @@
       #signIn.collapse.container-fluid.bg-inverse
         .container
           = render 'devise/sessions/inline_form'
-    %nav.navbar.navbar-light.bg-faded{role: "navigation"}
+    %nav.navbar.navbar-light.navbar-toggleable-md.bg-faded{role: "navigation"}
       .container
         %button.navbar-toggler.hidden-sm-up.pull-right{data: { target: '#navbar-collapse-login', toggle: 'collapse' }, type: 'button' }
           %span.sr-only Toggle navigation
           ☰
         = link_to image_tag('logo.png'), root_path, class: 'navbar-brand'
-        #navbar-collapse-login.collapse.navbar-toggleable-xs
-          %ul.nav.navbar-nav
+        #navbar-collapse-login
+          %ul.navbar-nav.mr-auto
             %li.nav-item
               = link_to 'create a show', create_show_path, class: 'nav-community nav-link'
             - if user_signed_in?
