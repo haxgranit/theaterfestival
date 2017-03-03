@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  searchkick word_start: [:full_name], searchable: [:full_name]
+  searchkick word_start: [:name], searchable: [:name]
   has_many :permissions
   include PublicActivity::Common
 
@@ -29,10 +29,17 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def name
+    full_name
+  end
+
+
   def search_data
     {
-      full_name: full_name,
-      email: email
+        id: id,
+        name: full_name,
+        path: "/users/#{id}",
+        image: Refile.attachment_url(self, :profile_image, :fill, 50, 50, format: 'jpg') || ActionController::Base.helpers.asset_url('unknown50x50.png'),
     }
   end
 
