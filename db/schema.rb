@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 85) do
+ActiveRecord::Schema.define(version: 87) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,13 @@ ActiveRecord::Schema.define(version: 85) do
     t.text     "facebook"
     t.text     "linkedin"
     t.text     "tumblr"
-    t.text     "snapchat"
     t.text     "email"
     t.text     "website"
     t.text     "instagram"
-    t.text     "vine"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "artist_id"
+    t.text     "imdb"
   end
 
   add_index "artist_social_metadata", ["artist_id"], name: "index_artist_social_metadata_on_artist_id", unique: true, using: :btree
