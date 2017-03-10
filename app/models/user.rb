@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def potential_matches
-    Artist.where(stage_name: full_name, user_id: nil).where.not(id: artist.id)
+    Artist.where(stage_name: full_name, user_id: nil).where.not(id: self.artist.id)
   end
 
 
