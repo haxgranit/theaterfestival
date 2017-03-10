@@ -3,3 +3,5 @@
     = render 'production/steps/showtimes/listing'
 
 = link_to 'New Showtime', new_showtime_path('production_id': @production.id), remote: true, class: 'new-showtime-button'
+
+= link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

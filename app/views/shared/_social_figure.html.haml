@@ -1,13 +1,13 @@
 - if user_signed_in?
   - if current_user.likes?(target)
     = button_to polymorphic_path([target,:unlike]), method: :post, class: 'unlike', remote: true do
-      %i.fa.fa-thumbs-up
+      %i.fa.fa-thumbs-up Unlike
   - else
     = button_to polymorphic_path([target,:like]), method: :post, class: 'like', remote: true do
-      %i.fa.fa-thumbs-o-up
+      %i.fa.fa-thumbs-o-up Like
   - if current_user.follows?(target)
     = button_to polymorphic_path([target,:unfollow]), method: :post, class: 'unfollow', remote: true do
-      %i.fa.fa-minus
+      %i.fa.fa-minus Unfollow
   - else
     = button_to polymorphic_path([target,:follow]), method: :post, class: 'follow', remote: true do
-      %i.fa.fa-plus
+      %i.fa.fa-plus Follow

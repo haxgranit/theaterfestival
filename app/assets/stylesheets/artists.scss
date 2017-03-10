@@ -15,14 +15,10 @@ figure.profile-image {
 
 figurecaption.social, .cd-item .social {
   display: flex;
-  justify-content: flex-end;
-  align-self: flex-end;
-  position: absolute;
-  right: 0;
-  top: 0;
+  justify-content: space-around;
+  text-align: center;
   .button_to {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0;
+    flex: 1 1 auto;
     button {
       background: transparent;
       border: none;
@@ -30,13 +26,12 @@ figurecaption.social, .cd-item .social {
       padding: 1em;
     }
 
-    .like, .unlike { color: $brand-primary; }
+    .like, .unlike { color: white; background-color: rgba(0,0,0,0.5); }
     .follow, .unfollow { background-color: $brand-primary; color: white; }
   }
 }
 
 .cd-item .social { 
-  opacity: 0;
   transition: all 0.5s;
   .button_to {
     button {
