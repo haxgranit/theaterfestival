@@ -39,7 +39,7 @@
             Venues
       .tab-content
         .tab-pane.active{ id: 'productions', role: 'tabpanel'}
-          - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production }).page(params[:production_page])
+          - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production && f.future_shows? }).page(params[:production_page])
           - if @productions.present?
             = render 'productions/production_list'
         .tab-pane{ id: 'artists', role: 'tabpanel'}
