@@ -67,6 +67,7 @@ module SearchSetup
                                    per_page: 30,
                                    where: conditions,
                                    order: sort,
+                                   aggs: aggs,
                                    boost_by_distance: { location: { origin: { lat: loc.lat, lon: loc.lng}, within: '2000mi' } },
                                    execute: false)
   end

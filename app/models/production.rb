@@ -69,9 +69,9 @@ class Production < ActiveRecord::Base
 
   def first_performance
     if archived?
-      first_performance
+      self.first_performance
     else
-      showtimes.order(date: :asc).first.date || first_performance
+      self.showtimes.order(date: :asc).first.date || self.first_performance
     end
   end
 
