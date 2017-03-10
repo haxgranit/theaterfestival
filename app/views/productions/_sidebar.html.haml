@@ -22,6 +22,23 @@
         %p.user-stat
           Likes:
           = @production.likers(User).count
+        %p.user-stat
+          %p
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
+            - key_cast.each do |c|
+              = succeed ',' do
+                = c.artist.name
+                \-
+                = c.position
+        %p.user-stat
+          Starring:
+          %p
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
+            - key_cast.each do |c|
+              = succeed ',' do
+                = c.artist.name
+                \-
+                = c.position
         - if @production.venues.present?
           %p.venue-info
             - v = @production.venues.first

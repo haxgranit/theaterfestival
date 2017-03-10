@@ -14,11 +14,10 @@ class ArtistSocialMetadataDashboard < Administrate::BaseDashboard
     facebook: Field::Text,
     linkedin: Field::Text,
     tumblr: Field::Text,
-    snapchat: Field::Text,
+    imdb: Field::Text,
     email: Field::Text,
     website: Field::Text,
     instagram: Field::Text,
-    vine: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -44,11 +43,10 @@ class ArtistSocialMetadataDashboard < Administrate::BaseDashboard
     :facebook,
     :linkedin,
     :tumblr,
-    :snapchat,
+    :imdb,
     :email,
     :website,
     :instagram,
-    :vine,
     :created_at,
     :updated_at,
   ].freeze
@@ -62,11 +60,10 @@ class ArtistSocialMetadataDashboard < Administrate::BaseDashboard
     :facebook,
     :linkedin,
     :tumblr,
-    :snapchat,
+    :imdb,
     :email,
     :website,
     :instagram,
-    :vine,
   ].freeze
 
   # Overwrite this method to customize how artist social metadata are displayed

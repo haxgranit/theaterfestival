@@ -2,12 +2,12 @@
   %header
     %ul.nav.nav-tabs{ role: 'tablist' }
       %li.nav-item
-        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
-          News
-      %li.nav-item
         %a.nav-link{ data: { toggle: 'tab' }, href: '#follows', role: 'tab'}
           Follows
       - if policy(@user).edit?
+        %li.nav-item
+          %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
+            News
         %li.nav-item
           %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
             Notifications
@@ -19,12 +19,10 @@
             Settings
   .tab-content
     .tab-pane.active{ id: 'news', role: 'tabpanel' }
+      = render 'users/reviews/listing'
       - if current_user == @user
         %h2 #{@user.first_name}'s Activity
         = render_activities(@user.public_activities)
-      - if user_signed_in?
-        %h2 Newsfeed
-        = render_activities(@user.follower_activities)
     .tab-pane{ id: 'follows', role: 'tabpanel' }
       %ul.nav.nav-pills{ role: 'tablist' }
         %li.nav-item
@@ -86,10 +84,18 @@
 
     - if policy(@user).edit?
       .tab-pane{ id: 'notifications', role: 'tabpanel' }
-        %h3 Welcome to TheaterEngine
-        %p
-          Things are pretty light here right now, but once we've got something
-          to notify you about, it'll appear here.
+        %h2 Potential Matches
+        %p We found the following artists credited under your name. Are any of these you?
+        %table.table.table-striped
+          %tbody
+            - @user.potential_matches.each do |match|
+              %tr
+                %td
+                  = link_to match.stage_name, artist_path(match)
+                %td
+                  = link_to 'Claim', edit_artist_path(match)
+
+
       .tab-pane{ id: 'permissions', role: 'tabpanel' }
         %h2 My Content
         %p This is a list of all the things you have edit permissions for.

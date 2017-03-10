@@ -1,7 +1,7 @@
 class Production < ActiveRecord::Base
 
   cattr_accessor :form_steps do
-    %w(timing production_title company production_data production_dates production_info production_people production_cast production_creative production_coproducers production_other production_showtimes)
+    %w(timing production_title company production_data production_dates production_showtimes production_info production_people production_cast production_creative production_coproducers production_other)
   end
 
   attr_accessor :form_step
@@ -67,6 +67,14 @@ class Production < ActiveRecord::Base
     end
   end
 
+  def first_performance
+    if archived?
+      first_performance
+    else
+      showtimes.order(date: :asc).first.date || first_performance
+    end
+  end
+
   def future_shows?
     showtimes.select { |s| s.date > Date.today }.present?
   end
@@ -105,6 +113,10 @@ class Production < ActiveRecord::Base
 
   def guaranteed_price?
     showtimes.select { |s| s.ticketing.try(:fetch, 'guaranteed_price') }.present?
+  end
+
+  def key_credits
+    credits.select(&:key_credit?)
   end
 
   def metadata

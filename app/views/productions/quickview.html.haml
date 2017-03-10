@@ -21,7 +21,8 @@
     %li
       = button_to 'View Page', production, class: 'btn', data: { turbolinks: false }, method: :get
     %li
-      = button_to 'Buy Now', production.showtimes.first.showtime_ticket_metadata.ticket_link, class: 'btn', method: :get
+      - if production.showtimes.first.showtime_ticket_metadata.present?
+        = button_to 'Buy Now', production.showtimes.first.showtime_ticket_metadata.ticket_link, class: 'btn', method: :get
     %li
       %button.btn.cd-close{ data: { turbolinks: false } } X
 
@@ -39,30 +40,28 @@
   - if production.credits.creative.present?
     %section
       %p
-        - fst, *rest = production.credits.creative
-        = fst.artist.name
-        \-
-        = fst.position
-        - if rest.present?
-          - for credit in rest
-            \,
-            = credit.artist.name
+        - key_creative = @production.key_credits.select { |c| c.credit_type == 'creative' }
+        - key_creative.each do |c|
+          = succeed ',' do
+            = c.artist.name
             \-
-            = credit.position
+            = c.position
   - if production.credits.production.present?
     %section
       %h3 Starring
       %p
-        - fst, *rest = production.credits.production
-        = fst.artist.name
-        - if rest.present?
-          - for credit in rest
-            \,
-            = credit.artist.name
+        - key_creative = @production.key_credits.select { |c| c.credit_type == 'production' }
+        - key_creative.each do |c|
+          = succeed ',' do
+            = c.artist.name
+            \-
+            = c.position
   %section
     - for show in production.showtimes.limit(3)
       %p
-        = show.showtime.to_formatted_s(:long_ordinal)
+        = show.date.to_formatted_s(:long)
+        \,
+        = show.time.to_formatted_s(:time)
         at
         = show.theater.venue.name
   %section

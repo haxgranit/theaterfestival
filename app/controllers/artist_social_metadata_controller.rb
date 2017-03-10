@@ -59,11 +59,10 @@ class ArtistSocialMetadataController < ApplicationController
                 :facebook,
                 :linkedin,
                 :tumblr,
-                :snapchat,
+                :imdb,
                 :email,
                 :website,
                 :instagram,
-                :vine,
                 :artist_id)
     end
 end

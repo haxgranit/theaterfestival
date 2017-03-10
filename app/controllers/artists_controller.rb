@@ -150,10 +150,9 @@ class ArtistsController < ApplicationController
                                                   :facebook,
                                                   :instagram,
                                                   :linkedin,
-                                                  :snapchat,
+                                                  :imdb,
                                                   :tumblr,
                                                   :twitter,
-                                                  :website,
-                                                  :vine])
+                                                  :website])
   end
 end

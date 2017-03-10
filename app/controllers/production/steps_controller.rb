@@ -7,8 +7,12 @@ class Production::StepsController < ApplicationController
     @production = Production.find(params[:production_id])
     @showtimes = @production.showtimes
     case step
-      when :company
+      when 'company'
         if @production.archived?
+          skip_step
+        end
+      when 'production_dates'
+        unless @production.archived?
           skip_step
         end
     end

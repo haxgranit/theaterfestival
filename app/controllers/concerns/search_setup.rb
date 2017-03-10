@@ -61,10 +61,13 @@ module SearchSetup
 
 
     @no_result = Production.search('*',
-                                   fields: ['title'],
+                                   fields: ['title', 'conditions'],
                                    load: true,
-                                   limit: 4,
+                                   page: params[:page],
+                                   per_page: 30,
+                                   where: conditions,
+                                   order: sort,
                                    boost_by_distance: { location: { origin: { lat: loc.lat, lon: loc.lng}, within: '2000mi' } },
-			           execute: false)
+                                   execute: false)
   end
 end

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_one :company
   has_one :artist
+  has_many :reviews
   acts_as_follower
   acts_as_liker
   acts_as_mentionable
@@ -31,6 +32,10 @@ class User < ActiveRecord::Base
 
   def name
     full_name
+  end
+
+  def potential_matches
+    Artist.where(stage_name: full_name, user_id: nil).where.not(id: artist.id)
   end
 
 
