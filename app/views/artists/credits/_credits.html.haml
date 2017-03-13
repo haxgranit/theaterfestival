@@ -19,7 +19,6 @@
         - @artist.credits.production.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'production' }
   .tab-pane{ id: 'creative', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
@@ -32,11 +31,9 @@
         - @artist.credits.staff.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'staff' }
   .tab-pane{ id: 'other', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
         - @artist.credits.other.each do |credit|
           - p = credit.creditable
           = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
-    = render partial: 'artists/credits/credit_form', locals: { target: :credits, type: 'other' }

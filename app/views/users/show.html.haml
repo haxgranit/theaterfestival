@@ -93,7 +93,7 @@
                 %td
                   = link_to match.stage_name, artist_path(match)
                 %td
-                  = link_to 'Claim', edit_artist_path(match)
+                  = link_to 'Claim', artist_claim_path(match), method: :patch
 
 
       .tab-pane{ id: 'permissions', role: 'tabpanel' }

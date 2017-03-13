@@ -13,7 +13,7 @@ class Artist < ActiveRecord::Base
   attachment :profile_image
   attachment :banner_image
   belongs_to :user
-  has_one :artist_social_metadata
+  has_one :artist_social_metadata, dependent: :delete
   accepts_nested_attributes_for :artist_social_metadata
 
   has_many :credits

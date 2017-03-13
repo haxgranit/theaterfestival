@@ -24,7 +24,7 @@
       %ul
         - if @user.artist.blank?
           %li
-            = link_to 'Create Artist Page', new_artist_path
+            = button_to 'Create Artist Page', artists_path(artist: {stage_name: @user.full_name, user_id: @user}), method: :post
         - else
           %li
 

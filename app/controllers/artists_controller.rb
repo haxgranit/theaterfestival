@@ -80,6 +80,16 @@ class ArtistsController < ApplicationController
   def claim
     if user_signed_in?
       @artist = Artist.find(params[:artist_id])
+      if current_user.artist.present?
+        @new_credits = @artist.credits
+        @new_credits.each do |c|
+          c.artist = current_user.artist
+          c.save
+        end
+        @artist.destroy
+        redirect_to current_user.artist, notice: 'Artists merged'
+        return
+      end
       authorize @artist
       if @artist.update(user_id: current_user.id)
         redirect_to @artist, notice: 'Artist claimed.'
