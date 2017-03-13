@@ -21,6 +21,7 @@ gem 'compass-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'bourbon'
+gem 'ckeditor'
 
 gem 'unicorn'
 gem 'unicorn-rails'

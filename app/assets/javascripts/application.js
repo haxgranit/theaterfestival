@@ -29,6 +29,7 @@
 //= require jquery.ezdz
 //= require select2-full
 //= require best_in_place
+//= require ckeditor/init
 //= require_tree .
 
 $(function() {

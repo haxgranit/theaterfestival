@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 87) do
+ActiveRecord::Schema.define(version: 20170313064556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,20 @@ ActiveRecord::Schema.define(version: 87) do
   end
 
   add_index "artists", ["user_id"], name: "index_artists_on_user_id", unique: true, using: :btree
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_id",                      null: false
+    t.string   "data_filename",                null: false
+    t.integer  "data_size"
+    t.string   "data_content_type"
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.text     "name"

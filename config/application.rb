@@ -6,6 +6,7 @@ Bundler.require(*Rails.groups)
 
 module TheaterEngineResources
   class Application < Rails::Application
+    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
     config.colorize_logging = false
     if ENV['LOGSTASH_ON']
       config.lograge.enabled = true
