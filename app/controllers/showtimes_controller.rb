@@ -24,6 +24,7 @@ class ShowtimesController < ApplicationController
   def edit
     @showtime.build_showtime_accessibility_metadata
     @showtime.build_showtime_ticket_metadata
+    @showtimes = @showtime.production.showtimes
   end
 
   # POST /showtimes
@@ -34,6 +35,7 @@ class ShowtimesController < ApplicationController
 
   # PATCH/PUT /showtimes/1
   def update
+    @showtimes = @showtime.production.showtimes
     @showtime.update!(handle_theater)
   end
 

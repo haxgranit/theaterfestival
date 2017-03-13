@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   searchkick word_start: [:name], searchable: [:name]
+  scope :search_import, -> { where(public: true) }
   has_many :permissions
   include PublicActivity::Common
 
@@ -36,6 +37,10 @@ class User < ActiveRecord::Base
 
   def potential_matches
     Artist.where(stage_name: full_name, user_id: nil).where.not(id: self.try(:artist).try(:id))
+  end
+
+  def should_index?
+    public
   end
 
 

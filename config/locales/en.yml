@@ -23,17 +23,16 @@ en:
   hello: "Hello world"
   datepicker:
     dformat: '%m/%d/%Y'
-    pformat: 'YYYY/MM/DD'
+    pformat: 'L'
+  timepicker:
+    dformat: '%I:%M %P'
+    pformat: 'LT'
+  dayViewHeaderFormat: 'MMMM YYYY'
   date:
     order:
       - :month
       - :day
       - :year
-    datepicker:
-      default: "mm/dd/yyyy"
-      long: "MM dd, yyyy"
-      dformat: '%m/%d/%Y'
-      pformat: 'YYYY/MM/DD'
     datetimepicker:
       default: "mm/dd/yyyy hh:mm"
       long: "MM dd, yyyy, hh:mm"

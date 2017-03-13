@@ -14,7 +14,7 @@
         Info
 .tab-content
   .tab-pane.active{ id: 'credits', role: 'tabpanel' }
-    = render 'artists/credits/credits'
+    = render partial: 'shared/credits/credits', locals: { resource: @artist }
   .tab-pane{ id: 'media', role: 'tabpanel' }
     = render 'artists/photos/listing'
     = render 'artists/photos/form'

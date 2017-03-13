@@ -16,7 +16,6 @@
 //= require tether
 //= require bootstrap
 //= require bootstrap-slider
-//= require bootstrap-datepicker/core
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers
@@ -33,7 +32,12 @@
 //= require_tree .
 
 $(function() {
-    return $(document).on('ready turbolinks:load', function() {
+    return $(document).on('ready turbolinks:load ajax:complete', function() {
         jQuery(".best_in_place").best_in_place();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     });
 });

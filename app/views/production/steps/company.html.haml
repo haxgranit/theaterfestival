@@ -6,8 +6,11 @@
       Which company produced the show?
   .form
     = simple_form_for @production, method: :put, url: wizard_path do |f|
-      = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }, label: 'Production Company'
-      = f.input :company_id, as: :hidden
+      - if @production.archived?
+        = f.input :company, as: :fake, input_html: { value: "#{@production.company.name if @production.company.present?}" }, label: 'Production Company'
+        = f.input :company_id, as: :hidden
+      - else
+        = f.input :company_id, collection: current_user.permissions.company, label_method: :name, value_method: :resource_id
       = f.button :submit, 'Next Step', class: 'btn-primary'
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313064556) do
+ActiveRecord::Schema.define(version: 20170313064557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,7 +224,6 @@ ActiveRecord::Schema.define(version: 20170313064556) do
     t.string   "resource_type"
   end
 
-  add_index "permissions", ["resource_type", "resource_id"], name: "index_permissions_on_resource_type_and_resource_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "photo_albums", force: :cascade do |t|
@@ -439,6 +438,7 @@ ActiveRecord::Schema.define(version: 20170313064556) do
     t.text     "location"
     t.boolean  "admin"
     t.string   "profile_image_id"
+    t.boolean  "public"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

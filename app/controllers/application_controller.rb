@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
                                              :last_name,
                                              :time_zone,
                                              :location,
+                                             :public,
                                              :profile_image,
                                              :banner_image])
 
@@ -42,6 +43,7 @@ class ApplicationController < ActionController::Base
                                              :last_name,
                                              :time_zone,
                                              :location,
+                                             :public,
                                              :profile_image,
                                              :banner_image])
   end

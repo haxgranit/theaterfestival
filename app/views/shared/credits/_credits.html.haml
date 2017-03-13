@@ -16,24 +16,24 @@
   .tab-pane.active{ id: 'cast', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.production.each do |credit|
+        - resource.credits.production.each do |credit|
           - p = credit.creditable
-          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+          = render partial: 'shared/credits/listing', locals: { target: p, credit: credit }
   .tab-pane{ id: 'creative', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.creative.each do |credit|
+        - resource.credits.creative.each do |credit|
           - p = credit.creditable
-          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+          = render partial: 'shared/credits/listing', locals: { target: p, credit: credit }
   .tab-pane{ id: 'staff', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.staff.each do |credit|
+        - resource.credits.staff.each do |credit|
           - p = credit.creditable
-          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+          = render partial: 'shared/credits/listing', locals: { target: p, credit: credit }
   .tab-pane{ id: 'other', role: 'tabpanel'}
     %table.table.table-striped
       %tbody
-        - @artist.credits.other.each do |credit|
+        - resource.credits.other.each do |credit|
           - p = credit.creditable
-          = render partial: 'artists/credits/listing', locals: { target: p, credit: credit }
+          = render partial: 'shared/credits/listing', locals: { target: p, credit: credit }

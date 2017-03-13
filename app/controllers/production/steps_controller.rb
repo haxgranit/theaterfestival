@@ -24,12 +24,16 @@ class Production::StepsController < ApplicationController
     p = production_params(step)
     case step
       when 'company'
-        if p[:company_id].blank?
+        if p[:company_id] != p[:company_id].to_i.to_s
           c = Company.new
-          c.name = params[:company]
+          c.name = p[:company_id]
           if c.save(validate: false)
             @production.company = c
             @production.save(validate: false)
+            unless @production.archived?
+              p = Permission.new(user: current_user, resource: c)
+              p.save
+            end
           end
         else
           @production.update!(production_params(step))

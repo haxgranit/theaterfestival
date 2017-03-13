@@ -1,5 +1,9 @@
 $ ->
   $(document).on 'turbolinks:load cocoon:after-insert', ->
+    $('select').select2
+      theme: "classic"
+      tags: true
+
     Handlebars.registerHelper 'route_to', (route, resource_id, caption) ->
       url = Routes[route](resource_id)
       new (Handlebars.SafeString)('<a href=\'' + url + '\'>' + caption + '</a>')
@@ -293,7 +297,7 @@ $ ->
         return
 
 
-    $(document).on 'turbolinks:load cocoon:after-insert', ->
+    $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', ->
       theaters = new Bloodhound(
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
         queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -330,8 +334,7 @@ $ ->
       url: '/api/v1/venues/' + venue
       type: 'GET').done((data, textStatus, jqXHR) ->
         console.log 'HTTP Request Succeeded: ' + jqXHR.status
-        el.find('[id$=venue_address]').val(data.data.attributes.address)
-        # $('[id$=venue_address]').val(data.data.attributes.address)
+        el.find('[id$=address]').val(data.data.attributes.address)
         return
     ).fail((jqXHR, textStatus, errorThrown) ->
       console.log 'HTTP Request Failed'
@@ -356,7 +359,9 @@ $ ->
     ).always ->
       return
 
-    el.find('[id$=_theater]').select2 theme: "classic"
+    el.find('select').select2
+      theme: "classic"
+      tags: true
 
   return
 
@@ -366,3 +371,4 @@ $ ->
   formatTheater = (theater) ->
     markup = '<div class=\'select2-result-repository clearfix\'>' + '<div class=\'select2-result-repository__meta\'>' + '<div class=\'select2-result-repository__title\'>' + theater.name + '</div>'
     markup
+
