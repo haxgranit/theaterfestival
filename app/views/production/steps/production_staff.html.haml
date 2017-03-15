@@ -4,7 +4,7 @@
 = render partial: 'production/steps/credits/credit_form', locals: { collection: @production.company, target: :credits, type: 'staff' }
 %table.table.table-striped
   %tbody
-    - @production.credits.staff.each do |credit|
+    - @production.company.credits.staff.each do |credit|
       - p = credit.creditable
       = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
 

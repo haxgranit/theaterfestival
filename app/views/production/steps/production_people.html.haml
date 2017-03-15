@@ -8,7 +8,8 @@
   .answers
     = link_to 'cast', wizard_path(:production_cast), class: 'btn btn-primary'
     = link_to 'creative team', wizard_path(:production_creative), class: 'btn btn-primary'
-    = link_to 'staff', wizard_path(:production_coproducers), class: 'btn btn-primary'
+    - if @production.company.present?
+      = link_to 'staff', wizard_path(:production_staff), class: 'btn btn-primary'
     = link_to 'other', wizard_path(:production_other), class: 'btn btn-primary'
 
 = link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'

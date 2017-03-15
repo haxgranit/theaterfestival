@@ -1,6 +1,7 @@
 class Production::StepsController < ApplicationController
   before_action do
     @production = Production.find(params[:production_id])
+    @company = @production.company
     authorize @production, :claim?
   end
   include Wicked::Wizard
@@ -83,27 +84,21 @@ class Production::StepsController < ApplicationController
               a.stage_name = v[:stage_name]
               a.save!(validate: false)
               v[:artist_id] = a.id
-              v.except!(:stage_name)
+            end
+            v[:start_date] = Date.strptime(v[:start_date], '%m/%d/%Y')
+            v[:end_date] = Date.strptime(v[:end_date], '%m/%d/%Y') if v[:end_date].present?
+            v.except!('stage_name')
+
+            if v[:credit_type] == 'staff'
+              @company_record = @company.credits.staff.build(artist_id: v[:artist_id],
+                                                             position: v[:position],
+                                                             start_date: v[:start_date],
+                                                             end_date: v[:end_date])
+              @company_record.save
             end
           end
           final_credit = p.merge!(credits_attributes: pc)
           @production.update!(final_credit)
-        end
-      when 'production_coproducers'
-        if p['company_production_links_attributes'].present?
-          pc = p['company_production_links_attributes']
-          pc.each do |k,v|
-            if params[:company].present? &&
-                pc[k][:company_id].blank?
-              c = Company.new
-              c.name = params[:company]
-              c.save!(validate: false)
-              pc[k][:company_id] = c.id
-              pc[k][:production_id] = @production.id
-            end
-          end
-          final_company = p.merge!(company_production_links_attributes: pc)
-          @production.update!(final_company)
         end
       when 'production_showtimes'
         if p['showtimes_attributes'].present?
@@ -124,8 +119,7 @@ class Production::StepsController < ApplicationController
                 end
               end
             end
-          end
-          pc.each do |_, v|
+            v[:date] = Date.strptime(v[:date], '%m/%d/%Y')
             v.except!(:theater_placeholder)
           end
           final_company = p.merge!(showtimes_attributes: pc)
@@ -135,6 +129,12 @@ class Production::StepsController < ApplicationController
         @production.update!(production_params(step))
     end
 
+    %w(production_cast production_creative production_staff production_other).each do |s|
+      if current_step? s
+        redirect_to wizard_path(s, production_id: @production.id)
+        return
+      end
+    end
 
     if past_step? 'production_data'
       redirect_to wizard_path('production_data', production_id: @production.id)
@@ -168,7 +168,7 @@ class Production::StepsController < ApplicationController
                                                  :intermissions,
                                                  :recommended_age,
                                                  :website]]
-                           when "production_cast", "production_creative", "production_other"
+                           when "production_cast", "production_creative", "production_other", "production_staff"
                              [credits_attributes: [:id,
                                                    :name,
                                                    :position,
