@@ -15,7 +15,8 @@ class ShowtimesController < ApplicationController
 
   # GET /showtimes/new
   def new
-    @showtime = Showtime.new
+    @previous_show = Showtime.where(production_id: params[:production]).last
+    @showtime = Showtime.new(@previous_show.attributes.except('id'))
     @showtime.build_showtime_accessibility_metadata
     @showtime.build_showtime_ticket_metadata
   end
