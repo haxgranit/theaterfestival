@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313064557) do
+ActiveRecord::Schema.define(version: 20170313064558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -376,6 +376,7 @@ ActiveRecord::Schema.define(version: 20170313064557) do
     t.datetime "updated_at",                   null: false
     t.integer  "showtime_id"
     t.decimal  "guaranteed_price"
+    t.decimal  "maximum_price"
   end
 
   add_index "showtime_ticket_metadata", ["showtime_id"], name: "index_showtime_ticket_metadata_on_showtime_id", unique: true, using: :btree
