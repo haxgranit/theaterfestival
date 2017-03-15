@@ -1,0 +1,15 @@
+%h3 Additional Ticket Types
+%table.table.table-striped
+  %tbody
+    - f.object.additional_ticket_types.each do |att|
+      %tr
+        %td
+          = att.ticket_type
+        %td
+          \$
+          = att.ticket_price
+        %td
+          = att.ticket_info
+#tickets
+  .links
+    = link_to_add_association 'add ticket type', f, :additional_ticket_types, class: 'btn btn-primary'

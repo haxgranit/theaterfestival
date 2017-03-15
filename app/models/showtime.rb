@@ -6,10 +6,12 @@ class Showtime < ActiveRecord::Base
   has_one :venue, through: :theater
   has_one :showtime_ticket_metadata, dependent: :destroy
   has_one :showtime_accessibility_metadata, dependent: :destroy
+  has_many :additional_ticket_types, dependent: :destroy
   accepts_nested_attributes_for :venue
   accepts_nested_attributes_for :theater
   accepts_nested_attributes_for :showtime_ticket_metadata
   accepts_nested_attributes_for :showtime_accessibility_metadata
+  accepts_nested_attributes_for :additional_ticket_types, reject_if: :all_blank, allow_destroy: true
 
   # def local_time
   #   showtime.in_time_zone(venue.time_zone)

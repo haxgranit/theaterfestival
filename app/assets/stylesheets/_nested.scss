@@ -5,6 +5,10 @@
   align-items: flex-end;
 }
 
+form .row {
+  flex-wrap: wrap;
+}
+
 .nested-fields .form-group {
   margin: 0;
   padding: 1rem;

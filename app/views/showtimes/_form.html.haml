@@ -2,7 +2,7 @@
   = simple_form_for(@showtime, remote: true, wrapper: :vertical_form) do |f|
     = f.input :date, as: :date_picker, label: 'Showtime Date', order: [:month, :day, :year]
     = f.input :time, as: :time_picker, label: 'Time'
-    = f.input :production_id, as: :hidden, input_html: {value: (params['production'] || @showtime.production) }
+    = f.input :production_id, as: :hidden, input_html: {value: (params['production'] || @showtime.production.id) }
     #accordion.col-md-12{'aria-multiselectable' => 'true', :role => 'tablist'}
       .card
         #headingOne.card-header{:role => 'tab'}
@@ -49,5 +49,6 @@
                   %span.input-group-addon
                     $
                   = t.input_field :maximum_price, class: 'form-control'
+            = render partial: 'showtimes/additional_ticket_types/form', locals: {f: f}
     = f.button :submit, class: 'btn btn-primary'
     = link_to "Cancel", '#', class: 'cancel-link'

@@ -1,0 +1,9 @@
+.nested-fields
+  = f.input :ticket_type
+  = f.input :ticket_price, label: 'Ticket Price' do |t|
+    .input-group
+      %span.input-group-addon
+        $
+      = f.input_field :ticket_price, class: 'form-control'
+  = f.input :ticket_info
+  = link_to_remove_association "cancel", f, class: 'btn btn-primary'
