@@ -15,6 +15,10 @@ class Showtime < ActiveRecord::Base
   #   showtime.in_time_zone(venue.time_zone)
   # end
 
+  def previous
+    self.class.where('id < ?', id).where('production_id = ?', production_id).last
+  end
+
   def tomorrow?
     self.date == Date.tomorrow
   end

@@ -1,7 +1,7 @@
 class Production < ActiveRecord::Base
 
   cattr_accessor :form_steps do
-    %w(timing production_title company production_data production_dates production_showtimes production_info production_people production_cast production_creative production_coproducers production_other)
+    %w(timing production_title duplicate_title company duplicate_company production_data production_dates production_showtimes production_info production_people production_cast production_creative production_coproducers production_other)
   end
 
   attr_accessor :form_step
