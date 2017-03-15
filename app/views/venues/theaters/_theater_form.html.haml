@@ -1,8 +1,0 @@
-= simple_form_for @venue, defaults: {wrapper_html: {class: "col-sm-12"}} do |f|
-  - if user_signed_in?
-    .links
-      = link_to_add_association 'Add Theater', f, target,        |
-      class: 'btn btn-primary',                                 |
-      partial: 'venues/theaters/theater_fields'                  |
-    .actions
-      = f.button :submit, 'Save Theaters'

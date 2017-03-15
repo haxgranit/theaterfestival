@@ -89,6 +89,8 @@ Rails.application.routes.draw do
   resources :production_showtime_links
 
   get :create_show, to: 'static#create_show'
+  get :privacy, to: 'static#privacy'
+  get :terms, to: 'static#terms'
 
   root 'home#home'
 

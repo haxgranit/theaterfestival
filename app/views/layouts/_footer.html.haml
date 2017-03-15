@@ -1,20 +1,20 @@
 %footer
   .container.container-fluid
     #nav-footer.row.flex-items-xs-around
-      .col-xs-1
+      .col-md-1
         = image_tag('redlogo.png')
-      .col-xs-2
+      .col-md-2.mr-auto
         <i class="fa fa-facebook"></i>
         <i class="fa fa-twitter"></i>
-      .col-xs-5
+      .col-md-5
         %ul
           %li
-            Legal
+            = link_to 'Legal', terms_path
           %li
             Press
           %li
             Contact Information
           %li
-            Privacy Policy
-      .col-xs-4
-        All Rights Reserved TheaterEngine 2016
+            = link_to 'Privacy Policy', privacy_path
+    .row.justify-content-center
+      All Rights Reserved TheaterEngine 2016

@@ -11,6 +11,13 @@ button:focus {
 	outline: none;
 }
 
+.form-control {
+  background-color: white;
+  &:focus {
+    background-color: white;
+  }
+}
+
 .debug_dump {
     margin-top: 1em;
 }
@@ -102,9 +109,3 @@ button:focus {
     }
 }
 
-@media (min-width: 544px) {
-	.pagination {
-        margin: 0 0 1rem;
-        padding: 0 .5rem .5rem;
-    }
-}
