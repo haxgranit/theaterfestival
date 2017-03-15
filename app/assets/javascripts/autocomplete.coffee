@@ -1,5 +1,5 @@
 $ ->
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', ->
     $('select').select2
       theme: "classic"
       tags: true
@@ -32,12 +32,12 @@ $ ->
 	    <a href=\"{{path}}\">
             <div class=\"results row\">
               {{#if image}}
-              <div class=\"col-sm-3\">
+              <div class=\"col-md-3\">
                 <img src=\"{{image}}\">
               </div>
               {{/if}}
               {{#if name}}
-		      <div class=\"col-sm-9\">
+		      <div class=\"col-md-9\">
 			<strong>{{name}}</strong>
 		      {{#if credits}}
 			<ul>

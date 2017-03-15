@@ -60,19 +60,9 @@
     background-size: 100%;
 
     .sidebar-area {
-      -webkit-box-ordinal-group: 2;
-      -moz-box-ordinal-group: 2;
-      -ms-flex-order: 2;
-      -webkit-order: 2;
-      order: 2;
       padding: 2em;
     }
     .content-area {
-      -webkit-box-ordinal-group: 1;
-      -moz-box-ordinal-group: 1;
-      -ms-flex-order: 1;
-      -webkit-order: 1;
-      order: 1;
       padding: 2em 1em;
 
       h1 {
@@ -96,11 +86,6 @@
         margin-bottom: 0;
         width: 100%;
       }
-    }
-    .container > .row {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
     }
 }
 
@@ -185,20 +170,10 @@
       flex-direction: row;
     }
     .sidebar-area {
-      -webkit-box-ordinal-group: 1;
-      -moz-box-ordinal-group: 1;
-      -ms-flex-order: 1;
-      -webkit-order: 1;
-      order: 1;
       margin-bottom: 0;
       padding: 2em 1em;
     }
     .content-area {
-      -webkit-box-ordinal-group: 2;
-      -moz-box-ordinal-group: 2;
-      -ms-flex-order: 2;
-      -webkit-order: 2;
-      order: 2;
       padding: 2em;
     }
   }
