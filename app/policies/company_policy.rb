@@ -7,15 +7,15 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || edit?
+    admin? || claim?
   end
 
   def edit?
-    company.user_id == user.id if user.present? || false
+    company.permissions.where(user: @user).present? || false
   end
 
   def claim?
-    company.user.blank? if user.present? && user.company.blank? || false
+    company.permissions.blank? if user.present? || edit?
   end
 
   class Scope < Scope
