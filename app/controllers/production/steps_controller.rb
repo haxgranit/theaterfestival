@@ -7,9 +7,23 @@ class Production::StepsController < ApplicationController
     @production = Production.find(params[:production_id])
     @showtimes = @production.showtimes
     case step
+      when 'duplicate_title'
+        unless Production.where(title: @production.title).where.not(company: nil).count > 0
+          skip_step
+        end
+        @duplicates = Production.where(title: @production.title).where.not(id: @production.id, company: nil)
       when 'company'
         if @production.archived?
           skip_step
+        end
+      when 'duplicate_company'
+        if @production.archived?
+          skip_step
+        else
+          unless Company.where(name: @production.company.name).where.not(id: @production.company.id).count > 0
+            skip_step
+          end
+          @duplicates = Company.where(name: @production.company.name).where.not(id: @production.company.id)
         end
       when 'production_dates'
         unless @production.archived?
@@ -32,6 +46,7 @@ class Production::StepsController < ApplicationController
             @production.save(validate: false)
             unless @production.archived?
               p = Permission.new(user: current_user, resource: c)
+              p2 = Permission.new(user: current_user, resource: @production)
               p.save
             end
           end
@@ -53,16 +68,17 @@ class Production::StepsController < ApplicationController
         end
 
         @production.update!(p.merge(date_mask: mask))
-      when 'production_cast', 'production_creative', 'production_coproducers'
+      when 'production_cast', 'production_creative', 'production_staff', 'production_other'
+        @company = @production.company
         if p['credits_attributes'].present?
           pc = p['credits_attributes']
           pc.each do |k, v|
             if params[:stage_name].present? &&
-                pc[k][:artist_id].blank?
+                v[:artist_id].blank?
               a = Artist.new
               a.stage_name = params[:stage_name]
               a.save!(validate: false)
-              pc[k][:artist_id] = a.id
+              v[:artist_id] = a.id
             end
           end
           final_credit = p.merge!(credits_attributes: pc)

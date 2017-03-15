@@ -33,9 +33,9 @@ module SearchSetup
 
     conditions.merge!(c)
 
-    aggs = ['closing_soon', 'upcoming.today', 'upcoming.tomorrow', 'upcoming.weekend',
-            'size.broadway', 'size.offbroadway', 'size.black_box',
-           'guaranteed_price']
+    aggs = %w(closing_soon upcoming.today upcoming.tomorrow upcoming.weekend
+            size.broadway size.offbroadway size.black_box
+            guaranteed_price)
 
     if no_search
       @productions = Searchkick.search('*',

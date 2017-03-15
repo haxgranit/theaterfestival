@@ -24,31 +24,30 @@ class ShowtimesController < ApplicationController
   def edit
     @showtime.build_showtime_accessibility_metadata
     @showtime.build_showtime_ticket_metadata
-    @showtimes = @showtime.production.showtimes
   end
 
   # POST /showtimes
   def create
     @showtime = Showtime.new(handle_theater)
     @showtime.save!
+    @showtimes = @showtime.production.showtimes
   end
 
   # PATCH/PUT /showtimes/1
   def update
-    @showtimes = @showtime.production.showtimes
     @showtime.update!(handle_theater)
   end
 
   # DELETE /showtimes/1
   def destroy
     @showtime.destroy
-    redirect_to showtimes_url, notice: 'Showtime was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_showtime
       @showtime = Showtime.find(params[:id])
+      @showtimes = @showtime.production.showtimes
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -66,12 +65,14 @@ class ShowtimesController < ApplicationController
             c.name = p[:venue]
             c.address = p[:address]
             c.save!(validate: false)
-            t = Theater.new
-            t.name = p[:venue]
-            t.venue = c
-            t.save!(validate: false)
-            p[:theater_id] = t.id
-            showtime_params[:theater_id] = p[:theater_id]
+            if showtime_params[:theater_id] != showtime_params[:theater_id].to_i.to_s
+              t = Theater.new
+              t.name = showtime_params[:theater_id] || p[:venue]
+              t.venue = c
+              t.save!(validate: false)
+              p[:theater_id] = t.id
+              showtime_params[:theater_id] = p[:theater_id]
+            end
           end
         end
       end
