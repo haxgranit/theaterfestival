@@ -308,8 +308,8 @@
                     template.addClass('timepicker-sbs');
                     template.append(
                         $('<div>').addClass('row')
-                            .append(dateView.addClass('col-sm-6'))
-                            .append(timeView.addClass('col-sm-6'))
+                            .append(dateView.addClass('col-md-6'))
+                            .append(timeView.addClass('col-md-6'))
                     );
                     template.append(toolbar);
                     return template;
