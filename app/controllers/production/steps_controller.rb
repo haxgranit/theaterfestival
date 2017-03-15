@@ -1,4 +1,8 @@
 class Production::StepsController < ApplicationController
+  before_action do
+    @production = Production.find(params[:production_id])
+    authorize @production, :claim?
+  end
   include Wicked::Wizard
   steps *Production.form_steps
 
@@ -72,13 +76,14 @@ class Production::StepsController < ApplicationController
         @company = @production.company
         if p['credits_attributes'].present?
           pc = p['credits_attributes']
-          pc.each do |k, v|
-            if params[:stage_name].present? &&
+          pc.each do |_, v|
+            if v[:stage_name].present? &&
                 v[:artist_id].blank?
               a = Artist.new
-              a.stage_name = params[:stage_name]
+              a.stage_name = v[:stage_name]
               a.save!(validate: false)
               v[:artist_id] = a.id
+              v.except!(:stage_name)
             end
           end
           final_credit = p.merge!(credits_attributes: pc)

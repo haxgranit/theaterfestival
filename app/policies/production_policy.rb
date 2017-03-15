@@ -8,15 +8,15 @@ class ProductionPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || edit?
+    admin? || claim?
   end
 
   def edit?
-    true
+    production.permissions.where(user: @user).present? || false
   end
 
   def claim?
-    true
+    production.permissions.blank? if user.present? || edit?
   end
 
   class Scope < Scope
