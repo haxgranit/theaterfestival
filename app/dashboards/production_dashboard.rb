@@ -8,16 +8,22 @@ class ProductionDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    credits: Field::HasMany,
+    permissions: Field::HasMany,
+    albums: Field::HasMany.with_options(class_name: "PhotoAlbum"),
+    photos: Field::HasMany,
+    company: Field::BelongsTo,
     artists: Field::HasMany,
     companies: Field::HasMany,
     company_production_links: Field::HasMany,
-    festivals: Field::HasMany,
+    credits: Field::HasMany,
     festival_production_links: Field::HasMany,
+    festivals: Field::HasMany,
     press_items: Field::HasMany,
+    production_showtime_links: Field::HasMany,
     reviews: Field::HasMany,
     showtimes: Field::HasMany,
-    production_showtime_links: Field::HasMany,
+    theaters: Field::HasMany,
+    venues: Field::HasMany,
     production_metadata: Field::HasOne,
     id: Field::Number,
     title: Field::Text,
@@ -30,6 +36,9 @@ class ProductionDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     key_image_id: Field::String,
     key_image_credit: Field::Text,
+    banner_image_id: Field::String,
+    archived: Field::Boolean,
+    date_mask: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,25 +47,32 @@ class ProductionDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :credits,
-    :artists,
-    :companies,
-    :company_production_links,
+    :title,
+    :company,
+    :venues,
+    :theaters,
+    :showtimes
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :credits,
+    :permissions,
+    :albums,
+    :photos,
+    :company,
     :artists,
     :companies,
     :company_production_links,
-    :festivals,
+    :credits,
     :festival_production_links,
+    :festivals,
     :press_items,
+    :production_showtime_links,
     :reviews,
     :showtimes,
-    :production_showtime_links,
+    :theaters,
+    :venues,
     :production_metadata,
     :id,
     :title,
@@ -69,22 +85,31 @@ class ProductionDashboard < Administrate::BaseDashboard
     :updated_at,
     :key_image_id,
     :key_image_credit,
+    :banner_image_id,
+    :archived,
+    :date_mask,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :credits,
+    :permissions,
+    :albums,
+    :photos,
+    :company,
     :artists,
     :companies,
     :company_production_links,
-    :festivals,
+    :credits,
     :festival_production_links,
+    :festivals,
     :press_items,
+    :production_showtime_links,
     :reviews,
     :showtimes,
-    :production_showtime_links,
+    :theaters,
+    :venues,
     :production_metadata,
     :title,
     :public,
@@ -94,12 +119,15 @@ class ProductionDashboard < Administrate::BaseDashboard
     :last_performance,
     :key_image_id,
     :key_image_credit,
+    :banner_image_id,
+    :archived,
+    :date_mask,
   ].freeze
 
   # Overwrite this method to customize how productions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(production)
-  #   "Production ##{production.id}"
-  # end
+  def display_resource(production)
+    "#{production.title}"
+  end
 end

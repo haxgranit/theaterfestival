@@ -72,7 +72,7 @@ class ShowtimeAccessibilityMetadataDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how showtime accessibility metadata are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(showtime_accessibility_metadata)
-  #   "ShowtimeAccessibilityMetadata ##{showtime_accessibility_metadata.id}"
-  # end
+  def display_resource(showtime_accessibility_metadata)
+    "Accessibility Info"
+  end
 end

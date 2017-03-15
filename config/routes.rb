@@ -2,6 +2,40 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   get 'home/home'
 
+  namespace :admin do
+    resources :users
+    resources :artists
+    resources :companies
+    resources :venues
+    resources :productions
+    resources :showtimes
+    resources :theaters
+    resources :festivals
+    resources :artist_social_metadata
+    resources :company_festival_links
+    resources :company_metadata
+    resources :company_production_links
+    resources :company_social_metadata
+    resources :credits
+    resources :festival_production_links
+    resources :permissions
+    resources :photos
+    resources :photo_albums
+    resources :pictures
+    resources :press_items
+    resources :production_metadata
+    resources :production_showtime_links
+    resources :reviews
+    resources :showtime_accessibility_metadata
+    resources :showtime_ticket_metadata
+    resources :theater_metadata
+    resources :likes
+    resources :mentions
+    resources :follows
+
+    root to: "users#index"
+  end
+
   concern :permissible do
     resources :permissions
   end

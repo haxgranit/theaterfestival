@@ -8,6 +8,8 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    permissions: Field::HasMany,
+    company: Field::HasOne,
     artist: Field::HasOne,
     id: Field::Number,
     email: Field::String,
@@ -24,7 +26,6 @@ class UserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime,
     first_name: Field::Text,
     last_name: Field::Text,
-    time_zone: Field::Text,
     location: Field::Text,
     admin: Field::Boolean,
     profile_image_id: Field::String,
@@ -36,15 +37,18 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :first_name,
+    :last_name,
+    :permissions,
+    :company,
     :artist,
-    :id,
-    :email,
-    :encrypted_password,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :permissions,
+    :company,
     :artist,
     :id,
     :email,
@@ -61,7 +65,6 @@ class UserDashboard < Administrate::BaseDashboard
     :updated_at,
     :first_name,
     :last_name,
-    :time_zone,
     :location,
     :admin,
     :profile_image_id,
@@ -71,6 +74,8 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :permissions,
+    :company,
     :artist,
     :email,
     :encrypted_password,
@@ -84,7 +89,6 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_ip,
     :first_name,
     :last_name,
-    :time_zone,
     :location,
     :admin,
     :profile_image_id,
@@ -93,7 +97,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    "#{user.first_name} #{user.last_name}"
+  end
 end

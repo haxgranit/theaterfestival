@@ -8,11 +8,17 @@ class CompanyDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    permissions: Field::HasMany,
+    albums: Field::HasMany.with_options(class_name: "PhotoAlbum"),
+    photos: Field::HasMany,
+    user: Field::BelongsTo,
+    productions: Field::HasMany,
+    credits: Field::HasMany,
+    artists: Field::HasMany,
     company_festival_links: Field::HasMany,
     festivals: Field::HasMany,
-    festival_production_links: Field::HasMany,
-    productions: Field::HasMany,
     company_production_links: Field::HasMany,
+    coproductions: Field::HasMany.with_options(class_name: "Production"),
     venues: Field::HasMany,
     theaters: Field::HasMany,
     showtimes: Field::HasMany,
@@ -27,6 +33,7 @@ class CompanyDashboard < Administrate::BaseDashboard
     description: Field::Text,
     email: Field::Text,
     company_image_id: Field::String,
+    banner_image_id: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,20 +42,25 @@ class CompanyDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :company_festival_links,
-    :festivals,
-    :festival_production_links,
-    :productions,
+    :name,
+    :permissions,
+    :productions
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :permissions,
+    :albums,
+    :photos,
+    :user,
+    :productions,
+    :credits,
+    :artists,
     :company_festival_links,
     :festivals,
-    :festival_production_links,
-    :productions,
     :company_production_links,
+    :coproductions,
     :venues,
     :theaters,
     :showtimes,
@@ -63,17 +75,24 @@ class CompanyDashboard < Administrate::BaseDashboard
     :description,
     :email,
     :company_image_id,
+    :banner_image_id,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :permissions,
+    :albums,
+    :photos,
+    :user,
+    :productions,
+    :credits,
+    :artists,
     :company_festival_links,
     :festivals,
-    :festival_production_links,
-    :productions,
     :company_production_links,
+    :coproductions,
     :venues,
     :theaters,
     :showtimes,
@@ -85,12 +104,13 @@ class CompanyDashboard < Administrate::BaseDashboard
     :description,
     :email,
     :company_image_id,
+    :banner_image_id,
   ].freeze
 
   # Overwrite this method to customize how companies are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(company)
-  #   "Company ##{company.id}"
-  # end
+  def display_resource(company)
+    "#{company.name}"
+  end
 end

@@ -8,14 +8,16 @@ class ArtistDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    permissions: Field::HasMany,
+    albums: Field::HasMany.with_options(class_name: "PhotoAlbum"),
+    photos: Field::HasMany,
     user: Field::BelongsTo,
     artist_social_metadata: Field::HasOne,
     credits: Field::HasMany,
     productions: Field::HasMany,
-    pictures: Field::HasMany,
+    companies: Field::HasMany,
     id: Field::Number,
-    first_name: Field::Text,
-    last_name: Field::Text,
+    stage_name: Field::Text,
     title: Field::Text,
     birthdate: Field::DateTime,
     birth_location: Field::Text,
@@ -25,6 +27,7 @@ class ArtistDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     profile_image_id: Field::String,
+    banner_image_id: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,23 +36,26 @@ class ArtistDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :stage_name,
     :user,
-    :artist_social_metadata,
     :credits,
-    :productions,
+    :albums,
+    :photos,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :permissions,
+    :albums,
+    :photos,
     :user,
     :artist_social_metadata,
     :credits,
     :productions,
-    :pictures,
+    :companies,
     :id,
-    :first_name,
-    :last_name,
+    :stage_name,
     :title,
     :birthdate,
     :birth_location,
@@ -59,19 +65,22 @@ class ArtistDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :profile_image_id,
+    :banner_image_id,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :permissions,
+    :albums,
+    :photos,
     :user,
     :artist_social_metadata,
     :credits,
     :productions,
-    :pictures,
-    :first_name,
-    :last_name,
+    :companies,
+    :stage_name,
     :title,
     :birthdate,
     :birth_location,
@@ -79,12 +88,13 @@ class ArtistDashboard < Administrate::BaseDashboard
     :education,
     :full_bio,
     :profile_image_id,
+    :banner_image_id,
   ].freeze
 
   # Overwrite this method to customize how artists are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(artist)
-  #   "Artist ##{artist.id}"
-  # end
+  def display_resource(artist)
+    "#{artist.stage_name}"
+  end
 end

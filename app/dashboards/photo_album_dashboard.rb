@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ReviewDashboard < Administrate::BaseDashboard
+class PhotoAlbumDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,16 +8,12 @@ class ReviewDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    production: Field::BelongsTo,
-    user: Field::BelongsTo,
+    has_album: Field::Polymorphic,
+    photos: Field::HasMany,
+    activities: Field::HasMany.with_options(class_name: "::PublicActivity::Activity"),
     id: Field::Number,
-    date: Field::DateTime,
-    rating: Field::Number,
-    title: Field::Text,
-    summary: Field::Text,
-    full_text: Field::Text,
-    agree: Field::Number,
-    disagree: Field::Number,
+    title: Field::String,
+    description: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -28,25 +24,21 @@ class ReviewDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :production,
-    :user,
+    :has_album,
+    :photos,
+    :activities,
     :id,
-    :date,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :production,
-    :user,
+    :has_album,
+    :photos,
+    :activities,
     :id,
-    :date,
-    :rating,
     :title,
-    :summary,
-    :full_text,
-    :agree,
-    :disagree,
+    :description,
     :created_at,
     :updated_at,
   ].freeze
@@ -55,21 +47,17 @@ class ReviewDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :production,
-    :user,
-    :date,
-    :rating,
+    :has_album,
+    :photos,
+    :activities,
     :title,
-    :summary,
-    :full_text,
-    :agree,
-    :disagree,
+    :description,
   ].freeze
 
-  # Overwrite this method to customize how reviews are displayed
+  # Overwrite this method to customize how photo albums are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(review)
-  #   "Review ##{review.id}"
+  # def display_resource(photo_album)
+  #   "PhotoAlbum ##{photo_album.id}"
   # end
 end

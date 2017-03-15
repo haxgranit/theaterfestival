@@ -54,7 +54,7 @@ $ ->
       source: agg.ttAdapter()).bind 'typeahead:selected', (ev, suggestion) ->
         $('[id$=user_id]').val(suggestion.value)
         return
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', ->
     users = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name', 'value', 'email')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -91,7 +91,7 @@ $ ->
 
 
 
-  $(document).on 'turbolinks:load cocoon:after-insert', (e, added_item) ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', (e, added_item) ->
     artists = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('stage_name', 'value', 'credits')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -150,7 +150,7 @@ $ ->
       source: artists.ttAdapter()
 
 
-  $(document).on 'turbolinks:load cocoon:after-insert', (e, added_item) ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', (e, added_item) ->
     productions = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title', 'value', 'company')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -233,7 +233,7 @@ $ ->
 
 
 
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', ->
     companies = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value')
       queryTokenizer: Bloodhound.tokenizers.whitespace
@@ -263,7 +263,7 @@ $ ->
         $('[id$=company_id]').val(suggestion.value)
         return
 
-  $(document).on 'turbolinks:load cocoon:after-insert', ->
+  $(document).on 'turbolinks:load cocoon:after-insert ajax:complete', ->
     theaters = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name', 'value', 'venue')
       queryTokenizer: Bloodhound.tokenizers.whitespace

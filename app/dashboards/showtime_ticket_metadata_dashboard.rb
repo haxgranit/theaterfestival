@@ -10,7 +10,6 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     showtime: Field::BelongsTo,
     id: Field::Number,
-    guaranteed_price: Field::String.with_options(searchable: false),
     guaranteed_price_note: Field::Text,
     ticket_link: Field::Text,
     reservation_link: Field::Text,
@@ -26,6 +25,7 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
     notes: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    guaranteed_price: Field::String.with_options(searchable: false),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -36,8 +36,8 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :showtime,
     :id,
-    :guaranteed_price,
     :guaranteed_price_note,
+    :ticket_link,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -45,7 +45,6 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :showtime,
     :id,
-    :guaranteed_price,
     :guaranteed_price_note,
     :ticket_link,
     :reservation_link,
@@ -61,6 +60,7 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
     :notes,
     :created_at,
     :updated_at,
+    :guaranteed_price,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -68,7 +68,6 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :showtime,
-    :guaranteed_price,
     :guaranteed_price_note,
     :ticket_link,
     :reservation_link,
@@ -82,12 +81,13 @@ class ShowtimeTicketMetadataDashboard < Administrate::BaseDashboard
     :additional_ticket_type_price,
     :additional_ticket_type_info,
     :notes,
+    :guaranteed_price,
   ].freeze
 
   # Overwrite this method to customize how showtime ticket metadata are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(showtime_ticket_metadata)
-  #   "ShowtimeTicketMetadata ##{showtime_ticket_metadata.id}"
-  # end
+  def display_resource(showtime_ticket_metadata)
+    "Ticket Info"
+  end
 end
