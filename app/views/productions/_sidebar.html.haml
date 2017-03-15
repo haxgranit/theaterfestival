@@ -3,7 +3,7 @@
     - provide(:title, @production.title)
     .production-profile-details
       %h1
-        = yield(:title)
+        = best_in_place @production, :title, as: :input
 
       %figure.profile-image
         - if @production.key_image_id.present?

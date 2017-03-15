@@ -1,4 +1,4 @@
-= simple_form_for @company, defaults: {wrapper_html: {class: "col-sm-4 #{type}-#{target.to_s}"}} do |f|
+= simple_form_for @company, defaults: {wrapper_html: {class: "col-md-4 #{type}-#{target.to_s}"}} do |f|
   - if user_signed_in?
     .links
       = link_to_add_association 'Add Credit', f, target,        |

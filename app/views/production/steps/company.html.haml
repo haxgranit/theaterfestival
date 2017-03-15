@@ -16,7 +16,6 @@
 
     %h2 Coproduction Companies on #{@production.title}
     %p If Co-Production enter additional Production Companies:
-    = render partial: 'production/steps/companies/company_form', locals: { target: :company_production_links }
     %table.table.table-striped
       %tbody
         - @production.companies.each do |company|

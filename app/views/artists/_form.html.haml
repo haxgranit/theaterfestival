@@ -1,7 +1,7 @@
 = simple_form_for @artist, wrapper: :horizontal_form do |f|
   = f.input :profile_image, as: :attachment, input_html: { data: { value: attachment_url(@artist, :profile_image)}}
   = f.input :banner_image, as: :attachment, input_html: { data: { value: attachment_url(@artist, :banner_image)}}
-  = f.input :birthdate, as: :bootstrap_datepicker, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:month, :day, :year]
+  = f.input :birthdate, as: :date_picker, start_year: Date.today.year - 90, end_year: Date.today.year, order: [:month, :day, :year]
   = f.input :hometown, as: :string
   = f.input :education
   = f.input :full_bio

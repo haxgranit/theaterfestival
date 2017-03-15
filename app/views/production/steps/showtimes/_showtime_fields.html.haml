@@ -1,7 +1,7 @@
 .nested-fields.row
   = f.input :date, label: 'Showtime Date'
   = f.input :time, label: 'Time'
-  #accordion.col-sm-12{'aria-multiselectable' => 'true', :role => 'tablist'}
+  #accordion.col-md-12{'aria-multiselectable' => 'true', :role => 'tablist'}
     .card
       #headingOne.card-header{:role => 'tab'}
         %h5.mb-0
@@ -15,8 +15,8 @@
               = t.input :venue_id, as: :hidden
             = f.input :theater_id, collection: []
             = f.simple_fields_for :theater_placeholder do |t|
-              = t.input :address, label: 'Venue Address', wrapper_html: {class: 'col-sm-12'}
-            = f.simple_fields_for :showtime_accessibility_metadata, ShowtimeAccessibilityMetadata.new(showtime: f.object) do |a|
+              = t.input :address, label: 'Venue Address', wrapper_html: {class: 'col-md-12'}
+            = f.simple_fields_for :showtime_accessibility_metadata, f.object.build_showtime_accessibility_metadata do |a|
               .container
                 = a.input :seat_capacity, label: 'Seats in House'
               .container
@@ -24,7 +24,7 @@
               .container
                 = a.input :hearing_devices, label: 'Hearing Devices?'
               .container
-                = a.input :wheelchair_accessible_info, label: 'Additional Accessibility Info', wrapper_html: {class: 'col-sm-12'}
+                = a.input :wheelchair_accessible_info, label: 'Additional Accessibility Info', wrapper_html: {class: 'col-md-12'}
 
     .card
       #headingTwo.card-header{:role => 'tab'}
@@ -33,7 +33,7 @@
             Ticketing
       .collapse{:id => 'ticket_new_showtimes_', 'aria-labelledby' => 'headingTwo', :role => 'tabpanel'}
         .card-block
-          = f.simple_fields_for :showtime_ticket_metadata, ShowtimeTicketMetadata.new(showtime: f.object), wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-sm-12'}} do |t|
+          = f.simple_fields_for :showtime_ticket_metadata, f.object.build_showtime_ticket_metadata, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-md-12'}} do |t|
             = t.input :ticket_link, as: :url, label: 'Online Ticketing Link'
             = t.input :reservation_phone, as: :string, label: 'Box Office Phone Number'
             = t.input :in_person_ticketing_info, label: 'Buying Tickets in Person Info'

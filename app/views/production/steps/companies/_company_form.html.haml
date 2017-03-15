@@ -1,4 +1,4 @@
-= simple_form_for @production, method: :put, url: wizard_path, defaults: {wrapper_html: {class: 'col-sm-4'}} do |f|
+= simple_form_for @production, method: :put, url: wizard_path, defaults: {wrapper_html: {class: 'col-md-4'}} do |f|
   .links
     = link_to_add_association 'Add Coproduction Company', f, target, class: 'btn btn-primary', partial: 'production/steps/companies/company_fields'
   .actions

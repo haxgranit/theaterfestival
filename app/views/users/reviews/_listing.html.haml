@@ -3,15 +3,15 @@
     = pluralize(@user.reviews.count, 'Review')
   - @user.reviews.each do |r|
     .row
-      .col-sm-2
+      .col-md-2
         = attachment_image_tag(@user, :profile_image, :fill, 150, 150)
-      .col-sm-8
+      .col-md-8
         %p.user
           = @user.full_name
         %p.review-summary
           = truncate r.full_text, length: 100
         %p.review-link
           = link_to 'Review Link', r
-      .col-sm-1
+      .col-md-1
         %p.date
           = r.date.strftime("%D")

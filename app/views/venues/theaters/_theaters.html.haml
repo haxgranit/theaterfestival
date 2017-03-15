@@ -2,4 +2,3 @@
   %tbody
     - @venue.theaters.each do |theater|
       = render partial: 'venues/theaters/listing', locals: { target: @venue, theater: theater }
-= render partial: 'venues/theaters/theater_form', locals: { target: :theaters }

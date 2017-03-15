@@ -2,4 +2,3 @@
   %tbody
     - @venue.showtimes.each do |time|
       = render partial: 'venues/showtimes/listing', locals: { time: time }
--# = render partial: 'venues/showtimes/showtime_form'

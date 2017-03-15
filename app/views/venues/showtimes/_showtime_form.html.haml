@@ -1,4 +1,4 @@
-= simple_form_for @venue, defaults: {wrapper_html: {class: "col-sm-4"}} do |f|
+= simple_form_for @venue, defaults: {wrapper_html: {class: "col-md-4"}} do |f|
   - if user_signed_in?
     .links
       = link_to_add_association 'Add Showtime', f, :showtime,        |

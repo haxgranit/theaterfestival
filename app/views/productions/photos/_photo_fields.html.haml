@@ -1,9 +1,9 @@
 .nested-fields.row
-  .col-sm-12.col-md-7
+  .col-md-12.col-md-7
     = f.input :title
     = f.input :description
     = f.input :credit
-    = f.input :photo_date, as: :bootstrap_datepicker
-  .col-sm-12.col-md-5
+    = f.input :photo_date, as: :date_picker
+  .col-md-12.col-md-5
     = f.input :photo, as: :attachment, wrapper: :vertical_form
   = link_to_remove_association "remove photo", f, class: 'btn btn-primary'

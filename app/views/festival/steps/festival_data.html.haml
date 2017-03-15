@@ -18,10 +18,10 @@
     = link_to 'add subtitle', '#', class: 'btn btn-primary'
   .answers
     .row
-      .col-sm-12
+      .col-md-12
         = render partial: 'festival/steps/productions/production_form', locals: { target: :festival_production_links }
     .row
-      .col-sm-12
+      .col-md-12
         = link_to 'times', wizard_path(:festival_showtimes), class: 'btn btn-primary'
         = link_to 'info', wizard_path(:festival_info), class: 'btn btn-primary'
         = link_to 'people', wizard_path(:festival_people), class: 'btn btn-primary'

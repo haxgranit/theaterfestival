@@ -28,9 +28,6 @@
       %ul
         %li
           = link_to 'Edit', edit_company_path(@company)
-        - if @company.user.present?
-          %li
-            = link_to 'View User Page', user_path(@company.user_id)
-        - else
+        - if policy(@company).claim?
           %li
             = link_to 'Claim Company Page', company_claim_path(@company), method: :patch

@@ -11,6 +11,9 @@
         = attachment_image_tag production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png'
         %figurecaption.social
           = render partial: 'shared/social_figure', locals: { target: production }
+
+      %h2.tagline
+        = production.tagline
   %ul.cd-slider-navigation
     %li
       %a.cd-next{ data: { turbolinks: false } } Prev

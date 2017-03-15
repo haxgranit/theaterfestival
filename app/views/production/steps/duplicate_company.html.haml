@@ -1,0 +1,20 @@
+%h2
+  Duplicate Titles
+%p
+  We found a few other companies with the same name as yours. Are any of these the company you mean?
+%table.table.table-striped
+  %tbody
+    - @duplicates.each do |p|
+      %tr
+        %td
+          = p.name
+        - if p.permissions.empty?
+          %td
+            = link_to 'Claim', company_claim_path(company_id: p.id), method: :patch
+
+%p
+  If there are no existing permissions on a company, you can click the Claim link above to add yourself as a Company admin.
+  Otherwise you will need to ask the existing admin to add permissions, or continue to make a new company.
+
+%p
+  = link_to 'continue', next_wizard_path, class: 'btn btn-primary'
