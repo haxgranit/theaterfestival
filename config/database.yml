@@ -10,3 +10,7 @@ development: &default
 test:
   <<: *default
   database: TheaterEngine_test
+
+production:
+  <<: *default
+  database: TheaterEngine_prod
