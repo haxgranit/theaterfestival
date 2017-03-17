@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   validates :email, length: { maximum: 254 }
 
+  mount_uploader :profile_picture, ProfileImageUploader
+
   attachment :profile_image
   attachment :banner_image
 
@@ -43,6 +45,15 @@ class User < ActiveRecord::Base
     public
   end
 
+  def to_jq_upload
+    {
+      "name" => read_attribute(:profile_picture),
+      "size" => profile_picture.size,
+      "url" => profile_picture.url,
+      "thumbnail_url" => profile_picture.url,
+      "delete_type" => "DELETE" 
+    }
+  end
 
   def search_data
     {

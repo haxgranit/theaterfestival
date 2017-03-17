@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
@@ -29,6 +30,10 @@ gem 'unicorn-rails'
 gem 'refile', require: ['refile/rails', 'refile/simple_form']
 gem 'refile-s3'
 gem 'refile-mini_magick'
+gem 'carrierwave'
+gem 'jquery-fileupload-rails'
+gem 'simple_form_fancy_uploads'
+gem 'gmaps-autocomplete-rails'
 
 gem 'jsonapi-resources', '~> 0.7'
 

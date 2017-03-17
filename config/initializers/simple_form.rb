@@ -1,4 +1,6 @@
 # Use this setup block to configure all options available in SimpleForm.
+SimpleForm::FormBuilder.map_type :image_preview, to: SimpleForm::Inputs::ImagePreviewInput
+SimpleForm::FormBuilder.map_type :attachment_preview, to: SimpleForm::Inputs::AttachmentPreviewInput
 SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-danger'
   config.button_class = 'btn btn-primary'
