@@ -36,7 +36,8 @@ class ApplicationController < ActionController::Base
                                              :location,
                                              :public,
                                              :profile_image,
-                                             :banner_image])
+                                             :banner_image,
+                                             :profile_picture])
 
     devise_parameter_sanitizer.permit(:account_update,
                                       keys: [:first_name,
@@ -45,7 +46,8 @@ class ApplicationController < ActionController::Base
                                              :location,
                                              :public,
                                              :profile_image,
-                                             :banner_image])
+                                             :banner_image,
+                                             :profile_picture])
   end
 
 end
