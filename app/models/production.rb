@@ -31,6 +31,7 @@ class Production < ActiveRecord::Base
   has_many :production_showtime_links
   has_many :reviews
   has_many :showtimes
+  has_many :showtime_ticket_metadata, through: :showtimes
   has_many :theaters, through: :showtimes
   has_many :venues, through: :theaters
   has_one :production_metadata
@@ -67,11 +68,19 @@ class Production < ActiveRecord::Base
     end
   end
 
-  def first_performance
+  def first_performance_date
     if archived?
       self.first_performance
     else
-      self.showtimes.order(date: :asc).first.date || self.first_performance
+      self.showtimes.order(date: :asc).first.try(:date) || self.try(:first_performance) || nil
+    end
+  end
+
+  def last_performance_date
+    if archived?
+      self.last_performance
+    else
+      self.showtimes.order(date: :desc).first.try(:date) || self.try(:first_performance) || nil
     end
   end
 
@@ -112,7 +121,8 @@ class Production < ActiveRecord::Base
   end
 
   def guaranteed_price?
-    showtimes.select { |s| s.ticketing.try(:fetch, 'guaranteed_price') }.present?
+    showtime_ticket_metadata.try(:guaranteed_price).present?
+    #showtimes.select { |s| s.try(:ticketing).try(:guaranteed_price) }.present?
   end
 
   def key_credits
@@ -133,7 +143,7 @@ class Production < ActiveRecord::Base
         result_times << {
           date: t.date,
           time: t.time,
-          guaranteed_price: t.ticketing.try(:fetch, 'guaranteed_price')
+          guaranteed_price: t.ticketing.try(:guaranteed_price)
         }
       end
 

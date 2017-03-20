@@ -17,13 +17,13 @@ module SearchSetup
       @zip = '' if @zip.blank?
       loc = Geokit::Geocoders::MultiGeocoder.geocode("#{@city}, #{@state} #{@zip}")
       if loc.success
-        conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
+        conditions[:location] = { near: [loc.lat, loc.lng], within: '50mi'  }
         session[:geo_location] = loc
       end
     elsif session[:geo_location].present?
       loc = session[:geo_location]
       if loc.present?
-        conditions[:location] = { near: [loc.lat, loc.lng], within: '25mi'  }
+        conditions[:location] = { near: [loc.lat, loc.lng], within: '50mi'  }
       end
     end
     if c[:favorites].present?
@@ -60,6 +60,8 @@ module SearchSetup
     end
 
 
+    
+    conditions[:location] = { near: [loc.lat, loc.lng], within: '200mi'  }
     @no_result = Production.search('*',
                                    fields: ['title', 'conditions'],
                                    load: true,

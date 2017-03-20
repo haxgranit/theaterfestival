@@ -1,3 +1,4 @@
 #productions
   = render 'productions/index'
-= paginate @productions
+- if @productions.present?
+  = paginate @productions

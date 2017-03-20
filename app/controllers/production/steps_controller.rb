@@ -2,7 +2,7 @@ class Production::StepsController < ApplicationController
   before_action do
     @production = Production.find(params[:production_id])
     @company = @production.company
-    authorize @production, :claim?
+    authorize @production, :edit?
   end
   include Wicked::Wizard
   steps *Production.form_steps
@@ -99,31 +99,6 @@ class Production::StepsController < ApplicationController
           end
           final_credit = p.merge!(credits_attributes: pc)
           @production.update!(final_credit)
-        end
-      when 'production_showtimes'
-        if p['showtimes_attributes'].present?
-          pc = p['showtimes_attributes']
-          pc.each do |k,v|
-            if pc[k][:theater_placeholder].present?
-              if pc[k][:theater_placeholder][:venue].present?
-                if pc[k][:theater_placeholder][:venue_id].blank?
-                  c = Venue.new
-                  c.name = pc[k][:theater_placeholder][:venue]
-                  c.address = pc[k][:theater_placeholder][:address]
-                  c.save!(validate: false)
-                  t = Theater.new
-                  t.name = pc[k][:theater_placeholder][:venue]
-                  t.venue = c
-                  t.save!(validate: false)
-                  pc[k][:theater_id] = t.id
-                end
-              end
-            end
-            v[:date] = Date.strptime(v[:date], '%m/%d/%Y')
-            v.except!(:theater_placeholder)
-          end
-          final_company = p.merge!(showtimes_attributes: pc)
-          @production.update!(final_company)
         end
       else
         @production.update!(production_params(step))

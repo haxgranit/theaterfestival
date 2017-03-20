@@ -1,8 +1,8 @@
-- if @productions.empty?
+- if @productions.blank?
   - productions = @no_result
   %p{style: 'font-size: 1.25em;'}
     Oh no! Looks like no one's listed any shows in your area. Got a show? List it here and you'll have this page all to yourself!
-    = link_to 'Create a show?', new_production_path
+    = link_to 'Create a show?', create_show_path
   - if productions.present?
     %h2
       Shows Within 200 Miles of your Location
@@ -31,8 +31,11 @@
             - elsif t.present?
               = link_to t.name, t
           %div
-            - if production.first_performance.present?
-              = production.first_performance.to_formatted_s(:rfc822)
+            - if production.first_performance_date.present?
+              = production.first_performance_date.to_formatted_s(:rfc822)
+            - if production.last_performance_date.present?
+              \-
+              = production.last_performance_date.to_formatted_s(:rfc822)
       - elsif production.class == Festival
         %li.cd-item{ data: { festival: production.id } }
           = attachment_image_tag(production, :festival_image, :fill, 600, 800, fallback: 'unknown600x800', class: 'cd-trigger')
