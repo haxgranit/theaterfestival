@@ -59,12 +59,16 @@ class ShowtimesController < ApplicationController
     def handle_theater
       p = showtime_params[:theater_placeholder]
       showtime_params.except!(:theater_placeholder)
+      showtime_params[:date] = Date.strptime(showtime_params[:date], "%m/%d/%Y")
       if p.present?
         if p[:venue].present?
-          if p[:venue_id].blank?
+          if p[:venue_id].blank? || p[:venue] != Venue.find(p[:venue_id]).name
             c = Venue.new
             c.name = p[:venue]
             c.address = p[:address]
+            loc = Geokit::Geocoders::MultiGeocoder.geocode('c.address')
+            c.lat = loc.lat
+            c.lng = loc.lng
             c.save!(validate: false)
             if showtime_params[:theater_id] != showtime_params[:theater_id].to_i.to_s
               t = Theater.new
