@@ -7,7 +7,14 @@
   = f.input :position, as: :string, input_html: { placeholder: 'Role' }, required: true, label: 'Credit'
   - unless %w(staff other).include? credit_type
     = f.input :key_credit, label: 'Key Credit?'
+    - if credit_type == 'production'
+      - original = 'Cast'
+    - elsif credit_type = 'creative'
+      - original = 'Creative' 
+    = f.input :original_cast, label: "Original #{original}"
   = f.input :start_date, as: :date_picker, wrapper: :vertical_form, required: true
   = f.input :end_date, as: :date_picker, wrapper: :vertical_form
   = f.input :credit_type, as: :hidden, input_html: { value: credit_type }
-  = link_to_remove_association 'Cancel', f, class: 'btn btn-primary'
+  .row
+    = f.button :submit, 'Save'
+    = link_to_remove_association 'Cancel', f, class: 'btn btn-primary'

@@ -103,6 +103,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :credits
+
   resources :theaters do
     concerns [:permissible, :social, :autocomplete, :claimable]
   end

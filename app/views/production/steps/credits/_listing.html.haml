@@ -10,3 +10,5 @@
     - if credit.end_date.present?
       \-
       = credit.end_date.strftime('%D')
+  %td
+    = link_to 'Delete Credit', credit, method: :delete

@@ -1,12 +1,27 @@
 %tr
-  %td
-    = attachment_image_tag(credit.creditable, :key_image, :fill, 50, 50)
-  %td
-    = link_to(credit.creditable.name, production_path(credit.creditable))
-  %td
-    = credit.position
-  %td
-    = credit.start_date.strftime('%D')
-    - if credit.end_date.present?
-      \-
-      = credit.end_date.strftime('%D')
+  - if credit.credit_type == :staff
+    %td
+      - if credit.creditable.try(:company_image).present?
+        = attachment_image_tag(credit.creditable, :company_image, :fill, 50, 50)
+    %td
+      = link_to(credit.creditable.name, company_path(credit.creditable))
+    %td
+      = credit.position
+    %td
+      = credit.start_date.strftime('%D')
+      - if credit.end_date.present?
+        \-
+        = credit.end_date.strftime('%D')
+  - else
+    %td
+      - if credit.creditable.try(:key_image).present?
+        = attachment_image_tag(credit.creditable, :key_image, :fill, 50, 50)
+    %td
+      = link_to(credit.creditable.name, production_path(credit.creditable))
+    %td
+      = credit.position
+    %td
+      = credit.start_date.strftime('%D')
+      - if credit.end_date.present?
+        \-
+        = credit.end_date.strftime('%D')
