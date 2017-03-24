@@ -44,11 +44,17 @@
                   %span.input-group-addon
                     $
                   = t.input_field :guaranteed_price, class: 'form-control'
+              = t.input :minimum_price, label: 'Minimum Price (if available)' do
+                .input-group
+                  %span.input-group-addon
+                    $
+                  = t.input_field :minimum_price, class: 'form-control'
               = t.input :maximum_price, label: 'Maximum Price (if available)' do
                 .input-group
                   %span.input-group-addon
                     $
                   = t.input_field :maximum_price, class: 'form-control'
+            %p Use this for any discounted tickets, rush, lottery, standby, VIP, or any other ticketing options.
             = render partial: 'showtimes/additional_ticket_types/form', locals: {f: f}
     = f.button :submit, class: 'btn btn-primary'
     = link_to "Cancel", '#', class: 'cancel-link'
