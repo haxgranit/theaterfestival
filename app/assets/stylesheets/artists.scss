@@ -13,17 +13,21 @@ figure.profile-image {
   }
 }
 
+figurecaption.social {
+  margin-top: 1em;
+}
+
 figurecaption.social, .cd-item .social {
   display: flex;
   justify-content: space-around;
   text-align: center;
   .button_to {
-    flex: 1 1 auto;
+    flex: 1 1 50%;
     button {
       background: transparent;
       border: none;
       font-size: 1.5em;
-      padding: 1em;
+      padding: 0.5em;
     }
 
     .like, .unlike { color: white; background-color: rgba(0,0,0,0.5); }
@@ -35,7 +39,6 @@ figurecaption.social, .cd-item .social {
   transition: all 0.5s;
   .button_to {
     button {
-      padding: 0.5em;
     }
   }
 }

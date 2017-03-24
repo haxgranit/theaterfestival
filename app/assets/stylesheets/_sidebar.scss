@@ -37,7 +37,7 @@ aside {
     text-align: left;
   }
 
-  form {
+  form:not(.button_to) {
     padding: 1em;
 
     label {
