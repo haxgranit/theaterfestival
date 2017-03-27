@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :permissions
   include PublicActivity::Common
 
-  has_one :company
+  has_many :companies
   has_one :artist
   has_many :reviews
   acts_as_follower
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def should_index?
-    public
+    public && artist.blank?
   end
 
   def to_jq_upload

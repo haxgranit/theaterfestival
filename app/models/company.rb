@@ -47,4 +47,14 @@ class Company < ActiveRecord::Base
 
   end
 
+
+  def search_data
+    {
+        id: id,
+        name: name,
+        image: Refile.attachment_url(self, :company_image, :fill, 50, 50, format: 'jpg') || ActionController::Base.helpers.asset_url('unknown50x50.png'),
+        path: "/companies/#{id}"
+    }
+  end
+
 end

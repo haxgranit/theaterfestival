@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-  acts_as_mappable auto_geocode: { field: :full_address, error_message: 'Error geocoding' }
+  acts_as_mappable auto_geocode: { field: :address, error_message: 'Error geocoding' }
   include Permissible
   include HasAlbum
   include SocialTarget
