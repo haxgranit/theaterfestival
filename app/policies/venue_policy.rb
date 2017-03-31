@@ -7,11 +7,15 @@ class VenuePolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    edit? || admin? || false
   end
 
   def edit?
-    update?
+    @venue.company.try(:user) == @user || 
+    @venue.permissions.where(user: @user).present? ||
+    @venue.company.permissions.where(user: @user).present? ||
+    @venue.company.blank? ||
+    false
   end
 
   class Scope < Scope

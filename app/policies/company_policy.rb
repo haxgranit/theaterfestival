@@ -11,11 +11,11 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def edit?
-    company.permissions.where(user: @user).present? || false
+    company.permissions.where(user: @user).present? || claim? || admin? || false
   end
 
   def claim?
-    company.permissions.blank? if user.present? || edit?
+    company.user.blank?
   end
 
   class Scope < Scope

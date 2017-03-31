@@ -7,11 +7,15 @@ class TheaterPolicy < ApplicationPolicy
   end
 
   def update?
-    admin?
+    edit? || admin? || false
   end
 
   def edit?
-    update?
+    @theater.permissions.where(user: @user).present? ||
+    @theater.venue.permissions.where(user: @user).present? ||
+    @theater.venue.company.permissions.where(user: @user).present? ||
+    @theater.venue.company.blank? ||
+    false
   end
 
   class Scope < Scope

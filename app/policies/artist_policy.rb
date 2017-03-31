@@ -11,7 +11,7 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    admin? || claim?
   end
 
   def claim?

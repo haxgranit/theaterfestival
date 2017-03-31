@@ -7,11 +7,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || user == record
+    edit?
   end
 
   def edit?
-    update?
+    @user == @record
   end
 
   class Scope < Scope
