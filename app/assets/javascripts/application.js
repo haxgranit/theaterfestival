@@ -25,7 +25,6 @@
 //= require cocoon
 //= require js-routes
 //= require refile
-//= require jquery.ezdz
 //= require select2-full
 //= require best_in_place
 //= require ckeditor/init
@@ -33,6 +32,8 @@
 
 $(function() {
     return $(document).on('ready turbolinks:load ajax:complete', function() {
+        jQuery('.actions').hide();
+        jQuery('.links .add_fields').click(function () { jQuery('.actions').show(); });
         jQuery(".best_in_place").best_in_place();
         $.ajaxSetup({
             headers: {
