@@ -27,7 +27,7 @@
     .company-profile-links
       %ul
         %li
-          = link_to 'Edit', edit_company_path(@company)
+          = link_to 'Edit Company', edit_company_path(@company)
         - if policy(@company).claim?
           %li
             = link_to 'Claim Company Page', company_claim_path(@company), method: :patch
