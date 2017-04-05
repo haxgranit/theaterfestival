@@ -1,6 +1,9 @@
 %tr
   %td
-    = theater.name
+    - if theater.name.present?
+      = theater.name
+    - else
+      = theater.venue.name
   %td
     = theater.description
   %td
