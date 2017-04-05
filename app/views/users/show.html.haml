@@ -78,7 +78,7 @@
                 %figurecaption
                   %span.full-title
                     %span.title>
-                      = link_to a.stage_name, a
+                      = link_to a.name, a
                   = render partial: 'shared/social_buttons', locals: { target: a }
 
 
@@ -91,7 +91,7 @@
             - @user.potential_matches.each do |match|
               %tr
                 %td
-                  = link_to match.stage_name, artist_path(match)
+                  = link_to match.name, artist_path(match)
                 %td
                   = link_to 'Claim', artist_claim_path(match), method: :patch
 
@@ -99,14 +99,34 @@
       .tab-pane{ id: 'permissions', role: 'tabpanel' }
         %h2 My Content
         %p This is a list of all the things you have edit permissions for.
-        %table.table.table-striped
-          %tbody
-            - @user.permissions.each do |p|
+        - if @user.artist.present?
+          %h3 Artist
+          %table.table.table-striped
+            %tbody
               %tr
                 %td
-                  = link_to p.resource.name, polymorphic_path(p.resource)
+                  = link_to @user.artist.name, artist_path(@user.artist)
                 %td
-                  = link_to 'Edit', edit_polymorphic_path(p.resource)
-        Table of things you control
+                  = link_to 'Edit', edit_artist_path(@user.artist)
+        - if @user.companies.present?
+          %h3 Companies
+          %table.table.table-striped
+            %tbody
+              - @user.companies.each do |p|
+                %tr
+                  %td
+                    = link_to p.name, company_path(p)
+                  %td
+                    = link_to 'Edit', edit_company_path(p)
+        - if @user.permissions.present?
+          %h3 Permissions
+          %table.table.table-striped
+            %tbody
+              - @user.permissions.each do |p|
+                %tr
+                  %td
+                    = link_to p.resource.name, polymorphic_path(p.resource)
+                  %td
+                    = link_to 'Edit', edit_polymorphic_path(p.resource)
       .tab-pane{ id: 'settings', role: 'tabpanel' }
         = render 'devise/registrations/edit', resource: current_user

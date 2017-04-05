@@ -28,6 +28,8 @@
 //= require select2-full
 //= require best_in_place
 //= require ckeditor/init
+//= require jquery-fileupload
+//= require gmaps-auto-complete
 //= require_tree .
 
 $(function() {
@@ -39,6 +41,18 @@ $(function() {
             headers: {
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+        jQuery(function() {
+          var completer;
+
+          completer = new GmapsCompleter({
+            inputField: '.gmaps-input-address',
+            errorField: '#gmaps-error'
+          });
+
+          completer.autoCompleteInit({
+            country: "us"
+          });
         });
     });
 });
