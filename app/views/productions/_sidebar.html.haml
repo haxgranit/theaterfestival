@@ -17,6 +17,8 @@
           = render partial: 'shared/social_figure', locals: { target: @production }
       #user-stats
         %p.user-stat
+          = @production.tagline if @production.tagline.present?
+        %p.user-stat
           User Reviews:
           = @production.reviews.count
         %p.user-stat
@@ -45,7 +47,7 @@
         - if @production.venues.present?
           %p.venue-info
             - v = @production.venues.first
-            = v.name
+            = link_to v.name, v
             %br
             = @production.theaters.first.name
             %br

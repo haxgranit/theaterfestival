@@ -3,7 +3,7 @@
     #nav-footer.row.flex-items-xs-around
       .col-md-1
         = image_tag('redlogo.png')
-      .col-md-2.mr-auto
+      .col-md-2
         <i class="fa fa-facebook"></i>
         <i class="fa fa-twitter"></i>
       .col-md-5
@@ -16,6 +16,6 @@
             Contact Information
           %li
             = link_to 'Privacy Policy', privacy_path
-    .row.justify-content-center
-      All Rights Reserved TheaterEngine
-      = Date.today.year
+          %li
+            All Rights Reserved TheaterEngine
+            = Date.today.year

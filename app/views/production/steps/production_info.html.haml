@@ -6,7 +6,7 @@
     = simple_form_for @production, method: :put, url: wizard_path do |f|
       %p Please load the key image for #{@production.title}
       = f.input :key_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :key_image) } }, label: false
-      %p Add a banner image (optional)
+      %p Add a banner image (optional) - Ideal dimensions 1140x285
       = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@production, :banner_image) } }, label: false
       %p Enter the tagline for #{@production.title} (if applicable)
       = f.input :tagline, as: :string, label: false
@@ -16,14 +16,12 @@
       %h3 Additional Information
       = f.simple_fields_for :production_metadata, @production.production_metadata ||= ProductionMetadata.new do |m|
         = m.input :performance_type, as: :string
-        = m.input :info_heading, as: :string
-        = m.input :info
         = m.input :warnings
         = m.input :warning_info
         = m.input :running_time, as: :string
         = m.input :intermissions, as: :string
         = m.input :recommended_age, as: :string
         = m.input :website, as: :url
-      = f.button :submit, 'Next Step'
+      = f.button :submit, 'Save'
 
 = link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'
