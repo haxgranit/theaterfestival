@@ -33,6 +33,8 @@ services:
       service: redis
 
   elasticsearch:
+    environment:
+      - JAVA_OPTS=-Xmx2048m -Xms256m
     extends:
       file: docker-common.yml
       service: elasticsearch

@@ -32,7 +32,7 @@ services:
     image: elasticsearch:latest
     command: elasticsearch 
     environment:
-      ES_JAVA_OPTS: "-Des.network.host=0.0.0.0"
+      ES_JAVA_OPTS: "-Des.network.host=0.0.0.0 -Xmx1024m -Xms256m"
 
   sidekiq:
     build: .
