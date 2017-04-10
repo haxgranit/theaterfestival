@@ -57,10 +57,11 @@ class CompaniesController < ApplicationController
     if user_signed_in?
       @company = Company.find(params[:company_id])
       authorize @company
-      @new_permission = current_user.permissions.build(resource: @company)
-      @new_permission.save
-      redirect_to @company
-      return
+      if @company.update(user_id: current_user.id)
+        @company.save
+        redirect_to @company, notice: 'Company claimed.'
+        return
+      end
     end
     render :show, notice: 'You don\'t have permission to do that.'
   end

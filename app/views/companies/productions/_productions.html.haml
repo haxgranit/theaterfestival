@@ -34,10 +34,10 @@
               - elsif t.present?
                 = link_to t.name, t
             %div
-              = production.first_performance.to_formatted_s(:rfc822)
+              = production.first_performance
               - if production.last_performance.present?
                 \-
-                = production.last_performance.to_formatted_s(:rfc822)
+                = production.last_performance
 
 
       = paginate @productions, param_name: :production_page

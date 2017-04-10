@@ -1,4 +1,4 @@
-- if @company.present?
+- unless current_page?(action: 'new')
   .company-profile-details
     - provide(:title, @company.name)
     %h1
