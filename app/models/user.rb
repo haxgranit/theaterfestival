@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
   attachment :profile_image
   attachment :banner_image
 
+  def all_companies
+    owned = companies
+    permitted = permissions.company.map(&:resource)
+    owned + permitted
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -51,7 +57,7 @@ class User < ActiveRecord::Base
       "size" => profile_picture.size,
       "url" => profile_picture.url,
       "thumbnail_url" => profile_picture.url,
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE"
     }
   end
 
