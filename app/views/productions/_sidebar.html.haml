@@ -31,31 +31,38 @@
             = link_to @production.company.name, @production.company
         %p.user-stat
           - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
-          %ul
-            - key_cast.each do |c|
-              %li
-                = c.artist.name
-                \-
-                = c.position
+          - if key_cast.present?
+            %ul
+              - key_cast.each do |c|
+                %li
+                  = c.artist.name
+                  \-
+                  = c.position
         %p.user-stat
-          Starring:
           - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
-          %ul
-            - key_cast.each do |c|
-              %li
-                = c.artist.name
-                \-
-                = c.position
+          - if key_cast.present?
+            Starring:
+            %ul
+              - key_cast.each do |c|
+                %li
+                  = c.artist.name
+                  \-
+                  = c.position
         - if @production.venues.present?
           %p.venue-info
-            - v = @production.venues.first
-            = link_to v.name, v
-            %br
-            = @production.theaters.first.name
-            %br
-            #{v.address}, #{v.city}, #{v.state} #{v.zip}
-            %br
-            = link_to v.website, v.website if v.website.present?
+            - venue_count = @production.venues.count
+            - if venue_count > 1
+              = venue_count
+              Venues
+            - else
+              - v = @production.venues.first
+              = link_to v.name, v
+              %br
+              = @production.theaters.first.name
+              %br
+              #{v.address}, #{v.city}, #{v.state} #{v.zip}
+              %br
+              = link_to v.website, v.website if v.website.present?
 
         %p.user-stat
           = truncate(@production.description, length: 200)
