@@ -12,11 +12,14 @@ class ProductionPolicy < ApplicationPolicy
   end
 
   def edit?
-    claim? || admin? || false
+    claim? ||
+      admin? ||
+      @user.all_companies.include?(@production.company) ||
+      false
   end
 
   def claim?
-    production.company.blank? || false
+    (@production.company.blank? && @user.all_companies.present?) || false
   end
 
   class Scope < Scope
