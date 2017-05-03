@@ -70,7 +70,7 @@ class ShowtimesController < ApplicationController
             c = Venue.new
             c.name = p[:venue]
             c.address = p[:address]
-            loc = Geokit::Geocoders::MultiGeocoder.geocode('c.address')
+            loc = Geokit::Geocoders::MultiGeocoder.geocode(c.address)
             c.lat = loc.lat
             c.lng = loc.lng
             c.save!(validate: false)
