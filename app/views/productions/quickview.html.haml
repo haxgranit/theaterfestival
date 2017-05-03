@@ -51,30 +51,41 @@
             = c.position
   - if production.credits.production.present?
     %section
-      %h3 Starring
-      %p
-        - key_creative = @production.key_credits.select { |c| c.credit_type == 'production' }
-        - key_creative.each do |c|
-          = succeed ',' do
-            = c.artist.name
-            \-
-            = c.position
+      - key_creative = @production.key_credits.select { |c| c.credit_type == 'production' }
+      - unless key_creative.blank?
+        %h3 Starring
+        %p
+          - key_creative.each do |c|
+            = succeed ',' do
+              = c.artist.name
+              \-
+              = c.position
   %section
-    - for show in production.showtimes.limit(3)
-      %p
-        = show.date.to_formatted_s(:long)
-        \,
-        = show.time.to_formatted_s(:time)
-        at
-        = show.theater.venue.name
+    %p
+      = @production.first_performance_date.to_formatted_s(:long)
+      at
+      = @production.first_performance_showtime.venue.name
+      to
+      = @production.last_performance_date.to_formatted_s(:long)
+      at
+      = @production.last_performance_showtime.venue.name
   %section
-    <h3>General Admission</h3>
-    <p><span>Price Range:</span> $15-$30</p>
-    <p><span>Running Time:</span> 90 Minutes
+    %h3
+      General Admission
+    %p
+      %span
+        Price Range:
+      = "$#{@production.last_performance_showtime.ticketing['minimum_price']}"
+      \-
+      = "$#{@production.last_performance_showtime.ticketing['maximum_price']}"
+    %p
+      %span
+        Running Time:
+      = @production.metadata['running_time']
 
   %section
     %p
-      Tickets will be available at The Flea Theater's Box Office one hour prior to showtime
+      = @production.last_performance_showtime.ticketing['in_person_ticketing_info']
   %section
     <h3>Description</h3>
     %p

@@ -68,19 +68,27 @@ class Production < ActiveRecord::Base
     end
   end
 
+  def first_performance_showtime
+    showtimes.order(date: :asc).first || nil
+  end
+
+  def last_performance_showtime
+    showtimes.order(date: :desc).first || nil
+  end
+
   def first_performance_date
     if archived?
-      self.first_performance
+      first_performance
     else
-      self.showtimes.order(date: :asc).first.try(:date) || self.try(:first_performance) || nil
+      first_performance_showtime.try(:date) || try(:first_performance) || nil
     end
   end
 
   def last_performance_date
     if archived?
-      self.last_performance
+      last_performance
     else
-      self.showtimes.order(date: :desc).first.try(:date) || self.try(:first_performance) || nil
+      last_performance_showtime.try(:date) || try(:first_performance) || nil
     end
   end
 
