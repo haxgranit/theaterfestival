@@ -21,6 +21,9 @@
     - if policy(@artist).edit?
       .user-profile-links
         %ul
+          - if policy(@artist).admin?
+            %li
+              = link_to 'Edit (TE)', edit_artist_path(@artist)
           %li
             = link_to 'Edit', edit_artist_path(@artist)
           - if @artist.user.present?

@@ -26,6 +26,9 @@
   - if policy(@company).edit?
     .company-profile-links
       %ul
+        - if policy(@company).admin?
+          %li
+            = link_to 'Edit (TE)', edit_company_path(@company)
         %li
           = link_to 'Edit Company', edit_company_path(@company)
         - if policy(@company).claim?

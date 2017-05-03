@@ -32,3 +32,10 @@
         = @venue.phone
       %p
         = link_to 'Website', @venue.website
+    %ul
+      - if policy(@venue).admin?
+        %li
+          = link_to 'Edit (TE)', edit_venue_path(@venue)
+      - if policy(@venue).edit?
+        %li
+          = link_to 'Edit', edit_venue_path(@venue)
