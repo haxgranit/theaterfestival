@@ -30,19 +30,19 @@
             Company:
             = link_to @production.company.name, @production.company
         %p.user-stat
-          %p
-            - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
+          - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
+          %ul
             - key_cast.each do |c|
-              = succeed ',' do
+              %li
                 = c.artist.name
                 \-
                 = c.position
         %p.user-stat
           Starring:
-          %p
-            - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
+          - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
+          %ul
             - key_cast.each do |c|
-              = succeed ',' do
+              %li
                 = c.artist.name
                 \-
                 = c.position
