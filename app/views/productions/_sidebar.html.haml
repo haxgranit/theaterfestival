@@ -26,6 +26,10 @@
           Likes:
           = @production.likers(User).count
         %p.user-stat
+          - if @production.company.present?
+            Company:
+            = link_to @production.company.name, @production.company
+        %p.user-stat
           %p
             - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
             - key_cast.each do |c|
