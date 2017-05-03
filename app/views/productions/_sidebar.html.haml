@@ -10,9 +10,7 @@
 
       %figure.profile-image
         - if @production.key_image_id.present?
-          = attachment_image_tag(@production, :key_image, :fill, 400, 400)
-        - else
-          = image_tag('unknown.png', size: '400x400')
+          = attachment_image_tag(@production, :key_image, :fit, 400, 1200, fallback: 'unknown.png')
         %figurecaption.social
           = render partial: 'shared/social_figure', locals: { target: @production }
       #user-stats
