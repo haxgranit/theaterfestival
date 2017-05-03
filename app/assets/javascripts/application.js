@@ -29,30 +29,4 @@
 //= require best_in_place
 //= require ckeditor/init
 //= require jquery-fileupload
-//= require gmaps-auto-complete
 //= require_tree .
-
-$(function() {
-    return $(document).on('ready turbolinks:load ajax:complete', function() {
-        jQuery('.actions').hide();
-        jQuery('.links .add_fields').click(function () { jQuery('.actions').show(); });
-        jQuery(".best_in_place").best_in_place();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        jQuery(function() {
-          var completer;
-
-          completer = new GmapsCompleter({
-            inputField: '.gmaps-input-address',
-            errorField: '#gmaps-error'
-          });
-
-          completer.autoCompleteInit({
-            country: "us"
-          });
-        });
-    });
-});
