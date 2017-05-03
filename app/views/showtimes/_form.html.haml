@@ -18,7 +18,7 @@
               = f.input :theater_id, collection: (@showtime.venue.theaters if @showtime.venue.present?) || [], input_html: { value: (@showtime.theater.name if @showtime.theater.present?) }, wrapper_html: { class: 'col-md-6' }
               = f.simple_fields_for :theater_placeholder do |t|
                 = t.input :address, label: 'Venue Address', wrapper_html: {class: 'col-md-12'}, input_html: { value: (@showtime.venue.address if @showtime.venue.present?), class: 'gmaps-input-address' }
-              = f.simple_fields_for :showtime_accessibility_metadata, f.object.build_showtime_accessibility_metadata  do |a|
+              = f.simple_fields_for :showtime_accessibility_metadata, @accessibility  do |a|
                 .container
                   = a.input :seat_capacity, label: 'Seats in House'
                 .container
@@ -35,7 +35,7 @@
               Ticketing
         .collapse{:id => 'ticket_new_showtimes_', 'aria-labelledby' => 'headingTwo', :role => 'tabpanel'}
           .card-block
-            = f.simple_fields_for :showtime_ticket_metadata, f.object.build_showtime_ticket_metadata, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-md-12'}} do |t|
+            = f.simple_fields_for :showtime_ticket_metadata, @ticketing, wrapper: :horizontal_form, defaults: {wrapper_html: { class: 'col-md-12'}} do |t|
               = t.input :ticket_link, as: :url, label: 'Online Ticketing Link'
               = t.input :reservation_phone, as: :string, label: 'Box Office Phone Number'
               = t.input :in_person_ticketing_info, label: 'Buying Tickets in Person Info'

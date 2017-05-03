@@ -21,8 +21,16 @@ class ShowtimesController < ApplicationController
     else
       @showtime = Showtime.new
     end
-    @showtime.build_showtime_accessibility_metadata
-    @showtime.build_showtime_ticket_metadata
+    @accessibility = @showtime.
+                       build_showtime_accessibility_metadata(@previous_show.
+                                                               showtime_accessibility_metadata.
+                                                               attributes.
+                                                               except('id'))
+    @ticketing = @showtime.
+                   build_showtime_ticket_metadata(@previous_show.
+                                                    showtime_ticket_metadata.
+                                                    attributes.
+                                                    except('id'))
   end
 
   # GET /showtimes/1/edit

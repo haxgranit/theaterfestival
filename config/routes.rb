@@ -102,6 +102,7 @@ Rails.application.routes.draw do
       get :quickview
     end
   end
+  resources :production_metadata
 
   resources :credits
 
