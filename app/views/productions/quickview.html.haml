@@ -12,8 +12,6 @@
         %figurecaption.social
           = render partial: 'shared/social_figure', locals: { target: production }
 
-      %h2.tagline
-        = production.tagline
   %ul.cd-slider-navigation
     %li
       %a.cd-next{ data: { turbolinks: false } } Prev
@@ -40,6 +38,8 @@
         = v.name
   %h2
     = production.title
+  %h3.tagline
+    = production.tagline
   - if production.credits.creative.present?
     %section
       %p
@@ -79,4 +79,3 @@
     <h3>Description</h3>
     %p
       = truncate production.description, length: 200
-

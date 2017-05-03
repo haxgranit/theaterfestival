@@ -1,4 +1,3 @@
-
 body::after {
   /* dark overlay layer - visible when we fire .cd-quick-view */
   position: fixed;
@@ -24,7 +23,7 @@ body::after {
 }
 
 
-/* -------------------------------- 
+/* --------------------------------
 
 Modules - reusable parts of our design
 
@@ -42,9 +41,9 @@ Modules - reusable parts of our design
 }
 
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main components 
+Main components
 
 -------------------------------- */
 .cd-items {
@@ -369,10 +368,8 @@ Main components
   -moz-animation: cd-slide-in 0.5s;
   animation: cd-slide-in 0.5s;
   display: flex;
-  flex-flow: column-reverse;
+  flex-flow: row;
   align-items: flex-end;
-  position: absolute;
-  right: 0;
   .btn {
     background: white;
     font-weight: bold;
