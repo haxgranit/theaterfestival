@@ -65,4 +65,6 @@
               = link_to 'Edit (TE)', edit_production_path(@production)
           - if policy(@production).claim?
             %li
-              = link_to 'Claim Production Page', production_claim_path(@production), method: :patch
+              = simple_form_for @production, method: :patch do |f|
+                = f.input :company_id, as: :select, collection: current_user.all_companies, label_method: :name, value_method: :id
+                = f.submit 'Claim as this company', class: 'btn btn-primary'

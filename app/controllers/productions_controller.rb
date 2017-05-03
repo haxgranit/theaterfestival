@@ -1,5 +1,5 @@
 class ProductionsController < ApplicationController
-  before_action :set_production, only: [:show, :edit, :update, :destroy]
+  before_action :set_production, only: [:show, :edit, :update, :destroy, :claim]
 
   include Socialization::Actions
   include SearchSetup
@@ -68,6 +68,19 @@ class ProductionsController < ApplicationController
     end
   end
 
+  def claim
+    if user_signed_in? && current_user.all_companies.present?
+      @company = Company.find(params[:company])
+      authorize @production
+      if @production.update(company_id: @company.id)
+        @production.save
+        redirect_to @production, notice: 'Production claimed'
+        return
+      end
+      render :show, notice: 'You don\'t have permission to do that.'
+    end
+  end
+
   # DELETE /productions/1
   def destroy
     @production.destroy
@@ -94,6 +107,7 @@ class ProductionsController < ApplicationController
                 :banner_image,
                 :company_id,
                 :archived,
+                :company,
                 albums_attributes: [:id,
                                     :title,
                                     :description,
