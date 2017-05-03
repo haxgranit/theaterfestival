@@ -56,6 +56,9 @@
             #{v.address}, #{v.city}, #{v.state} #{v.zip}
             %br
             = link_to v.website, v.website if v.website.present?
+
+        %p.user-stat
+          = truncate(@production.description, length: 200)
         %ul
           - if policy(@production).claim?
             %li
