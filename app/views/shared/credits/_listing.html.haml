@@ -1,5 +1,5 @@
 %tr
-  - if credit.credit_type == :staff
+  - if credit.creditable.class == Company
     %td
       - if credit.creditable.try(:company_image).present?
         = attachment_image_tag(credit.creditable, :company_image, :fill, 50, 50)
