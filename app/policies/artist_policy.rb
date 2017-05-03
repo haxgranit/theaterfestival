@@ -11,7 +11,7 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? || claim?
+    admin? || claim? || @user.artist == @artist
   end
 
   def claim?
