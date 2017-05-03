@@ -3,6 +3,10 @@ module SearchSetup
 
   private
 
+  def festivals_active?
+    false
+  end
+
   def set_production_search
     c = params[:conditions] || {}
     conditions = {'upcoming.someday': true}
@@ -37,7 +41,7 @@ module SearchSetup
             size.broadway size.offbroadway size.black_box
             guaranteed_price)
 
-    if no_search
+    if no_search && festivals_active? # feature flag for festival machinery
       @productions = Searchkick.search('*',
                                        fields: ['title'],
                                        load: true,
@@ -60,7 +64,7 @@ module SearchSetup
     end
 
 
-    
+
     conditions[:location] = { near: [loc.lat, loc.lng], within: '200mi'  }
     @no_result = Production.search('*',
                                    fields: ['title', 'conditions'],
