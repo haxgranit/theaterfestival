@@ -18,20 +18,18 @@ class ShowtimesController < ApplicationController
     @previous_show = Showtime.where(production_id: params[:production]).last
     if @previous_show.present?
       @showtime = Showtime.new(@previous_show.attributes.except('id'))
+      @accessibility_data = @previous_show.showtime_accessibility_metadata.attributes.except('id')
+      @ticketing_data = @previous_show.showtime_ticket_metadata.attributes.except('id')
     else
       @showtime = Showtime.new
+      @accessibility_data = {}
+      @ticketing_data = {}
     end
-    @accessibility = @showtime.
-                       build_showtime_accessibility_metadata(@previous_show.
-                                                               showtime_accessibility_metadata.
-                                                               attributes.
-                                                               except('id'))
-    @ticketing = @showtime.
-                   build_showtime_ticket_metadata(@previous_show.
-                                                    showtime_ticket_metadata.
-                                                    attributes.
-                                                    except('id'))
-  end
+      @accessibility = @showtime.
+                         build_showtime_accessibility_metadata(@accessibility_data)
+      @ticketing = @showtime.
+                     build_showtime_ticket_metadata(@ticketing_data)
+    end
 
   # GET /showtimes/1/edit
   def edit

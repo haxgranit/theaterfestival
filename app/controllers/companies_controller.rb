@@ -46,10 +46,10 @@ class CompaniesController < ApplicationController
 
   # PATCH/PUT /companies/1
   def update
-    if @company.update(company_params)
+    if handle_credits
       redirect_to @company, notice: 'Company was successfully updated.'
     else
-      render :edit
+      redirect_to @company, notice: 'Something went wrong. Please try again.'
     end
   end
 
@@ -78,6 +78,28 @@ class CompaniesController < ApplicationController
     def set_company
       @company = Company.find(params[:id])
     end
+
+    def handle_credits
+      p = company_params
+      if p['credits_attributes'].present? 
+        pc = p['credits_attributes']
+	pc.each do |_, v|
+	  if v[:stage_name].present? && v[:artist_id].blank?
+	    a = Artist.new
+	    a.stage_name = v[:stage_name]
+            a.save!(validate: false)
+	    v[:artist_id] = a.id
+	  end
+	  v[:start_date] = Date.strptime(v[:start_date], '%m/%d/%Y')
+	  v[:end_date] = Date.strptime(v[:end_date], '%m/%d/%Y') if v[:end_date].present?
+	  v.except!('stage_name')
+	end
+        final_credit = p.merge!(credits_attributes: pc)
+        @company.update!(final_credit)
+      else
+        @company.update(p)
+      end
+    end 
 
     # Only allow a trusted parameter "white list" through.
     def company_params
@@ -110,7 +132,7 @@ class CompaniesController < ApplicationController
                                                      :website,
                                                      :vine],
                 credits_attributes: [:id,
-                                     :name,
+                                     :stage_name,
                                      :position,
                                      :creditable_id,
                                      :creditable_type,

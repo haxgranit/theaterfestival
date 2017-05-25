@@ -26,6 +26,9 @@
           %div
             = link_to truncate(production.title, length: 35), production
           %div
+            - if c.present?
+              = link_to c.name, c
+          %div
             - if v.present?
               = link_to v.name, v
             - elsif t.present?

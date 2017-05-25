@@ -13,7 +13,7 @@ config.secret_key = 'dc910e1ce7beae4b4c7994e9aa94cbfc633a372a0340247fdcf53b821b1
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'admin@theaterengine.com'
+  config.mailer_sender = 'no-reply@theaterengine.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

@@ -11,11 +11,22 @@ class VenuePolicy < ApplicationPolicy
   end
 
   def edit?
-    @venue.company.try(:user) == @user || 
-    @venue.permissions.where(user: @user).present? ||
-    @venue.company.permissions.where(user: @user).present? ||
-    @venue.company.blank? ||
-    false
+    claim? ||
+      admin? ||
+      user_companies? ||
+      false
+  end
+
+  def user_companies?
+    if @user.present?
+      @user.all_companies.include?(@venue.company)
+    else
+      false
+    end
+  end
+
+  def claim?
+    (@venue.company.blank? && @user.try(:all_companies).present? && user?) || false
   end
 
   class Scope < Scope

@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :set_venue, only: [:show, :edit, :update, :destroy, :claim]
   include Socialization::Actions
 
   def autocomplete
@@ -47,6 +47,19 @@ class VenuesController < ApplicationController
       redirect_to @venue, notice: 'Venue was successfully updated.'
     else
       render :edit
+    end
+  end
+
+  def claim
+    if user_signed_in? && current_user.all_companies.present?
+      @company = Company.find(params[:company])
+      authorize @venue
+      if @venue.update(company_id: @company.id)
+        @venue.save
+        redirect_to @venue, notice: 'Venue claimed'
+        return
+      end
+      render :show, notice: 'You don\'t have permission to do that.'
     end
   end
 

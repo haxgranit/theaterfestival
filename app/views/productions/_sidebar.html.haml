@@ -26,10 +26,6 @@
           Likes:
           = @production.likers(User).count
         %p.user-stat
-          - if @production.company.present?
-            Company:
-            = link_to @production.company.name, @production.company
-        %p.user-stat
           - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
           - if key_cast.present?
             %ul
@@ -50,7 +46,11 @@
                   = c.position
         - if @production.venues.present?
           %p.venue-info
-            - venue_count = @production.venues.count
+            - if @production.company.present?
+              Produced by
+              = link_to @production.company.name, @production.company
+              @
+            - venue_count = @production.venues.distinct.count
             - if venue_count > 1
               = venue_count
               Venues
@@ -58,12 +58,9 @@
               - v = @production.venues.first
               = link_to v.name, v
               %br
-              = @production.theaters.first.name
-              %br
-              #{v.address}, #{v.city}, #{v.state} #{v.zip}
+              #{v.address}
               %br
               = link_to v.website, v.website if v.website.present?
-
         %p.user-stat
           = truncate(@production.description, length: 200)
         %ul
