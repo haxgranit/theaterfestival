@@ -11,7 +11,15 @@ class ArtistPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? || claim? || @user.artist == @artist
+    admin? || claim? || artist_owned? || false
+  end
+
+  def artist_owned?
+    if @user.present? && @user.artist.present?
+      @user.artist == @artist
+    else
+      false
+    end
   end
 
   def claim?

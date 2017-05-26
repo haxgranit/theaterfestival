@@ -3,22 +3,19 @@
     Create a Show
 
   .form
-    = simple_form_for @production, method: :put, url: wizard_path do |f|
-      - if @production.archived?
+    - if @production[:archived]
+      = simple_form_for @production, method: :put, url: wizard_path do |f|
         - date_limit = { date_options: { maxDate: Date.today.strftime('%Y/%m/%d') } }
-      - else
-        - date_limit = { date_options: { maxDate: false } }
-      %p To the best of your knowledge, enter the date of the first performance of this production.
-      = f.input :first_performance, label: false, required: true, include_blank: true, order: [:month, :day, :year]
-      - if @production.archived?
+        %p To the best of your knowledge, enter the date of the first performance of this production.
+        = f.input :first_performance, label: false, required: true, include_blank: true, order: [:month, :day, :year]
         %p To the best of your knowledge, enter the date of the last performance of this production.
         = f.input :last_performance, label: false, required: true, include_blank: true, order: [:month, :day, :year]
-      = f.button :submit, 'Save'
+        = f.button :submit, 'Save'
 
-  - if !@production.archived?
+  - if !@production[:archived]
     %p
       Click below to add upcoming and recent showtimes.
     %p
       = link_to 'Showtimes', wizard_path(:production_showtimes), class: 'btn btn-primary'
 
-= link_to 'Back', wizard_path(:production_data), class: 'btn btn-primary'
+= link_to 'Done', wizard_path(:production_data), class: 'btn btn-primary'

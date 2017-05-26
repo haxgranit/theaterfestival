@@ -14,6 +14,14 @@
       %p
         %strong
           = @venue.name
+    - if @venue.company.present?
+      %p
+        %strong
+          Managed by
+          = @venue.company.name
+    - if @venue.address.present?
+      %p
+        = @venue.address
     #user-stats
       %p.user-stat
         Followers:
@@ -39,3 +47,8 @@
       - if policy(@venue).edit?
         %li
           = link_to 'Edit', edit_venue_path(@venue)
+      - if policy(@venue).claim?
+        %li
+          = simple_form_for @venue, method: :patch do |f|
+            = f.input :company_id, as: :select, collection: current_user.all_companies, label_method: :name, value_method: :id
+            = f.submit 'Claim as this company', class: 'btn btn-primary'

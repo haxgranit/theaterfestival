@@ -1,5 +1,5 @@
 .nested-fields.row
-  = f.input :stage_name, as: :fake, required: true, input_html: { value: (f.object.artist.name if f.object.artist.present?), |
+  = f.input :stage_name, required: true, input_html: { value: (f.object.artist.name if f.object.artist.present?), |
                                                              placeholder: 'Credited Artist'} |
   = f.input :artist_id, as: :hidden
   = f.input :creditable_id, as: :hidden, input_html: { value: f.object.creditable_id }

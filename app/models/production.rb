@@ -59,6 +59,10 @@ class Production < ActiveRecord::Base
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
 
+  def archived?
+    self[:archived] || !future_shows?
+  end
+
   def location
     if showtimes.present? && showtimes.first.venue.present?
       venue = showtimes.first.venue

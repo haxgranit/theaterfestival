@@ -3,8 +3,7 @@
   - if policy(@venue).edit?
     = f.input :venue_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@venue, :venue_image) } }
     = f.input :banner_image, as: :attachment, direct: true, input_html: { data: { value: attachment_url(@venue, :banner_image) } }
-    = f.input :address1
-    = f.input :address2
+    = f.input :address
     = f.input :website, as: :url
     = f.input :phone_number, as: :tel
     = f.input :description

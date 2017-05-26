@@ -18,11 +18,11 @@ class Production::StepsController < ApplicationController
         end
         @duplicates = Production.where(title: @production.title).where.not(id: @production.id, company: nil)
       when 'company'
-        if @production.archived?
+        if @production[:archived]
           skip_step
         end
       when 'duplicate_company'
-        if @production.archived?
+        if @production[:archived]
           skip_step
         else
           unless Company.where(name: @production.company.name).where.not(id: @production.company.id).count > 0
@@ -31,7 +31,7 @@ class Production::StepsController < ApplicationController
           @duplicates = Company.where(name: @production.company.name).where.not(id: @production.company.id)
         end
       when 'production_dates'
-        unless @production.archived?
+        unless @production[:archived]
           skip_step
         end
     end
