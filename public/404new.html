@@ -172,8 +172,28 @@
       background-position: bottom;
     }
 
+    .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     #redlogo {
       height: 60px;
+    }
+
+    #facebook {
+      height: 40px;
+      margin-left: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #twitter {
+      height: 60px;
+      margin-left: -18px;
+      position: relative;
+      z-index: 1;
     }
 
     .footer-nav {
@@ -228,7 +248,11 @@
     </div>
   </div>
   <footer>
-    <img id="redlogo" src="./../app/assets/images/redlogo.png" alt="TheaterEngine">
+    <div class="icons">
+      <img id="redlogo" src="./../app/assets/images/redlogo.png" alt="TheaterEngine">
+      <a href="https://www.facebook.com/TheaterEngine/"><img id="facebook" src="https://d29bt26wntaesq.cloudfront.net/static/img/fb.png" alt="facebook"></a>
+      <a href="https://twitter.com/theaterengine"><img id="twitter" src="https://i1.wp.com/theafobefoundation.org/wp-content/uploads/2015/09/TwitterIcon_White-1-e1487954908584.png?fit=512%2C512v" alt="twiiter"></a>
+    </div>
     <div class="footer-nav">
       <a id="ready" href="https://www.theaterengine.com/terms">Legal</a>
       <p>|</p>
