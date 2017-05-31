@@ -30,6 +30,7 @@
               = link_to c.name, c
           %div
             - if v.present?
+              @
               = link_to v.name, v
             - elsif t.present?
               = link_to t.name, t
