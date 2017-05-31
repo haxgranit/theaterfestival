@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The page you were looking for doesn't exist (404)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+
+    body {
+      margin: 0;
+      font-family: arial, sans-serif;
+    }
+
+    h1, p {
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav {
+      background-color: #eeeeee;
+      height: 74px;
+      width: 100%;
+      padding: 8px 16px;
+      box-sizing: border-box;
+    }
+
+    #logo {
+      height: 50px;
+      padding: 4px 0 0 48px;
+      float: left;
+    }
+
+    .navlink {
+      height: 100%;
+      float: right;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding-right: 50px;
+    }
+
+    .navlink a {
+      margin: 0 10px 0 5px;
+      font-family: arial, sans-serif;
+      font-weight: bolder;
+    }
+
+    .before {
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 16px;
+      width: 16px;
+      padding: 0 0 0 2px;
+      box-sizing: border-box;
+    }
+
+    .before p {
+      font-size: 12px;
+      margin: 0;
+      font-weight: bolder;
+    }
+
+    #green {
+      background-color: #1ad930;
+    }
+
+    #yellow {
+      background-color: yellow;
+    }
+
+    .search-bar {
+      height: 48px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 85px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(70,70,70);
+    }
+
+    .search-bar span {
+      float: left;
+      font-size: 0.8em;
+      color: white;
+    }
+
+    .search-bar input {
+      float: right;
+      width: 400px;
+      height: 15px;
+    }
+
+    .error {
+      width: 100%;
+      background-image: url("./../app/assets/images/banner.png");
+      background-size: 100%;
+      box-sizing: border-box;
+      padding: 65px 65px 0px 65px;
+    }
+
+    .sidebar {
+      height: 350px;
+      width: 30%;
+      background-image: url("./../app/assets/images/broadway.jpg");
+      background-size: 100%;
+      float: left;
+    }
+
+    .filter {
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, .7);
+    }
+
+    .content-area {
+      height: 350px;
+      width: 70%;
+      background-color: #eceeef;
+      box-sizing: border-box;
+      padding: 50px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .content-area h1 {
+      font-size: 40px;
+    }
+
+    .content-area p {
+      font-size: 20px;
+    }
+
+    #go-home {
+      color: #f00;
+    }
+
+    #go-home:hover {
+      text-decoration: underline;
+      color: #b30000;
+    }
+
+    footer {
+      height: 180px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      box-sizing: border-box;
+      padding: 20px 85px;
+      background-image: url("./../app/assets/images/footer_bg.jpg");
+      background-size: 100%;
+      background-position: bottom;
+    }
+
+    #redlogo {
+      height: 60px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      height: 50px;
+    }
+
+    .footer-nav p {
+      margin-left: 15px;
+    }
+
+    #ready {
+      color: white;
+      margin-left: 15px;
+    }
+
+    #ready:hover {
+      text-decoration: underline;
+      color: #b30000;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="http://theaterengine.com"><img id="logo" src="./../app/assets/images/logo.png" alt="TheaterEngine"></a>
+      <div class="navlink">
+        <div class="before" id="green"><p>></p></div>
+        <a href="http://theaterengine.com">create a show</a>
+        <div class="before" id="yellow"><p>></p></div>
+        <a href="http://theaterengine.com">sign in</a>
+      </div>
+    </nav>
+    <div class="search-bar">
+      <span>TheaterEngine allows users to instantly search &amp; find their favorite shows and artists anywhere!</span>
+      <a href="http://theaterengine.com"><input id="search" type="text"></a>
+    </div>
+
+  </header>
+  <div class="error">
+    <div class="sidebar">
+      <div class="filter"></div>
+    </div>
+    <div class="content-area">
+      <h1>- 404 -</h1>
+      <p>Hmmm... we couldn't find what you were looking for. But no worries!</p>
+      <p><a id="go-home" href="http://theaterengine.com">Click here to go back to the home page.</a></p>
+    </div>
+  </div>
+  <footer>
+    <img id="redlogo" src="./../app/assets/images/redlogo.png" alt="TheaterEngine">
+    <div class="footer-nav">
+      <a id="ready" href="https://www.theaterengine.com/terms">Legal</a>
+      <p>|</p>
+      <p>Press</p>
+      <p>|</p>
+      <p>Contact Information</p>
+      <p>|</p>
+      <a id="ready" href="https://www.theaterengine.com/privacy">Privacy Policy</a>
+      <p>|</p>
+      <p>All Rights Reserved TheaterEngine 2017</p>
+    </div>
+  </footer>
+</body>
+</html>

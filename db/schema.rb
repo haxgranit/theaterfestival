@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 20170313064562) do
     t.string   "resource_type"
   end
 
+  add_index "permissions", ["resource_type", "resource_id"], name: "index_permissions_on_resource_type_and_resource_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "photo_albums", force: :cascade do |t|
