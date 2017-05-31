@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require tether
+//= require modernizr
 //= require bootstrap
 //= require bootstrap-slider
 //= require moment

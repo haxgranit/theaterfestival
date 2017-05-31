@@ -76,6 +76,7 @@ gem 'best_in_place'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-modernizr'
 end
 
 group :development, :test do
