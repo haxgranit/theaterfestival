@@ -1,41 +1,40 @@
-%body
-  %header
-    - if !user_signed_in?
-      #signIn.collapse.container-fluid.bg-inverse
-        .container
-          = render 'devise/sessions/inline_form'
-    %nav.navbar.navbar-light.navbar-toggleable-xl.bg-faded{role: "navigation"}
+%header
+  - if !user_signed_in?
+    #signIn.collapse.container-fluid.bg-inverse
       .container
-        = link_to image_tag('logo.png'), root_path, class: 'navbar-brand'
-        %ul.navbar-nav
+        = render 'devise/sessions/inline_form'
+  %nav.navbar.navbar-light.navbar-toggleable-xl.bg-faded{role: "navigation"}
+    .container
+      = link_to image_tag('logo.png'), root_path, class: 'navbar-brand'
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to 'create a show', create_show_path, class: 'nav-community nav-link'
+        - if user_signed_in?
           %li.nav-item
-            = link_to 'create a show', create_show_path, class: 'nav-community nav-link'
-          - if user_signed_in?
-            %li.nav-item
-              = link_to(attachment_image_tag(current_user, :profile_image, :fill, 50, 50, fallback: 'unknown50x50.png'), current_user)
-            %li.nav-item
-              .dropdown
-                %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
-                  = current_user.first_name
-                  = current_user.last_name
-                .dropdown-menu{'aria-labelledby': 'profileDropdown' }
-                  = link_to 'Profile', user_path(current_user), class: 'dropdown-item'
-                  - if current_user.artist.present?
-                    = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
-                  - else
-                    = button_to 'Create Artist Page', artists_path(artist: {stage_name: current_user.full_name, user_id: current_user}), method: :post, class: 'dropdown-item'
-                  = link_to 'Create Company', new_company_path, class: 'dropdown-item'
-                  = link_to 'Add a Show', create_show_path, class: 'dropdown-item'
-                  = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-          - else
-            %li.nav-item
-              = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
-    .search-bar.container-fluid
-      .container
-        .row
-          .col-md-7
-            %span
-              TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
-          .col-md-5
-            = simple_form_for(:search, wrapper: :inline_form) do |f|
-              = f.input :name, as: :fake
+            = link_to(attachment_image_tag(current_user, :profile_image, :fill, 50, 50, fallback: 'unknown50x50.png'), current_user)
+          %li.nav-item
+            .dropdown
+              %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
+                = current_user.first_name
+                = current_user.last_name
+              .dropdown-menu{'aria-labelledby': 'profileDropdown' }
+                = link_to 'Profile', user_path(current_user), class: 'dropdown-item'
+                - if current_user.artist.present?
+                  = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
+                - else
+                  = button_to 'Create Artist Page', artists_path(artist: {stage_name: current_user.full_name, user_id: current_user}), method: :post, class: 'dropdown-item'
+                = link_to 'Create Company', new_company_path, class: 'dropdown-item'
+                = link_to 'Add a Show', create_show_path, class: 'dropdown-item'
+                = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        - else
+          %li.nav-item
+            = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
+  .search-bar.container-fluid
+    .container
+      .row
+        .col-md-7
+          %span
+            TheaterEngine allows users to instantly search & find their favorite shows and artists anywhere!
+        .col-md-5
+          = simple_form_for(:search, wrapper: :inline_form) do |f|
+            = f.input :name, as: :fake
