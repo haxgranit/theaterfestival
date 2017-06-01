@@ -1,7 +1,8 @@
-= simple_form_for @production, method: :put, url: wizard_path, defaults: {wrapper_html: {class: "col-md-4 #{type}-#{target.to_s}"}} do |f|
+= simple_form_for @production, method: :put, url: wizard_path, defaults: {wrapper_html: {class: 'col-md-6'}} do |f|
   - if user_signed_in?
     .links
-      = link_to_add_association 'Add Credit', f, target,        |
-      render_options: { locals: { credit_type: type } },        |
+      = link_to_add_association 'Add Showtime', f, :showtimes,        |
       class: 'btn btn-primary',                                 |
-      partial: 'production/steps/credits/credit_fields'                  |
+      partial: 'production/steps/showtimes/showtime_fields'
+    .actions
+      = f.button :submit, 'Save Showtime'

@@ -1,4 +1,4 @@
-%tr
+= content_tag_for(:tr, @credits) do |credit|
   %td
     = attachment_image_tag(credit.artist, :profile_image, :fill, 50, 75)
   %td
@@ -11,4 +11,6 @@
       \-
       = credit.end_date.strftime('%D')
   %td
-    = link_to 'Delete Credit', credit, method: :delete
+    = link_to 'Edit', edit_credit_path(credit), remote: true
+  %td
+    = link_to 'Delete Credit', credit, remote: true, method: :delete

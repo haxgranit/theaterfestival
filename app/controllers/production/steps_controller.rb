@@ -4,6 +4,7 @@ class Production::StepsController < ApplicationController
     @company = @production.company
     authorize @production, :edit?
   end
+
   include Wicked::Wizard
   steps *Production.form_steps
 
@@ -30,6 +31,8 @@ class Production::StepsController < ApplicationController
           end
           @duplicates = Company.where(name: @production.company.name).where.not(id: @production.company.id)
         end
+      when 'production_cast', 'production_creative', 'production_staff', 'production_other'
+        set_credits_list(step)
       when 'production_dates'
         unless @production[:archived]
           skip_step
@@ -119,6 +122,24 @@ class Production::StepsController < ApplicationController
   end
 
   private
+
+  def set_credits_list(step)
+    case step
+    when 'production_cast'
+      @credits = @production.credits.production
+      @credit_type = :production
+    when 'production_creative'
+      @credits = @production.credits.creative
+      @credit_type = :creative
+    when 'production_staff'
+      @credits = @production.credits.staff
+      @credit_type = :staff
+    when 'production_other'
+      @credits = @production.credits.other
+      @credit_type = :other
+    end
+  end
+
 
   def production_params(step)
     permitted_attributes = case step

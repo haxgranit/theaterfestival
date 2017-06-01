@@ -1,0 +1,4 @@
+$('form').hide();
+$('tr').fadeIn();
+$('tr#<%= dom_id(@credit) %>').fadeOut();
+$('.content-area').append('<%= j render('form') %>');

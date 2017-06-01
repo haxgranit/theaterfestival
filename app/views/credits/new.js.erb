@@ -1,0 +1,3 @@
+$('.new-credit-button').before("<%= j render partial: 'credits/form', locals: { creditable_id: params[:target_id], creditable_type: params[:target_type], credit_type: params[:credit_type] } %>");
+$('.new-credit-button').hide();
+$('form.new_credit').fadeIn();

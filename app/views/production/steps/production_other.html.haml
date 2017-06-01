@@ -3,13 +3,14 @@
     Create a Show
   .question
     %p
-      Lorem ipsum
+      Add any special credits here.
+      Key Credits will show up highlighted alongside general information about your show. All other credits will appear only on the Show Page.
 
-  = render partial: 'production/steps/credits/credit_form', locals: { target: :credits, type: 'other' }
-%table.table.table-striped
-  %tbody
-    - @production.credits.other.each do |credit|
-      - p = credit.creditable
-      = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
+  %table.table.table-striped
+    %tbody
+      - credits = @production.credits.other
+      = render partial: 'production/steps/credits/listing', locals: { target: p, credits: credits }
 
+
+= link_to 'New Credit', new_credit_path(creditable_id: @production, creditable_type: 'Production', credit_type: :other), remote: true, class: 'new-credit-button btn btn-primary'
 = link_to 'Done', wizard_path(:production_people), class: 'btn btn-primary'

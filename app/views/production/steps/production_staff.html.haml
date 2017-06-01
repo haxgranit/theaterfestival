@@ -1,11 +1,11 @@
 %h2 Staff Credits for #{@production.name}
 %p What staff of #{@production.name} would you like to credit along with this production?
 
-= render partial: 'production/steps/credits/credit_form', locals: { collection: @production.company, target: :credits, type: 'staff' }
 %table.table.table-striped
   %tbody
-    - @production.company.credits.staff.each do |credit|
-      - p = credit.creditable
-      = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
+    - credits = @production.credits.staff
+    = render partial: 'production/steps/credits/listing', locals: { target: p, credits: credits }
 
+
+= link_to 'New Credit', new_credit_path(creditable_id: @production, creditable_type: 'Production', credit_type: :staff), remote: true, class: 'new-credit-button btn btn-primary'
 = link_to 'Done', wizard_path(:production_people), class: 'btn btn-primary'

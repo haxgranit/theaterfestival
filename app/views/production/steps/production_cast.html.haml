@@ -6,11 +6,11 @@
       Add the names for all cast members. For key cast members, please tick the appropriate box.
       Key Credits will show up highlighted alongside general information about your show. All other credits will appear only on the Show Page.
 
-  = render partial: 'production/steps/credits/credit_form', locals: { target: :credits, type: 'production' }
 %table.table.table-striped
   %tbody
-    - @production.credits.production.each do |credit|
-      - p = credit.creditable
-      = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
+    - credits = @production.credits.production
+    = render partial: 'production/steps/credits/listing', locals: { target: p, credits: credits }
 
+
+= link_to 'New Credit', new_credit_path(creditable_id: @production, creditable_type: 'Production', credit_type: :production), remote: true, class: 'new-credit-button btn btn-primary'
 = link_to 'Done', wizard_path(:production_people), class: 'btn btn-primary'

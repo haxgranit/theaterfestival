@@ -1,21 +1,7 @@
-.tab-wrapper
-  %ul.nav.nav-pills{ role: 'tablist' }
-    %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#cast', role: 'tab'}
-        Cast
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'pill' }, href: '#creative', role: 'tab'}
-        Creative
-.tab-content
-  .tab-pane.active{ id: 'cast', role: 'tabpanel'}
-    %table.table.table-striped
-      %tbody
-        - @production.credits.production.each do |credit|
-          - p = credit.creditable
-          = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
-  .tab-pane{ id: 'creative', role: 'tabpanel'}
-    %table.table.table-striped
-      %tbody
-        - @production.credits.creative.each do |credit|
-          - p = credit.creditable
-          = render partial: 'production/steps/credits/listing', locals: { target: p, credit: credit }
+%table.table.table-striped
+  %tbody.credits
+    = render template: 'production/steps/credits/listing', locals: { credits: @production.credits.production }
+
+= link_to 'New Credit', new_credit_path(creditable: @production), remote: true, class: 'new-credit-button btn btn-primary'
+
+= link_to 'Back', wizard_path(:production_people), class: 'btn btn-primary'
