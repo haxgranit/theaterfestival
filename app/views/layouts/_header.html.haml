@@ -13,12 +13,12 @@
           %li.nav-item
             = link_to(attachment_image_tag(current_user, :profile_image, :fill, 50, 50, fallback: 'unknown50x50.png'), current_user)
           %li.nav-item
+            = link_to current_user.first_name, user_path(current_user), class: 'nav-community nav-link'
+          %li.nav-item
             .dropdown
               %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
-                = current_user.first_name
-                = current_user.last_name
+                <i class="fa fa-certificate" id="nav-gear"></i>
               .dropdown-menu{'aria-labelledby': 'profileDropdown' }
-                = link_to 'Profile', user_path(current_user), class: 'dropdown-item'
                 - if current_user.artist.present?
                   = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
                 - else
