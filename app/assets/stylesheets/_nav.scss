@@ -23,40 +23,7 @@
       padding-right: 20px;
       position: relative;
 
-      // &:before {
-      //   content: '>';
-      //   background-color: rgb(250,247,0);
-      //   border-radius: 100%;
-      //   display: inline-block;
-      //   font-size: 12px;
-      //   line-height: 16px;
-      //   height: 16px;
-      //   width: 16px;
-      //   padding: 0 0 0 5px;
-      //   position: absolute;
-      //   left: 0;
-      //   top: 11px;
-      //   transition: .25s all;
-      // }
-
-      // &.nav-show:before {
-      //   background-color: rgb(255,0,0);
-      // }
-
-      // &.nav-community:before {
-      //   background-color: rgb(26,217,48);
-      // }
-
-      // &[aria-expanded="true"]:before {
-      //   transform: rotate(-90deg);
-      // }
-
       &.dropdown-toggle:after { content: none; }
-      // &.dropdown-toggle[aria-expanded=true]:before { transform: rotate(90deg); }
-
-      // #nav-gear {
-      //   margin-right: 40px;
-      // }
     }
 
     .profile_image {
@@ -66,10 +33,13 @@
       border-radius: 100%;
     }
 
+    #nav-gear:hover {
+      cursor: pointer;
+    }
+
     .dropdown-menu {
       margin-left: -60px;
       background: rgba(0, 0, 0, 0.8);
-      // border: 2px solid grey;
       padding: 0;
       a {
         color: white;
