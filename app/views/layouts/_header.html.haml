@@ -17,7 +17,7 @@
           %li.nav-item
             .dropdown
               %a.dropdown-toggle.nav-link{ id: 'profileDropdown', data: {toggle: 'dropdown'}, 'aria-haspopup': true, 'aria-expanded': false}
-                <i class="fa fa-certificate" id="nav-gear"></i>
+                <i class="fa fa-gear" id="nav-gear"></i>
               .dropdown-menu{'aria-labelledby': 'profileDropdown' }
                 - if current_user.artist.present?
                   = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
