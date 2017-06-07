@@ -1,0 +1,13 @@
+/ <h1>404</h1>
+/ <p>Hmmm... we couldn't find what you were looking for. But no worries!</p>
+/ <p><a id="go-home" href="http://theaterengine.com">Click here to go back to the home page.</a></p>
+
+.error
+  %h1
+    404
+
+  %p
+    Hmm... we couldn't find what you were looking for. But no worries!
+
+  %a
+    = link_to "Click here to go back to the home page", root_path, :id => "go-home"

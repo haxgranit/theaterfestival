@@ -1,0 +1,13 @@
+/ <h1>422</h1>
+/ <p>Hmmm... Maybe you tried to change something you didn't have access to.. But no worries!</p>
+/ <p><a id="go-home" href="http://theaterengine.com">Click here to go back to the home page.</a></p>
+
+.error
+  %h1
+    422
+
+  %p
+    Hmm... Maybe you tried to change something you didn't have access to. But no worries!
+
+  %a
+    = link_to "Click here to go back to the home page", root_path, :id => "go-home"
