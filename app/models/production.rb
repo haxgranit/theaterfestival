@@ -40,6 +40,7 @@ class Production < ActiveRecord::Base
   accepts_nested_attributes_for :credits
   accepts_nested_attributes_for :festival_production_links
   accepts_nested_attributes_for :production_metadata, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :press_items
   accepts_nested_attributes_for :reviews
   accepts_nested_attributes_for :showtimes
   accepts_nested_attributes_for :theaters

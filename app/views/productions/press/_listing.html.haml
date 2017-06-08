@@ -1,0 +1,17 @@
+.reviews
+  %h3
+    = pluralize(@production.press_items.count, 'Review')
+  - @production.press_items.each do |r|
+    .row
+      .col-md-2
+        = link_to 'Original Article', r.link
+      .col-md-8
+        %p.user
+          = r.author
+        %p.review-link
+          = r.publication
+        %p.review-summary
+          = r.quote
+      .col-md-1
+        %p.date
+          = r.created_at.strftime("%D")

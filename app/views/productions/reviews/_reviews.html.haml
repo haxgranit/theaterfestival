@@ -1,0 +1,20 @@
+.tab-wrapper
+  %ul.nav.nav-pills{ role: 'tablist' }
+    %li.nav-item
+      %a.nav-link.active{ data: { toggle: 'pill' }, href: '#reviews', role: 'tab'}
+        User Reviews
+    %li.nav-item
+      %a.nav-link{ data: { toggle: 'pill' }, href: '#press', role: 'tab'}
+        Press
+.tab-content
+  .tab-pane.active{ id: 'reviews', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        = render 'productions/reviews/listing'
+    = render 'productions/reviews/form'
+
+  .tab-pane{ id: 'press', role: 'tabpanel'}
+    %table.table.table-striped
+      %tbody
+        = render 'productions/press/listing'
+    = render 'productions/press/form'
