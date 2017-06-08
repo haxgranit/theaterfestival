@@ -62,13 +62,15 @@
               = c.position
   %section
     %p
-      = @production.first_performance_date.to_formatted_s(:long)
-      at
-      = @production.first_performance_showtime.venue.name
-      to
-      = @production.last_performance_date.to_formatted_s(:long)
-      at
-      = @production.last_performance_showtime.venue.name
+      - unless @production.first_performance_date.blank?
+        = @production.first_performance_date.to_formatted_s(:long)
+        at
+        = @production.first_performance_showtime.venue.name
+        - unless @production.last_performance_date.blank?
+          to
+          = @production.last_performance_date.to_formatted_s(:long)
+          at
+          = @production.last_performance_showtime.venue.name
   %section
     %h3
       General Admission
