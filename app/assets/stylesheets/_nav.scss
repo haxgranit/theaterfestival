@@ -2,6 +2,9 @@
   position: absolute;
 }
 
+.dropdown-item {
+  color: white;
+}
 
 .navbar.navbar-light {
   font-weight: bold;
@@ -31,6 +34,10 @@
       margin-left: 10px;
       height: 40px;
       border-radius: 100%;
+    }
+
+    #nav-gear:before {
+      font-size: 25px;
     }
 
     #nav-gear:hover {
