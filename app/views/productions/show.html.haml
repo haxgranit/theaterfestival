@@ -24,8 +24,7 @@
     = render 'productions/photos/form'
 
   .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    = render 'productions/reviews/listing'
-    = render 'productions/reviews/form'
+    = render 'productions/reviews/reviews'
   - unless @production.archived?
     .tab-pane{ id: 'showtimes', role: 'tabpanel' }
       = render 'productions/showtimes/showtimes'

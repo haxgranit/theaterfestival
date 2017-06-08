@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313064562) do
+ActiveRecord::Schema.define(version: 20170313064566) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,7 +235,6 @@ ActiveRecord::Schema.define(version: 20170313064562) do
     t.string   "resource_type"
   end
 
-  add_index "permissions", ["resource_type", "resource_id"], name: "index_permissions_on_resource_type_and_resource_id", using: :btree
   add_index "permissions", ["user_id"], name: "index_permissions_on_user_id", using: :btree
 
   create_table "photo_albums", force: :cascade do |t|
@@ -279,7 +278,6 @@ ActiveRecord::Schema.define(version: 20170313064562) do
 
   create_table "press_items", force: :cascade do |t|
     t.integer  "production_id"
-    t.date     "date"
     t.text     "publication"
     t.text     "quote"
     t.text     "author"
@@ -338,7 +336,6 @@ ActiveRecord::Schema.define(version: 20170313064562) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "production_id"
-    t.date     "date"
     t.integer  "rating"
     t.text     "title"
     t.text     "summary"

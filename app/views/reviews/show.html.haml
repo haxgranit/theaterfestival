@@ -4,7 +4,7 @@
   = @review.production.title
 %p
   %strong Date:
-  = @review.date
+  = @review.created_at.strftime('%D')
 %p
   %strong Rating:
   = @review.rating
@@ -23,6 +23,3 @@
 %p
   %strong Disagree:
   = @review.disagree
-= link_to 'Edit', edit_review_path(@review)
-|
-= link_to 'Back', reviews_path

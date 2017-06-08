@@ -1,0 +1,7 @@
+#add-review
+  = simple_form_for @production do |f|
+    - if user_signed_in?
+      .links
+        = link_to_add_association 'Add a Press Item', f, :press_items, partial: 'productions/press/press_fields', class: 'btn btn-primary'
+      .actions
+        = f.button :submit, 'Save Press Item'
