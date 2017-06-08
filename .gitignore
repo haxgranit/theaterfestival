@@ -8,6 +8,7 @@
 .production.env
 .rbenv-gemsets
 /public/uploads
+/scripts
 
 # Ignore bundler config.
 /.bundle
