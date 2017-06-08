@@ -98,7 +98,7 @@ class Production < ActiveRecord::Base
   end
 
   def future_shows?
-    showtimes.select { |s| s.date > Date.today }.present?
+    showtimes.select { |s| s.date >= Date.today }.present?
   end
 
   def closing_soon?
