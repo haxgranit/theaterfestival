@@ -17,6 +17,7 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'modernizr-rails'
+gem 'non-stupid-digest-assets'
 
 gem 'bootstrap'
 gem 'compass-rails'
