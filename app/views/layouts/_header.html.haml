@@ -20,12 +20,12 @@
                 <i class="fa fa-gear" id="nav-gear"></i>
               .dropdown-menu{'aria-labelledby': 'profileDropdown' }
                 - if current_user.artist.present?
-                  = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item'
+                  = link_to 'Artist Page', artist_path( current_user.artist ), class: 'dropdown-item dropdown-white'
                 - else
                   = button_to 'Create Artist Page', artists_path(artist: {stage_name: current_user.full_name, user_id: current_user}), method: :post, class: 'dropdown-item'
-                = link_to 'Create Company', new_company_path, class: 'dropdown-item'
-                = link_to 'Add a Show', create_show_path, class: 'dropdown-item'
-                = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+                = link_to 'Create Company', new_company_path, class: 'dropdown-item dropdown-white'
+                = link_to 'Add a Show', create_show_path, class: 'dropdown-item dropdown-white'
+                = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item dropdown-white'
         - else
           %li.nav-item
             = link_to 'sign in', '#',{data: { toggle: 'collapse', target: '#signIn'}, class: 'nav-link'}
