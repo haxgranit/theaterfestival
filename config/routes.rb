@@ -129,6 +129,10 @@ Rails.application.routes.draw do
   get :privacy, to: 'static#privacy'
   get :terms, to: 'static#terms'
 
+  get :page_not_found, to: 'exceptions#page_not_found'
+  get :unprocessable, to: 'exceptions#unprocessable'
+  get :server_error, to: 'exceptions#server_error'
+
   root 'home#home'
 
   namespace :api do
