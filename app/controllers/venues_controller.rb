@@ -43,7 +43,7 @@ class VenuesController < ApplicationController
 
   # PATCH/PUT /venues/1
   def update
-    if @venue.update(venue_params)
+    if @venue.update!(venue_params)
       redirect_to @venue, notice: 'Venue was successfully updated.'
     else
       render :edit
