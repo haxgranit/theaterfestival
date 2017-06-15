@@ -1,6 +1,8 @@
 .user-profile-details
   - provide(:title, @user.full_name)
-  %h1= yield(:title)
+  %h1
+    = yield(:title)
+    %p.page-destinction (User)
   - if @user.profile_image_id.present?
     = attachment_image_tag(@user, :profile_image, :fill, 400, 400)
   - else

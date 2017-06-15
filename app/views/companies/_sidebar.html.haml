@@ -3,6 +3,7 @@
     - provide(:title, @company.name)
     %h1
       = yield(:title)
+      %p.page-destinction (Company)
     %figure.profile-image
       = attachment_image_tag(@company, :company_image, :fit, 400, 1200, fallback: 'unknown.png')
       %figurecaption.social

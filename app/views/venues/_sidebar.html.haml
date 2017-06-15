@@ -3,6 +3,7 @@
     - provide(:title, @venue.name)
     %h1
       = yield(:title)
+      %p.page-destinction (Venue)
     %figure.profile-image
       - if @venue.venue_image_id.present?
         = attachment_image_tag(@venue, :venue_image, :fill, 400, 400)

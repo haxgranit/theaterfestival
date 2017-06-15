@@ -3,6 +3,7 @@
     - provide(:title, @artist.stage_name)
     %h1
       = yield(:title)
+      %p.page-destinction (Artist)
     %figure.profile-image
       - if @artist.profile_image_id.present?
         = attachment_image_tag(@artist, :profile_image, :fill, 400, 400)

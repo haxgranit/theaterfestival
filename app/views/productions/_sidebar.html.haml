@@ -7,6 +7,7 @@
         - if policy(@production).edit?
           = link_to  production_step_path(production_id: @production.id, id: :production_data) do
             %i.fa.fa-cog{'aria-hidden': true}
+        %p.page-destinction (Production)
 
       %figure.profile-image
         - if @production.key_image_id.present?
