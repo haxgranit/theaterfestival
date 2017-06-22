@@ -45,23 +45,23 @@
                   = c.artist.name
                   \-
                   = c.position
-        - if @production.venues.present?
           %p.venue-info
             - if @production.company.present?
               Produced by
               = link_to @production.company.name, @production.company
+            - if @production.venues.present?
               @
-            - venue_count = @production.venues.distinct.count
-            - if venue_count > 1
-              = venue_count
-              Venues
-            - else
-              - v = @production.venues.first
-              = link_to v.name, v
-              %br
-              #{v.address}
-              %br
-              = link_to v.website, v.website if v.website.present?
+              - venue_count = @production.venues.distinct.count
+              - if venue_count > 1
+                = venue_count
+                Venues
+              - else
+                - v = @production.venues.first
+                = link_to v.name, v
+                %br
+                #{v.address}
+                %br
+                = link_to v.website, v.website if v.website.present?
         %p.user-stat
           = truncate(@production.description, length: 200)
         %ul
