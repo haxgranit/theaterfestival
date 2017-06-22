@@ -1,55 +1,56 @@
-- if @venue.present?
-  .venue-profile-details
-    - provide(:title, @venue.name)
-    %h1
-      = yield(:title)
-      %p.page-destinction (Venue)
-    %figure.profile-image
-      - if @venue.venue_image_id.present?
-        = attachment_image_tag(@venue, :venue_image, :fill, 400, 400)
-      - else
-        = image_tag('unknown.png', size: '400x400')
-      %figurecaption.social
-        = render partial: 'shared/social_figure', locals: { target: @venue }
-    - if @venue.name.present?
-      %p
-        %strong
-          = @venue.name
-    - if @venue.company.present?
-      %p
-        %strong
-          Managed by
-          = @venue.company.name
-    - if @venue.address.present?
-      %p
-        = @venue.address
-    #user-stats
-      %p.user-stat
-        Followers:
-        = @venue.followers(User).count
-      %p.user-stat
-        Likes:
-        = @venue.likers(User).count
-    - if @venue.description.present?
-      %h2
-        Description
-      %p
-        = @venue.description
-      %h2
-        Contact
-      %p
-        = @venue.phone
-      %p
-        = link_to 'Website', @venue.website
-    %ul
-      - if policy(@venue).admin?
-        %li
-          = link_to 'Edit (TE)', edit_venue_path(@venue)
-      - if policy(@venue).edit?
-        %li
-          = link_to 'Edit', edit_venue_path(@venue)
-      - if policy(@venue).claim?
-        %li
-          = simple_form_for @venue, method: :patch do |f|
-            = f.input :company_id, as: :select, collection: current_user.all_companies, label_method: :name, value_method: :id
-            = f.submit 'Claim as this company', class: 'btn btn-primary'
+- unless current_page?(action: 'new')
+  - if @venue.present?
+    .venue-profile-details
+      - provide(:title, @venue.name)
+      %h1
+        = yield(:title)
+        %p.page-destinction (Venue)
+      %figure.profile-image
+        - if @venue.venue_image_id.present?
+          = attachment_image_tag(@venue, :venue_image, :fill, 400, 400)
+        - else
+          = image_tag('unknown.png', size: '400x400')
+        %figurecaption.social
+          = render partial: 'shared/social_figure', locals: { target: @venue }
+      - if @venue.name.present?
+        %p
+          %strong
+            = @venue.name
+      - if @venue.company.present?
+        %p
+          %strong
+            Managed by
+            = @venue.company.name
+      - if @venue.address.present?
+        %p
+          = @venue.address
+      #user-stats
+        %p.user-stat
+          Followers:
+          = @venue.followers(User).count
+        %p.user-stat
+          Likes:
+          = @venue.likers(User).count
+      - if @venue.description.present?
+        %h2
+          Description
+        %p
+          = @venue.description
+        %h2
+          Contact
+        %p
+          = @venue.phone
+        %p
+          = link_to 'Website', @venue.website
+      %ul
+        - if policy(@venue).admin?
+          %li
+            = link_to 'Edit (TE)', edit_venue_path(@venue)
+        - if policy(@venue).edit?
+          %li
+            = link_to 'Edit', edit_venue_path(@venue)
+        - if policy(@venue).claim?
+          %li
+            = simple_form_for @venue, method: :patch do |f|
+              = f.input :company_id, as: :select, collection: current_user.all_companies, label_method: :name, value_method: :id
+              = f.submit 'Claim as this company', class: 'btn btn-primary'
