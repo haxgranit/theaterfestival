@@ -13,6 +13,11 @@ class Showtime < ActiveRecord::Base
   accepts_nested_attributes_for :showtime_accessibility_metadata
   accepts_nested_attributes_for :additional_ticket_types, reject_if: :all_blank, allow_destroy: true
 
+  after_commit :reindex_production
+  def reindex_production
+    production.reindex # or reindex_async
+  end
+
   # def local_time
   #   showtime.in_time_zone(venue.time_zone)
   # end
