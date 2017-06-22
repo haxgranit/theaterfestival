@@ -150,7 +150,7 @@ class Production < ActiveRecord::Base
     results = []
     result_times = []
     showtimes.group_by(&:theater).each do |theater, times|
-      v = theater.venue
+      v = theater.try(:venue)
 
       times.each do |t|
         result_times << {
@@ -161,12 +161,12 @@ class Production < ActiveRecord::Base
       end
 
       results << {
-        venue: { id: v.id,
-                 address: v.address,
-                 city: v.city,
-                 state: v.state,
-                 zip: v.zip},
-        theater: theater.id,
+        venue: { id: v.try(:id),
+                 address: v.try(:address),
+                 city: v.try(:city),
+                 state: v.try(:state),
+                 zip: v.try(:zip)},
+        theater: theater.try(:id),
         times: result_times
       }
     end

@@ -52,7 +52,7 @@
   }
 }
 
-#header-image {width: 100%; position: absolute;}
+#home-image {width: 100%; position: absolute;}
 #main-content {
     background-repeat: no-repeat;
     background-position: top center;
@@ -190,5 +190,5 @@
 @media (min-width: 992px) {
 }
 @media (min-width: 1200px) {
-  #header-image {margin-bottom:-100px; }
+  #home-image {margin-bottom:-100px; }
 }

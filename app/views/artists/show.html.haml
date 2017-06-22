@@ -60,7 +60,7 @@
                     = link_to 'Review Link', r
                 .col-md-1
                   %p.date
-                    = r.date.strftime("%D")
+                    = r.created_at.strftime("%D")
   .tab-pane{ id: 'info', role: 'tabpanel' }
     = render partial: 'shared/social_links', locals: { target: @artist }
     - if @artist.full_bio.present?

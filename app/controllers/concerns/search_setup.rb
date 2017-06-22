@@ -23,6 +23,8 @@ module SearchSetup
       if loc.success
         conditions[:location] = { near: [loc.lat, loc.lng], within: '50mi'  }
         session[:geo_location] = loc
+      else 
+        logger.debug "#{loc}"
       end
     elsif session[:geo_location].present?
       loc = session[:geo_location]
