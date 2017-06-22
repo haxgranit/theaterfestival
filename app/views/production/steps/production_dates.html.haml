@@ -7,9 +7,9 @@
       = simple_form_for @production, method: :put, url: wizard_path do |f|
         - date_limit = { date_options: { maxDate: Date.today.strftime('%Y/%m/%d') } }
         %p To the best of your knowledge, enter the date of the first performance of this production.
-        = f.input :first_performance, label: false, required: true, include_blank: true, order: [:month, :day, :year]
+        = f.input :first_performance, label: false, include_blank: true, order: [:month, :day, :year]
         %p To the best of your knowledge, enter the date of the last performance of this production.
-        = f.input :last_performance, label: false, required: true, include_blank: true, order: [:month, :day, :year]
+        = f.input :last_performance, label: false, include_blank: true, order: [:month, :day, :year]
         = f.button :submit, 'Save'
 
   - if !@production[:archived]
