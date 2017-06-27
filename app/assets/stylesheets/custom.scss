@@ -12,7 +12,7 @@ body {
   margin-right: 0;
 }
 
-h1, h2, h3, h4, h5, h6, 
+h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-weight: 400;
 }
@@ -43,27 +43,14 @@ button:focus {
 
 .content-area {
   background-color: $gray-lighter;
-}
-
-.nav-tabs {
-    margin-bottom: 1em;
-    
-    .nav-item {
-        .nav-link {
-            border: none;
-            background-color: #ddd;
-            color: #55595c;
-            font-size: .9em;
-            font-weight: 400;
-            text-align: center;
-            width: 150px;
-
-            &.active {
-              background-color: $brand-primary;
-              color: #fff;
-            }
-        }
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .email-support {
+    order: 3;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .pagination {

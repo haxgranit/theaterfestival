@@ -52,6 +52,32 @@ Main components
   justify-content: flex-start;
   overflow: scroll;
 }
+
+.cd-item {
+  position: relative;
+  margin: 0 0 1em;
+  font-size: 0.8em;
+  .like, .unlike {
+    margin-left: -10px;
+  }
+  .production-likes {
+    margin-top: -30px;
+    margin-left: 26px;
+    font-weight: lighter;
+    color: rgb(25, 218, 49);
+  }
+  .production-follow {
+    margin-top: -28px;
+    margin-left: 74px;
+    font-weight: lighter;
+    color: rgb(25, 218, 49);
+  }
+}
+
+.cd-item div {
+  color: red;
+}
+
 @media only screen and (min-width: 768px) {
   .cd-items {
     padding: 2em 0 0;
@@ -61,12 +87,6 @@ Main components
   .cd-items {
     padding: 4em 0 0;
   }
-}
-
-.cd-item {
-  position: relative;
-  margin: 0 0 1em;
-  font-size: 0.8em;
 }
 .cd-item > img {
   display: block;

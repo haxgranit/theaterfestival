@@ -13,29 +13,50 @@ figure.profile-image {
   }
 }
 
-figurecaption.social {
-  margin-top: 1em;
-}
-
 figurecaption.social, .cd-item .social {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   text-align: center;
+  color: red;
   .button_to {
-    flex: 1 1 50%;
+
     button {
       background: transparent;
       border: none;
       font-size: 1.5em;
       padding: 0.5em;
+      width: 2.5em;
     }
 
-    .like, .unlike { color: white; background-color: rgba(0,0,0,0.5); }
-    .follow, .unfollow { background-color: $brand-primary; color: white; }
+    .like {
+      .fa-thumbs-o-up:before {
+        color: rgb(25, 218, 49);
+      }
+    }
+    .unlike {
+      .fa-thumbs-up:before {
+        color: rgb(25, 218, 49);
+      }
+    }
+    .follow {
+      .fa-plus-square-o:before {
+        color: rgb(25, 218, 49);
+      }
+    }
+    .unfollow {
+      .fa-plus-square:before {
+        color: rgb(25, 218, 49);
+      }
+    }
+    .like, .unlike, .unfollow, .follow {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
-.cd-item .social { 
+.cd-item .social {
   transition: all 0.5s;
   .button_to {
     button {

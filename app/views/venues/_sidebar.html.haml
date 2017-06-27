@@ -11,25 +11,25 @@
         = image_tag('unknown.png', size: '400x400')
       %figurecaption.social
         = render partial: 'shared/social_figure', locals: { target: @venue }
-    - if @venue.name.present?
-      %p
-        %strong
-          = @venue.name
-    - if @venue.company.present?
-      %p
-        %strong
-          Managed by
-          = @venue.company.name
-    - if @venue.address.present?
-      %p
-        = @venue.address
     #user-stats
-      %p.user-stat
-        Followers:
-        = @venue.followers(User).count
-      %p.user-stat
-        Likes:
-        = @venue.likers(User).count
+      - if user_signed_in?
+        %p.user-stat.sidebar-likes
+          (
+          = @venue.likers(User).count
+          )
+        %p.user-stat.sidebar-follows
+          (
+          = @venue.followers(User).count
+          )
+      - else
+        %p.user-stat
+          Likes (
+          = @venue.likers(User).count
+          )
+        %p.user-stat
+          Followers (
+          = @venue.followers(User).count
+          )
     - if @venue.description.present?
       %h2
         Description
@@ -41,6 +41,14 @@
         = @venue.phone
       %p
         = link_to 'Website', @venue.website
+    - if @venue.company.present?
+      %p
+        %strong
+          Managed by
+          = link_to @venue.company.name, @venue.company
+    - if @venue.address.present?
+      %p
+        = @venue.address
     %ul
       - if policy(@venue).admin?
         %li

@@ -1,22 +1,23 @@
-.tab-wrapper
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
-        Showtimes
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
-        Media
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#theaters', role: 'tab'}
-        Theaters
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
-.tab-content
-  .tab-pane.active{ id: 'showtimes', role: 'tabpanel' }
-    = render 'venues/showtimes/showtimes'
-  .tab-pane{ id: 'media', role: 'tabpanel' }
-    = render 'venues/photos/listing'
-    = render 'venues/photos/form'
-  .tab-pane{ id: 'theaters', role: 'tabpanel' }
-    = render 'venues/theaters/theaters'
+.venues-content
+  .tab-wrapper
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.nav-item
+        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
+          Showtimes
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+          Media
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#theaters', role: 'tab'}
+          Theaters
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+          Info
+  .tab-content
+    .tab-pane.active{ id: 'showtimes', role: 'tabpanel' }
+      = render 'venues/showtimes/showtimes'
+    .tab-pane{ id: 'media', role: 'tabpanel' }
+      = render 'venues/photos/listing'
+      = render 'venues/photos/form'
+    .tab-pane{ id: 'theaters', role: 'tabpanel' }
+      = render 'venues/theaters/theaters'

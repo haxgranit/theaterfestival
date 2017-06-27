@@ -12,12 +12,25 @@
       %figurecaption.social
         = render partial: 'shared/social_figure', locals: { target: @artist }
     #user-stats
-      %p.user-stat
-        Followers:
-        = @artist.followers(User).count
-      %p.user-stat
-        Likes:
-        = @artist.likers(User).count
+      -if user_signed_in?
+        %p.user-stat.sidebar-likes
+          (
+          = @artist.likers(User).count
+          )
+        %p.user-stat.sidebar-follows
+          (
+          = @artist.followers(User).count
+          )
+      -else
+        %p.user-stat
+          Likes (
+          = @artist.likers(User).count
+          )
+        %p.user-stat
+          Followers (
+          = @artist.followers(User).count
+          )
+
     #user-info
     - if policy(@artist).edit?
       .user-profile-links

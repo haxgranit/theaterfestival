@@ -1,42 +1,43 @@
-.tab-wrapper
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
-        Credits
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
-        Media
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
-        Reviews
-    - unless @production.archived?
+.productions-content
+  .tab-wrapper
+    %ul.nav.nav-tabs{ role: 'tablist' }
       %li.nav-item
-        %a.nav-link{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
-          Showtimes
-.tab-content
-  .tab-pane.active{ id: 'credits', role: 'tabpanel' }
-    = render 'productions/credits/credits'
-  .tab-pane{ id: 'media', role: 'tabpanel' }
-    = render 'productions/photos/listing'
-    = render 'productions/photos/form'
+        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
+          Credits
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+          Media
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+          Info
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
+          Reviews
+      - unless @production.archived?
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'tab' }, href: '#showtimes', role: 'tab'}
+            Showtimes
+  .tab-content
+    .tab-pane.active{ id: 'credits', role: 'tabpanel' }
+      = render 'productions/credits/credits'
+    .tab-pane{ id: 'media', role: 'tabpanel' }
+      = render 'productions/photos/listing'
+      = render 'productions/photos/form'
 
-  .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    = render 'productions/reviews/reviews'
-  - unless @production.archived?
-    .tab-pane{ id: 'showtimes', role: 'tabpanel' }
-      = render 'productions/showtimes/showtimes'
-  .tab-pane{ id: 'info', role: 'tabpanel' }
-    - if @production.description.present?
-      %h2
-        Production Description
-      %p
-        = @production.description
-    - if @production.metadata.present?
-      - @production.metadata.each do |k,v|
-        %h3
-          = k.titleize
+    .tab-pane{ id: 'reviews', role: 'tabpanel' }
+      = render 'productions/reviews/reviews'
+    - unless @production.archived?
+      .tab-pane{ id: 'showtimes', role: 'tabpanel' }
+        = render 'productions/showtimes/showtimes'
+    .tab-pane{ id: 'info', role: 'tabpanel' }
+      - if @production.description.present?
+        %h2
+          Production Description
         %p
-          = v
+          = @production.description
+      - if @production.metadata.present?
+        - @production.metadata.each do |k,v|
+          %h3
+            = k.titleize
+          %p
+            = v

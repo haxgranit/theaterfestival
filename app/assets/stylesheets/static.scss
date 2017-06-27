@@ -38,13 +38,27 @@
 
 .homepage-header {
   text-align: center;
-  padding: 3em 0;
+  padding: 1.5em 0 2rem 0;
+  margin-top: -2em;
   .homepage-callout {
     padding: 1em 0;
     color: white;
+    h2 {
+      font-size: 1.25rem;
+    }
   }
   .homepage-sections {
     color: white;
+    h3 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: .75rem;
+      margin-bottom: .5rem;
+    }
+    a, a:before {
+      font-size: .85rem;
+    }
     h1, h2, h3 { text-transform: uppercase; }
     h1, h2, h3, a { color: white; font-weight: bold }
     a { text-decoration: underline; }
@@ -52,8 +66,13 @@
   }
 }
 
-#header-image {width: 100%; position: absolute;}
+#header-image {
+  margin-top: -2em;
+  width: 100%;
+  position: absolute;
+}
 #main-content {
+    padding-top: 2em;
     background-repeat: no-repeat;
     background-position: top center;
     background-size: 100%;
@@ -164,7 +183,9 @@
 
 @media (min-width: 544px) {
   #main-content {
-
+    .container {
+      width: 554px;
+    }
     .container > .row {
       flex-direction: row;
     }
@@ -182,13 +203,26 @@
 }
 @media (min-width: 768px) {
   #main-content {
+    .container {
+      width: 768px;
+    }
     .sidebar-area {
       padding: 0;
     }
   }
 }
 @media (min-width: 992px) {
+  #main-content {
+    .container {
+      width: 992px;
+    }
+  }
 }
 @media (min-width: 1200px) {
-  #header-image {margin-bottom:-100px; }
+  #main-content {
+    .container {
+      width: 1200px;
+      #header-image {margin-bottom:-100px; }
+    }
+  }
 }

@@ -1,132 +1,133 @@
-#user-profile
-  %header
-    %ul.nav.nav-tabs{ role: 'tablist' }
-      %li.nav-item
-        %a.nav-link{ data: { toggle: 'tab' }, href: '#follows', role: 'tab'}
-          Follows
+.users-content
+  #user-profile
+    %header
+      %ul.nav.nav-tabs{ role: 'tablist' }
+        %li.nav-item
+          %a.nav-link{ data: { toggle: 'tab' }, href: '#follows', role: 'tab'}
+            Follows
+        - if policy(@user).edit?
+          %li.nav-item
+            %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
+              News
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
+              Notifications
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'tab' }, href: '#permissions', role: 'tab'}
+              My Content
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'tab' }, href: '#settings', role: 'tab'}
+              Settings
+    .tab-content
+      .tab-pane.active{ id: 'news', role: 'tabpanel' }
+        = render 'users/reviews/listing'
+        - if current_user == @user
+          %h2 #{@user.first_name}'s Activity
+          = render_activities(@user.public_activities)
+      .tab-pane{ id: 'follows', role: 'tabpanel' }
+        %ul.nav.nav-pills{ role: 'tablist' }
+          %li.nav-item
+            %a.nav-link.active{ data: { toggle: 'pill' }, href: '#productions', role: 'tab'}
+              Productions
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'pill' }, href: '#artists', role: 'tab'}
+              Artists
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'pill' }, href: '#companies', role: 'tab'}
+              Companies
+          %li.nav-item
+            %a.nav-link{ data: { toggle: 'pill' }, href: '#venues', role: 'tab'}
+              Venues
+        .tab-content
+          .tab-pane.active{ id: 'productions', role: 'tabpanel'}
+            - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production && f.future_shows? }).page(params[:production_page])
+            - if @productions.present?
+              = render 'productions/production_list'
+          .tab-pane{ id: 'artists', role: 'tabpanel'}
+            %ul.cd-items
+              - @user.followed.select { |f| f.class == Artist }.each do |a|
+                %li.cd-item
+                  - if a.profile_image_id.present?
+                    = attachment_image_tag(a, :profile_image, :fill, 100, 150)
+                  - else
+                    = image_tag('unknown.png', size: '150x200')
+                  .social
+                    = render partial: 'shared/social_figure', locals: { target: a }
+                  %div
+                    = link_to a.name, a
+          .tab-pane{ id: 'companies', role: 'tabpanel'}
+            .block-grid
+              - @user.followed.select { |f| f.class == Company }.each do |a|
+                %figure.block-grid-item.frontpage-show
+                  - if a.company_image_id.present?
+                    = attachment_image_tag(a, :company_image, :fill, 100, 150)
+                  - else
+                    = image_tag('unknown.png', size: '150x200')
+                  %figurecaption
+                    %span.full-title
+                      %span.title>
+                        = link_to a.name, a
+                    = render partial: 'shared/social_buttons', locals: { target: a }
+          .tab-pane{ id: 'venues', role: 'tabpanel'}
+            .block-grid
+              - @user.followed.select { |f| f.class == Venue }.each do |a|
+                %figure.block-grid-item.frontpage-show
+                  - if a.venue_image_id.present?
+                    = attachment_image_tag(a, :venue_image, :fill, 100, 150)
+                  - else
+                    = image_tag('unknown.png', size: '150x200')
+                  %figurecaption
+                    %span.full-title
+                      %span.title>
+                        = link_to a.name, a
+                    = render partial: 'shared/social_buttons', locals: { target: a }
+
+
       - if policy(@user).edit?
-        %li.nav-item
-          %a.nav-link.active{ data: { toggle: 'tab' }, href: '#news', role: 'tab'}
-            News
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'tab' }, href: '#notifications', role: 'tab'}
-            Notifications
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'tab' }, href: '#permissions', role: 'tab'}
-            My Content
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'tab' }, href: '#settings', role: 'tab'}
-            Settings
-  .tab-content
-    .tab-pane.active{ id: 'news', role: 'tabpanel' }
-      = render 'users/reviews/listing'
-      - if current_user == @user
-        %h2 #{@user.first_name}'s Activity
-        = render_activities(@user.public_activities)
-    .tab-pane{ id: 'follows', role: 'tabpanel' }
-      %ul.nav.nav-pills{ role: 'tablist' }
-        %li.nav-item
-          %a.nav-link.active{ data: { toggle: 'pill' }, href: '#productions', role: 'tab'}
-            Productions
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'pill' }, href: '#artists', role: 'tab'}
-            Artists
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'pill' }, href: '#companies', role: 'tab'}
-            Companies
-        %li.nav-item
-          %a.nav-link{ data: { toggle: 'pill' }, href: '#venues', role: 'tab'}
-            Venues
-      .tab-content
-        .tab-pane.active{ id: 'productions', role: 'tabpanel'}
-          - @productions = Kaminari.paginate_array(@user.followed.select { |f| f.class == Production && f.future_shows? }).page(params[:production_page])
-          - if @productions.present?
-            = render 'productions/production_list'
-        .tab-pane{ id: 'artists', role: 'tabpanel'}
-          %ul.cd-items
-            - @user.followed.select { |f| f.class == Artist }.each do |a|
-              %li.cd-item
-                - if a.profile_image_id.present?
-                  = attachment_image_tag(a, :profile_image, :fill, 100, 150)
-                - else
-                  = image_tag('unknown.png', size: '150x200')
-                .social
-                  = render partial: 'shared/social_figure', locals: { target: a }
-                %div
-                  = link_to a.name, a
-        .tab-pane{ id: 'companies', role: 'tabpanel'}
-          .block-grid
-            - @user.followed.select { |f| f.class == Company }.each do |a|
-              %figure.block-grid-item.frontpage-show
-                - if a.company_image_id.present?
-                  = attachment_image_tag(a, :company_image, :fill, 100, 150)
-                - else
-                  = image_tag('unknown.png', size: '150x200')
-                %figurecaption
-                  %span.full-title
-                    %span.title>
-                      = link_to a.name, a
-                  = render partial: 'shared/social_buttons', locals: { target: a }
-        .tab-pane{ id: 'venues', role: 'tabpanel'}
-          .block-grid
-            - @user.followed.select { |f| f.class == Venue }.each do |a|
-              %figure.block-grid-item.frontpage-show
-                - if a.venue_image_id.present?
-                  = attachment_image_tag(a, :venue_image, :fill, 100, 150)
-                - else
-                  = image_tag('unknown.png', size: '150x200')
-                %figurecaption
-                  %span.full-title
-                    %span.title>
-                      = link_to a.name, a
-                  = render partial: 'shared/social_buttons', locals: { target: a }
-
-
-    - if policy(@user).edit?
-      .tab-pane{ id: 'notifications', role: 'tabpanel' }
-        %h2 Potential Matches
-        %p We found the following artists credited under your name. Are any of these you?
-        %table.table.table-striped
-          %tbody
-            - @user.potential_matches.each do |match|
-              %tr
-                %td
-                  = link_to match.name, artist_path(match)
-                %td
-                  = link_to 'Claim', artist_claim_path(match), method: :patch
-
-
-      .tab-pane{ id: 'permissions', role: 'tabpanel' }
-        %h2 My Content
-        %p This is a list of all the things you have edit permissions for.
-        - if @user.artist.present?
-          %h3 Artist
+        .tab-pane{ id: 'notifications', role: 'tabpanel' }
+          %h2 Potential Matches
+          %p We found the following artists credited under your name. Are any of these you?
           %table.table.table-striped
             %tbody
-              %tr
-                %td
-                  = link_to @user.artist.name, artist_path(@user.artist)
-                %td
-                  = link_to 'Edit', edit_artist_path(@user.artist)
-        - if @user.companies.present?
-          %h3 Companies
-          %table.table.table-striped
-            %tbody
-              - @user.companies.each do |p|
+              - @user.potential_matches.each do |match|
                 %tr
                   %td
-                    = link_to p.name, company_path(p)
+                    = link_to match.name, artist_path(match)
                   %td
-                    = link_to 'Edit', edit_company_path(p)
-        - if @user.permissions.present?
-          %h3 Permissions
-          %table.table.table-striped
-            %tbody
-              - @user.permissions.each do |p|
+                    = link_to 'Claim', artist_claim_path(match), method: :patch
+
+
+        .tab-pane{ id: 'permissions', role: 'tabpanel' }
+          %h2 My Content
+          %p This is a list of all the things you have edit permissions for.
+          - if @user.artist.present?
+            %h3 Artist
+            %table.table.table-striped
+              %tbody
                 %tr
                   %td
-                    = link_to p.resource.name, polymorphic_path(p.resource)
+                    = link_to @user.artist.name, artist_path(@user.artist)
                   %td
-                    = link_to 'Edit', edit_polymorphic_path(p.resource)
-      .tab-pane{ id: 'settings', role: 'tabpanel' }
-        = render 'devise/registrations/edit', resource: current_user
+                    = link_to 'Edit', edit_artist_path(@user.artist)
+          - if @user.companies.present?
+            %h3 Companies
+            %table.table.table-striped
+              %tbody
+                - @user.companies.each do |p|
+                  %tr
+                    %td
+                      = link_to p.name, company_path(p)
+                    %td
+                      = link_to 'Edit', edit_company_path(p)
+          - if @user.permissions.present?
+            %h3 Permissions
+            %table.table.table-striped
+              %tbody
+                - @user.permissions.each do |p|
+                  %tr
+                    %td
+                      = link_to p.resource.name, polymorphic_path(p.resource)
+                    %td
+                      = link_to 'Edit', edit_polymorphic_path(p.resource)
+        .tab-pane{ id: 'settings', role: 'tabpanel' }
+          = render 'devise/registrations/edit', resource: current_user

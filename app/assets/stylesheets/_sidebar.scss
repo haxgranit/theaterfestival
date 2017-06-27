@@ -37,6 +37,59 @@ aside {
     text-align: left;
   }
 
+  form .button_to {
+
+  }
+
+  figurecaption.social {
+    background-color: transparent;
+    .button_to {
+      background-color: transparent;
+      .like, .unlike, .follow, .unfollow {
+        background-color: transparent;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .like, .unlike {
+        margin-right: 10px;
+      }
+      .like {
+        .fa-thumbs-o-up:before {
+          color: rgb(25, 218, 49);
+        }
+      }
+      .unlike {
+        .fa-thumbs-up:before {
+          color: rgb(25, 218, 49);
+        }
+      }
+      .follow {
+        .fa-plus-square-o:before {
+          color: rgb(25, 218, 49);
+        }
+      }
+      .unfollow {
+        .fa-plus-square:before {
+          color: rgb(25, 218, 49);
+        }
+      }
+    }
+  }
+
+  .sidebar-likes {
+    margin-left: 27px;
+    margin-top: -57px;
+    font-weight: lighter;
+    color: rgb(25, 218, 49);
+  }
+  .sidebar-follows {
+    font-weight: lighter;
+    margin-left: 97px;
+    margin-top: -31px;
+    color: rgb(25, 218, 49);
+  }
+
   form:not(.button_to) {
     padding: 1em;
 
@@ -64,4 +117,11 @@ aside {
 .page-destinction {
   font-size: 12px;
   margin: 10px 0 0 -15px;
+}
+
+.company-profile-details, .production-profile-details, .venue-profile-details, .user-profile-details, .profile-details {
+  padding-bottom: 1rem;
+  li {
+    padding-left: 1.25em;
+  }
 }

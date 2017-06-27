@@ -6,6 +6,27 @@
   color: white;
 }
 
+.nav-tabs {
+    margin-bottom: 1em;
+
+    .nav-item {
+        .nav-link {
+            border: none;
+            background-color: #ddd;
+            color: #55595c;
+            font-size: .8em;
+            font-weight: 400;
+            text-align: center;
+            width: 150px;
+
+            &.active {
+              background-color: $brand-primary;
+              color: #fff;
+            }
+        }
+    }
+}
+
 .navbar.navbar-light {
   font-weight: bold;
   margin: 0;
@@ -22,7 +43,7 @@
 
     .nav-link {
       color: rgba(0, 0, 0, 1);
-      font-size: .9rem;
+      font-size: .8rem;
       padding-right: 20px;
       position: relative;
 
@@ -32,12 +53,12 @@
     .profile_image {
       margin-right: -10px;
       margin-left: 10px;
-      height: 40px;
+      height: 30px;
       border-radius: 100%;
     }
 
     #nav-gear:before {
-      font-size: 25px;
+      font-size: 18px;
     }
 
     #nav-gear:hover {
@@ -72,14 +93,14 @@
 }
 
 .navbar-brand img {
-  height: 50px;
+  height: 35px;
 }
 
 @media (min-width: 544px) {
   .navbar.navbar-light {
     .navbar-nav {
       justify-content: flex-end;
-      padding: 0;
+      // padding: 0;
       width: auto;
     }
   }
@@ -95,7 +116,7 @@
     }
     .navbar-nav {
       .nav-link {
-        font-size: 1rem;
+        font-size: .8rem;
         padding-left: 20px;
       }
     }

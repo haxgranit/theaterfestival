@@ -8,21 +8,29 @@
       = attachment_image_tag(@company, :company_image, :fit, 400, 1200, fallback: 'unknown.png')
       %figurecaption.social
         = render partial: 'shared/social_figure', locals: { target: @company }
-    - if @company.name.present?
-      %p
-        %strong
-          = @company.name
+    #user-stats
+      - if user_signed_in?
+        %p.user-stat.sidebar-likes
+          (
+          = @company.likers(User).count
+          )
+        %p.user-stat.sidebar-follows
+          (
+          = @company.followers(User).count
+          )
+      - else
+        %p.user-stat
+          Likes (
+          = @company.likers(User).count
+          )
+        %p.user-stat
+          Followers (
+          = @company.followers(User).count
+          )
     - if @company.company_type.present?
       %p
         %em
           @company.company_type
-    #user-stats
-      %p.user-stat
-        Followers:
-        = @company.followers(User).count
-      %p.user-stat
-        Likes:
-        = @company.likers(User).count
   - if policy(@company).edit?
     .company-profile-links
       %ul

@@ -1,48 +1,49 @@
-.tab-wrapper
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#productions', role: 'tab'}
-        Credits
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
-        Media
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
-        Reviews
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#staff', role: 'tab'}
-        Staff
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#venues', role: 'tab'}
-        Venues
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
+.companies-content
+  .tab-wrapper
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.nav-item
+        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#productions', role: 'tab'}
+          Credits
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+          Media
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
+          Reviews
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#staff', role: 'tab'}
+          Staff
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#venues', role: 'tab'}
+          Venues
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+          Info
 
-  = render partial: 'shared/social_links', locals: { target: @company }
-.tab-content
-  .tab-pane.active{ id: 'productions', role: 'tabpanel' }
-    = render 'companies/productions/productions'
-  .tab-pane{ id: 'media', role: 'tabpanel' }
-    = render 'companies/photos/listing'
-    = render 'companies/photos/form'
+    = render partial: 'shared/social_links', locals: { target: @company }
+  .tab-content
+    .tab-pane.active{ id: 'productions', role: 'tabpanel' }
+      = render 'companies/productions/productions'
+    .tab-pane{ id: 'media', role: 'tabpanel' }
+      = render 'companies/photos/listing'
+      = render 'companies/photos/form'
 
-  .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    = render 'companies/reviews/listing'
-  .tab-pane{ id: 'staff', role: 'tabpanel'}
-    = render 'companies/credits/credits'
-  .tab-pane{ id: 'venues', role: 'tabpanel' }
-    = render 'companies/venues/venues'
-  .tab-pane{ id: 'info', role: 'tabpanel' }
-    - if @company.description.present?
-      %h2
-        Description
-      %p
-        = @company.description
-    - if @company.email.present?
-      %h2
-        Contact
-      %p
-        = mail_to @company.email, 'Email'
-      %p
-        = link_to 'Website', @company.website
+    .tab-pane{ id: 'reviews', role: 'tabpanel' }
+      = render 'companies/reviews/listing'
+    .tab-pane{ id: 'staff', role: 'tabpanel'}
+      = render 'companies/credits/credits'
+    .tab-pane{ id: 'venues', role: 'tabpanel' }
+      = render 'companies/venues/venues'
+    .tab-pane{ id: 'info', role: 'tabpanel' }
+      - if @company.description.present?
+        %h2
+          Description
+        %p
+          = @company.description
+      - if @company.email.present?
+        %h2
+          Contact
+        %p
+          = mail_to @company.email, 'Email'
+        %p
+          = link_to 'Website', @company.website

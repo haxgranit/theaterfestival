@@ -9,11 +9,13 @@
     = image_tag('unknown.png', size: '400x400')
   #user-stats
     %p.user-stat
-      Following:
+      Following (
       = @user.followed.count
+      )
     %p.user-stat
-      Liked:
+      Liked (
       = @user.liked.count
+      )
   - if @user.location?
     #user-info
       %p

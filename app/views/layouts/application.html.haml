@@ -33,7 +33,7 @@
             = render 'sidebar'
           .col-md-8.content-area
             - unless current_page?(root_path)
-              .row
+              .row.email-support
                 = mail_to 'support@theaterengine.com', 'See something wrong? Click here to email support.', subject: "Issue at #{request.original_fullpath}"
             = yield
       = render 'layouts/footer'

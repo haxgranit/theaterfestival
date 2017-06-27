@@ -1,70 +1,71 @@
-.tab-wrapper
-  %ul.nav.nav-tabs{ role: 'tablist' }
-    %li.nav-item
-      %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
-        Credits
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
-        Media
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
-        Reviews
-    %li.nav-item
-      %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
-        Info
-.tab-content
-  .tab-pane.active{ id: 'credits', role: 'tabpanel' }
-    = render partial: 'shared/credits/credits', locals: { resource: @artist }
-  .tab-pane{ id: 'media', role: 'tabpanel' }
-    = render 'artists/photos/listing'
-    = render 'artists/photos/form'
+.artist-content
+  .tab-wrapper
+    %ul.nav.nav-tabs{ role: 'tablist' }
+      %li.nav-item
+        %a.nav-link.active{ data: { toggle: 'tab' }, href: '#credits', role: 'tab'}
+          Credits
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#media', role: 'tab'}
+          Media
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#reviews', role: 'tab'}
+          Reviews
+      %li.nav-item
+        %a.nav-link{ data: { toggle: 'tab' }, href: '#info', role: 'tab'}
+          Info
+  .tab-content
+    .tab-pane.active{ id: 'credits', role: 'tabpanel' }
+      = render partial: 'shared/credits/credits', locals: { resource: @artist }
+    .tab-pane{ id: 'media', role: 'tabpanel' }
+      = render 'artists/photos/listing'
+      = render 'artists/photos/form'
 
-  .tab-pane{ id: 'reviews', role: 'tabpanel' }
-    .reviews
-      - @artist.productions.each do |p|
-        .row
-          .col-md-2
-            %figure.frontpage-show
-              = attachment_image_tag(p, :key_image, :fill, 100, 150)
-              %figurecaption
-                %span.full-title
-                  %span.title>
-                    = link_to p.title, p
-                %span.company
-                  = link_to p.company.name, p.company if p.company.present?
-                %span.venue
-                  = link_to p.venues.first.name, p.venues.first if p.venues.present?
-          .col-md-9.offset-sm-1
-            %h2
-              = p.title
-            .production-meta
-              %h3
-                = pluralize(p.reviews.count, "Review")
-              %span.production-info
-                = p.company.name if p.company.present?
-              - if p.venues.present?
+    .tab-pane{ id: 'reviews', role: 'tabpanel' }
+      .reviews
+        - @artist.productions.each do |p|
+          .row
+            .col-md-2
+              %figure.frontpage-show
+                = attachment_image_tag(p, :key_image, :fill, 100, 150)
+                %figurecaption
+                  %span.full-title
+                    %span.title>
+                      = link_to p.title, p
+                  %span.company
+                    = link_to p.company.name, p.company if p.company.present?
+                  %span.venue
+                    = link_to p.venues.first.name, p.venues.first if p.venues.present?
+            .col-md-9.offset-sm-1
+              %h2
+                = p.title
+              .production-meta
+                %h3
+                  = pluralize(p.reviews.count, "Review")
                 %span.production-info
-                  = p.venues.first.name
-                %span.production-info
-                  = p.venues.first.address
-            - p.reviews.each do |r|
-              .row.review
-                .col-md-1
-                  = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
-                .col-md-8.offset-sm-1
-                  %p.user
-                    = r.user.full_name
-                  %p.review-summary
-                    = truncate r.full_text, length: 100
-                  %p.review-link
-                    = link_to 'Review Link', r
-                .col-md-1
-                  %p.date
-                    = r.date.strftime("%D")
-  .tab-pane{ id: 'info', role: 'tabpanel' }
-    = render partial: 'shared/social_links', locals: { target: @artist }
-    - if @artist.full_bio.present?
-      %h2
-        Full Bio
-      %p
-        = @artist.full_bio
+                  = p.company.name if p.company.present?
+                - if p.venues.present?
+                  %span.production-info
+                    = p.venues.first.name
+                  %span.production-info
+                    = p.venues.first.address
+              - p.reviews.each do |r|
+                .row.review
+                  .col-md-1
+                    = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+                  .col-md-8.offset-sm-1
+                    %p.user
+                      = r.user.full_name
+                    %p.review-summary
+                      = truncate r.full_text, length: 100
+                    %p.review-link
+                      = link_to 'Review Link', r
+                  .col-md-1
+                    %p.date
+                      = r.date.strftime("%D")
+    .tab-pane{ id: 'info', role: 'tabpanel' }
+      = render partial: 'shared/social_links', locals: { target: @artist }
+      - if @artist.full_bio.present?
+        %h2
+          Full Bio
+        %p
+          = @artist.full_bio

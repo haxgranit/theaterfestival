@@ -26,12 +26,23 @@
             = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger')
             .social
               = render partial: 'shared/social_figure', locals: { target: production }
+            - if user_signed_in?
+              %p.user-stat.production-likes
+                (
+                = production.likers(User).count
+                )
+              %p.user-stat.production-follow
+                (
+                = production.followers(User).count
+                )
             %div
               = link_to truncate(production.title, length: 35), production
             %div
               - if v.present?
+                @
                 = link_to v.name, v
               - elsif t.present?
+                @
                 = link_to t.name, t
             %div
               = production.first_performance_date

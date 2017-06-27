@@ -15,36 +15,58 @@
         %figurecaption.social
           = render partial: 'shared/social_figure', locals: { target: @production }
       #user-stats
-        %p.user-stat
-          = @production.tagline if @production.tagline.present?
-        %p.user-stat
-          User Reviews:
-          = @production.reviews.count
-        %p.user-stat
-          Followers:
-          = @production.followers(User).count
-        %p.user-stat
-          Likes:
-          = @production.likers(User).count
-        %p.user-stat
-          - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
-          - if key_cast.present?
-            %ul
-              - key_cast.each do |c|
-                %li
-                  = c.artist.name
-                  \-
-                  = c.position
-        %p.user-stat
-          - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
-          - if key_cast.present?
-            Starring:
-            %ul
-              - key_cast.each do |c|
-                %li
-                  = c.artist.name
-                  \-
-                  = c.position
+        -if user_signed_in?
+          %p.user-stat.sidebar-likes
+            (
+            = @production.likers(User).count
+            )
+          %p.user-stat.sidebar-follows
+            (
+            = @production.followers(User).count
+            )
+          %p.user-stat
+            = @production.tagline if @production.tagline.present?
+          %p.user-stat
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
+            - if key_cast.present?
+              %ul
+                - key_cast.each do |c|
+                  %li
+                    = c.artist.name
+                    \-
+                    = c.position
+          %p.user-stat
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
+            - if key_cast.present?
+              Starring:
+              %ul
+                - key_cast.each do |c|
+                  %li
+                    = c.artist.name
+                    \-
+                    = c.position
+        -else
+          %p.user-stat
+            = @production.tagline if @production.tagline.present?
+          %p.user-stat
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'creative' }
+            - if key_cast.present?
+              %ul
+                - key_cast.each do |c|
+                  %li
+                    = c.artist.name
+                    \-
+                    = c.position
+          %p.user-stat
+            - key_cast = @production.key_credits.select { |c| c.credit_type == 'production' }
+            - if key_cast.present?
+              Starring:
+              %ul
+                - key_cast.each do |c|
+                  %li
+                    = c.artist.name
+                    \-
+                    = c.position
         - if @production.venues.present?
           %p.venue-info
             - if @production.company.present?
@@ -62,7 +84,7 @@
               #{v.address}
               %br
               = link_to v.website, v.website if v.website.present?
-        %p.user-stat
+        %p.user-stat.production-description
           = truncate(@production.description, length: 200)
         %ul
           - if policy(@production).admin?
