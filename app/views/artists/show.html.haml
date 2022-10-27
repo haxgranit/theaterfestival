@@ -42,6 +42,7 @@
                 %h3
                   = pluralize(p.reviews.count, "Review")
                 %span.production-info
+<<<<<<< HEAD
                   = p.company.name if p.company.present?
                 - if p.venues.present?
                   %span.production-info
@@ -69,3 +70,29 @@
           Full Bio
         %p
           = @artist.full_bio
+=======
+                  = p.venues.first.name
+                %span.production-info
+                  = p.venues.first.address
+            - p.reviews.each do |r|
+              .row.review
+                .col-md-1
+                  = attachment_image_tag(r.user, :profile_image, :fill, 100, 100)
+                .col-md-8.offset-sm-1
+                  %p.user
+                    = r.user.full_name
+                  %p.review-summary
+                    = truncate r.full_text, length: 100
+                  %p.review-link
+                    = link_to 'Review Link', r
+                .col-md-1
+                  %p.date
+                    = r.created_at.strftime("%D")
+  .tab-pane{ id: 'info', role: 'tabpanel' }
+    = render partial: 'shared/social_links', locals: { target: @artist }
+    - if @artist.full_bio.present?
+      %h2
+        Full Bio
+      %p
+        = @artist.full_bio
+>>>>>>> refs/rewritten/merge

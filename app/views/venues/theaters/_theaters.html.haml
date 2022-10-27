@@ -2,3 +2,5 @@
   %tbody
     - @venue.theaters.each do |theater|
       = render partial: 'venues/theaters/listing', locals: { target: @venue, theater: theater }
+- if policy(@venue).edit?
+  = render partial: 'venues/theaters/theater_form', locals: { target: :theaters }

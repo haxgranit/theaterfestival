@@ -20,7 +20,7 @@
             - v = t.venue
 
         %li.cd-item{ data: { production: production.id } }
-          = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger')
+          = attachment_image_tag(production, :key_image, :fill, 600, 800, fallback: 'unknown600x800.png', class: 'cd-trigger', format: "jpg")
           .social
             = render partial: 'shared/social_figure', locals: { target: production }
           %div

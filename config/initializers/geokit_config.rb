@@ -1,6 +1,7 @@
 Geokit::default_units = :miles # others :kms, :nms, :meters
 Geokit::default_formula = :sphere
 Geokit::Geocoders::provider_order=[:google]
+Geokit::Geocoders::ip_provider_order=[:geo_plugin, :ip]
 
 Geokit::Geocoders::request_timeout = 10
 

@@ -66,11 +66,15 @@
   }
 }
 
+<<<<<<< HEAD
 #header-image {
   margin-top: -2em;
   width: 100%;
   position: absolute;
 }
+=======
+#home-image {width: 100%; position: absolute;}
+>>>>>>> refs/rewritten/merge
 #main-content {
     padding-top: 2em;
     background-repeat: no-repeat;
@@ -219,10 +223,14 @@
   }
 }
 @media (min-width: 1200px) {
+<<<<<<< HEAD
   #main-content {
     .container {
       width: 1200px;
       #header-image {margin-bottom:-100px; }
     }
   }
+=======
+  #home-image {margin-bottom:-100px; }
+>>>>>>> refs/rewritten/merge
 }

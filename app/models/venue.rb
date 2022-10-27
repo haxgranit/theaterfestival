@@ -5,7 +5,6 @@ class Venue < ActiveRecord::Base
   include SocialTarget
   include PublicActivity::Common
   searchkick word_start: [:name], searchable: [:name]
-  validates :company_id, presence: true
   attachment :venue_image
   attachment :banner_image
 

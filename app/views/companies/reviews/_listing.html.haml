@@ -27,9 +27,7 @@
               %span.production-info
                 = p.venues.first.name
               %span.production-info
-                = p.venues.first.city + ','
-                = p.venues.first.state
-                = p.venues.first.zip
+                = p.venues.first.address
           - p.reviews.each do |r|
             .row.review
               .col-md-1
@@ -43,4 +41,4 @@
                   = link_to 'Review Link', r
               .col-md-1
                 %p.date
-                  = r.date.strftime("%D")
+                  = r.created_at.strftime("%D")
